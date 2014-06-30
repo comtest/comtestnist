@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.core.runtime,
  citlab.testsuite;bundle-version="1.0.0",
  citlab.core;bundle-version="1.0.0",
  org.eclipse.core.databinding.property,
- org.eclipse.emf.databinding
+ org.eclipse.emf.databinding,
+ org.eclipse.jdt.junit;bundle-version="3.7.250"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: citlab.core.ui;uses:="org.eclipse.jface.resource,org.eclipse.ui.plugin,org.osgi.framework",
@@ -28,3 +29,4 @@ Export-Package: citlab.core.ui;uses:="org.eclipse.jface.resource,org.eclipse.ui.
  citlab.core.ui.views.importer
 Bundle-ClassPath: .,
  swt-grouplayout.jar
+Import-Package: org.junit
