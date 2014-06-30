@@ -3,45 +3,13 @@
  */
 package citlab.core.ui.views.generator;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.layout.TableColumnLayout;
-import org.eclipse.jface.resource.FontRegistry;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ColumnViewerEditor;
-import org.eclipse.jface.viewers.ColumnViewerEditorActivationEvent;
-import org.eclipse.jface.viewers.ColumnViewerEditorActivationStrategy;
 import org.eclipse.jface.viewers.ColumnWeightData;
-import org.eclipse.jface.viewers.FocusCellOwnerDrawHighlighter;
-import org.eclipse.jface.viewers.ICellModifier;
-import org.eclipse.jface.viewers.ITableColorProvider;
-import org.eclipse.jface.viewers.ITableFontProvider;
-import org.eclipse.jface.viewers.ITableLabelProvider;
-import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
-import org.eclipse.jface.viewers.TableViewerEditor;
-import org.eclipse.jface.viewers.TableViewerFocusCellManager;
-import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
@@ -59,13 +27,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-import citlab.model.citL.CitLFactory;
-import citlab.model.citL.Parameter;
 import citlab.testsuite.Assignment;
 import citlab.testsuite.Test;
 import citlab.testsuite.TestSuite;
-import citlab.testsuite.TestsuiteFactory;
-import citlab.testsuite.impl.AssignmentImpl;
 
 import org.eclipse.swt.custom.StyledText;
 
@@ -118,47 +82,12 @@ public class TestSuiteView extends ViewPart {
 		
 		tableViewer = new TableViewer(composite_1, SWT.BORDER
 				| SWT.FULL_SELECTION | SWT.H_SCROLL |SWT.V_SCROLL);
-		
-		
-		tableViewer.setLabelProvider(new MyLabelProvider());
-		tableViewer.setContentProvider(ArrayContentProvider.getInstance());
+		table = tableViewer.getTable();
 
-
-		
-		tableViewer.setCellModifier(new MyICellModifier());
-		
-
-
-		TableViewerFocusCellManager focusCellManager = new TableViewerFocusCellManager(
-				tableViewer, new FocusCellOwnerDrawHighlighter(tableViewer));
-		ColumnViewerEditorActivationStrategy actSupport = new ColumnViewerEditorActivationStrategy(
-				tableViewer) {
-			@Override
-			protected boolean isEditorActivationEvent(
-					ColumnViewerEditorActivationEvent event) {
-				return event.eventType == ColumnViewerEditorActivationEvent.TRAVERSAL
-						|| event.eventType == ColumnViewerEditorActivationEvent.MOUSE_DOUBLE_CLICK_SELECTION
-						|| (event.eventType == ColumnViewerEditorActivationEvent.KEY_PRESSED && event.keyCode == SWT.CR)
-						|| event.eventType == ColumnViewerEditorActivationEvent.PROGRAMMATIC;
-			}
-		};
-
-		int feature = ColumnViewerEditor.TABBING_HORIZONTAL
-				| ColumnViewerEditor.TABBING_MOVE_TO_ROW_NEIGHBOR
-				| ColumnViewerEditor.TABBING_VERTICAL
-				| ColumnViewerEditor.KEYBOARD_ACTIVATION;
-
-		TableViewerEditor.create(tableViewer, focusCellManager, actSupport, feature);
-//
-//		
-		tableViewer.getTable().setLinesVisible(true);
-		tableViewer.getTable().setHeaderVisible(true);
-		table= tableViewer.getTable();
-	  composite_1.setLayout(new FillLayout());
-	  
-	  
-	  
-	  
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
+		layout = new TableColumnLayout();
+	  composite_1.setLayout(layout);
 	  Composite composite = new Composite(parent, SWT.NONE);
 	  composite.setLayout(new FormLayout());
 	  
@@ -250,104 +179,49 @@ public class TestSuiteView extends ViewPart {
 		// TODO Auto-generated method stub
 
 	}
-	
-	//TODO: Douglas
-	public List<String> generate_column_name(){
-		List<String> column_name = new ArrayList<String>();
-		
-		column_name.add("Test");
-		int n = 1;
-		for (Assignment i : this.inputlist.getTests().get(0).getAssignments()) {
-			column_name.add(i.getParameter().getName());
-			n++;
-		}
-	
-		return column_name;
-
-	}
-	public void add_in_expected_value_col(final TestSuite inputlist ){
-		for (int i = 0; i < inputlist.getTests().size(); i++) {
-			if( i == 0 ){
-				Assignment assignment = TestsuiteFactory.eINSTANCE
-						.createAssignment();
-				Parameter parameter = CitLFactory.eINSTANCE.createParameter();
-				parameter.setName("Expected Value");
-				assignment.setParameter(parameter);
-				assignment.setValue("*");
-				inputlist.getTests().get(i).getAssignments().add(assignment);
-			} else {
-				Assignment assignment = TestsuiteFactory.eINSTANCE
-						.createAssignment();
-				Parameter parameter = CitLFactory.eINSTANCE.createParameter();
-				parameter.setName("Expected Value");
-				assignment.setParameter(parameter);
-				assignment.setValue("*");
-				inputlist.getTests().get(i).getAssignments().add(assignment);
-			}
-		
-		}
-	}
 
 	public void setTestsuite(final TestSuite inputlist) {
 
 		this.inputlist = inputlist;
-		add_in_expected_value_col(inputlist);
-		String[] columLabels = generate_column_name().toArray(new String[0]);
-		TextCellEditor[] cellEditors = new TextCellEditor[columLabels.length];
+		TableColumn[] columnOfTheModel = new TableColumn[this.inputlist
+				.getTests().get(0).getAssignments().size() + 1];
+		TableViewerColumn[]  tableViewerColumn = new TableViewerColumn[this.inputlist
+		                                               				.getTests().get(0).getAssignments().size() + 1];
 
-		for(int i = 0; i<columLabels.length; i++){
-			cellEditors[i] = new TextCellEditor(tableViewer.getTable());
-		}
+		columnOfTheModel[0] = new TableColumn(table, SWT.NONE);
+		columnOfTheModel[0].setText("Test");
+	
+		int n = 1;
+		for (Assignment i : this.inputlist.getTests().get(0).getAssignments()) {
+			tableViewerColumn[n] = new TableViewerColumn(
+					tableViewer, SWT.NONE);
 
-		tableViewer.setCellEditors(cellEditors);
-		tableViewer.setColumnProperties(columLabels);
-		
-		
-		for (String label : columLabels) {
-			createColumnFor(tableViewer, label);
+			columnOfTheModel[n] = tableViewerColumn[n].getColumn();
+	      
+
+			columnOfTheModel[n].setText(i.getParameter().getName());
+			n++;
 		}
-		tableViewer.setInput(createModel());
-		
-//		
-//		TableColumn[] columnOfTheModel = new TableColumn[this.inputlist
-//				.getTests().get(0).getAssignments().size() + 1];
-//		TableViewerColumn[]  tableViewerColumn = new TableViewerColumn[this.inputlist
-//		                                               				.getTests().get(0).getAssignments().size() + 1];
-//
-//		columnOfTheModel[0] = new TableColumn(table, SWT.NONE);
-//		columnOfTheModel[0].setText("Test");
-//	
-//		int n = 1;
-//		for (Assignment i : this.inputlist.getTests().get(0).getAssignments()) {
-//			tableViewerColumn[n] = new TableViewerColumn(
-//					tableViewer, SWT.NONE);
-//
-//			columnOfTheModel[n] = tableViewerColumn[n].getColumn();
-//	      
-//
-//			columnOfTheModel[n].setText(i.getParameter().getName());
-//			n++;
-//		}
-//		int testnumber = 0;
-//		for (Test test : this.inputlist.getTests()) {
-//			testnumber++;
-//			TableItem item = new TableItem(table, SWT.NONE);
-//			item.setText(0, Integer.toString(testnumber));
-//			item.setForeground(0, SWTResourceManager.getColor(SWT.COLOR_RED));
-//			int i = 1;
-//			for (Assignment assignment : test.getAssignments()) {
-//				item.setText(i, assignment.getValue());
-//				i++;
-//
-//			}
-//		}
+		int testnumber = 0;
+		for (Test test : this.inputlist.getTests()) {
+			testnumber++;
+			TableItem item = new TableItem(table, SWT.NONE);
+			item.setText(0, Integer.toString(testnumber));
+			item.setForeground(0, SWTResourceManager.getColor(SWT.COLOR_RED));
+			int i = 1;
+			for (Assignment assignment : test.getAssignments()) {
+				item.setText(i, assignment.getValue());
+				i++;
+
+			}
+		}
 		table.setRedraw(true);
 		table.pack();
-//		for (int i = 0, n1 = columnOfTheModel.length; i < n1; i++) {
-//			//columnOfTheModel[i].pack();
-//		 layout.setColumnData(columnOfTheModel[i], new ColumnWeightData(10));
-//			 
-//		}
+		for (int i = 0, n1 = columnOfTheModel.length; i < n1; i++) {
+			//columnOfTheModel[i].pack();
+		 layout.setColumnData(columnOfTheModel[i], new ColumnWeightData(10));
+			 
+		}
          
 		text_2.setText((String.valueOf(this.inputlist.getTests().size())));
 		text_1.setText((String.valueOf(this.inputlist.getGeneratorTime())));
@@ -369,126 +243,4 @@ public class TestSuiteView extends ViewPart {
 		"\n"+"N-WISE= "+ inputlist.getStrength());
 
 	}
-	
-	private void createColumnFor(TableViewer v, String label) {
-		TableColumn column = new TableColumn(v.getTable(), SWT.NONE);
-		
-		column.setMoveable(true);
-		column.setText(label);
-		column.pack();
-	}
-
-	private List<MyModel> createModel() {
-		List<MyModel> elements = new ArrayList<MyModel>();
-		Integer test_case = inputlist.getTests().size();
-		for (int i = 0; i < test_case; i++) {
-			elements.add(new MyModel(Integer.toString(i)));
-		}
-		return elements;
-	}
-	public class MyModel {
-		public String counter;
-
-		public MyModel(String counter) {
-			this.counter = counter;
-		}
-
-		@Override
-		public String toString() {
-			return this.counter;
-		}
-	}
-
-	public class MyICellModifier implements ICellModifier{
-
-		@Override
-		public boolean canModify(Object element, String property) {
-			return true;
-		}
-
-		@Override
-		public Object getValue(Object element, String property) {
-			//System.out.println("Column " + property + " => " + element.toString());
-			if(!property.equals("Test")){
-				int index = get_column_index_from_input(property);
-				return inputlist.getTests().get(Integer.parseInt(element.toString())).getAssignments().get(index).getValue();	
-			}
-			return element.toString();
-			
-		}
-
-		@Override
-		public void modify(Object element, String property, Object value) {
-//			System.out.println("Element getting modified.");
-//			System.out.println("element.toString()   " +  element.toString());
-//			System.out.println("property  " + property);
-//			System.out.println("value   " + value);
-			if(!property.equals("Test")){
-				TableItem item = (TableItem) element;
-				int testCase_index =  Integer.parseInt(item.getText());
-				
-				int index = get_column_index_from_input(property);
-				inputlist.getTests().get(testCase_index).getAssignments().get(index).setValue((String)value);
-				tableViewer.refresh();
-			}
-
-		}
-		
-	}
-	
-	// TODO : check this!!
-	public int get_column_index_from_input(String property){
-		int index = 0;
-		for(Assignment assignment : inputlist.getTests().get(0).getAssignments()){
-			
-			if(assignment.getParameter().getName().equals(property)){
-				return index;
-			}
-			index++;
-		}
-		return index;
-	}
-	public class MyLabelProvider extends LabelProvider implements
-			ITableLabelProvider, ITableFontProvider, ITableColorProvider {
-		FontRegistry registry = new FontRegistry();
-
-		@Override
-		public Image getColumnImage(Object element, int columnIndex) {
-			return null;
-		}
-
-		@Override
-		public String getColumnText(Object element, int columnIndex) {
-			
-			String columnText = new String("Error");
-
-			if( columnIndex == 0){   // Print out test cases NUMBERS
-				columnText = element.toString();
-			} else {
-				if (inputlist.getTests().get(Integer.parseInt(element.toString())).getAssignments() != null){
-					columnText = inputlist.getTests().get(Integer.parseInt(element.toString())).getAssignments().get(columnIndex-1).getValue();	
-				}
-				
-			}
-			
-			return columnText;
-		}
-
-		@Override
-		public Font getFont(Object element, int columnIndex) {
-			return null;
-		}
-
-		@Override
-		public Color getBackground(Object element, int columnIndex) {
-			return null;
-		}
-
-		@Override
-		public Color getForeground(Object element, int columnIndex) {
-			return null;
-		}
-
-	}
-	
 }

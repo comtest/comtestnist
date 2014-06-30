@@ -28,4 +28,3 @@ Export-Package: citlab.core.ui;uses:="org.eclipse.jface.resource,org.eclipse.ui.
  citlab.core.ui.views.importer
 Bundle-ClassPath: .,
  swt-grouplayout.jar
-Import-Package: junit.framework
