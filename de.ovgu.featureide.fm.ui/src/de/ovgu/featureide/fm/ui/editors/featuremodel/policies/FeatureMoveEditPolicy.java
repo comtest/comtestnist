@@ -63,8 +63,8 @@ public class FeatureMoveEditPolicy extends NonResizableEditPolicy implements GUI
 	
 	private PolylineConnection c;
 
-	@Override
-	protected IFigure createDragSourceFeedbackFigure() {
+	//@Override
+	/*protected IFigure createDragSourceFeedbackFigure() {
 		r = new RectangleFigure();
 		FigureUtilities.makeGhostShape(r);
 		r.setLineStyle(Graphics.LINE_DOT);
@@ -86,22 +86,25 @@ public class FeatureMoveEditPolicy extends NonResizableEditPolicy implements GUI
 		
 		addFeedback(l);
 		return l;
-	}
+	}*/
 	
 	@Override
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {
 
+		//Abhi - We do not need this code.
+		
 		//call createDragSourceFeedbackFigure on start of the move
-		getDragSourceFeedbackFigure();
+		/*getDragSourceFeedbackFigure();
 		
 		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
 		getHostFigure().translateToAbsolute(rect);
 		rect.translate(request.getMoveDelta());
 		rect.resize(request.getSizeDelta());
 		r.translateToRelative(rect);
-		r.setBounds(rect);
+		r.setBounds(rect);*/
 		
-		Point s2 = s.getCopy();
+		//Abhi - We don't need this
+		/*Point s2 = s.getCopy();
 		getHostFigure().translateToAbsolute(s2);
 		s2.translate(request.getMoveDelta());
 		c.setSourceAnchor(new XYAnchor(s2));
@@ -118,14 +121,14 @@ public class FeatureMoveEditPolicy extends NonResizableEditPolicy implements GUI
 				location = s2;
 			c.setTargetAnchor(new XYAnchor(location));
 		
-	}
+	}*/
 	}
 	@Override
 	protected void eraseChangeBoundsFeedback(ChangeBoundsRequest request) {
 		super.eraseChangeBoundsFeedback(request);
-		s = null;
-		r = null;
-		c = null;
+		//s = null;
+		//r = null;
+		//c = null;
 	}
 
 }
