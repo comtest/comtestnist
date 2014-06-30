@@ -1,0 +1,26 @@
+// Basic Billing System changed for tests
+// IT MAY CONTAIN SOME SEMANTIC ERRORS
+Model bbs
+
+Types:
+	EnumerativeType Access { LOOP ISDN PBX }; // 0 1 2
+	EnumerativeType Billing { CALL COLLECT EIGHT_HUNDRED }; // 3 4 5
+	EnumerativeType CallType { LOCAL LONGDISTANCE INTERNATIONAL }; // 6 7 8
+	EnumerativeType Status { SUCCESS BUSY BLOCKED }; // 9 10 11
+end
+Parameters:
+	Enumerative access : Access;
+	Enumerative billing : Billing;
+	Enumerative calltype : CallType;
+	Enumerative status : Status;
+end
+
+// some constraints
+ Constraints:
+	# calltype == CallType.INTERNATIONAL # // 8
+	# billing!=Billing.COLLECT # // 4 - 
+	# billing!=Billing.EIGHT_HUNDRED # // 5 -
+	// ORIGINAL 
+	# ( calltype == CallType.INTERNATIONAL => ( billing!=Billing.COLLECT and
+	billing!=Billing.EIGHT_HUNDRED)) #
+end

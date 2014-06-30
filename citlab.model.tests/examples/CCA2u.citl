@@ -1,0 +1,14 @@
+Model CCA2u
+
+Types: 
+EnumerativeType D2 {DD21 DD22};
+EnumerativeType D3 {DD31 DD32 DD33};
+EnumerativeType D4 {DD41 DD42 DD43 DD44};
+EnumerativeType D5 {DD51 DD52 DD53 DD54 DD55};
+EnumerativeType D6 {DD61 DD62 DD63 DD64 DD65 DD66};
+EnumerativeType D7 {DD71 DD72 DD73 DD74 DD75 DD76 DD77};
+EnumerativeType D8 {DD81 DD82 DD83 DD84 DD85 DD86 DD87 DD88}; end Parameters: Enumerative p1 : D4
+; Enumerative p2 : D4
+; Enumerative p3 : D4
+; end
+

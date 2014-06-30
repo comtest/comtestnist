@@ -1,0 +1,80 @@
+
+
+SoUrCe RooT CK "../features/CK/Test.jak";abstract class Test$$CK {
+	static Exp e;
+	public static void main(String args[]){
+		
+	}
+}
+
+SoUrCe  CE "../features/CE/Test.jak";abstract class Test$$CE extends  Test$$CK  {
+	public static void main(String args[]) {
+     Super(String[]).main(args);
+     Test.evaltest();
+   }
+
+   static void evaltest(){}
+}
+
+SoUrCe  CP "../features/CP/Test.jak";abstract class Test$$CP extends  Test$$CE  {
+	
+	public static void main(String args[]) {
+     Test.printtest();
+     Super(String[]).main(args);
+   }
+
+   static void printtest(){}
+
+}
+
+SoUrCe  BE "../features/BE/Test.jak";abstract class Test$$BE extends  Test$$CP  {
+	 public static void evaltest() {
+	 	Super().evaltest();
+	 	e = new Num(1);
+	 	System.out.println( "eval(1) = " + e.eval());
+	 }
+
+}
+
+SoUrCe  BP "../features/BP/Test.jak";abstract class Test$$BP extends  Test$$BE  {
+	public static void printtest() {
+		Super().printtest();
+		e = new Num(3);
+		System.out.println( "print(3) = " + e );
+	}
+}
+
+SoUrCe  NE "../features/NE/Test.jak";abstract class Test$$NE extends  Test$$BP  {
+	public static void evaltest() {
+		Super().evaltest();      
+		e = new Neg( new Num(1));      
+		System.out.println( "eval(Neg(1)) = " + e.eval());
+	}
+
+}
+
+SoUrCe  NP "../features/NP/Test.jak";abstract class Test$$NP extends  Test$$NE  {
+	public static void printtest() {      
+		Super().printtest();      
+		e  = new Neg( new Num(5) );      
+		System.out.println( "print(Neg(5)) = " + e );   
+	}
+
+}
+
+SoUrCe  PE "../features/PE/Test.jak";abstract class Test$$PE extends  Test$$NP  {
+	public static void evaltest() {      
+		Super().evaltest();      
+		e = new Plus( new Num(1), new Num(2));      
+		System.out.println("eval(1+2)="+ e.eval());   
+	}
+
+}
+
+SoUrCe  PP "../features/PP/Test.jak";public class Test extends  Test$$PE  {
+	public static void printtest() {
+      Super().printtest();
+      e  = new Plus( new Num(5), new Num(7));
+      System.out.println( "print(5+7) = " + e );
+   }
+}

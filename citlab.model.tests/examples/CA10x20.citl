@@ -1,0 +1,36 @@
+Model CA10x20
+		
+Types:
+
+    EnumerativeType Type10 {ONE  TWO  THREE  FOUR  FIVE  SIX  SEVEN  EIGHT   NINE   TEN}; 
+     
+     end
+
+Parameters:
+     
+ Enumerative  b1: Type10
+; Enumerative  b2: Type10
+; Enumerative  b3: Type10
+; Enumerative  b4: Type10    
+; Enumerative  b5: Type10
+; Enumerative  b6: Type10
+; Enumerative  b7: Type10
+; Enumerative  b8: Type10
+; Enumerative  b9: Type10
+; Enumerative  b10: Type10
+; Enumerative  b11: Type10
+; Enumerative  b12: Type10
+; Enumerative  b13: Type10
+; Enumerative  b14: Type10
+; Enumerative  b15: Type10
+; Enumerative  b16: Type10
+; Enumerative  b17: Type10
+; Enumerative  b18: Type10
+; Enumerative  b19: Type10
+; Enumerative  b20: Type10
+
+ 		
+
+; end
+	
+   

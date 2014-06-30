@@ -1,0 +1,88 @@
+Model yan_backtracking_2006_14
+
+Types:
+	EnumerativeType et3 { e0 e1 e2 };
+end
+
+Parameters:
+
+
+	Enumerative e20 { e0 e1 e2 e3 };
+
+	Enumerative e30: et3;
+	Enumerative e31: et3;
+	Enumerative e32: et3;
+	Enumerative e33: et3;
+	Enumerative e34: et3;
+	Enumerative e35: et3;
+	Enumerative e36: et3;
+	Enumerative e37: et3;
+	Enumerative e38: et3;
+	Enumerative e39: et3;
+	Enumerative e310: et3;
+	Enumerative e311: et3;
+	Enumerative e312: et3;
+	Enumerative e313: et3;
+	Enumerative e314: et3;
+	Enumerative e315: et3;
+	Enumerative e316: et3;
+	Enumerative e317: et3;
+	Enumerative e318: et3;
+	Enumerative e319: et3;
+	Enumerative e320: et3;
+	Enumerative e321: et3;
+	Enumerative e322: et3;
+	Enumerative e323: et3;
+	Enumerative e324: et3;
+	Enumerative e325: et3;
+	Enumerative e326: et3;
+	Enumerative e327: et3;
+	Enumerative e328: et3;
+	Enumerative e329: et3;
+	Enumerative e330: et3;
+	Enumerative e331: et3;
+	Enumerative e332: et3;
+	Enumerative e333: et3;
+	Enumerative e334: et3;
+	Enumerative e335: et3;
+	Enumerative e336: et3;
+	Enumerative e337: et3;
+	Enumerative e338: et3;
+
+	Boolean b40;
+	Boolean b41;
+	Boolean b42;
+	Boolean b43;
+	Boolean b44;
+	Boolean b45;
+	Boolean b46;
+	Boolean b47;
+	Boolean b48;
+	Boolean b49;
+	Boolean b410;
+	Boolean b411;
+	Boolean b412;
+	Boolean b413;
+	Boolean b414;
+	Boolean b415;
+	Boolean b416;
+	Boolean b417;
+	Boolean b418;
+	Boolean b419;
+	Boolean b420;
+	Boolean b421;
+	Boolean b422;
+	Boolean b423;
+	Boolean b424;
+	Boolean b425;
+	Boolean b426;
+	Boolean b427;
+	Boolean b428;
+	Boolean b429;
+	Boolean b430;
+	Boolean b431;
+	Boolean b432;
+	Boolean b433;
+	Boolean b434;
+
+end

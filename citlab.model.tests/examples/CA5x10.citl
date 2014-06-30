@@ -1,0 +1,18 @@
+Model CA5x10 
+		
+Types:
+
+    EnumerativeType TypeV {VAL1  VAL2  VAL3  VAL4  VAL5};  
+end Parameters: Enumerative  b1: TypeV
+; Enumerative  b2: TypeV
+; Enumerative  b3: TypeV
+; Enumerative  b4: TypeV    
+; Enumerative  b5: TypeV
+; Enumerative  b6: TypeV
+; Enumerative  b7: TypeV
+; Enumerative  b8: TypeV
+; Enumerative  b9: TypeV
+; Enumerative  b10: TypeV
+; end
+	
+   

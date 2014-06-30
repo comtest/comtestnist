@@ -1,0 +1,16 @@
+Model CA5x7 
+		
+Types:
+
+    EnumerativeType TypeV {AVAL   BVAL   CVAL  DVAL  EVAL};  
+end Parameters: Enumerative  a: TypeV
+; Enumerative  b: TypeV
+; Enumerative  c: TypeV
+; Enumerative  d: TypeV    
+; Enumerative  e: TypeV
+; Enumerative  f: TypeV
+; Enumerative  g: TypeV
+
+; end
+	
+   

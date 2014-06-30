@@ -1,0 +1,89 @@
+Model AgenModel
+Parameters:
+Boolean Relatorios;
+Boolean u_OcupacaoSemanal;
+Boolean u_OcupacaoDiaria;
+Boolean ModeloAgen;
+Boolean u_ModeloAgen;
+Boolean Agendamento;
+Boolean u_Agendamento;
+Boolean TipodeSala;
+Boolean u_Laboratorio;
+Boolean u_Auditorio;
+Boolean Aula;
+Boolean u_Aula;
+Boolean u_ru_3u_25u_26u_27;
+Boolean CadastrodeSalas;
+Boolean u_CadastrodeSalas;
+Boolean Regras;
+Boolean u_PorUsuario;
+Boolean u_PorAdm;
+Boolean TipodeUso;
+Boolean Videoconferencia;
+Boolean u_Videoconferencia;
+Boolean Treinamento;
+Boolean u_Treinamento;
+Boolean u_Palestra;
+Boolean u_Reuniao;
+Boolean CadastrodeHorarios;
+Boolean u_CadastrodeHorarios;
+Boolean Notificacao;
+Boolean u_Celular;
+Boolean u_Email;
+Boolean Reuniao;
+Boolean PorUsuario;
+Boolean CadastrodeEquipamentos;
+Boolean CadastrodeAdministradores;
+Boolean ImpressaodeFolhadeRosto;
+Boolean Celular;
+Boolean ReAgendamento;
+Boolean BloqueiodeHorarios;
+Boolean Visualizacao;
+Boolean Auditorio;
+Boolean PorAdm;
+Boolean OcupacaoDiaria;
+Boolean Email;
+Boolean Laboratorio;
+Boolean Palestra;
+Boolean OcupacaoSemanal;
+end
+Constraints:
+// Productions
+#((not Relatorios == true or u_OcupacaoSemanal == true or u_OcupacaoDiaria == true) and ((not u_OcupacaoSemanal == true and not u_OcupacaoDiaria == true) or Relatorios == true))#
+#((not ModeloAgen == true or u_ModeloAgen == true) and (not u_ModeloAgen == true or ModeloAgen == true))#
+#((not Agendamento == true or u_Agendamento == true) and (not u_Agendamento == true or Agendamento == true))#
+#((not TipodeSala == true or u_Laboratorio == true or u_Auditorio == true or u_Aula == true or u_ru_3u_25u_26u_27 == true) and ((not u_Laboratorio == true and not u_Auditorio == true and not u_Aula == true and not u_ru_3u_25u_26u_27 == true) or TipodeSala == true))#
+#((not CadastrodeSalas == true or u_CadastrodeSalas == true) and (not u_CadastrodeSalas == true or CadastrodeSalas == true)) #
+#((not Regras == true or u_PorUsuario == true or u_PorAdm == true) and ((not u_PorUsuario == true and not u_PorAdm == true) or Regras == true) and (not u_PorUsuario == true or not u_PorAdm == true)) #
+#((not TipodeUso == true or u_Videoconferencia == true or u_Treinamento == true or u_Palestra == true or u_Reuniao == true) and ((not u_Videoconferencia == true and not u_Treinamento == true and not u_Palestra == true and not u_Reuniao == true) or TipodeUso == true)) #
+#((not CadastrodeHorarios == true or u_CadastrodeHorarios == true) and (not u_CadastrodeHorarios == true or CadastrodeHorarios == true)) #
+#((not Notificacao == true or u_Celular == true or u_Email == true) and ((not u_Celular == true and not u_Email == true) or Notificacao == true)) #
+
+// Pattern
+#((not u_Aula == true or Aula== true) and (not Aula== true or u_Aula == true)) #
+#((not u_Reuniao == true or Reuniao == true) and (not Reuniao == true or u_Reuniao == true)) #
+#((not u_Treinamento == true or Treinamento == true) and (not Treinamento == true or u_Treinamento == true)) #
+#((not u_PorUsuario == true or PorUsuario == true) and (not PorUsuario == true or u_PorUsuario == true)) #
+#((not u_ModeloAgen == true or Agendamento == true) and (not Agendamento == true or u_ModeloAgen == true) and (not CadastrodeHorarios == true or u_ModeloAgen == true) and (not CadastrodeSalas == true or u_ModeloAgen == true) and (not CadastrodeEquipamentos == true or u_ModeloAgen == true) and (not CadastrodeAdministradores == true or u_ModeloAgen == true) and (not Relatorios == true or u_ModeloAgen == true)) #
+#((not u_Celular == true or Celular== true) and (not Celular== true or u_Celular == true)) #
+#((not ImpressaodeFolhadeRosto == true or u_Agendamento == true) and (not ReAgendamento == true or u_Agendamento == true) and (not Notificacao == true or u_Agendamento == true) and (not u_Agendamento == true or Regras == true) and (not Regras == true or u_Agendamento == true) and (not u_Agendamento == true or Visualizacao == true) and (not Visualizacao == true or u_Agendamento == true) and (not TipodeUso == true or u_Agendamento == true)) #
+#((not u_Auditorio == true or Auditorio== true) and (not Auditorio == true or u_Auditorio == true)) #
+# (not BloqueiodeHorarios == true or u_CadastrodeHorarios == true)#
+#((not u_PorAdm == true or PorAdm == true) and (not PorAdm == true or u_PorAdm == true)) #
+#((not u_ru_3u_25u_26u_27 == true or u_ru_3u_25u_26u_27 == true) and (not u_ru_3u_25u_26u_27 == true or u_ru_3u_25u_26u_27 == true)) #
+#((not u_OcupacaoDiaria == true or OcupacaoDiaria == true) and (not OcupacaoDiaria == true or u_OcupacaoDiaria == true)) #
+#((not u_Email == true or Email == true) and (not Email == true or u_Email == true)) #
+#((not u_Laboratorio == true or Laboratorio == true) and (not Laboratorio == true or u_Laboratorio == true)) #
+#((not u_Palestra == true or Palestra == true) and (not Palestra == true or u_Palestra == true)) #
+#((not u_Videoconferencia == true or Videoconferencia == true) and (not Videoconferencia == true or u_Videoconferencia == true)) #
+#((not u_OcupacaoSemanal == true or OcupacaoSemanal == true) and (not OcupacaoSemanal == true or u_OcupacaoSemanal == true)) #
+#((not u_CadastrodeSalas == true or TipodeSala == true) and (not TipodeSala == true or u_CadastrodeSalas == true)) #
+
+// ESList
+# (CadastrodeSalas == true or not CadastrodeEquipamentos == true) #
+# (CadastrodeSalas == true or not TipodeUso == true) #
+
+// root
+#(ModeloAgen == true)#
+
+end

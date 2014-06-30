@@ -1,0 +1,68 @@
+//
+// from : Itai Segall , Rachel Tzoref - Brill , and Eitan Farchi .
+// Using binary decision diagrams for combinatorial test design. 
+// In Proceedings of the 2011 International Symposium on Software Testing and Analysis ( ISSTA '11).
+//  
+Model Healthcare4
+
+Parameters:
+	Enumerative p1 { v1 v2 };
+	Enumerative p2 { v1 v2 v3 v4 v5 };
+	Enumerative p3 { v1 v2 v3 };
+	Enumerative p4 { v1 v2 v3 };
+	Enumerative p5 { v1 v2 v3 v4 };
+	Enumerative p6 { v1 v2 v3 v4 };
+	Enumerative p7 { v1 v2 };
+	Enumerative p8 { v1 v2 v3 };
+	Enumerative p9 { v1 v2 v3 v4 v5 v6 };
+	Enumerative p10 { v1 v2 v3 v4 };
+	Enumerative p11 { v1 v2 v3 v4 v5 };
+	Boolean p12;
+	Enumerative p13 { v1 v2 v3 };
+	Enumerative p14 { v1 v2 v3 };
+	Enumerative p15 { v1 v2 v3 v4 };
+	Enumerative p16 { v1 v2 };
+	Enumerative p17 { v1 v2 };
+	Enumerative p18 { v1 v2 v3 v4 };
+	Boolean p19;
+	Enumerative p20 { v1 v2 v3 };
+	Boolean p21;
+	Boolean p22;
+	Enumerative p23 { v1 v2 v3 };
+	Boolean p24;
+	Enumerative p25 { v1 v2 v3 };
+	Enumerative p26 { v1 v2 };
+	Enumerative p27 { v1 v2 };
+	Enumerative p28 { v1 v2 v3 };
+	Boolean p29;
+	Enumerative p30 { v1 v2 v3 };
+	Boolean p31;
+	Enumerative p32 { v1 v2 v3 v4 };
+	Enumerative p33 { v1 v2 v3 };
+	Enumerative p34 { v1 v2 v3 v4 v5 v6 v7 };
+	Numbers p35 { 0 1 2 };
+end
+Constraints:
+	# ( p8!=p8.v3 OR p10!=p10.v4) #
+	# ( p10!=p10.v3 OR p11!=p11.v5) #
+	# ( p8!=p8.v2 OR p10!=p10.v4) #
+	# ( p8!=p8.v1 OR p10!=p10.v3) #
+	# ( p8!=p8.v1 OR p10!=p10.v2) #
+	# ( p8!=p8.v1 OR p10!=p10.v1) #
+	# ( p11!=p11.v5 OR p10!=p10.v1) #
+	# ( p32!=p32.v2 OR p1!=p1.v1) #
+	# ( p8!=p8.v3 OR p1!=p1.v1) #
+	# ( p10!=p10.v2 OR p11!=p11.v5) #
+	# ( p8!=p8.v1 OR p9!=p9.v6) #
+	# ( p8!=p8.v1 OR p9!=p9.v5) #
+	# ( p8!=p8.v1 OR p9!=p9.v1) #
+	# ( p1!=p1.v1 OR p32!=p32.v3) #
+	# ( p32!=p32.v1 OR p33!=p33.v3) #
+	# ( p11!=p11.v1 OR p10!=p10.v4) #
+	# ( p8!=p8.v1 OR p9!=p9.v4) #
+	# ( p32!=p32.v1 OR p33!=p33.v2) #
+	# ( p8!=p8.v1 OR p9!=p9.v3) #
+	# ( p11!=p11.v2 OR p10!=p10.v4) #
+	# ( p11!=p11.v4 OR p10!=p10.v4) #
+	# ( p11!=p11.v3 OR p10!=p10.v4) #
+end

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="ACTS"
+         name="ACTS_POOL"
+         point="citlab.core.generators">
+      <Generator
+            Algorithm="IpoF"
+            GeneratorPrototype="citlab.acts.IpoFGenerator"
+            Name="ACTS IpoF"
+            suppor_gen_properties="true"
+            support_constraints="true"
+            support_seeds="false"
+            support_testgoals="false">
+      </Generator>
+      <Generator
+            Algorithm="IpoG"
+            GeneratorPrototype="citlab.acts.IpoGGenerator"
+            Name="ACTS IpoG"
+            suppor_gen_properties="true"
+            support_constraints="true"
+            support_seeds="false"
+            support_testgoals="false"> 
+      </Generator>
+      <Generator
+            Algorithm="IpoGD"
+            GeneratorPrototype="citlab.acts.IpoGDGenerator"
+            Name="ACTS IPOG-D"
+            suppor_gen_properties="false"
+            support_constraints="true"
+            support_seeds="false"
+            support_testgoals="false">
+      </Generator>
+      <Generator
+            Algorithm="BaseChoise"
+            GeneratorPrototype="citlab.acts.BaseChoiceGenerator"
+            Name="ACTSBaseChoice"
+            suppor_gen_properties="false"
+            support_constraints="true"
+            support_seeds="false"
+            support_testgoals="false">
+      </Generator>
+   </extension>
+
+</plugin>

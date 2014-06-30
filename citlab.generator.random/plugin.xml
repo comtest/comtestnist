@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="Random"
+         name="Random"
+         point="citlab.core.generators">
+      <Generator
+            Algorithm="Random"
+            GeneratorPrototype="citlab.randomgenerator.RandomGenerator"
+            Name="RandomGenerator"
+            suppor_gen_properties="false"
+            support_constraints="false"
+            support_seeds="true"
+            support_testgoals="true">
+      </Generator>
+   </extension>
+
+</plugin>

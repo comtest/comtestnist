@@ -1,0 +1,10 @@
+// 4 parameters 7 values each 7^4
+Model CCA8u
+
+Types: 
+EnumerativeType D7 {DD71 DD72 DD73 DD74 DD75 DD76 DD77}; end Parameters: Enumerative p1 : D7
+; Enumerative p2 : D7
+; Enumerative p3 : D7
+; Enumerative p4 : D7
+; end
+

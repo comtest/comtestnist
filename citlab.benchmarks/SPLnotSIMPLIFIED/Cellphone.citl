@@ -1,0 +1,35 @@
+Model Cellphone
+
+Parameters:
+	Boolean Cellphone;
+	Boolean BasisFunctions;
+	Boolean Message;
+	Boolean SMS;
+	Boolean MMS;
+	Boolean VoiceCall;
+	Boolean Communication;
+	Boolean WLAN;
+	Boolean Bluetooth;
+	Boolean UMTS;
+	Boolean Extras;
+	Boolean MP3;
+	Enumerative Camera { a3MP a8MP NONE };
+end
+Constraints:
+	# Cellphone==true #
+	# BasisFunctions==true <=> Cellphone==true #
+	# Message==true <=> BasisFunctions==true #
+	# SMS==true <=> Message==true #
+	# MMS==true => Message==true #
+	# VoiceCall==true <=> BasisFunctions==true #
+	# Communication==true => Cellphone==true #
+	# WLAN==true => Communication==true #
+	# Bluetooth==true => Communication==true #
+	# UMTS==true => Communication==true #
+	# Extras==true <=> Cellphone==true #
+	# Extras==true => ( MP3==true || Camera!=Camera.NONE) #
+	# MP3==true => Extras==true #
+	# Camera!=Camera.NONE => Extras==true #
+	# ! MMS==true || Camera!=Camera.NONE #
+	# ! Bluetooth==true || ! MP3==true #
+end

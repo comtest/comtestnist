@@ -1,0 +1,14 @@
+Model enumerative
+
+Types:
+	EnumerativeType  Type  { a1 a2 };
+end
+
+
+Parameters:
+
+	Enumerative A : Type;
+	
+	Enumerative B : Type; 
+	
+end

@@ -1,0 +1,48 @@
+Model Sienna
+
+Parameters:
+	Boolean Sienna;
+	Boolean Trim;
+	Enumerative Grade { Base LE SE XLE LTD NONE };
+	Boolean XLENavigationPackage;
+	Boolean XLEPremiumPackage;
+	Enumerative Engine { L4 V6 NONE };
+	Enumerative Drive { a2Wd AWD NONE };
+	Enumerative PsgrCount { a7PSGR a8PSGR NONE };
+	Enumerative ModelCode { a5312 a5328 NONE };
+	Boolean Color;
+	Enumerative ExteriorColor { SilverSkyMetallic SuperWhite BlizzardPearl NONE };
+	Enumerative InteriorColor { Bisc Gray Charcoal NONE };
+	Boolean Accessories;
+	Boolean FloorMats;
+	Boolean MudFlaps;
+	Boolean Derived;
+	Enumerative Antenna { InGlass Pole NONE };
+end
+Constraints:
+	# Sienna==true #
+	# Trim==true <=> Sienna==true #
+	# Grade!=Grade.NONE <=> Trim==true #
+	# XLENavigationPackage==true => Grade==Grade.XLE #
+	# XLEPremiumPackage==true => Grade==Grade.XLE #
+	# Engine!=Engine.NONE <=> Trim==true #
+	# Drive!=Drive.NONE <=> Trim==true #
+	# PsgrCount!=PsgrCount.NONE <=> Trim==true #
+	# ModelCode!=ModelCode.NONE <=> Trim==true #
+	# Color==true <=> Sienna==true #
+	# ExteriorColor!=ExteriorColor.NONE <=> Color==true #
+	# InteriorColor!=InteriorColor.NONE <=> Color==true #
+	# Accessories==true => Sienna==true #
+	# FloorMats==true => Accessories==true #
+	# MudFlaps==true => Accessories==true #
+	# Derived==true <=> Sienna==true #
+	# Antenna!=Antenna.NONE <=> Derived==true #
+	# Grade==Grade.Base || ! ModelCode==ModelCode.a5312 #
+	# Antenna==Antenna.InGlass || ! XLEPremiumPackage==true #
+	# Antenna==Antenna.InGlass || ! XLENavigationPackage==true #
+	# ! Grade==Grade.LTD || Antenna==Antenna.InGlass #
+	# ! Grade==Grade.LE || Antenna==Antenna.Pole #
+	# ! Grade==Grade.SE || Antenna==Antenna.Pole #
+	# Grade==Grade.SE || ! InteriorColor==InteriorColor.Charcoal #
+	# ! Grade==Grade.Base || Antenna==Antenna.Pole #
+end

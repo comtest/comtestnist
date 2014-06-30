@@ -1,0 +1,64 @@
+//
+// benchmark from Covering Arrays by Simulated Annealing (CASA) suite
+// http://cse.unl.edu/~citportal/tools/casa/benchmarks.zip
+// 
+Model spin_simulator
+
+Parameters:
+
+	Boolean b0;
+
+	Boolean b1;
+
+	Boolean b2;
+
+	Boolean b3;
+
+	Boolean b4;
+
+	Boolean b5;
+
+	Boolean b6;
+
+	Boolean b7;
+
+	Boolean b8;
+
+	Boolean b9;
+
+	Boolean b10;
+
+	Boolean b11;
+
+	Boolean b12;
+
+	Enumerative e13 { el0 el1 el2 el3 };
+
+	Enumerative e14 { el0 el1 el2 el3 };
+
+	Enumerative e15 { el0 el1 el2 el3 };
+
+	Enumerative e16 { el0 el1 el2 el3 };
+
+	Enumerative e17 { el0 el1 el2 el3 };
+
+end
+
+Constraints:
+
+	# b0!=true OR b1!=true #
+	# b0!=true OR b2!=true #
+	# b0!=true OR e13!=e13.el1 #
+	# b0!=true OR e14!=e14.el1 #
+	# b0!=true OR e14!=e14.el2 #
+	# b0!=true OR e14!=e14.el3 #
+	# b0!=true OR e15!=e15.el1 #
+	# b0!=true OR e15!=e15.el2 #
+	# b0!=true OR e15!=e15.el3 #
+	# b12!=true OR e15!=e15.el1 #
+	# b12!=true OR e15!=e15.el2 #
+	# b12!=true OR e15!=e15.el3 #
+	# b3!=true OR b4!=false #
+
+end
+

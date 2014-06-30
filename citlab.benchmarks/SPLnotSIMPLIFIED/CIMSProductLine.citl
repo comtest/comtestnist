@@ -1,0 +1,26 @@
+Model CIMSProductLine
+
+Parameters:
+	Boolean CIMSProductLine;
+	Boolean Client;
+	Boolean Client_Assesment;
+	Boolean Client_Transport;
+	Boolean Client_Payment;
+	Boolean Client_Training;
+	Boolean Inventory;
+	Boolean UserProfile;
+	Boolean Reports;
+	Boolean Database;
+end
+Constraints:
+	# CIMSProductLine==true #
+	# Client==true <=> CIMSProductLine==true #
+	# Client_Assesment==true <=> Client==true #
+	# Client_Transport==true <=> Client==true #
+	# Client_Payment==true <=> Client==true #
+	# Client_Training==true <=> Client==true #
+	# Inventory==true <=> CIMSProductLine==true #
+	# UserProfile==true <=> CIMSProductLine==true #
+	# Reports==true <=> CIMSProductLine==true #
+	# Database==true <=> CIMSProductLine==true #
+end

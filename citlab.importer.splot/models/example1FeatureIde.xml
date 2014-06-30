@@ -1,0 +1,13 @@
+<feature_model name="FeatureIDE model">
+<feature_tree>
+:r feturemodels(feturemodels)
+	:o A(A)
+		:g [1,*]
+			: a1(a1)
+			: an(an)
+	:o B(B)
+		:g [1,1]
+			: b1(b1)
+			: bn(bn)
+</feature_tree>
+</feature_model>

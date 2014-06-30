@@ -1,0 +1,106 @@
+Model MeetingConfig
+
+Parameters:
+	Boolean MeetingConfig;
+	Boolean General;
+	Boolean Title;
+	Boolean InstitutionID;
+	Boolean Assemblymembers;
+	Boolean Data;
+	Boolean Meetingattributes;
+	Boolean Starttime;
+	Boolean Endtime;
+	Boolean Attendees;
+	Boolean Place;
+	Boolean Usegroupsascategories;
+	Enumerative Iteminsertionalgorithm {
+	Attheend Categoryorder Proposinggrouporder NONE };
+	Boolean Workflowandsecurity;
+	Enumerative Meetingworkflow {
+	Standardworkflow Collegeworkflow Archiveworkflow NONE };
+	Boolean Zope3conditioninterfave;
+	Boolean Zope3actioninterface;
+	Boolean Userinterface;
+	Boolean Meetingdisplaystatus;
+	Boolean Archived;
+	Boolean Created;
+	Boolean Decided;
+	Boolean Closed;
+	Boolean Published;
+	Enumerative Defaultview {
+	Myitems Allitems Availablemeetings Decidedmeetings NONE };
+	Boolean Itemduplication;
+	Boolean Openannexesinseparatewindow;
+	Boolean Emailnotification;
+	Boolean Tasks;
+	Boolean Displaymacro;
+	Boolean Taskcreator;
+	Boolean Manager;
+	Boolean Meetingmanager;
+	Boolean Owner;
+	Boolean Votes;
+	Boolean Enablevoting;
+	Boolean Voteencoder;
+	Boolean _r_47_49_50_51;
+	Boolean Voter;
+	Boolean Availablevotevalues;
+	Boolean Yes;
+	Boolean No;
+	Boolean Abstention;
+	Enumerative Defaultvotevalue {
+	_r_47_58_59_60 _r_47_58_59_61 _r_47_58_59_62 NONE };
+end
+Constraints:
+	# MeetingConfig==true #
+	# General==true <=> MeetingConfig==true #
+	# Title==true <=> General==true #
+	# InstitutionID==true <=> General==true #
+	# Assemblymembers==true => General==true #
+	# Data==true <=> MeetingConfig==true #
+	# Meetingattributes==true <=> Data==true #
+	# Meetingattributes==true => ( Starttime==true || Endtime==true ||
+	Attendees==true || Place==true) #
+	# Starttime==true => Meetingattributes==true #
+	# Endtime==true => Meetingattributes==true #
+	# Attendees==true => Meetingattributes==true #
+	# Place==true => Meetingattributes==true #
+	# Usegroupsascategories==true => Data==true #
+	# Iteminsertionalgorithm!=Iteminsertionalgorithm.NONE <=> Data==true #
+	# Workflowandsecurity==true <=> MeetingConfig==true #
+	# Meetingworkflow!=Meetingworkflow.NONE <=> Workflowandsecurity==true #
+	# Zope3conditioninterfave==true => Workflowandsecurity==true #
+	# Zope3actioninterface==true => Workflowandsecurity==true #
+	# Userinterface==true <=> MeetingConfig==true #
+	# Meetingdisplaystatus==true <=> Userinterface==true #
+	# Meetingdisplaystatus==true => ( Archived==true || Created==true ||
+	Decided==true || Closed==true || Published==true) #
+	# Archived==true => Meetingdisplaystatus==true #
+	# Created==true => Meetingdisplaystatus==true #
+	# Decided==true => Meetingdisplaystatus==true #
+	# Closed==true => Meetingdisplaystatus==true #
+	# Published==true => Meetingdisplaystatus==true #
+	# Defaultview!=Defaultview.NONE <=> Userinterface==true #
+	# Itemduplication==true => Userinterface==true #
+	# Openannexesinseparatewindow==true => Userinterface==true #
+	# Emailnotification==true => MeetingConfig==true #
+	# Tasks==true <=> MeetingConfig==true #
+	# Displaymacro==true => Tasks==true #
+	# Taskcreator==true => Tasks==true #
+	# Taskcreator==true => ( Manager==true || Meetingmanager==true ||
+	Owner==true) #
+	# Manager==true => Taskcreator==true #
+	# Meetingmanager==true => Taskcreator==true #
+	# Owner==true => Taskcreator==true #
+	# Votes==true <=> MeetingConfig==true #
+	# Enablevoting==true => Votes==true #
+	# Voteencoder==true => Votes==true #
+	# Voteencoder==true => ( _r_47_49_50_51==true || Voter==true) #
+	# _r_47_49_50_51==true => Voteencoder==true #
+	# Voter==true => Voteencoder==true #
+	# Availablevotevalues==true => Votes==true #
+	# Availablevotevalues==true => ( Yes==true || No==true || Abstention==true) #
+	# Yes==true => Availablevotevalues==true #
+	# No==true => Availablevotevalues==true #
+	# Abstention==true => Availablevotevalues==true #
+	# Defaultvotevalue!=Defaultvotevalue.NONE => Votes==true #
+end

@@ -1,0 +1,18 @@
+Model CA25x10 
+		
+Types:
+
+    EnumerativeType TypeVAL {VAL1  VAL2  VAL3  VAL4  VAL5  VAL6  VAL7  VAL8  VAL9  VAL10  VAL11  VAL12  VAL13  VAL14  VAL15  VAL16  VAL17  VAL18  VAL19  VAL20  VAL21  VAL22  VAL23  VAL24  VAL25};  
+end Parameters: Enumerative  b1: TypeVAL
+; Enumerative  b2: TypeVAL
+; Enumerative  b3: TypeVAL
+; Enumerative  b4: TypeVAL    
+; Enumerative  b5: TypeVAL
+; Enumerative  b6: TypeVAL
+; Enumerative  b7: TypeVAL
+; Enumerative  b8: TypeVAL
+; Enumerative  b9: TypeVAL
+; Enumerative  b10: TypeVAL
+; end
+	
+   

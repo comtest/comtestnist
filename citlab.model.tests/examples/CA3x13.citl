@@ -1,0 +1,22 @@
+Model CA3x13
+
+Types:
+	EnumerativeType Type3 { ONE TWO THREE };
+end
+Parameters:
+	Enumerative b1 : Type3;
+	Enumerative b2 : Type3;
+	Enumerative b3 : Type3;
+	Enumerative b4 : Type3;
+	Enumerative b5 : Type3;
+	Enumerative b6 : Type3;
+	Enumerative b7 : Type3;
+	Enumerative b8 : Type3;
+	Enumerative b9 : Type3;
+	Enumerative b10 : Type3;
+	Enumerative b11 : Type3;
+	Enumerative b12 : Type3;
+	Enumerative b13 : Type3;
+end
+	
+   

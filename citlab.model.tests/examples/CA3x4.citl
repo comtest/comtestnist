@@ -1,0 +1,13 @@
+Model CA3x4
+
+Types:
+	EnumerativeType Type3 { ONE TWO THREE };
+end
+Parameters:
+	Enumerative a : Type3;
+	Enumerative b : Type3;
+	Enumerative c : Type3;
+	Enumerative d : Type3;
+end
+	
+   

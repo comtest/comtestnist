@@ -1,0 +1,35 @@
+Model james
+
+Parameters:
+	Boolean james;
+	Enumerative user_mngt { db ldap NONE };
+	Boolean ws_interface;
+	Boolean gui;
+	Boolean pc;
+	Boolean pda;
+	Boolean core;
+	Boolean modules;
+	Boolean calendar;
+	Boolean forum;
+	Boolean congress_mngt;
+	Boolean repository;
+end
+Constraints:
+	# james==true #
+	# user_mngt!=user_mngt.NONE <=> james==true #
+	# ws_interface==true => james==true #
+	# gui==true <=> james==true #
+	# gui==true => ( pc==true || pda==true) #
+	# pc==true => gui==true #
+	# pda==true => gui==true #
+	# core==true <=> james==true #
+	# modules==true <=> james==true #
+	# modules==true => ( calendar==true || forum==true || congress_mngt==true ||
+	repository==true) #
+	# calendar==true => modules==true #
+	# forum==true => modules==true #
+	# congress_mngt==true => modules==true #
+	# repository==true => modules==true #
+	# ! pda==true || ! repository==true #
+	# ! congress_mngt==true || repository==true #
+end

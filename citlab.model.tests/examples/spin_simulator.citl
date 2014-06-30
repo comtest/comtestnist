@@ -1,0 +1,42 @@
+Model spin_simulator
+
+Types:
+	EnumerativeType D2 { DD21 DD22 };
+	EnumerativeType D4 { DD41 DD42 DD43 DD44 };
+end
+Parameters:
+	Enumerative p1 : D2;
+	Enumerative p2 : D2;
+	Enumerative p3 : D2;
+	Enumerative p4 : D2;
+	Enumerative p5 : D2;
+	Enumerative p6 : D2;
+	Enumerative p7 : D2;
+	Enumerative p8 : D2;
+	Enumerative p9 : D2;
+	Enumerative p10 : D2;
+	Enumerative p11 : D2;
+	Enumerative p12 : D2;
+	Enumerative p13 : D2;
+
+	Enumerative p14 : D4;
+	Enumerative p15 : D4;
+	Enumerative p16 : D4;
+	Enumerative p17 : D4;
+	Enumerative p18 : D4;
+end
+Constraints:
+	# not ( ( p1==DD22) and ( p2==DD22)) #
+	# not ( ( p1==DD22) and ( p3==DD22)) #
+	# not ( ( p1==DD22) and ( p14==DD42)) #
+	# not ( ( p1==DD22) and ( p15==DD42)) #
+	# not ( ( p1==DD22) and ( p15==DD43)) #
+	# not ( ( p1==DD22) and ( p15==DD44)) #
+	# not ( ( p1==DD22) and ( p16==DD42)) #
+	# not ( ( p1==DD22) and ( p16==DD43)) #
+	# not ( ( p1==DD22) and ( p16==DD44)) #
+	# not ( ( p13==DD22) and ( p16==DD42)) #
+	# not ( ( p13==DD22) and ( p16==DD43)) #
+	# not ( ( p13==DD22) and ( p16==DD44)) #
+	# not ( ( p4==DD22) and ( p5==DD21)) #
+end

@@ -1,0 +1,14 @@
+Model enumerative
+
+Parameters:
+
+	Enumerative A { a1 a2 };
+	
+	Enumerative B { b1 b2 }; 
+	
+	Boolean C;
+
+	Boolean D;
+			
+	
+end

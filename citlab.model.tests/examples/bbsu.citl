@@ -1,0 +1,24 @@
+// Basic Billing System
+// taken from 
+// Lott, C., A. Jain, and S. Dalal. 
+// “Modeling Requirements for Combinatorial Software Testing.” 
+// In Proceedings of the 1st International Workshop on Advances in Model-based Testing, 1–7, 2005.
+
+// 800 -> EIGHT_HUNDRED
+
+// unconstrined version !!
+Model bbsu
+
+Types:
+	EnumerativeType Access { LOOP ISDN PBX };
+	EnumerativeType Billing { CALLER COLLECT EIGHT_HUNDRED };
+	EnumerativeType CallType { LOCAL LONGDISTANCE INTERNATIONAL };
+	EnumerativeType Status { SUCCESS BUSY BLOCKED };
+end
+Parameters:
+	Enumerative access : Access;
+	Enumerative billing : Billing;
+	Enumerative calltype : CallType;
+	Enumerative status : Status;
+end
+

@@ -1,0 +1,168 @@
+//
+// from : Itai Segall , Rachel Tzoref - Brill , and Eitan Farchi .
+// Using binary decision diagrams for combinatorial test design. 
+// In Proceedings of the 2011 International Symposium on Software Testing and Analysis ( ISSTA '11).
+//
+// In order to avoid problems with ACTS/Choco we have substituted
+// NUmbers pi { -1 0 1 } -> Enumerative pi : type3;
+
+
+Model ProcessorComm2
+
+Types:
+	EnumerativeType type3 { mone zero one };
+end
+Parameters:
+	Enumerative p1 { v1 v2 };
+	Enumerative p2 { v1 v2 };
+	Enumerative p3 : type3;
+	Enumerative p4 : type3;
+	Enumerative p5 { v1 v2 };
+	Enumerative p6 { v1 v2 v3 v4 v5 };
+	Enumerative p7 { v1 v2 v3 v4 };
+	Enumerative p8 { v1 v2 v3 v4 };
+	Enumerative p9 : type3;
+	Enumerative p10 { v1 v2 v3 v4 };
+	Enumerative p11 : type3;
+	Enumerative p12 { v1 v2 v3 v4 };
+	Enumerative p13 : type3;
+	Enumerative p14 { v1 v2 v3 };
+	Enumerative p15 : type3;
+	Enumerative p16 : type3;
+	Enumerative p17 { v1 v2 v3 };
+	Enumerative p18 { v1 v2 v3 v4 v5 };
+	Enumerative p19 { v1 v2 v3 v4 };
+	Enumerative p20 { v1 v2 v3 v4 };
+	Enumerative p21 : type3;
+	Enumerative p22 { v1 v2 v3 v4 };
+	Enumerative p23 : type3;
+	Enumerative p24 { v1 v2 v3 v4 };
+	Enumerative p25 : type3;
+end
+Constraints:
+	# ( p10!=p10.v3 OR p22!=p22.v1) #
+	# ( p8!=p8.v3 OR p10!=p10.v1) #
+	# ( p10!=p10.v4 OR p2!=p2.v1) #
+	# ( p14!=p14.v1 OR p24!=p24.v4) #
+	# ( p24!=p24.v1 OR p12!=p12.v3) #
+	# ( p7!=p7.v3 OR p19!=p19.v2) #
+	# ( p14!=p14.v1 OR p22!=p22.v4) #
+	# ( p20!=p20.v4 OR p19!=p19.v1) #
+	# ( p24!=p24.v3 OR p22!=p22.v1) #
+	# ( p7!=p7.v4 OR p8!=p8.v1) #
+	# ( p22!=p22.v3 OR p1!=p1.v2) #
+	# ( p7!=p7.v4 OR p2!=p2.v1) #
+	# ( p19!=p19.v4 OR p22!=p22.v1) #
+	# ( p8!=p8.v1 OR p12!=p12.v3) #
+	# ( p7!=p7.v3 OR p10!=p10.v1) #
+	# ( p7!=p7.v3 OR p19!=p19.v3) #
+	# ( p1!=p1.v2 OR p16!=type3.one) #
+	# ( p2!=p2.v2) #
+	# ( p12!=p12.v4 OR p8!=p8.v1) #
+	# ( p20!=p20.v3 OR p22!=p22.v1) #
+	# ( p20!=p20.v1 OR p22!=p22.v4) #
+	# ( p24!=p24.v2 OR p12!=p12.v3) #
+	# ( p5!=p5.v1 OR p17!=p17.v3) #
+	# ( p20!=p20.v1 OR p22!=p22.v2) #
+	# ( p20!=p20.v1 OR p22!=p22.v3) #
+	# ( p24!=p24.v4 OR p22!=p22.v1) #
+	# ( p8!=p8.v4 OR p10!=p10.v1) #
+	# ( p3!=type3.one) #
+	# ( p17!=p17.v1 OR p1!=p1.v2) #
+	# ( p17!=p17.v2 OR p5!=p5.v1) #
+	# ( p20!=p20.v1 OR p8!=p8.v3) #
+	# ( p7!=p7.v3 OR p2!=p2.v2) #
+	# ( p8!=p8.v2 OR p12!=p12.v1) #
+	# ( p12!=p12.v2 OR p10!=p10.v1) #
+	# ( p14!=p14.v2 OR p20!=p20.v3) #
+	# ( p22!=p22.v4 OR p24!=p24.v1) #
+	# ( p7!=p7.v4 OR p10!=p10.v1) #
+	# ( p14!=p14.v2 OR p19!=p19.v3) #
+	# ( p20!=p20.v2 OR p22!=p22.v1) #
+	# ( p5!=p5.v2 OR p17!=p17.v3) #
+	# ( p12!=p12.v2 OR p7!=p7.v1) #
+	# ( p7!=p7.v1 OR p10!=p10.v3) #
+	# ( p12!=p12.v2 OR p8!=p8.v1) #
+	# ( p7!=p7.v1 OR p10!=p10.v2) #
+	# ( p20!=p20.v2 OR p8!=p8.v3) #
+	# ( p14!=p14.v1 OR p19!=p19.v4) #
+	# ( p7!=p7.v1 OR p12!=p12.v3) #
+	# ( p22!=p22.v3 OR p24!=p24.v1) #
+	# ( p20!=p20.v1 OR p24!=p24.v2) #
+	# ( p19!=p19.v1 OR p24!=p24.v4) #
+	# ( p20!=p20.v1 OR p24!=p24.v3) #
+	# ( p19!=p19.v1 OR p24!=p24.v3) #
+	# ( p19!=p19.v1 OR p24!=p24.v2) #
+	# ( p8!=p8.v2 OR p10!=p10.v1) #
+	# ( p14!=p14.v2 OR p22!=p22.v3) #
+	# ( p7!=p7.v2 OR p10!=p10.v1) #
+	# ( p19!=p19.v1 OR p7!=p7.v3) #
+	# ( p7!=p7.v2 OR p12!=p12.v1) #
+	# ( p22!=p22.v2 OR p1!=p1.v2) #
+	# ( p12!=p12.v4 OR p10!=p10.v1) #
+	# ( p20!=p20.v3 OR p8!=p8.v3) #
+	# ( p22!=p22.v2 OR p24!=p24.v1) #
+	# ( p19!=p19.v2 OR p24!=p24.v1) #
+	# ( p10!=p10.v2 OR p12!=p12.v1) #
+	# ( p1!=p1.v2 OR p22!=p22.v4) #
+	# ( p7!=p7.v3 OR p12!=p12.v1) #
+	# ( p2!=p2.v2 OR p12!=p12.v3) #
+	# ( p20!=p20.v2 OR p24!=p24.v1) #
+	# ( p1!=p1.v2 OR p15!=type3.mone) #
+	# ( p20!=p20.v1 OR p24!=p24.v4) #
+	# ( p14!=p14.v2 OR p24!=p24.v3) #
+	# ( p10!=p10.v1 OR p12!=p12.v3) #
+	# ( p2!=p2.v2 OR p10!=p10.v3) #
+	# ( p1!=p1.v2 OR p20!=p20.v3) #
+	# ( p24!=p24.v2 OR p22!=p22.v1) #
+	# ( p12!=p12.v4 OR p2!=p2.v1) #
+	# ( p24!=p24.v3 OR p1!=p1.v2) #
+	# ( p19!=p19.v1 OR p22!=p22.v2) #
+	# ( p19!=p19.v1 OR p22!=p22.v3) #
+	# ( p19!=p19.v3 OR p24!=p24.v1) #
+	# ( p19!=p19.v1 OR p22!=p22.v4) #
+	# ( p20!=p20.v3 OR p24!=p24.v1) #
+	# ( p7!=p7.v4 OR p12!=p12.v1) #
+	# ( p19!=p19.v1 OR p20!=p20.v3) #
+	# ( p10!=p10.v4 OR p7!=p7.v1) #
+	# ( p12!=p12.v4 OR p7!=p7.v1) #
+	# ( p22!=p22.v3 OR p10!=p10.v3) #
+	# ( p10!=p10.v2 OR p8!=p8.v1) #
+	# ( p8!=p8.v4 OR p2!=p2.v1) #
+	# ( p24!=p24.v4 OR p1!=p1.v2) #
+	# ( p20!=p20.v4 OR p1!=p1.v2) #
+	# ( p7!=p7.v2 OR p8!=p8.v1) #
+	# ( p19!=p19.v4 OR p24!=p24.v1) #
+	# ( p19!=p19.v2 OR p22!=p22.v1) #
+	# ( p20!=p20.v4 OR p22!=p22.v1) #
+	# ( p3!=type3.mone) #
+	# ( p10!=p10.v4 OR p12!=p12.v1) #
+	# ( p17!=p17.v2 OR p1!=p1.v2) #
+	# ( p24!=p24.v3 OR p12!=p12.v3) #
+	# ( p14!=p14.v2 OR p2!=p2.v2) #
+	# ( p20!=p20.v4 OR p24!=p24.v1) #
+	# ( p15!=type3.one OR p1!=p1.v2) #
+	# ( p20!=p20.v2 OR p19!=p19.v1) #
+	# ( p8!=p8.v4 OR p7!=p7.v1) #
+	# ( p22!=p22.v2 OR p10!=p10.v3) #
+	# ( p10!=p10.v3 OR p8!=p8.v1) #
+	# ( p8!=p8.v3 OR p12!=p12.v1) #
+	# ( p14!=p14.v1 OR p20!=p20.v4) #
+	# ( p17!=p17.v1 OR p5!=p5.v2) #
+	# ( p7!=p7.v1 OR p8!=p8.v3) #
+	# ( p7!=p7.v3 OR p8!=p8.v1) #
+	# ( p8!=p8.v2 OR p7!=p7.v1) #
+	# ( p19!=p19.v3 OR p22!=p22.v1) #
+	# ( p14!=p14.v1 OR p2!=p2.v1) #
+	# ( p10!=p10.v3 OR p12!=p12.v1) #
+	# ( p2!=p2.v2 OR p8!=p8.v3) #
+	# ( p1!=p1.v2 OR p16!=type3.mone) #
+	# ( p10!=p10.v4 OR p8!=p8.v1) #
+	# ( p8!=p8.v4 OR p12!=p12.v1) #
+	# ( p17!=p17.v3) #
+	# ( p20!=p20.v1 OR p19!=p19.v2) #
+	# ( p20!=p20.v1 OR p19!=p19.v3) #
+	# ( p20!=p20.v1 OR p19!=p19.v4) #
+	# ( p24!=p24.v2 OR p1!=p1.v2) #
+	# ( p20!=p20.v2 OR p1!=p1.v2) #
+end

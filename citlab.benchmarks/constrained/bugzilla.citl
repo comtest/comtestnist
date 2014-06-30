@@ -1,0 +1,68 @@
+//
+// benchmark from Covering Arrays by Simulated Annealing (CASA) suite
+// http://cse.unl.edu/~citportal/tools/casa/benchmarks.zip
+// 
+Model bugzilla
+
+Parameters:
+	Boolean b0;
+	Boolean b1;
+	Boolean b2;
+	Boolean b3;
+	Enumerative e4 { el0 el1 el2 };
+	Boolean b5;
+	Boolean b6;
+	Boolean b7;
+	Boolean b8;
+	Boolean b9;
+	Boolean b10;
+	Boolean b11;
+	Boolean b12;
+	Boolean b13;
+	Boolean b14;
+	Boolean b15;
+	Boolean b16;
+	Boolean b17;
+	Boolean b18;
+	Boolean b19;
+	Enumerative e20 { el0 el1 el2 el3 };
+	Boolean b21;
+	Boolean b22;
+	Boolean b23;
+	Boolean b24;
+	Boolean b25;
+	Boolean b26;
+	Boolean b27;
+	Enumerative e28 { el0 el1 el2 el3 };
+	Boolean b29;
+	Boolean b30;
+	Boolean b31;
+	Boolean b32;
+	Boolean b33;
+	Boolean b34;
+	Boolean b35;
+	Boolean b36;
+	Boolean b37;
+	Boolean b38;
+	Boolean b39;
+	Boolean b40;
+	Boolean b41;
+	Boolean b42;
+	Boolean b43;
+	Boolean b44;
+	Boolean b45;
+	Boolean b46;
+	Boolean b47;
+	Boolean b48;
+	Boolean b49;
+	Boolean b50;
+	Boolean b51;
+end
+Constraints:
+	# b43!=false OR b44!=true #
+	# b45!=false OR b51!=false #
+	# b15!=true OR b46!=false #
+	# b47!=true OR b48!=true #
+	# b5!=false OR b49!=true OR b50!=true #
+end
+

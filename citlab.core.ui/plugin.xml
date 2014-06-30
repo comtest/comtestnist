@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         name="OP"
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            category="citlab.core.ui.combinata"
+            class="citlab.core.ui.views.generator.CitLabView"
+            icon="icons/c.png"
+            id="citlab.core.ui.views.CitLabView"
+            name="CitLab view"
+            restorable="true">
+      </view>
+      <!--
+      <view
+            allowMultiple="false"
+            category="citlab.core.ui.combinata"
+            class="citlab.core.ui.views.exporter.CoderView"
+            icon="icons/c.png"
+            id="citlab.core.ui.views.Coders"
+            name="CitLab Coders view"
+            restorable="true">
+      </view>
+      -->
+      <!--
+      <category
+            id="citlab.core.ui.combinata"
+            name="citlab_ext_viewer">
+      </category>
+      <view
+            allowMultiple="false"
+            category="citlab.core.ui.combinata"
+            class="citlab.core.ui.views.importer.ImporterView"
+            icon="icons/c.png"
+            id="citlab.core.ui.views.Importers"
+            name="CitLab Importers"
+            restorable="true">
+      </view>
+      -->
+      <view
+            allowMultiple="true"
+            category="citlab.core.ui.combinata"
+            class="citlab.core.ui.views.generator.TestSuiteView"
+            icon="icons/g.gif"
+            id="citlab.core.ui.output"
+            name="Output view"
+            restorable="false">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="citlab.core.ui.views.Generators"
+               minimized="false"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ResourceNavigator"
+               visible="true">
+         </view>
+         <view
+               id="citlab.core.ui.views.Coders"
+               minimized="false"
+               relationship="stack"
+               relative="citlab.core.ui.views.Generators">
+         </view>
+         <view
+               id="citlab.core.ui.views.Importers"
+               minimized="false"
+               relationship="stack"
+               relative="citlab.core.ui.views.Coders">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="combinatorial.comb.generatorpoint.actionSet1"
+            label="Open Combinatorial tools"
+            visible="true">
+         <action
+               class="citlab.core.ui.toolbar.ComBTbAction"
+               icon="icons/c.png"
+               id="combinatorial.comb.generatorpoint.action1"
+               label="ComB Tools"
+               style="pulldown"
+               toolbarPath="Normal/additions">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="referenceToMenuId"
+            name="referenceToMenuId">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="citlab.core.ui.PerspectiveFactory"
+            fixed="true"
+            icon="icons/wizard.gif"
+            id="citlab.core.ui.perspective"
+            name="CITLAB">
+      </perspective>
+   </extension>
+
+</plugin>

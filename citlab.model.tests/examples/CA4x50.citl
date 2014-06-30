@@ -1,0 +1,59 @@
+Model CA4x50 
+		
+Types:
+
+    EnumerativeType Type4 {ONE  TWO  THREE  FOUR };  
+end Parameters: Enumerative  b1: Type4
+; Enumerative  b2: Type4
+; Enumerative  b3: Type4
+; Enumerative  b4: Type4    
+; Enumerative  b5: Type4
+; Enumerative  b6: Type4
+; Enumerative  b7: Type4
+; Enumerative  b8: Type4
+; Enumerative  b9: Type4
+; Enumerative  b10: Type4
+; Enumerative  b11: Type4
+; Enumerative  b12: Type4
+; Enumerative  b13: Type4
+; Enumerative  b14: Type4
+; Enumerative  b15: Type4
+; Enumerative  b16: Type4
+; Enumerative  b17: Type4
+; Enumerative  b18: Type4
+; Enumerative  b19: Type4
+; Enumerative  b20: Type4
+; Enumerative  b21: Type4
+; Enumerative  b22: Type4
+; Enumerative  b23: Type4
+; Enumerative  b24: Type4
+; Enumerative  b25: Type4
+; Enumerative  b26: Type4
+; Enumerative  b27: Type4
+; Enumerative  b28: Type4
+; Enumerative  b29: Type4
+; Enumerative  b30: Type4
+; Enumerative  b31: Type4
+; Enumerative  b32: Type4
+; Enumerative  b33: Type4
+; Enumerative  b34: Type4
+; Enumerative  b35: Type4
+; Enumerative  b36: Type4
+; Enumerative  b37: Type4
+; Enumerative  b38: Type4
+; Enumerative  b39: Type4
+; Enumerative  b40: Type4
+; Enumerative  b41: Type4
+; Enumerative  b42: Type4
+; Enumerative  b43: Type4    
+; Enumerative  b44: Type4
+; Enumerative  b45: Type4
+; Enumerative  b46: Type4
+; Enumerative  b47: Type4
+; Enumerative  b48: Type4
+; Enumerative  b49: Type4
+; Enumerative  b50 : Type4
+
+; end
+	
+   

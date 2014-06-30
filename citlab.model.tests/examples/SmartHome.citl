@@ -1,0 +1,91 @@
+Model SmartHome
+
+Parameters:
+	Boolean SmartHome;
+	Boolean HeatingManagement;
+	Boolean ManualHeating;
+	Boolean SmartHeating;
+	Boolean WindowsManagement;
+	Boolean ManualWindows;
+	Boolean ElectronicWindows;
+	Boolean LightManagement;
+	Boolean ManualLight;
+	Boolean SmartLight;
+	Boolean Pre_definedValues;
+	Boolean GUI;
+	Boolean TouchScreen;
+	Boolean Internet;
+	Boolean PresenceSimulator;
+	Boolean LightSimulation;
+	Boolean BlindSimulation;
+	Boolean MusicSimulation;
+	Boolean FireControl;
+	Boolean FirstAidGroup;
+	Boolean FireDepartment;
+	Boolean OtherGroup;
+	Boolean FireSprinklers;
+	Boolean IrrigationSprinklers;
+	Boolean SimpleControl;
+	Boolean SmartSprinklers;
+	Boolean Alarm;
+	Boolean Siren;
+	Boolean Bell;
+	Boolean Lights;
+	Boolean Security;
+	Boolean AuthenticationDevice;
+	Boolean Keypad;
+	Boolean RetinaScanner;
+	Boolean FingerPrintReader;
+	Boolean IntrusionDetectionDevice;
+	Boolean GlassbreakSensors;
+	Boolean Cameras;
+end
+Constraints:
+	# SmartHome==true #
+	# HeatingManagement==true <=> SmartHome==true #
+	# ManualHeating==true <=> HeatingManagement==true #
+	# SmartHeating==true => HeatingManagement==true #
+	# WindowsManagement==true <=> SmartHome==true #
+	# ManualWindows==true <=> WindowsManagement==true #
+	# ElectronicWindows==true => WindowsManagement==true #
+	# LightManagement==true <=> SmartHome==true #
+	# ManualLight==true <=> LightManagement==true #
+	# SmartLight==true => LightManagement==true #
+	# Pre_definedValues==true => LightManagement==true #
+	# GUI==true <=> SmartHome==true #
+	# TouchScreen==true <=> GUI==true #
+	# Internet==true => GUI==true #
+	# PresenceSimulator==true => SmartHome==true #
+	# PresenceSimulator==true => ( LightSimulation==true || BlindSimulation==true
+	|| MusicSimulation==true) #
+	# LightSimulation==true => PresenceSimulator==true #
+	# BlindSimulation==true => PresenceSimulator==true #
+	# MusicSimulation==true => PresenceSimulator==true #
+	# FireControl==true <=> SmartHome==true #
+	# FirstAidGroup==true <=> FireControl==true #
+	# FirstAidGroup==true => ( FireDepartment==true || OtherGroup==true ||
+	FireSprinklers==true) #
+	# FireDepartment==true => FirstAidGroup==true #
+	# OtherGroup==true => FirstAidGroup==true #
+	# FireSprinklers==true => FirstAidGroup==true #
+	# IrrigationSprinklers==true => SmartHome==true #
+	# SimpleControl==true <=> IrrigationSprinklers==true #
+	# SmartSprinklers==true => IrrigationSprinklers==true #
+	# Alarm==true <=> SmartHome==true #
+	# Alarm==true => ( Siren==true || Bell==true || Lights==true) #
+	# Siren==true => Alarm==true #
+	# Bell==true => Alarm==true #
+	# Lights==true => Alarm==true #
+	# Security==true <=> SmartHome==true #
+	# AuthenticationDevice==true <=> Security==true #
+	# AuthenticationDevice==true => ( Keypad==true || RetinaScanner==true ||
+	FingerPrintReader==true) #
+	# Keypad==true => AuthenticationDevice==true #
+	# RetinaScanner==true => AuthenticationDevice==true #
+	# FingerPrintReader==true => AuthenticationDevice==true #
+	# IntrusionDetectionDevice==true => Security==true #
+	# IntrusionDetectionDevice==true => ( GlassbreakSensors==true ||
+	Cameras==true) #
+	# GlassbreakSensors==true => IntrusionDetectionDevice==true #
+	# Cameras==true => IntrusionDetectionDevice==true #
+end

@@ -1,0 +1,14 @@
+// esempio per ASE semplificato
+Model phone_small_ase
+
+Parameters:
+	Enumerative display { 16MC 8MC BW };
+	Enumerative frontCamera { 2MP 1MP NOC };
+	Boolean emailViever;
+end
+Constraints:
+	# emailViever==true => display!=display.BW #
+	# frontCamera!=frontCamera.NOC => display==display.16MC #
+end
+//Seeds: end
+//TestGoals: ... end

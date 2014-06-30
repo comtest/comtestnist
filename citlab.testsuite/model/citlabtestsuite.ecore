@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="citlab" nsURI="http://citlab.org/" nsPrefix="citlab">
+  <eSubpackages name="testsuite" nsURI="http://citlab.org/testsuite" nsPrefix="testsuite">
+    <eClassifiers xsi:type="ecore:EClass" name="TestSuite">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1"
+          eType="ecore:EClass ../../citlab.model/src-gen/citlab/model/CitL.ecore#//CitModel"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="strength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="tests" upperBound="-1"
+          eType="#//testsuite/Test"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="generatorName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="generatorTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Test">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
+          eType="#//testsuite/Assignment"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Assignment">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+          eType="ecore:EClass ../../citlab.model/src-gen/citlab/model/CitL.ecore#//Parameter"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral=""/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

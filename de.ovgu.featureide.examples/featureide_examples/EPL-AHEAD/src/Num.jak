@@ -1,0 +1,23 @@
+
+
+SoUrCe RooT BK "../features/BK/Num.jak";abstract class Num$$BK implements Exp {
+   int value;
+   Num$$BK(int val) { 
+   	value =  val; 
+   }
+
+}
+
+SoUrCe  BE "../features/BE/Num.jak";abstract class Num$$BE extends  Num$$BK  {
+	public int eval() { 
+		return value; 
+	}
+}
+
+SoUrCe  BP "../features/BP/Num.jak";public class Num extends  Num$$BE  {
+	
+	public String toString() { 
+		return ""+ value; 
+	}
+
+}

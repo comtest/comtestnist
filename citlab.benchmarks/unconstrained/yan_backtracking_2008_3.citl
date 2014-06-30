@@ -1,0 +1,16 @@
+Model yan_backtracking_2008_3
+
+Types:
+	EnumerativeType et1 { e0 e1 e2 e3 };
+end
+
+Parameters:
+
+	Enumerative e10: et1;
+	Enumerative e11: et1;
+	Enumerative e12: et1;
+	Enumerative e13: et1;
+	Enumerative e14: et1;
+	Enumerative e15: et1;
+
+end

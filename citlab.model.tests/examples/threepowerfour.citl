@@ -1,0 +1,19 @@
+// QUESTO SAREBBE CA4x3??
+Model threepowerfour
+
+Types:
+	EnumerativeType Type4 {
+	ONE
+	TWO
+	THREE
+	FOUR
+	};
+end
+Parameters:
+	Enumerative a : Type4;
+	Enumerative b : Type4;
+	Enumerative c : Type4;
+end
+	                 	
+	
+   

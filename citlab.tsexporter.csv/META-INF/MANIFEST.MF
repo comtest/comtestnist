@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CVSExporter
+Bundle-SymbolicName: citlab.tsexporter.csv;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: citlab.cvsexporter.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ com.google.inject,
+ org.eclipse.xtext.xbase.lib,
+ citlab.testsuite;bundle-version="1.0.0",
+ citlab.core;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+

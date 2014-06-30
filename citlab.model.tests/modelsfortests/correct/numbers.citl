@@ -1,0 +1,14 @@
+Model example
+
+Definitions:
+	Number hj = 23;
+end
+Parameters:
+	Numbers Name { 45 70 100 };
+	Numbers j { 67 89 };
+	Boolean o;
+	Boolean k;
+end
+Constraints:
+	# Name == 70 #
+end

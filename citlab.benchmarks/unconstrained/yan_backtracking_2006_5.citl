@@ -1,0 +1,16 @@
+Model yan_backtracking_2006_5
+
+Parameters:
+
+
+	Boolean b20;
+	Boolean b21;
+	Boolean b22;
+	Boolean b23;
+	Boolean b24;
+	Boolean b25;
+	Boolean b26;
+	Boolean b27;
+	Boolean b28;
+
+end

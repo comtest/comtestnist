@@ -1,0 +1,11 @@
+Model cohen_constructing_2008_mobile
+
+
+Parameters:
+
+	Enumerative display { m16 m8 bew };
+	Enumerative email { graphical text none };
+	Enumerative camera { m2 m1 none };
+	Boolean video;
+	Boolean ring;
+end

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<alt mandatory="true" name="Connector">
+				<and mandatory="true" name="Synchronous">
+					<feature name="Timeout"/>
+				</and>
+				<alt mandatory="true" name="Asynchronous">
+					<feature mandatory="true" name="Polling"/>
+					<feature mandatory="true" name="Callback"/>
+				</alt>
+			</alt>
+		</struct>
+		<constraints/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

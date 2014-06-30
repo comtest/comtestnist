@@ -1,0 +1,24 @@
+// example in out ICST 13 testing tool track paper
+Model phone
+
+Definitions:
+	Number threshold = 27;
+end
+Types:
+	EnumerativeType cameraType { 2MP 1MP NOC };
+end
+Parameters:
+	Boolean emailViewer;
+	Range textLines [ 25 .. 30 ];
+	Enumerative display { 16MC 8MC BW };
+	Enumerative rearCamera : cameraType;
+	Enumerative frontCamera : cameraType;
+end
+Constraints: 
+	# display==display.BW => ( rearCamera==cameraType.NOC) # 	
+	# display==display.BW => ( rearCamera==cameraType.1MP) # 
+	# emailViewer==true or frontCamera!=cameraType.NOC => display!=display.BW and textLines>=threshold #
+        # emailViewer==false  # 
+        # !(frontCamera!=cameraType.NOC => display!=display.BW and textLines>=threshold) # 
+end //Seeds: end
+//TestGoals: ... end

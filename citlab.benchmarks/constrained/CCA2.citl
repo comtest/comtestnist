@@ -1,0 +1,22 @@
+//
+// from Andrea Calvagna, Angelo Gargantini: 
+// T-wise combinatorial interaction test suites construction based on coverage inheritance. 
+// Softw. Test., Verif. Reliab. 22(7): 507-526 (2012)
+//
+Model CCA2
+
+Types:
+	EnumerativeType D4 { DD41 DD42 DD43 DD44 };
+end
+Parameters:
+	Enumerative p1 : D4;
+	Enumerative p2 : D4;
+	Enumerative p3 : D4;
+end
+Constraints:
+	# not ( ( p1==D4.DD41) and ( p2==D4.DD42)) #
+	# not ( ( p1==D4.DD43) and ( p3==D4.DD44)) #
+	# not ( ( p2==D4.DD41) and ( p3==D4.DD42)) #
+	# not ( ( p1==D4.DD44) and ( p2==D4.DD44) and ( p3==D4.DD41)) #
+	# not ( ( p1==D4.DD43) and ( p2==D4.DD42)) #
+end

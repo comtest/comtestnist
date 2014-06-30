@@ -1,0 +1,307 @@
+Model DellLaptops_Notebooks
+
+Parameters:
+	Boolean DellLaptops_Notebooks;
+	Boolean ProductCategory;
+	Boolean MiniNotebooks;
+	Boolean InspironLaptops;
+	Boolean StudioLaptops;
+	Boolean XPSLaptops;
+	Boolean Adamo;
+	Boolean StudioXPSLaptops;
+	Boolean OperatingSystem;
+	Boolean VistawithDowngradetoXP;
+	Boolean WindowsVista64bit;
+	Boolean WindowsXPHome;
+	Boolean UbuntuLinux;
+	Boolean HardDrive;
+	Boolean a500GB;
+	Boolean a320GB;
+	Boolean a250GB;
+	Boolean a160GB;
+	Boolean a128GBSolidState;
+	Boolean a120GB;
+	Boolean a80GB;
+	Boolean OpticalDrive;
+	Boolean CD_DVD_RW;
+	Boolean DVD_ROMDriveandDVD__RW;
+	Boolean DVD__RWandCD_RWCombo;
+	Boolean BluRayDisc;
+	Boolean LaptopWeight;
+	Boolean UltraLight;
+	Boolean Light;
+	Boolean DesktopReplacement;
+	Boolean Memory;
+	Boolean Morethan4GB;
+	Boolean a4GB;
+	Boolean a3GB;
+	Boolean a2GB;
+	Boolean a1GB;
+	Boolean Processor;
+	Boolean IntelCore2Duo;
+	Boolean IntelPentiumDualcore;
+	Boolean IntelCeleron;
+	Boolean IntelAtom;
+	Boolean Price;
+	Boolean Lessthan_400;
+	Boolean _400__800;
+	Boolean _800__1200;
+	Boolean Morethan_1200;
+end
+Constraints:
+	# DellLaptops_Notebooks==true #
+	# DellLaptops_Notebooks==true || ProductCategory==false #
+	# ProductCategory==true || DellLaptops_Notebooks==false #
+	# DellLaptops_Notebooks==true || OperatingSystem==false #
+	# OperatingSystem==true || DellLaptops_Notebooks==false #
+	# DellLaptops_Notebooks==true || HardDrive==false #
+	# HardDrive==true || DellLaptops_Notebooks==false #
+	# DellLaptops_Notebooks==true || OpticalDrive==false #
+	# DellLaptops_Notebooks==true || LaptopWeight==false #
+	# LaptopWeight==true || DellLaptops_Notebooks==false #
+	# DellLaptops_Notebooks==true || Memory==false #
+	# Memory==true || DellLaptops_Notebooks==false #
+	# DellLaptops_Notebooks==true || Processor==false #
+	# Processor==true || DellLaptops_Notebooks==false #
+	# DellLaptops_Notebooks==true || Price==false #
+	# Price==true || DellLaptops_Notebooks==false #
+	# ProductCategory==true || MiniNotebooks==false #
+	# ProductCategory==true || InspironLaptops==false #
+	# ProductCategory==true || StudioLaptops==false #
+	# ProductCategory==true || XPSLaptops==false #
+	# ProductCategory==true || Adamo==false #
+	# ProductCategory==true || StudioXPSLaptops==false #
+	# StudioXPSLaptops==true || ( Adamo==true || ( XPSLaptops==true ||
+	( StudioLaptops==true || ( InspironLaptops==true || ( MiniNotebooks==true ||
+	ProductCategory==false))))) #
+	# InspironLaptops==false || MiniNotebooks==false #
+	# StudioLaptops==false || MiniNotebooks==false #
+	# XPSLaptops==false || MiniNotebooks==false #
+	# Adamo==false || MiniNotebooks==false #
+	# StudioXPSLaptops==false || MiniNotebooks==false #
+	# StudioLaptops==false || InspironLaptops==false #
+	# XPSLaptops==false || InspironLaptops==false #
+	# Adamo==false || InspironLaptops==false #
+	# StudioXPSLaptops==false || InspironLaptops==false #
+	# XPSLaptops==false || StudioLaptops==false #
+	# Adamo==false || StudioLaptops==false #
+	# StudioXPSLaptops==false || StudioLaptops==false #
+	# Adamo==false || XPSLaptops==false #
+	# StudioXPSLaptops==false || XPSLaptops==false #
+	# StudioXPSLaptops==false || Adamo==false #
+	# OperatingSystem==true || VistawithDowngradetoXP==false #
+	# OperatingSystem==true || WindowsVista64bit==false #
+	# OperatingSystem==true || WindowsXPHome==false #
+	# OperatingSystem==true || UbuntuLinux==false #
+	# UbuntuLinux==true || ( WindowsXPHome==true || ( WindowsVista64bit==true ||
+	( VistawithDowngradetoXP==true || OperatingSystem==false))) #
+	# WindowsVista64bit==false || VistawithDowngradetoXP==false #
+	# WindowsXPHome==false || VistawithDowngradetoXP==false #
+	# UbuntuLinux==false || VistawithDowngradetoXP==false #
+	# WindowsXPHome==false || WindowsVista64bit==false #
+	# UbuntuLinux==false || WindowsVista64bit==false #
+	# UbuntuLinux==false || WindowsXPHome==false #
+	# HardDrive==true || a500GB==false #
+	# HardDrive==true || a320GB==false #
+	# HardDrive==true || a250GB==false #
+	# HardDrive==true || a160GB==false #
+	# HardDrive==true || a128GBSolidState==false #
+	# HardDrive==true || a120GB==false #
+	# HardDrive==true || a80GB==false #
+	# a80GB==true || ( a120GB==true || ( a128GBSolidState==true || ( a160GB==true
+	|| ( a250GB==true || ( a320GB==true || ( a500GB==true ||
+	HardDrive==false)))))) #
+	# a320GB==false || a500GB==false #
+	# a250GB==false || a500GB==false #
+	# a160GB==false || a500GB==false #
+	# a128GBSolidState==false || a500GB==false #
+	# a120GB==false || a500GB==false #
+	# a80GB==false || a500GB==false #
+	# a250GB==false || a320GB==false #
+	# a160GB==false || a320GB==false #
+	# a128GBSolidState==false || a320GB==false #
+	# a120GB==false || a320GB==false #
+	# a80GB==false || a320GB==false #
+	# a160GB==false || a250GB==false #
+	# a128GBSolidState==false || a250GB==false #
+	# a120GB==false || a250GB==false #
+	# a80GB==false || a250GB==false #
+	# a128GBSolidState==false || a160GB==false #
+	# a120GB==false || a160GB==false #
+	# a80GB==false || a160GB==false #
+	# a120GB==false || a128GBSolidState==false #
+	# a80GB==false || a128GBSolidState==false #
+	# a80GB==false || a120GB==false #
+	# OpticalDrive==true || CD_DVD_RW==false #
+	# OpticalDrive==true || DVD_ROMDriveandDVD__RW==false #
+	# OpticalDrive==true || DVD__RWandCD_RWCombo==false #
+	# OpticalDrive==true || BluRayDisc==false #
+	# BluRayDisc==true || ( DVD__RWandCD_RWCombo==true ||
+	( DVD_ROMDriveandDVD__RW==true || ( CD_DVD_RW==true ||
+	OpticalDrive==false))) #
+	# DVD_ROMDriveandDVD__RW==false || CD_DVD_RW==false #
+	# DVD__RWandCD_RWCombo==false || CD_DVD_RW==false #
+	# BluRayDisc==false || CD_DVD_RW==false #
+	# DVD__RWandCD_RWCombo==false || DVD_ROMDriveandDVD__RW==false #
+	# BluRayDisc==false || DVD_ROMDriveandDVD__RW==false #
+	# BluRayDisc==false || DVD__RWandCD_RWCombo==false #
+	# LaptopWeight==true || UltraLight==false #
+	# LaptopWeight==true || Light==false #
+	# LaptopWeight==true || DesktopReplacement==false #
+	# DesktopReplacement==true || ( Light==true || ( UltraLight==true ||
+	LaptopWeight==false)) #
+	# Light==false || UltraLight==false #
+	# DesktopReplacement==false || UltraLight==false #
+	# DesktopReplacement==false || Light==false #
+	# Memory==true || Morethan4GB==false #
+	# Memory==true || a4GB==false #
+	# Memory==true || a3GB==false #
+	# Memory==true || a2GB==false #
+	# Memory==true || a1GB==false #
+	# a1GB==true || ( a2GB==true || ( a3GB==true || ( a4GB==true ||
+	( Morethan4GB==true || Memory==false)))) #
+	# a4GB==false || Morethan4GB==false #
+	# a3GB==false || Morethan4GB==false #
+	# a2GB==false || Morethan4GB==false #
+	# a1GB==false || Morethan4GB==false #
+	# a3GB==false || a4GB==false #
+	# a2GB==false || a4GB==false #
+	# a1GB==false || a4GB==false #
+	# a2GB==false || a3GB==false #
+	# a1GB==false || a3GB==false #
+	# a1GB==false || a2GB==false #
+	# Processor==true || IntelCore2Duo==false #
+	# Processor==true || IntelPentiumDualcore==false #
+	# Processor==true || IntelCeleron==false #
+	# Processor==true || IntelAtom==false #
+	# IntelAtom==true || ( IntelCeleron==true || ( IntelPentiumDualcore==true ||
+	( IntelCore2Duo==true || Processor==false))) #
+	# IntelPentiumDualcore==false || IntelCore2Duo==false #
+	# IntelCeleron==false || IntelCore2Duo==false #
+	# IntelAtom==false || IntelCore2Duo==false #
+	# IntelCeleron==false || IntelPentiumDualcore==false #
+	# IntelAtom==false || IntelPentiumDualcore==false #
+	# IntelAtom==false || IntelCeleron==false #
+	# Price==true || Lessthan_400==false #
+	# Price==true || _400__800==false #
+	# Price==true || _800__1200==false #
+	# Price==true || Morethan_1200==false #
+	# Morethan_1200==true || ( _800__1200==true || ( _400__800==true ||
+	( Lessthan_400==true || Price==false))) #
+	# _400__800==false || Lessthan_400==false #
+	# _800__1200==false || Lessthan_400==false #
+	# Morethan_1200==false || Lessthan_400==false #
+	# _800__1200==false || _400__800==false #
+	# Morethan_1200==false || _400__800==false #
+	# Morethan_1200==false || _800__1200==false #
+	# VistawithDowngradetoXP==false || MiniNotebooks==false #
+	# WindowsVista64bit==false || MiniNotebooks==false #
+	# a500GB==false || MiniNotebooks==false #
+	# a320GB==false || MiniNotebooks==false #
+	# a250GB==false || MiniNotebooks==false #
+	# a128GBSolidState==false || MiniNotebooks==false #
+	# CD_DVD_RW==false || MiniNotebooks==false #
+	# DVD_ROMDriveandDVD__RW==false || MiniNotebooks==false #
+	# DVD__RWandCD_RWCombo==false || MiniNotebooks==false #
+	# BluRayDisc==false || MiniNotebooks==false #
+	# Light==false || MiniNotebooks==false #
+	# DesktopReplacement==false || MiniNotebooks==false #
+	# Morethan4GB==false || MiniNotebooks==false #
+	# a4GB==false || MiniNotebooks==false #
+	# a3GB==false || MiniNotebooks==false #
+	# IntelCore2Duo==false || MiniNotebooks==false #
+	# IntelPentiumDualcore==false || MiniNotebooks==false #
+	# IntelCeleron==false || MiniNotebooks==false #
+	# _800__1200==false || MiniNotebooks==false #
+	# Morethan_1200==false || MiniNotebooks==false #
+	# WindowsVista64bit==false || InspironLaptops==false #
+	# WindowsXPHome==false || InspironLaptops==false #
+	# UbuntuLinux==false || InspironLaptops==false #
+	# a128GBSolidState==false || InspironLaptops==false #
+	# a120GB==false || InspironLaptops==false #
+	# a80GB==false || InspironLaptops==false #
+	# DVD_ROMDriveandDVD__RW==false || InspironLaptops==false #
+	# DVD__RWandCD_RWCombo==false || InspironLaptops==false #
+	# BluRayDisc==false || InspironLaptops==false #
+	# UltraLight==false || InspironLaptops==false #
+	# DesktopReplacement==false || InspironLaptops==false #
+	# Morethan4GB==false || InspironLaptops==false #
+	# a1GB==false || InspironLaptops==false #
+	# IntelAtom==false || InspironLaptops==false #
+	# Morethan_1200==false || InspironLaptops==false #
+	# VistawithDowngradetoXP==false || StudioLaptops==false #
+	# WindowsXPHome==false || StudioLaptops==false #
+	# UbuntuLinux==false || StudioLaptops==false #
+	# a160GB==false || StudioLaptops==false #
+	# a128GBSolidState==false || StudioLaptops==false #
+	# a120GB==false || StudioLaptops==false #
+	# a80GB==false || StudioLaptops==false #
+	# Morethan4GB==false || StudioLaptops==false #
+	# a2GB==false || StudioLaptops==false #
+	# a1GB==false || StudioLaptops==false #
+	# IntelCeleron==false || StudioLaptops==false #
+	# IntelAtom==false || StudioLaptops==false #
+	# Lessthan_400==false || StudioLaptops==false #
+	# Morethan_1200==false || StudioLaptops==false #
+	# VistawithDowngradetoXP==false || XPSLaptops==false #
+	# WindowsXPHome==false || XPSLaptops==false #
+	# UbuntuLinux==false || XPSLaptops==false #
+	# a160GB==false || XPSLaptops==false #
+	# a128GBSolidState==false || XPSLaptops==false #
+	# a120GB==false || XPSLaptops==false #
+	# a80GB==false || XPSLaptops==false #
+	# DVD_ROMDriveandDVD__RW==false || XPSLaptops==false #
+	# DVD__RWandCD_RWCombo==false || XPSLaptops==false #
+	# a2GB==false || XPSLaptops==false #
+	# a1GB==false || XPSLaptops==false #
+	# IntelPentiumDualcore==false || XPSLaptops==false #
+	# IntelCeleron==false || XPSLaptops==false #
+	# IntelAtom==false || XPSLaptops==false #
+	# Lessthan_400==false || XPSLaptops==false #
+	# VistawithDowngradetoXP==false || Adamo==false #
+	# WindowsXPHome==false || Adamo==false #
+	# UbuntuLinux==false || Adamo==false #
+	# a500GB==false || Adamo==false #
+	# a320GB==false || Adamo==false #
+	# a250GB==false || Adamo==false #
+	# a160GB==false || Adamo==false #
+	# a120GB==false || Adamo==false #
+	# a80GB==false || Adamo==false #
+	# CD_DVD_RW==false || Adamo==false #
+	# DVD_ROMDriveandDVD__RW==false || Adamo==false #
+	# DVD__RWandCD_RWCombo==false || Adamo==false #
+	# BluRayDisc==false || Adamo==false #
+	# Light==false || Adamo==false #
+	# DesktopReplacement==false || Adamo==false #
+	# Morethan4GB==false || Adamo==false #
+	# a3GB==false || Adamo==false #
+	# a1GB==false || Adamo==false #
+	# IntelPentiumDualcore==false || Adamo==false #
+	# IntelCeleron==false || Adamo==false #
+	# IntelAtom==false || Adamo==false #
+	# Lessthan_400==false || Adamo==false #
+	# _400__800==false || Adamo==false #
+	# _800__1200==false || Adamo==false #
+	# VistawithDowngradetoXP==false || StudioXPSLaptops==false #
+	# WindowsXPHome==false || StudioXPSLaptops==false #
+	# UbuntuLinux==false || StudioXPSLaptops==false #
+	# a250GB==false || StudioXPSLaptops==false #
+	# a160GB==false || StudioXPSLaptops==false #
+	# a128GBSolidState==false || StudioXPSLaptops==false #
+	# a120GB==false || StudioXPSLaptops==false #
+	# a80GB==false || StudioXPSLaptops==false #
+	# DVD_ROMDriveandDVD__RW==false || StudioXPSLaptops==false #
+	# DVD__RWandCD_RWCombo==false || StudioXPSLaptops==false #
+	# BluRayDisc==false || StudioXPSLaptops==false #
+	# DesktopReplacement==false || StudioXPSLaptops==false #
+	# Morethan4GB==false || StudioXPSLaptops==false #
+	# a3GB==false || StudioXPSLaptops==false #
+	# a2GB==false || StudioXPSLaptops==false #
+	# a1GB==false || StudioXPSLaptops==false #
+	# IntelPentiumDualcore==false || StudioXPSLaptops==false #
+	# IntelCeleron==false || StudioXPSLaptops==false #
+	# IntelAtom==false || StudioXPSLaptops==false #
+	# Lessthan_400==false || StudioXPSLaptops==false #
+	# _400__800==false || StudioXPSLaptops==false #
+	# Morethan_1200==false || StudioXPSLaptops==false #
+end

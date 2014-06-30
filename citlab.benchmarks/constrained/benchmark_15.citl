@@ -1,0 +1,153 @@
+//
+// benchmark from Covering Arrays by Simulated Annealing (CASA) suite
+// http://cse.unl.edu/~citportal/tools/casa/benchmarks.zip
+// 
+Model benchmark_15
+
+Parameters:
+
+	Boolean b0;
+
+	Boolean b1;
+
+	Boolean b2;
+
+	Boolean b3;
+
+	Boolean b4;
+
+	Boolean b5;
+
+	Boolean b6;
+
+	Enumerative e7 { el0 el1 el2 el3 el4 };
+
+	Enumerative e8 { el0 el1 el2 };
+
+	Boolean b9;
+
+	Enumerative e10 { el0 el1 el2 };
+
+	Boolean b11;
+
+	Boolean b12;
+
+	Boolean b13;
+
+	Boolean b14;
+
+	Enumerative e15 { el0 el1 el2 };
+
+	Boolean b16;
+
+	Boolean b17;
+
+	Boolean b18;
+
+	Boolean b19;
+
+	Enumerative e20 { el0 el1 el2 el3 };
+
+	Boolean b21;
+
+	Enumerative e22 { el0 el1 el2 };
+
+	Boolean b23;
+
+	Boolean b24;
+
+	Boolean b25;
+
+	Boolean b26;
+
+	Boolean b27;
+
+	Boolean b28;
+
+	Enumerative e29 { el0 el1 el2 el3 el4 };
+
+	Boolean b30;
+
+	Boolean b31;
+
+	Boolean b32;
+
+	Boolean b33;
+
+	Boolean b34;
+
+	Boolean b35;
+
+	Enumerative e36 { el0 el1 el2 el3 el4 el5 };
+
+	Boolean b37;
+
+	Boolean b38;
+
+	Boolean b39;
+
+	Boolean b40;
+
+	Boolean b41;
+
+	Boolean b42;
+
+	Boolean b43;
+
+	Boolean b44;
+
+	Boolean b45;
+
+	Boolean b46;
+
+	Boolean b47;
+
+	Boolean b48;
+
+	Boolean b49;
+
+	Boolean b50;
+
+	Boolean b51;
+
+	Boolean b52;
+
+	Boolean b53;
+
+	Boolean b54;
+
+	Boolean b55;
+
+	Boolean b56;
+
+	Boolean b57;
+
+end
+
+Constraints:
+
+	# b2!=true OR e10!=e10.el1 #
+	# e8!=e8.el2 OR b9!=false #
+	# b3!=true OR b11!=false #
+	# e7!=e7.el3 OR e10!=e10.el1 #
+	# e8!=e8.el1 OR b9!=true #
+	# b1!=false OR e8!=e8.el0 #
+	# e10!=e10.el1 OR b11!=true #
+	# b0!=false OR e8!=e8.el2 #
+	# e7!=e7.el2 OR e10!=e10.el2 #
+	# e10!=e10.el0 OR b11!=false #
+	# e8!=e8.el0 OR e10!=e10.el1 #
+	# e8!=e8.el0 OR b9!=false #
+	# b3!=false OR e8!=e8.el2 #
+	# b1!=false OR e7!=e7.el0 #
+	# b2!=true OR b11!=true #
+	# b6!=false OR b11!=false #
+	# b2!=true OR e10!=e10.el2 #
+	# b5!=false OR e8!=e8.el0 #
+	# b6!=false OR e7!=e7.el3 #
+	# e8!=e8.el2 OR e10!=e10.el0 #
+	# b4!=false OR b9!=false OR b11!=true #
+	# b1!=true OR e10!=e10.el2 OR b11!=true #
+
+end
+

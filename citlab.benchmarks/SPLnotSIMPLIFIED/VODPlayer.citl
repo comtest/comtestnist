@@ -1,0 +1,28 @@
+Model VODPlayer
+
+Parameters:
+	Boolean VODPlayer;
+	Boolean StartPlayer;
+	Boolean SelectMovie;
+	Boolean ChangeServer;
+	Boolean Detail;
+	Boolean StartMovie;
+	Boolean StopMovie;
+	Boolean VCRInterface;
+	Boolean PlayImm;
+	Boolean Quit;
+	Boolean Pause;
+end
+Constraints:
+	# VODPlayer==true #
+	# StartPlayer==true <=> VODPlayer==true #
+	# SelectMovie==true <=> VODPlayer==true #
+	# ChangeServer==true => SelectMovie==true #
+	# Detail==true => SelectMovie==true #
+	# StartMovie==true <=> VODPlayer==true #
+	# StopMovie==true => StartMovie==true #
+	# VCRInterface==true <=> VODPlayer==true #
+	# PlayImm==true <=> VODPlayer==true #
+	# Quit==true => VODPlayer==true #
+	# Pause==true => VODPlayer==true #
+end

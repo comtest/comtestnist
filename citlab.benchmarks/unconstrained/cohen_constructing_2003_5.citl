@@ -1,0 +1,11 @@
+Model cohen_constructing_2003_5
+
+Types:
+	EnumerativeType et3 { e0 e1 e2 };
+end
+Parameters:
+	Enumerative p1 : et3;
+	Enumerative p2 : et3;
+	Enumerative p3 : et3;
+	Enumerative p4 : et3;
+end

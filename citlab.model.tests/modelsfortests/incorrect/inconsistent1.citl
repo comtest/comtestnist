@@ -1,0 +1,10 @@
+Model inconsistent1
+
+Parameters:
+	Boolean a;
+	Boolean b;
+end
+Constraints:
+	# a==true => a==false #
+	# b==true => b==false #
+end

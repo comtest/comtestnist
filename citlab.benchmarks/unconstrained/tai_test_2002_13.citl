@@ -1,0 +1,80 @@
+Model tai_test_2002_13
+
+Types:
+	EnumerativeType et1 { e0 e1 e2 e3 };
+end
+
+Parameters:
+
+	Enumerative e10: et1;
+	Enumerative e11: et1;
+	Enumerative e12: et1;
+	Enumerative e13: et1;
+	Enumerative e14: et1;
+	Enumerative e15: et1;
+	Enumerative e16: et1;
+	Enumerative e17: et1;
+	Enumerative e18: et1;
+	Enumerative e19: et1;
+	Enumerative e110: et1;
+	Enumerative e111: et1;
+	Enumerative e112: et1;
+	Enumerative e113: et1;
+	Enumerative e114: et1;
+	Enumerative e115: et1;
+	Enumerative e116: et1;
+	Enumerative e117: et1;
+	Enumerative e118: et1;
+	Enumerative e119: et1;
+	Enumerative e120: et1;
+	Enumerative e121: et1;
+	Enumerative e122: et1;
+	Enumerative e123: et1;
+	Enumerative e124: et1;
+	Enumerative e125: et1;
+	Enumerative e126: et1;
+	Enumerative e127: et1;
+	Enumerative e128: et1;
+	Enumerative e129: et1;
+	Enumerative e130: et1;
+	Enumerative e131: et1;
+	Enumerative e132: et1;
+	Enumerative e133: et1;
+	Enumerative e134: et1;
+	Enumerative e135: et1;
+	Enumerative e136: et1;
+	Enumerative e137: et1;
+	Enumerative e138: et1;
+	Enumerative e139: et1;
+	Enumerative e140: et1;
+	Enumerative e141: et1;
+	Enumerative e142: et1;
+	Enumerative e143: et1;
+	Enumerative e144: et1;
+	Enumerative e145: et1;
+	Enumerative e146: et1;
+	Enumerative e147: et1;
+	Enumerative e148: et1;
+	Enumerative e149: et1;
+	Enumerative e150: et1;
+	Enumerative e151: et1;
+	Enumerative e152: et1;
+	Enumerative e153: et1;
+	Enumerative e154: et1;
+	Enumerative e155: et1;
+	Enumerative e156: et1;
+	Enumerative e157: et1;
+	Enumerative e158: et1;
+	Enumerative e159: et1;
+	Enumerative e160: et1;
+	Enumerative e161: et1;
+	Enumerative e162: et1;
+	Enumerative e163: et1;
+	Enumerative e164: et1;
+	Enumerative e165: et1;
+	Enumerative e166: et1;
+	Enumerative e167: et1;
+	Enumerative e168: et1;
+	Enumerative e169: et1;
+
+end

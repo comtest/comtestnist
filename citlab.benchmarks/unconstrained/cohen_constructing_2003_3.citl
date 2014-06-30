@@ -1,0 +1,36 @@
+Model cohen_constructing_2003_3
+
+Types:
+	EnumerativeType et3 { e0 e1 e2 e3 };
+	EnumerativeType et4 { e0 e1 e2 };
+end
+
+Parameters:
+
+
+	Enumerative e20 { e0 e1 e2 e3 e4 };
+
+	Enumerative e30: et3;
+	Enumerative e31: et3;
+	Enumerative e32: et3;
+	Enumerative e33: et3;
+
+	Enumerative e40: et4;
+	Enumerative e41: et4;
+	Enumerative e42: et4;
+	Enumerative e43: et4;
+	Enumerative e44: et4;
+	Enumerative e45: et4;
+	Enumerative e46: et4;
+	Enumerative e47: et4;
+	Enumerative e48: et4;
+	Enumerative e49: et4;
+	Enumerative e410: et4;
+
+	Boolean b50;
+	Boolean b51;
+	Boolean b52;
+	Boolean b53;
+	Boolean b54;
+
+end

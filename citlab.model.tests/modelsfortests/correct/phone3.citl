@@ -1,0 +1,25 @@
+Model Numbertest
+
+Definitions:
+	Number threshold = 27;
+end 
+Types:
+	EnumerativeType cameraType { 2MP 1MP NOC };
+end
+Parameters:
+    Boolean a ;
+    Boolean b;
+    Numbers number1 { 12 5 9};
+    Numbers number2 {34 56 8 6 2};
+	Range range1 [12 .. 23] step 1;
+	Range range2 [12 .. 24] step 2;
+end 
+Constraints: 
+	#number1 < (range1+ range2)/4#
+	# range2 >(threshold%3)#
+	#b==true <=> a==false#
+	#a==true =>  !(b!=false) #
+end 
+//Seeds: end
+//TestGoals: ... end
+

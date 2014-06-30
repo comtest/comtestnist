@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Portfolio
+Bundle-SymbolicName: citlab.generator.portfolio;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: citlab.generator.portfolio.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ citlab.core;bundle-version="1.0.0",
+ citlab.model;bundle-version="1.0.0",
+ citlab.testsuite;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

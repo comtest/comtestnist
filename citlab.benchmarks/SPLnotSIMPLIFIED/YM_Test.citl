@@ -1,0 +1,30 @@
+Model YM_Test
+
+Parameters:
+	Boolean YM_Test;
+	Boolean POWERSUPPLY;
+	Boolean TUNERandCHANNELDECODING;
+	Boolean DEMULTIPLEXERandDESCRAMBLING;
+	Boolean AUDIOandVIDEODECODING;
+	Boolean CONDITIONALACCESS;
+	Boolean SECURITY;
+	Boolean PROCESSORandDATASTORAGE;
+	Boolean DATAINTERFACES;
+	Boolean USB;
+	Boolean Wifi;
+	Boolean PowerLineControl;
+end
+Constraints:
+	# YM_Test==true #
+	# POWERSUPPLY==true <=> YM_Test==true #
+	# TUNERandCHANNELDECODING==true <=> YM_Test==true #
+	# DEMULTIPLEXERandDESCRAMBLING==true <=> YM_Test==true #
+	# AUDIOandVIDEODECODING==true <=> YM_Test==true #
+	# CONDITIONALACCESS==true <=> YM_Test==true #
+	# SECURITY==true <=> YM_Test==true #
+	# PROCESSORandDATASTORAGE==true <=> YM_Test==true #
+	# DATAINTERFACES==true <=> YM_Test==true #
+	# USB==true => DATAINTERFACES==true #
+	# Wifi==true => DATAINTERFACES==true #
+	# PowerLineControl==true => DATAINTERFACES==true #
+end

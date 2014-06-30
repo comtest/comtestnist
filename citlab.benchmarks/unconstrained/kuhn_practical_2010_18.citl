@@ -1,0 +1,35 @@
+Model kuhn_practical_2010_18
+
+Types:
+	EnumerativeType et1 { e0 e1 e2 e3 e4 e5 };
+end
+
+Parameters:
+
+	Enumerative e10: et1;
+	Enumerative e11: et1;
+	Enumerative e12: et1;
+	Enumerative e13: et1;
+	Enumerative e14: et1;
+	Enumerative e15: et1;
+	Enumerative e16: et1;
+	Enumerative e17: et1;
+	Enumerative e18: et1;
+	Enumerative e19: et1;
+	Enumerative e110: et1;
+	Enumerative e111: et1;
+	Enumerative e112: et1;
+	Enumerative e113: et1;
+	Enumerative e114: et1;
+	Enumerative e115: et1;
+	Enumerative e116: et1;
+	Enumerative e117: et1;
+	Enumerative e118: et1;
+	Enumerative e119: et1;
+	Enumerative e120: et1;
+	Enumerative e121: et1;
+	Enumerative e122: et1;
+	Enumerative e123: et1;
+	Enumerative e124: et1;
+
+end

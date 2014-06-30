@@ -1,0 +1,37 @@
+Model monitor_engine_system
+
+Parameters:
+	Boolean monitor_engine_system;
+	Boolean engine_performance;
+	Boolean temperatures;
+	Boolean colant;
+	Boolean oil;
+	Boolean engine;
+	Boolean transmission;
+	Boolean rpm;
+	Boolean exhaust_level_temp;
+	Boolean fuel_consumption;
+	Enumerative measures { l_km gallon_mile NONE };
+	Boolean methods;
+	Boolean distance;
+	Boolean type_of_driving;
+	Boolean drive;
+end
+Constraints:
+	# monitor_engine_system==true #
+	# engine_performance==true <=> monitor_engine_system==true #
+	# temperatures==true <=> engine_performance==true #
+	# colant==true => temperatures==true #
+	# oil==true <=> temperatures==true #
+	# engine==true <=> temperatures==true #
+	# transmission==true <=> temperatures==true #
+	# rpm==true <=> engine_performance==true #
+	# exhaust_level_temp==true <=> engine_performance==true #
+	# fuel_consumption==true <=> monitor_engine_system==true #
+	# measures!=measures.NONE <=> fuel_consumption==true #
+	# methods==true <=> fuel_consumption==true #
+	# methods==true => ( distance==true || type_of_driving==true || drive==true) #
+	# distance==true => methods==true #
+	# type_of_driving==true => methods==true #
+	# drive==true => methods==true #
+end

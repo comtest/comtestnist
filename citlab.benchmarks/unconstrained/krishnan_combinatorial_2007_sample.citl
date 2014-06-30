@@ -1,0 +1,11 @@
+Model krishnan_combinatorial_2007_sample
+
+
+Parameters:
+
+	Enumerative Browser { IE5 Netscape5 Mozilla };
+	Enumerative Server { SunOS XP  };
+	Enumerative Operation { StoreData RetrieveData DeleteData };
+	Enumerative DB { Oracle SQLServer };
+
+end

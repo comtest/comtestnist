@@ -1,0 +1,174 @@
+/*******************************************************************************
+ * Copyright (c) 2012 University of Bergamo.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Paolo Vavassori - initial API and implementation
+ *     Angelo Gargantini - utils and architecture
+ ******************************************************************************/
+grammar citlab.model.CitL with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/emf/2002/Ecore"
+generate citL "http://www.model.citlab/CitL"
+
+CitModel:
+	{CitModel} 'Model' name=ID 
+	// definition of constants
+	('Definitions:' (definitions+=Constant)+ 'end')?
+	//type allow to declear a list of element and reuse them in the enumeratives that share a same domain
+ 	('Types:'(Types+=NamedType)+ 'end')? 
+ 	// Parameters - mandatory
+ 	'Parameters:' (parameters+=Parameter)+ 'end' 
+ 	// constraints
+	('Constraints:' (constraints+=Rule)+ 'end')? 
+	// seeds 
+	('Seeds:' (seeds+=Seed)+ 'end')? 
+	// test goals
+	('TestGoals:' (testGoals+=Rule)+
+	'end')?;
+
+Constant:
+	ConstantNumber; // for now only numerical constants
+
+ConstantNumber:
+	'Number' name=ID '=' value=INT ';';
+
+Parameter:
+	Enumerative | Boolean | Numerical;
+
+ParametersEx:
+	Parameter | NumericalEx; // parameter U Numerical
+	
+NumericalEx:
+	Numerical | ConstantNumber;
+
+Numerical:
+	Numbers | Range; // numerical parameter
+
+EnumerativeType:
+	NamedType | AnonymousType;
+
+NamedType:
+	'EnumerativeType' name=ID '{' (elements+=Element)* '}' ';';
+
+AnonymousType:
+	(elements+=Element)+; //An enumaritive can be a list of element or a reference to a NamedType
+
+Enumerative:
+	'Enumerative' name=ID (':' namedType=[NamedType] | '{' atype=AnonymousType '}') ';'; // elements in the enumerative
+
+Element:
+	(name=elementID);
+
+Boolean:
+	'Boolean' name=ID ';';
+
+Numbers:
+	'Numbers' name=ID '{' (values+=PossiblySignedNumber)+ '}' ';'; // list of numbers
+
+Range:
+	'Range' name=ID '[' begin=PossiblySignedNumber '..' end=PossiblySignedNumber ']' ('step' step=INT)? ';'; //range of value of a constant
+
+// CONSTRAINTS
+// expressions defined in top down way starting from less precedence	
+Rule:
+	('#' OrExpression '#');
+ OrExpression returns Expression:
+	AndExpression => ({OrExpression.left=current} (op=OrOperators) (right=AndExpression))*;
+
+AndExpression returns Expression:
+	ImpliesExpression => ({AndExpression.left=current} (op=AndOperators) (right=ImpliesExpression))*;
+
+ImpliesExpression returns Expression:
+	Primary ({ImpliesExpression.left=current} (op=ImpliesOperator) right=Primary)*; // 
+ Primary returns Expression:
+	NotExpression | '(' OrExpression ')' | AtomicPredicate;
+
+NotExpression returns Expression:
+	('!' | 'not') Primary ({NotExpression.predicate=current});
+// return an atomic predicate that cannot be further decomposed in predicates
+ AtomicPredicate:
+	EnumAssign | BoolAssign | RelationalExpression;
+
+BoolAssign:
+	=> left=[Boolean|ID] op=AssignmentOperators right=BooleanConst;
+
+EnumAssign:
+	=> left=[Enumerative|ID] op=AssignmentOperators right=[Element|FQN];
+
+RelationalExpression:
+	=> (left=[Numerical|ID] op=(AssignmentOperators | RelationalOperators) right=PlusMinus); // numerical expressions
+
+PlusMinus returns Expression:
+	ModMultDiv ({PlusMinus.left=current} (op=PlusMinusOperators) right=ModMultDiv)*;
+
+ModMultDiv returns Expression:
+	Numeric ({ModMultDiv.left=current} (op=ModMultDivOperators) (right=Numeric))*;
+
+Numeric returns Expression:
+	NumberLiteral | '(' PlusMinus ')';//|// UnaryMinus;
+
+NumberLiteral:
+	number=PossiblySignedNumber | numerical=[NumericalEx|ID]; 
+
+//UnaryMinus returns Expression:
+	//'-' Numeric ({UnaryMinus.predicate=current});
+// SEEDS
+	
+Seed:
+	('#' AssigmentSeedList+=Aseed (',' AssigmentSeedList+=Aseed)* '#');
+//A seed must hold an assigment for each parameter
+ Aseed:
+	EnumSeed | BoolAssignSeed | NumericalSeed;
+
+SeedNumberLiteral:
+	number=PossiblySignedNumber | constant=[ConstantNumber];
+
+EnumSeed:
+	=> left=[Enumerative] op='=' right=[Element|FQN];
+
+NumericalSeed:
+	=> left=[Numerical] op='=' right=SeedNumberLiteral;
+
+BoolAssignSeed:
+	=> left=[Boolean] op='=' right=BooleanConst; //List of operators used in the expression (logic and arithmetic)
+
+// only comparison 
+ enum RelationalOperators returns Operators:
+	GT='>' | LT='<' | GE='>=' | LE='<=';
+
+enum AssignmentOperators returns Operators:
+	EQ='==' | NE='!=';
+
+enum AndOperators:
+	and='&&' | andmi='and' | ANDma='AND';
+
+enum OrOperators:
+	or='||' | ormi='or' | ORma='OR';
+
+enum PlusMinusOperators:
+	Plus='+' | Minus='-';
+
+enum ModMultDivOperators:
+	Mod='%' | Mult='*' | Div='/';
+
+enum ImpliesOperator:
+	Impl='=>' | Iff='<=>';
+
+enum BooleanConst:
+	false='false' | true='true';
+
+elementID returns EString:
+	ID | NUMID; // elements can be a number followed by an ID, and integer between "" like "800"	
+ terminal NUMID returns
+
+EString:
+	('0'..'9')+ ID | '"' INT '"';
+
+FQN:
+	ID "." elementID;
+	
+PossiblySignedNumber returns EIntegerObject: '-'?INT;

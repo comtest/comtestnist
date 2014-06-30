@@ -1,0 +1,14 @@
+// 
+Model useless1
+
+Parameters:
+	Enumerative a {a1 a2 a3};
+	Enumerative b {b1 b2 b3};
+end
+Constraints:
+	# a == a.a1 #
+	# b != b.b1 #
+end  
+	
+
+

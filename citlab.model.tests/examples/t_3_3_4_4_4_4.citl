@@ -1,0 +1,18 @@
+// 3 power 2 and 4 power 4
+Model t_3_3_4_4_4_4
+
+Types:
+	EnumerativeType Type3 { AAA BBB CCC }; EnumerativeType Type4 {
+	ONE TWO THREE FOUR };
+end
+Parameters:
+	Enumerative a : Type3;
+	Enumerative b : Type3;
+	Enumerative c : Type4;
+	Enumerative d : Type4;
+	Enumerative e : Type4;
+	Enumerative f : Type4;
+end
+	                 	
+	
+   

@@ -1,0 +1,74 @@
+Model cohen_constructing_2003_7
+
+Types:
+	EnumerativeType et2 { e0 e1 e2 e3 };
+	EnumerativeType et3 { e0 e1 e2 };
+end
+
+Parameters:
+
+	Enumerative e20: et2;
+	Enumerative e21: et2;
+	Enumerative e22: et2;
+	Enumerative e23: et2;
+	Enumerative e24: et2;
+	Enumerative e25: et2;
+	Enumerative e26: et2;
+	Enumerative e27: et2;
+	Enumerative e28: et2;
+	Enumerative e29: et2;
+	Enumerative e210: et2;
+	Enumerative e211: et2;
+	Enumerative e212: et2;
+	Enumerative e213: et2;
+	Enumerative e214: et2;
+
+	Enumerative e30: et3;
+	Enumerative e31: et3;
+	Enumerative e32: et3;
+	Enumerative e33: et3;
+	Enumerative e34: et3;
+	Enumerative e35: et3;
+	Enumerative e36: et3;
+	Enumerative e37: et3;
+	Enumerative e38: et3;
+	Enumerative e39: et3;
+	Enumerative e310: et3;
+	Enumerative e311: et3;
+	Enumerative e312: et3;
+	Enumerative e313: et3;
+	Enumerative e314: et3;
+	Enumerative e315: et3;
+	Enumerative e316: et3;
+
+	Boolean b40;
+	Boolean b41;
+	Boolean b42;
+	Boolean b43;
+	Boolean b44;
+	Boolean b45;
+	Boolean b46;
+	Boolean b47;
+	Boolean b48;
+	Boolean b49;
+	Boolean b410;
+	Boolean b411;
+	Boolean b412;
+	Boolean b413;
+	Boolean b414;
+	Boolean b415;
+	Boolean b416;
+	Boolean b417;
+	Boolean b418;
+	Boolean b419;
+	Boolean b420;
+	Boolean b421;
+	Boolean b422;
+	Boolean b423;
+	Boolean b424;
+	Boolean b425;
+	Boolean b426;
+	Boolean b427;
+	Boolean b428;
+
+end

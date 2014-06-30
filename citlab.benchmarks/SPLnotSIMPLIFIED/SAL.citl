@@ -1,0 +1,24 @@
+Model SAL
+
+Parameters:
+	Boolean SAL;
+	Boolean Language;
+	Boolean SimpleArithmetic;
+	Boolean Conditional;
+	Enumerative Evaluator { Evaluationsemantics Machinesemantics NONE };
+	Boolean Optimizer;
+	Boolean Constantfolding;
+	Boolean Short_circuit;
+end
+Constraints:
+	# SAL==true #
+	# Language==true <=> SAL==true #
+	# SimpleArithmetic==true <=> Language==true #
+	# Conditional==true => Language==true #
+	# Evaluator!=Evaluator.NONE <=> SAL==true #
+	# Optimizer==true => SAL==true #
+	# Optimizer==true => ( Constantfolding==true || Short_circuit==true) #
+	# Constantfolding==true => Optimizer==true #
+	# Short_circuit==true => Optimizer==true #
+	# Conditional==true || ! Short_circuit==true #
+end

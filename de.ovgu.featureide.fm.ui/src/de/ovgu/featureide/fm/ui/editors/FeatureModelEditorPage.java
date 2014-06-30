@@ -1,0 +1,138 @@
+/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ * Copyright (C) 2005-2013  FeatureIDE team, University of Magdeburg, Germany
+ *
+ * This file is part of FeatureIDE.
+ * 
+ * FeatureIDE is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * FeatureIDE is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with FeatureIDE.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * See http://www.fosd.de/featureide/ for further information.
+ */
+package de.ovgu.featureide.fm.ui.editors;
+
+import java.beans.PropertyChangeEvent;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.part.EditorPart;
+
+/**
+ * Basic class with some default methods for feature model editor pages.
+ * 
+ * @author Jens Meinicke
+ */
+public abstract class FeatureModelEditorPage extends EditorPart implements IFeatureModelEditorPage{
+
+	private int index;
+	
+	protected FeatureModelEditor featureModelEditor;
+	
+	protected boolean dirty = false;
+	
+	protected IEditorInput input;
+
+	protected IEditorSite site;
+	
+	/**
+	 * @param featureModelEditor the featureModelEditor to set
+	 */
+	public void setFeatureModelEditor(FeatureModelEditor featureModelEditor) {
+		this.featureModelEditor = featureModelEditor;
+	}
+	
+	@Override
+	public void doSave(IProgressMonitor monitor) {
+		dirty = false;
+		firePropertyChange(IEditorPart.PROP_DIRTY);
+	}
+
+	@Override
+	public void doSaveAs() {
+		
+	}
+
+	@Override
+	public void init(IEditorSite site, IEditorInput input)
+			throws PartInitException {
+		this.input = input;
+		this.site = site; 
+	}
+
+	@Override
+	public boolean isDirty() {
+		return dirty;
+	}
+
+	@Override
+	public boolean isSaveAsAllowed() {
+		return false;
+	}
+
+	@Override
+	public void createPartControl(Composite parent) {
+		
+	}
+
+	@Override
+	public void setFocus() {
+		
+	}
+
+	@Override
+	public int getIndex() {
+		return index;
+	}
+
+	@Override
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	
+	public IEditorSite getSite() {
+		return site;
+	}
+	
+	@Override
+	public void initEditor() {
+	}
+	
+	@Override
+	public IFeatureModelEditorPage getPage(Composite container) {
+		return this;
+	}
+	
+	@Override
+	public Control getControl() {
+		return null;
+	}
+	
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		
+	}
+	
+	@Override
+	public void pageChangeFrom(int newPage) {
+
+	}
+	
+	@Override
+	public void pageChangeTo(int oldPage) {
+	
+	}
+}

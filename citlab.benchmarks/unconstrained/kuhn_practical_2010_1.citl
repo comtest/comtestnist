@@ -1,0 +1,16 @@
+Model kuhn_practical_2010_1
+
+Parameters:
+
+	Boolean b10;
+	Boolean b11;
+	Boolean b12;
+	Boolean b13;
+	Boolean b14;
+	Boolean b15;
+	Boolean b16;
+	Boolean b17;
+	Boolean b18;
+	Boolean b19;
+
+end

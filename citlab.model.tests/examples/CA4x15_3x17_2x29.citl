@@ -1,0 +1,76 @@
+Model CA4x15_3x17_2x29
+
+Types:
+	EnumerativeType Type3 {
+	AONE
+	ATWO
+	ATHREE
+	};  EnumerativeType Type4 {
+	ONE
+	TWO
+	THREE
+	FOUR
+	};
+end
+Parameters:
+	Enumerative a1 : Type4;
+	Enumerative a2 : Type4;
+	Enumerative a3 : Type4;
+	Enumerative a4 : Type4;
+	Enumerative a5 : Type4;
+	Enumerative a6 : Type4;
+	Enumerative a7 : Type4;
+	Enumerative a8 : Type4;
+	Enumerative a9 : Type4;
+	Enumerative a10 : Type4;
+	Enumerative a11 : Type4;
+	Enumerative a12 : Type4;
+	Enumerative a13 : Type4;
+	Enumerative a14 : Type4;
+	Enumerative a15 : Type4;
+	Enumerative b1 : Type3;
+	Enumerative b2 : Type3;
+	Enumerative b3 : Type3;
+	Enumerative b4 : Type3;
+	Enumerative b5 : Type3;
+	Enumerative b6 : Type3;
+	Enumerative b7 : Type3;
+	Enumerative b8 : Type3;
+	Enumerative b9 : Type3;
+	Enumerative b10 : Type3;
+	Enumerative b11 : Type3;
+	Enumerative b12 : Type3;
+	Enumerative b13 : Type3;
+	Enumerative b14 : Type3;
+	Enumerative b15 : Type3;
+	Enumerative b16 : Type3;
+	Enumerative b17 : Type3;
+	Boolean c1;
+	Boolean c2;
+	Boolean c3;
+	Boolean c4;
+	Boolean c5;
+	Boolean c6;
+	Boolean c7;
+	Boolean c8;
+	Boolean c9;
+	Boolean c10;
+	Boolean c11;
+	Boolean c12;
+	Boolean c13;
+	Boolean c14;
+	Boolean c15;
+	Boolean c16;
+	Boolean c17;
+	Boolean c18;
+	Boolean c19;
+	Boolean c20;
+	Boolean c21;
+	Boolean c22;
+	Boolean c23;
+	Boolean c24;
+	Boolean c25;
+	Boolean c26;
+	Boolean c27;
+	Boolean c28;
+	Boolean c29; end    

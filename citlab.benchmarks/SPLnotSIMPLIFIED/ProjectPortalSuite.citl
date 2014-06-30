@@ -1,0 +1,42 @@
+Model ProjectPortalSuite
+
+Parameters:
+	Boolean ProjectPortalSuite;
+	Boolean DesktopManager;
+	Boolean IndicadoresyReportes;
+	Boolean Bibliotecadocumentalnormativa;
+	Boolean Basedeconocimiento;
+	Boolean PlantilladeProyecto;
+	Boolean Bibliotecadocumentaldeingenieria;
+	Boolean Bibliotecadocumentaldecontratos;
+	Boolean Registrosfinancieros;
+	Boolean Registrodecargosypersonas;
+	Boolean Bibliotecadocumentaldepersonas;
+	Boolean ExecutiveDashboard;
+	Boolean EngineeringDocumentManagement;
+	Boolean ContractManagement;
+	Boolean ProgramandControlManagement;
+	Boolean StaffingManagement;
+	Boolean ComplianceManagement;
+	Boolean BestPracticesandLessonsLearned;
+end
+Constraints:
+	# ProjectPortalSuite==true #
+	# DesktopManager==true <=> ProjectPortalSuite==true #
+	# IndicadoresyReportes==true => DesktopManager==true #
+	# Bibliotecadocumentalnormativa==true => DesktopManager==true #
+	# Basedeconocimiento==true => DesktopManager==true #
+	# PlantilladeProyecto==true <=> DesktopManager==true #
+	# Bibliotecadocumentaldeingenieria==true <=> PlantilladeProyecto==true #
+	# Bibliotecadocumentaldecontratos==true => PlantilladeProyecto==true #
+	# Registrosfinancieros==true => PlantilladeProyecto==true #
+	# Registrodecargosypersonas==true => PlantilladeProyecto==true #
+	# Bibliotecadocumentaldepersonas==true => DesktopManager==true #
+	# ExecutiveDashboard==true => ProjectPortalSuite==true #
+	# EngineeringDocumentManagement==true => ProjectPortalSuite==true #
+	# ContractManagement==true => ProjectPortalSuite==true #
+	# ProgramandControlManagement==true => ProjectPortalSuite==true #
+	# StaffingManagement==true => ProjectPortalSuite==true #
+	# ComplianceManagement==true => ProjectPortalSuite==true #
+	# BestPracticesandLessonsLearned==true => ProjectPortalSuite==true #
+end

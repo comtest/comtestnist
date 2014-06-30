@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="1">
+		<struct>
+			<and mandatory="true" name="InsurancePolicy">
+				<or mandatory="true" name="LOB">
+					<or mandatory="true" name="Auto">
+						<feature mandatory="true" name="Comprehensive"/>
+						<feature mandatory="true" name="TP"/>
+					</or>
+					<feature mandatory="true" name="Home"/>
+					<feature mandatory="true" name="commercial"/>
+					<feature mandatory="true" name="watercraft"/>
+				</or>
+				<feature mandatory="true" name="Financials"/>
+				<feature mandatory="true" name="Reporting"/>
+				<and name="ThirdPartyServices">
+					<feature name="Add_Validation"/>
+					<feature name="VINValidation"/>
+					<alt name="CreditCheck">
+						<feature mandatory="true" name="simple"/>
+						<feature mandatory="true" name="advanced"/>
+					</alt>
+				</and>
+				<and mandatory="true" name="DataCapture">
+					<feature mandatory="true" name="clientdata"/>
+					<feature name="cardetails"/>
+					<feature name="housedetails"/>
+				</and>
+				<and mandatory="true" name="U_W">
+					<feature mandatory="true" name="decision"/>
+				</and>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<disj>
+					<var>Comprehensive</var>
+					<disj>
+						<var>clientdata</var>
+						<var>cardetails</var>
+					</disj>
+				</disj>
+			</rule>
+			<rule>
+				<disj>
+					<var>TP</var>
+					<var>watercraft</var>
+				</disj>
+			</rule>
+		</constraints>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

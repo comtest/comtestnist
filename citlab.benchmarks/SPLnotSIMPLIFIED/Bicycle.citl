@@ -1,0 +1,34 @@
+Model Bicycle
+
+Parameters:
+	Boolean Bicycle;
+	Enumerative Frame { Iron Aluminum Carbon NONE };
+	Enumerative Carbon { White Red Black NONE };
+	Boolean Gears;
+	Boolean Front;
+	Boolean Rear;
+	Boolean Wheels;
+	Boolean Saddle;
+	Enumerative Color { _r_15_16_17 Green Blue NONE };
+	Boolean Handlebars;
+	Boolean Pedals;
+	Enumerative Warranty { a1year a2years a3years NONE };
+	Enumerative Maintenanceplan { _r_29_30_31 _r_29_30_32 lifetime NONE };
+end
+Constraints:
+	# Bicycle==true #
+	# Frame!=Frame.NONE <=> Bicycle==true #
+	# Carbon!=Carbon.NONE <=> Frame==Frame.Carbon #
+	# Gears==true => Bicycle==true #
+	# Front==true => Gears==true #
+	# Rear==true => Gears==true #
+	# Wheels==true <=> Bicycle==true #
+	# Saddle==true <=> Bicycle==true #
+	# Color!=Color.NONE <=> Bicycle==true #
+	# Handlebars==true <=> Bicycle==true #
+	# Pedals==true => Bicycle==true #
+	# Warranty!=Warranty.NONE => Bicycle==true #
+	# Maintenanceplan!=Maintenanceplan.NONE => Bicycle==true #
+	# ! Front==true || Rear==true #
+	# ! Frame==Frame.Carbon || Color==Color._r_15_16_17 #
+end

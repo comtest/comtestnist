@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="Ipo"
+         name="Ipogenerator"
+         point="citlab.core.generators"> 
+         
+      <Generator
+            Algorithm="IPO Algorithm"
+            GeneratorPrototype="citlab.ipogenerator.IPOgenerator"
+            Name="IPO"
+            suppor_gen_properties="false"
+            support_constraints="false"
+            support_seeds="false"
+            support_testgoals="false">
+      </Generator>
+   </extension>
+
+</plugin>

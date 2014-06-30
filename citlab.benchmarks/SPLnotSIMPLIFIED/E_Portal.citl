@@ -1,0 +1,29 @@
+Model E_Portal
+
+Parameters:
+	Boolean E_Portal;
+	Boolean Site;
+	Boolean Elementos;
+	Boolean Menu;
+	Boolean Box;
+	Boolean Texto;
+	Boolean Foto;
+	Boolean DestaqueWide;
+	Boolean ComFoto;
+	Boolean SemFoto;
+	Boolean DestaqueDuplo;
+end
+Constraints:
+	# E_Portal==true #
+	# Site==true <=> E_Portal==true #
+	# Elementos==true <=> E_Portal==true #
+	# Menu==true <=> E_Portal==true #
+	# Box==true <=> E_Portal==true #
+	# Texto==true <=> Box==true #
+	# Foto==true => Box==true #
+	# DestaqueWide==true => Box==true #
+	# DestaqueWide==true => ( ComFoto==true || SemFoto==true) #
+	# ComFoto==true => DestaqueWide==true #
+	# SemFoto==true => DestaqueWide==true #
+	# DestaqueDuplo==true => Box==true #
+end

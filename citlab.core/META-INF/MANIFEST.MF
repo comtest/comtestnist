@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: CitLab core
+Bundle-SymbolicName: citlab.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.core.runtime,
+ citlab.testsuite;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: citlab.core.ext,
+ citlab.core.genprefs,
+ citlab.core.util
+Bundle-ClassPath: .
+Import-Package: org.eclipse.xtext.xbase.lib

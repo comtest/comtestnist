@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="citlab.core.importers">
+      <Importer
+            ImporterPrototype="citlab.importer.featureide.XmlFeatureModelImporter"
+            Name="Feature Ide Importer">
+         <Extensions
+               Extension="xml">
+         </Extensions>
+      </Importer>
+   </extension>
+   <extension
+         point="citlab.core.importers">
+      <Importer
+            ImporterPrototype="citlab.importer.featureide.SxfmFiImporter"
+            Name="SPLOT Importer (via Feature Ide)">
+         <Extensions
+               Extension="xml">
+         </Extensions>
+      </Importer>
+   </extension>
+
+</plugin>

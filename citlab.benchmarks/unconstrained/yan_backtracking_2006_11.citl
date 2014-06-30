@@ -1,0 +1,36 @@
+Model yan_backtracking_2006_11
+
+Types:
+	EnumerativeType et5 { e0 e1 e2 e3 };
+	EnumerativeType et6 { e0 e1 e2 };
+end
+
+Parameters:
+
+
+	Enumerative e20 { e0 e1 e2 e3 e4 e5 e6 };
+
+	Enumerative e30 { e0 e1 e2 e3 e4 e5 };
+
+	Enumerative e40 { e0 e1 e2 e3 e4 };
+
+	Enumerative e50: et5;
+	Enumerative e51: et5;
+	Enumerative e52: et5;
+	Enumerative e53: et5;
+	Enumerative e54: et5;
+
+	Enumerative e60: et6;
+	Enumerative e61: et6;
+	Enumerative e62: et6;
+	Enumerative e63: et6;
+	Enumerative e64: et6;
+	Enumerative e65: et6;
+	Enumerative e66: et6;
+	Enumerative e67: et6;
+
+	Boolean b70;
+	Boolean b71;
+	Boolean b72;
+
+end

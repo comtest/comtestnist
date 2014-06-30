@@ -1,0 +1,11 @@
+Model williams_measure_2001_calling
+
+
+Parameters:
+
+	Enumerative CallingPhone { Regular Wireless Public };
+	Enumerative CallType { Local Charged TollFree };
+	Enumerative SwitchMarket { Canada US Mexico };
+	Enumerative CalledPhone { Regular Wireless Pager };
+
+end

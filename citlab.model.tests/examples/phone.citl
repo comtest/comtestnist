@@ -1,0 +1,23 @@
+Model Phone
+
+Types:
+	EnumerativeType cameraType { 2MP 1MP NOC };
+end
+Parameters:
+	Number threshold 27;
+	Boolean emailViewer;
+	Range textLines [ 25 .. 30 ] ;
+	Enumerative display { 16MC 8MC BW };
+	Enumerative rearCamera : cameraType;
+	Enumerative frontCamera : cameraType;
+end
+Constraints:
+// first with ID
+	# display==BW => ( rearCamera==NOC) #
+	// second with NUMID	
+	# display==BW => ( rearCamera==1MP) #
+	//
+	# emailViewer==true or frontCamera!=NOC => display!=BW and textLines>=threshold #
+end
+//Seeds: end
+//TestGoals: ... end

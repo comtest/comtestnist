@@ -1,0 +1,16 @@
+Model bbs
+
+Types:
+	EnumerativeType Billing { CALL COLLECT EIGHT_HUNDRED };
+	EnumerativeType CallType { LOCAL LONGDISTANCE INTERNATIONAL };
+end
+Parameters:
+	Enumerative billing : Billing;
+	Enumerative calltype : CallType;
+end
+
+// some constraints
+ Constraints:
+	# calltype == CallType.INTERNATIONAL => (billing!=Billing.COLLECT 
+		and	billing!=Billing.EIGHT_HUNDRED) #
+end

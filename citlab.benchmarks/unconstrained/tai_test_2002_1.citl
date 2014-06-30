@@ -1,0 +1,14 @@
+Model tai_test_2002_1
+
+Types:
+	EnumerativeType et1 { e0 e1 e2 };
+end
+
+Parameters:
+
+	Enumerative e10: et1;
+	Enumerative e11: et1;
+	Enumerative e12: et1;
+	Enumerative e13: et1;
+
+end

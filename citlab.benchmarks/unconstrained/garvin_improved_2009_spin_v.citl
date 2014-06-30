@@ -1,0 +1,69 @@
+Model garvin_improved_2009_spin_v
+
+Types:
+	EnumerativeType et2 { e0 e1 e2 };
+	EnumerativeType et3 { e0 e1 e2 e3 };
+end
+
+Parameters:
+
+	Boolean b10;
+	Boolean b11;
+	Boolean b12;
+	Boolean b13;
+	Boolean b14;
+	Boolean b15;
+	Boolean b16;
+	Boolean b17;
+	Boolean b18;
+	Boolean b19;
+	Boolean b110;
+	Boolean b111;
+	Boolean b112;
+	Boolean b113;
+	Boolean b114;
+	Boolean b115;
+	Boolean b116;
+	Boolean b117;
+	Boolean b118;
+	Boolean b119;
+	Boolean b120;
+	Boolean b121;
+	Boolean b122;
+	Boolean b123;
+	Boolean b124;
+	Boolean b125;
+	Boolean b126;
+	Boolean b127;
+	Boolean b128;
+	Boolean b129;
+	Boolean b130;
+	Boolean b131;
+	Boolean b132;
+	Boolean b133;
+	Boolean b134;
+	Boolean b135;
+	Boolean b136;
+	Boolean b137;
+	Boolean b138;
+	Boolean b139;
+	Boolean b140;
+	Boolean b141;
+	Boolean b142;
+
+	Enumerative e20: et2;
+	Enumerative e21: et2;
+
+	Enumerative e30: et3;
+	Enumerative e31: et3;
+	Enumerative e32: et3;
+	Enumerative e33: et3;
+	Enumerative e34: et3;
+	Enumerative e35: et3;
+	Enumerative e36: et3;
+	Enumerative e37: et3;
+	Enumerative e38: et3;
+	Enumerative e39: et3;
+	Enumerative e310: et3;
+
+end

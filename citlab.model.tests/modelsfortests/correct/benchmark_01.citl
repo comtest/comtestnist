@@ -1,0 +1,132 @@
+//
+// benchmark from Covering Arrays by Simulated Annealing (CASA) suite
+// http://cse.unl.edu/~citportal/tools/casa/benchmarks.zip
+// 
+Model benchmark_01
+
+Parameters:
+	Boolean b0;
+	Boolean b1;
+	Boolean b2;
+	Boolean b3;
+	Enumerative e4 { el0 el1 el2 el3 el4 };
+	Boolean b5;
+	Boolean b6;
+	Boolean b7;
+	Boolean b8;
+	Boolean b9;
+	Boolean b10;
+	Boolean b11;
+	Boolean b12;
+	Boolean b13;
+	Boolean b14;
+	Boolean b15;
+	Boolean b16;
+	Boolean b17;
+	Boolean b18;
+	Boolean b19;
+	Boolean b20;
+	Boolean b21;
+	Boolean b22;
+	Boolean b23;
+	Enumerative e24 { el0 el1 el2 };
+	Boolean b25;
+	Boolean b26;
+	Boolean b27;
+	Enumerative e28 { el0 el1 el2 el3 };
+	Boolean b29;
+	Boolean b30;
+	Boolean b31;
+	Enumerative e32 { el0 el1 el2 };
+	Enumerative e33 { el0 el1 el2 };
+	Boolean b34;
+	Boolean b35;
+	Enumerative e36 { el0 el1 el2 el3 el4 };
+	Enumerative e37 { el0 el1 el2 el3 el4 el5 };
+	Boolean b38;
+	Boolean b39;
+	Enumerative e40 { el0 el1 el2 el3 el4 };
+	Boolean b41;
+	Boolean b42;
+	Boolean b43;
+	Boolean b44;
+	Boolean b45;
+	Boolean b46;
+	Boolean b47;
+	Enumerative e48 { el0 el1 el2 el3 el4 };
+	Boolean b49;
+	Boolean b50;
+	Boolean b51;
+	Boolean b52;
+	Boolean b53;
+	Boolean b54;
+	Boolean b55;
+	Boolean b56;
+	Boolean b57;
+	Boolean b58;
+	Boolean b59;
+	Boolean b60;
+	Boolean b61;
+	Boolean b62;
+	Boolean b63;
+	Boolean b64;
+	Enumerative e65 { el0 el1 el2 el3 el4 };
+	Boolean b66;
+	Boolean b67;
+	Boolean b68;
+	Boolean b69;
+	Boolean b70;
+	Boolean b71;
+	Boolean b72;
+	Boolean b73;
+	Boolean b74;
+	Boolean b75;
+	Boolean b76;
+	Enumerative e77 { el0 el1 el2 el3 el4 el5 };
+	Boolean b78;
+	Boolean b79;
+	Boolean b80;
+	Boolean b81;
+	Boolean b82;
+	Boolean b83;
+	Boolean b84;
+	Boolean b85;
+	Boolean b86;
+	Boolean b87;
+	Boolean b88;
+	Boolean b89;
+	Boolean b90;
+	Boolean b91;
+	Boolean b92;
+	Boolean b93;
+	Boolean b94;
+	Boolean b95;
+	Boolean b96;
+end
+Constraints:
+	# b3!=false OR b15!=true #
+	# b3!=true OR b16!=true #
+	# b8!=true OR b16!=true #
+	# b17!=false OR b19!=true #
+	# b15!=true OR b16!=false #
+	# b9!=false OR b18!=false #
+	# b12!=false OR b19!=false #
+	# b13!=false OR b16!=false #
+	# b16!=false OR b19!=true #
+	# b2!=true OR b3!=true #
+	# b9!=true OR b18!=true #
+	# b1!=false OR b17!=true #
+	# b7!=true OR b19!=false #
+	# b5!=true OR b18!=true #
+	# b6!=false OR b14!=true #
+	# b0!=false OR b18!=true #
+	# b0!=false OR b9!=true #
+	# b2!=false OR b11!=false #
+	# b8!=true OR b17!=true #
+	# b10!=false OR b16!=false #
+	# b0!=false OR b17!=true OR b19!=false #
+	# e4!=e4.el4 OR b16!=false OR b18!=true #
+	# b5!=true OR b10!=false OR b18!=true #
+	# b6!=true OR b15!=false OR b16!=false OR b18!=false #
+end
+

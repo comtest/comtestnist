@@ -1,0 +1,34 @@
+Model CFDPLibrary
+
+Parameters:
+	Boolean CFDPLibrary;
+	Boolean Send;
+	Boolean SendAcknowledgedMode;
+	Boolean SendFileSystemOperations;
+	Boolean Receive;
+	Boolean ReceiveAcknowledgedMode;
+	Boolean ReceiveFileSystemOperations;
+	Boolean PUS;
+	Boolean PUSRename;
+	Boolean PUSCopy;
+	Boolean Reboot_;
+	Boolean RebootEntity;
+	Boolean RebootPUS;
+end
+Constraints:
+	# CFDPLibrary==true #
+	# CFDPLibrary==true => ( Send==true || Receive==true || PUS==true ||
+	Reboot_==true) #
+	# Send==true => CFDPLibrary==true #
+	# SendAcknowledgedMode==true => Send==true #
+	# SendFileSystemOperations==true => Send==true #
+	# Receive==true => CFDPLibrary==true #
+	# ReceiveAcknowledgedMode==true => Receive==true #
+	# ReceiveFileSystemOperations==true => Receive==true #
+	# PUS==true => CFDPLibrary==true #
+	# PUSRename==true => PUS==true #
+	# PUSCopy==true => PUS==true #
+	# Reboot_==true => CFDPLibrary==true #
+	# RebootEntity==true => Reboot_==true #
+	# RebootPUS==true => Reboot_==true #
+end

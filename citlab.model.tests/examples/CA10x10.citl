@@ -1,0 +1,20 @@
+Model CA10x10
+
+Types:
+	EnumerativeType TypeVAL {
+	VAL1 VAL2 VAL3 VAL4 VAL5 VAL6 VAL7 VAL8 VAL9 VAL10 };
+end
+Parameters:
+	Enumerative b1 : TypeVAL;
+	Enumerative b2 : TypeVAL;
+	Enumerative b3 : TypeVAL;
+	Enumerative b4 : TypeVAL;
+	Enumerative b5 : TypeVAL;
+	Enumerative b6 : TypeVAL;
+	Enumerative b7 : TypeVAL;
+	Enumerative b8 : TypeVAL;
+	Enumerative b9 : TypeVAL;
+	Enumerative b10 : TypeVAL;
+end
+	
+   

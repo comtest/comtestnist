@@ -1,0 +1,180 @@
+Model ArcadeGame
+
+Parameters:
+	Boolean ArcadeGame;
+	Boolean UseCases;
+	Boolean CheckPreviousBestScore;
+	Boolean SaveScore;
+	Boolean SaveGame;
+	Boolean ExitGame;
+	Boolean InstallGame;
+	Boolean UninstallGame;
+	Boolean ListGame;
+	Boolean PlayGame;
+	Boolean PlayBrickles;
+	Boolean PlayPong;
+	Boolean PlayBowling;
+	Boolean Initialization;
+	Boolean AnimationLoop;
+	Boolean ClassDiagram;
+	Boolean GameSprite;
+	Boolean SpritePair;
+	Boolean Rectangle;
+	Boolean Size;
+	Boolean Point;
+	Boolean MovableSprite;
+	Boolean Velocity;
+	Boolean Paddle;
+	Boolean TopPaddle;
+	Boolean BottomPaddle;
+	Boolean Puck;
+	Boolean BowlingBall;
+	Boolean BowlingPin;
+	Boolean StationarySprite;
+	Boolean Wall;
+	Boolean Leftpong;
+	Boolean Rightpont;
+	Boolean Leftbrickles;
+	Boolean Rightbrickles;
+	Boolean Brick;
+	Boolean BrickPile;
+	Boolean Ceilingbrickles;
+	Boolean Floorbrickles;
+	Boolean Lane;
+	Boolean Gutter;
+	Boolean Edge;
+	Boolean EndofAlley;
+	Boolean RackofPins;
+	Boolean ScoreBoard;
+	Boolean Floorpong;
+	Boolean Ceilingpong;
+	Boolean DividingLine;
+	Boolean Pucksupply;
+	Boolean Board;
+	Boolean PongBoard;
+	Boolean BricklesBoard;
+	Boolean BowlingBoard;
+	Boolean Menu;
+	Boolean Pong;
+	Boolean Brickles;
+	Boolean Bowling;
+	Boolean GameMenu;
+	Boolean PongGameMenu;
+	Boolean BricklesGameMenu;
+	Boolean BowlingGameMenu;
+end
+Constraints:
+	# ArcadeGame==true #
+	# UseCases==true <=> ArcadeGame==true #
+	# CheckPreviousBestScore==true => UseCases==true #
+	# SaveScore==true => UseCases==true #
+	# SaveGame==true <=> UseCases==true #
+	# ExitGame==true <=> UseCases==true #
+	# InstallGame==true <=> UseCases==true #
+	# UninstallGame==true <=> UseCases==true #
+	# ListGame==true <=> UseCases==true #
+	# PlayGame==true <=> UseCases==true #
+	# PlayGame==true => ( PlayBrickles==true || PlayPong==true ||
+	PlayBowling==true || Initialization==true || AnimationLoop==true) #
+	# PlayBrickles==true => PlayGame==true #
+	# PlayPong==true => PlayGame==true #
+	# PlayBowling==true => PlayGame==true #
+	# Initialization==true => PlayGame==true #
+	# AnimationLoop==true => PlayGame==true #
+	# ClassDiagram==true <=> ArcadeGame==true #
+	# GameSprite==true <=> ClassDiagram==true #
+	# GameSprite==true => ( SpritePair==true || Rectangle==true ||
+	MovableSprite==true || StationarySprite==true) #
+	# SpritePair==true => GameSprite==true #
+	# Rectangle==true => GameSprite==true #
+	# Size==true <=> Rectangle==true #
+	# Point==true <=> Rectangle==true #
+	# MovableSprite==true => GameSprite==true #
+	# MovableSprite==true => ( Velocity==true || Paddle==true || Puck==true ||
+	BowlingBall==true || BowlingPin==true) #
+	# Velocity==true => MovableSprite==true #
+	# Paddle==true => MovableSprite==true #
+	# Paddle==true => ( TopPaddle==true || BottomPaddle==true) #
+	# TopPaddle==true => Paddle==true #
+	# BottomPaddle==true => Paddle==true #
+	# Puck==true => MovableSprite==true #
+	# BowlingBall==true => MovableSprite==true #
+	# BowlingPin==true => MovableSprite==true #
+	# StationarySprite==true => GameSprite==true #
+	# StationarySprite==true => ( Wall==true || Brick==true || BrickPile==true ||
+	Ceilingbrickles==true || Floorbrickles==true || Lane==true || Gutter==true ||
+	Edge==true || EndofAlley==true || RackofPins==true || ScoreBoard==true ||
+	Floorpong==true || Ceilingpong==true || DividingLine==true) #
+	# Wall==true => StationarySprite==true #
+	# Wall==true => ( Leftpong==true || Rightpont==true || Leftbrickles==true ||
+	Rightbrickles==true) #
+	# Leftpong==true => Wall==true #
+	# Rightpont==true => Wall==true #
+	# Leftbrickles==true => Wall==true #
+	# Rightbrickles==true => Wall==true #
+	# Brick==true => StationarySprite==true #
+	# BrickPile==true => StationarySprite==true #
+	# Ceilingbrickles==true => StationarySprite==true #
+	# Floorbrickles==true => StationarySprite==true #
+	# Lane==true => StationarySprite==true #
+	# Gutter==true => StationarySprite==true #
+	# Edge==true => StationarySprite==true #
+	# EndofAlley==true => StationarySprite==true #
+	# RackofPins==true => StationarySprite==true #
+	# ScoreBoard==true => StationarySprite==true #
+	# Floorpong==true => StationarySprite==true #
+	# Ceilingpong==true => StationarySprite==true #
+	# DividingLine==true => StationarySprite==true #
+	# Pucksupply==true => ClassDiagram==true #
+	# Board==true <=> ClassDiagram==true #
+	# Board==true => ( PongBoard==true || BricklesBoard==true ||
+	BowlingBoard==true) #
+	# PongBoard==true => Board==true #
+	# BricklesBoard==true => Board==true #
+	# BowlingBoard==true => Board==true #
+	# Menu==true <=> ClassDiagram==true #
+	# Menu==true => ( Pong==true || Brickles==true || Bowling==true) #
+	# Pong==true => Menu==true #
+	# Brickles==true => Menu==true #
+	# Bowling==true => Menu==true #
+	# GameMenu==true <=> ClassDiagram==true #
+	# GameMenu==true => ( PongGameMenu==true || BricklesGameMenu==true ||
+	BowlingGameMenu==true) #
+	# PongGameMenu==true => GameMenu==true #
+	# BricklesGameMenu==true => GameMenu==true #
+	# BowlingGameMenu==true => GameMenu==true #
+	# ! PlayBrickles==true || Brickles==true #
+	# PlayBrickles==true || ! Brickles==true #
+	# ! PlayPong==true || Pong==true #
+	# PlayPong==true || ! Pong==true #
+	# ! PlayBowling==true || Bowling==true #
+	# PlayBowling==true || ! Bowling==true #
+	# ! TopPaddle==true || Pong==true #
+	# ! BottomPaddle==true || Pong==true #
+	# ! Leftpong==true || Pong==true #
+	# ! Rightpont==true || Pong==true #
+	# ! ScoreBoard==true || Pong==true #
+	# ! Floorpong==true || Pong==true #
+	# ! Ceilingpong==true || Pong==true #
+	# ! DividingLine==true || Pong==true #
+	# ! PongBoard==true || Pong==true #
+	# ! PongGameMenu==true || Pong==true #
+	# ! BowlingBoard==true || Bowling==true #
+	# ! BowlingBall==true || Bowling==true #
+	# ! BowlingPin==true || Bowling==true #
+	# ! Lane==true || Bowling==true #
+	# ! Gutter==true || Bowling==true #
+	# ! Edge==true || Bowling==true #
+	# ! EndofAlley==true || Bowling==true #
+	# ! RackofPins==true || Bowling==true #
+	# ! BowlingGameMenu==true || Bowling==true #
+	# ! BricklesGameMenu==true || Brickles==true #
+	# ! BricklesBoard==true || Brickles==true #
+	# ! Leftbrickles==true || Brickles==true #
+	# ! Rightbrickles==true || Brickles==true #
+	# ! BrickPile==true || Brickles==true #
+	# ! Brick==true || Brickles==true #
+	# ! Ceilingbrickles==true || Brickles==true #
+	# ! Floorbrickles==true || Brickles==true #
+	# ! Pucksupply==true || Brickles==true #
+end

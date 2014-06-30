@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Randomgenerator
+Bundle-SymbolicName: citlab.generator.random;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: citlab.randomgenerator.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ citlab.core;bundle-version="1.0.0",
+ citlab.testsuite;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

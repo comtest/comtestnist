@@ -1,0 +1,39 @@
+Model MonitorEngine
+
+Parameters:
+	Boolean MonitorEngine;
+	Boolean MonitorEngineperformance;
+	Boolean Monitortemperatures;
+	Boolean coolant;
+	Boolean oil;
+	Boolean engine;
+	Boolean transmission;
+	Boolean MonitorRPM;
+	Boolean Monitorexhaustlevelsandtemperature;
+	Boolean MonitorFuelConsumption;
+	Enumerative Measures { a1perkm gallonpermile NONE };
+	Enumerative Methods {
+	Basedondistance Basedontypeofdriving Basedondriving NONE };
+	Boolean temperature;
+	Boolean F1;
+	Boolean F2;
+end
+Constraints:
+	# MonitorEngine==true #
+	# MonitorEngineperformance==true <=> MonitorEngine==true #
+	# Monitortemperatures==true <=> MonitorEngineperformance==true #
+	# coolant==true => Monitortemperatures==true #
+	# oil==true <=> Monitortemperatures==true #
+	# engine==true <=> Monitortemperatures==true #
+	# transmission==true <=> Monitortemperatures==true #
+	# MonitorRPM==true <=> MonitorEngineperformance==true #
+	# Monitorexhaustlevelsandtemperature==true <=> MonitorEngineperformance==true
+	#
+	# MonitorFuelConsumption==true <=> MonitorEngine==true #
+	# Measures!=Measures.NONE <=> MonitorFuelConsumption==true #
+	# Methods!=Methods.NONE <=> MonitorFuelConsumption==true #
+	# temperature==true => MonitorFuelConsumption==true #
+	# temperature==true => ( F1==true || F2==true) #
+	# F1==true => temperature==true #
+	# F2==true => temperature==true #
+end

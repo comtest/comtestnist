@@ -1,0 +1,13 @@
+// inconsistent with boolean variables
+Model inconsistent1
+
+Parameters:
+	Boolean a;
+	Boolean b;
+end
+Constraints:
+	# a==true and a==false #
+end  
+	
+
+

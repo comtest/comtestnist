@@ -1,0 +1,14 @@
+Model example
+
+Definitions:
+	Number hj = 23;
+end
+Parameters:
+	Range R1 [10 .. 100];
+	Range R2 [10 .. 100];
+	Boolean o;
+	Boolean k;
+end
+Constraints:
+	# R1 > 7 #
+end

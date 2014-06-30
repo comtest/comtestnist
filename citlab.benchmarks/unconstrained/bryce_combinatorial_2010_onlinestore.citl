@@ -1,0 +1,11 @@
+Model bryce_combinatorial_2010_onlinestore
+
+
+Parameters:
+
+	Enumerative LogInType { NewMemberNotLogged NewMemberLogged MemberLogged };
+	Enumerative MemberStatus { Guest Member Employee };
+	Enumerative Discount { None emp10 offhol5 };
+	Enumerative Shipping { Standard Expedited Overnight };
+
+end

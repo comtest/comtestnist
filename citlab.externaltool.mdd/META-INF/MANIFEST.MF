@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mdd
+Bundle-SymbolicName: citlab.externaltool.mdd;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: citlab.externaltool.mdd.Activator
+Require-Bundle: citlab.core;bundle-version="1.0.0",
+ citlab.testsuite;bundle-version="1.0.0",
+ org.eclipse.core.runtime,
+ org.eclipse.xtend2.lib;bundle-version="2.3.1",
+ citlab.model.tests;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: citlab.externaltool.mdd
+

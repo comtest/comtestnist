@@ -1,0 +1,9 @@
+Model lei_automated_2008_platform
+
+Parameters:
+	Enumerative OS { XP OSX RHL };
+	Enumerative Browser { IE Firefox };
+	Enumerative protocol { IPv4 IPv6 };
+	Enumerative CPU { Intel AMD };
+	Enumerative DBMS { MySQL Sybase Oracle };
+end

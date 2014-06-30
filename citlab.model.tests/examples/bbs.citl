@@ -1,0 +1,33 @@
+// Basic Billing System
+// taken from 
+// Lott, C., A. Jain, and S. Dalal. 
+// "Modeling Requirements for Combinatorial Software Testing" 
+// In Proceedings of the 1st International Workshop on Advances in Model-based Testing, 1-7, 2005.
+
+// 800 -> EIGHT_HUNDRED
+// with some constraints
+
+Model bbs
+
+Types:
+	EnumerativeType Access { LOOP ISDN PBX };
+	EnumerativeType Billing { CALL COLLECT EIGHT_HUNDRED };
+	EnumerativeType CallType { LOCAL LONGDISTANCE INTERNATIONAL };
+	EnumerativeType Status { SUCCESS BUSY BLOCKED };
+end
+Parameters:
+	Enumerative access : Access;
+	Enumerative billing : Billing;
+	Enumerative calltype : CallType;
+	Enumerative status : Status;
+end
+
+// some constraints
+Constraints:
+// international calls are never billed as a toll-free (i.e., 800) call nor as
+// a collect call. In the model, the parameter "Billing" cannot have
+// the values "Collect" or "800" in a tuple where the parameter "Call
+// Type" has the value "International".
+
+	# ( calltype==CallType.INTERNATIONAL => (billing != Billing.COLLECT and billing != Billing.EIGHT_HUNDRED)) #
+end

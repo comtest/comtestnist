@@ -1,0 +1,38 @@
+// the spec of the mobile phone product line
+// taken from Cohen, M. B, M. B Dwyer, and J. Shi. 
+// â€œInteraction Testing of Highly-configurable Systems in the Presence of Constraints.â€� 
+// In Proceedings of the 2007 International Symposium on Software Testing and Analysis, 129â€“139, 2007.
+Model mobile_phone
+
+Types:
+	EnumerativeType DisplayType { 16MC 8MC BW };
+	EnumerativeType EmailType { GV TV NOV };
+	EnumerativeType CameraType { 2MP 1MP NOC };
+end
+Parameters:
+	Enumerative display : DisplayType;
+	Enumerative email : EmailType;
+	Enumerative camera : CameraType;
+	Boolean videoCamera; // VC
+	Boolean videoRingtones; // VR
+
+end
+Constraints:
+	//(1) Graphical email viewer requires color display
+	# email==GV => display!=BW #
+	//(2) 2 Megapixel camera requires a color display
+	# camera==2MP => display!=BW #
+	//(3) Graphical email viewer not supported with the 2 Megapixel camera
+	# camera==2MP => not ( email==GV) #
+	// (4) 8 Million color display does not support a 2 Megapixel camera
+	# display==8MC => not ( camera==2MP) #
+	// (5) Video camera requires a camera and a color display
+	# videoCamera==true => ( not ( camera==NOC) and not ( display==BW)) #
+	// (6) Video ringtones cannot occur with No video camera
+	# camera==NOC => videoRingtones==false #
+	// (7) The combination of 16 Million colors, Text and 2 Megapixel camera will not be supported
+	# not ( display==16MC and email==TV and camera==2MP) #
+end 
+
+
+

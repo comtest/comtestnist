@@ -1,0 +1,34 @@
+[System]
+ss
+
+[Parameter]
+p1 (enum): v1, v2
+p2 (enum): v1, v2
+p3 (enum): v1, v2, v3
+p4 (enum): -1, 0, 1
+p5 (enum): -1, 0, 1
+p6 (enum): -1, 0, 1
+p7 (enum): -1, 0, 1
+p8 (enum): v1, v2
+p9 (enum): v1, v2, v3
+p10 (enum): v1, v2, v3, v4
+p11 (enum): v1, v2, v3, v4
+p12 (enum): v1, v2, v3, v4
+p13 (enum): v1, v2, v3, v4
+p14 (enum): v1, v2, v3, v4
+p15 (enum): v1, v2, v3, v4
+
+[Constraint]
+C1: (p15 != "v3" OR p1 != "v2")
+C2: (p9 != "v2" OR p1 != "v2")
+C3: (p1 != "v2" OR p14 != "v4")
+C4: (p15 != "v2" OR p1 != "v2")
+C5: (p9 != "v1" OR p1 != "v2")
+C6: (p15 != "v4" OR p1 != "v2")
+C7: (p14 != "v3" OR p1 != "v2")
+C8: (p14 != "v2" OR p1 != "v2")
+C9: (p13 != "v4" OR p1 != "v2")
+C10: (p3 != "v2" OR p2 != "v2")
+C11: (p13 != "v2" OR p1 != "v2")
+C12: (p3 != "v1" OR p2 != "v1")
+C13: (p1 != "v2" OR p13 != "v3")

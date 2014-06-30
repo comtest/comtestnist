@@ -1,0 +1,34 @@
+Model kwic
+
+Parameters:
+	Boolean kwic;
+	Boolean input_output;
+	Boolean file;
+	Boolean console;
+	Boolean circular_shift;
+	Enumerative shift_data { implicit explicit NONE };
+	Enumerative compression {
+	shift_processing each_line all_lines noise_words NONE };
+	Boolean alpha_sort;
+	Enumerative order { descendant ascendant NONE };
+	Enumerative case_sensitivity { sensitive insensitive NONE };
+	Enumerative arch_style {
+	shared_data adt implicit_invocation pipe_and_filter NONE };
+end
+Constraints:
+	# kwic==true #
+	# input_output==true <=> kwic==true #
+	# input_output==true => ( file==true || console==true) #
+	# file==true => input_output==true #
+	# console==true => input_output==true #
+	# circular_shift==true <=> kwic==true #
+	# shift_data!=shift_data.NONE <=> circular_shift==true #
+	# compression!=compression.NONE => circular_shift==true #
+	# alpha_sort==true <=> kwic==true #
+	# order!=order.NONE <=> alpha_sort==true #
+	# case_sensitivity!=case_sensitivity.NONE <=> alpha_sort==true #
+	# arch_style!=arch_style.NONE <=> kwic==true #
+	# ! compression!=compression.NONE || shift_data==shift_data.explicit #
+	# ! arch_style==arch_style.pipe_and_filter ||
+	compression==compression.all_lines #
+end

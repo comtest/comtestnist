@@ -1,0 +1,28 @@
+Model Stack
+
+Parameters:
+	Boolean Stack;
+	Enumerative Size { Fixed Dynamic NONE };
+	Boolean Value;
+	Enumerative ElementType { Integer Float String NONE };
+	Enumerative Optimization { Speed MemoryUsage NONE };
+	Boolean Counter;
+	Boolean AdditionalFeatures;
+	Boolean ThreadSafety;
+	Boolean BoundsCheck;
+	Boolean TypeCheck;
+end
+Constraints:
+	# Stack==true #
+	# Size!=Size.NONE => Stack==true #
+	# Value==true <=> Size==Size.Fixed #
+	# ElementType!=ElementType.NONE <=> Stack==true #
+	# Optimization!=Optimization.NONE => Stack==true #
+	# Counter==true => Stack==true #
+	# AdditionalFeatures==true => Stack==true #
+	# AdditionalFeatures==true => ( ThreadSafety==true || BoundsCheck==true ||
+	TypeCheck==true) #
+	# ThreadSafety==true => AdditionalFeatures==true #
+	# BoundsCheck==true => AdditionalFeatures==true #
+	# TypeCheck==true => AdditionalFeatures==true #
+end

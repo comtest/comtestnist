@@ -1,0 +1,50 @@
+Model InsurancePolicy
+
+Parameters:
+	Boolean InsurancePolicy;
+	Boolean LOB;
+	Boolean Auto;
+	Boolean Comprehensive;
+	Boolean TP;
+	Boolean Home;
+	Boolean commercial;
+	Boolean watercraft;
+	Boolean Financials;
+	Boolean Reporting;
+	Boolean ThirdPartyServices;
+	Boolean Add_Validation;
+	Boolean VINValidation;
+	Enumerative CreditCheck { simple advanced NONE };
+	Boolean DataCapture;
+	Boolean clientdata;
+	Boolean cardetails;
+	Boolean housedetails;
+	Boolean U_W;
+	Boolean decision;
+end
+Constraints:
+	# InsurancePolicy==true #
+	# LOB==true <=> InsurancePolicy==true #
+	# LOB==true => ( Auto==true || Home==true || commercial==true ||
+	watercraft==true) #
+	# Auto==true => LOB==true #
+	# Auto==true => ( Comprehensive==true || TP==true) #
+	# Comprehensive==true => Auto==true #
+	# TP==true => Auto==true #
+	# Home==true => LOB==true #
+	# commercial==true => LOB==true #
+	# watercraft==true => LOB==true #
+	# Financials==true <=> InsurancePolicy==true #
+	# Reporting==true <=> InsurancePolicy==true #
+	# ThirdPartyServices==true => InsurancePolicy==true #
+	# Add_Validation==true => ThirdPartyServices==true #
+	# VINValidation==true => ThirdPartyServices==true #
+	# CreditCheck!=CreditCheck.NONE => ThirdPartyServices==true #
+	# DataCapture==true <=> InsurancePolicy==true #
+	# clientdata==true <=> DataCapture==true #
+	# cardetails==true => DataCapture==true #
+	# housedetails==true => DataCapture==true #
+	# U_W==true <=> InsurancePolicy==true #
+	# decision==true <=> U_W==true #
+	# TP==true || watercraft==true #
+end

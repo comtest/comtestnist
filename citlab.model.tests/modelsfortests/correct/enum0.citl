@@ -1,0 +1,15 @@
+Model enumerative
+
+Types:
+
+EnumerativeType OS1 { MacOS Android WinXP};
+
+end
+
+Parameters:
+
+	Enumerative osAn { Windows Linux Solaris};
+	
+	Enumerative osOs : OS1; 
+	
+end

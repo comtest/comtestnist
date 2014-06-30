@@ -1,0 +1,21 @@
+Model CA2x11
+
+Types:
+	EnumerativeType Type2 {
+	ONE
+	TWO
+	};
+end
+Parameters:
+	Enumerative b1 : Type2;
+	Enumerative b2 : Type2;
+	Enumerative b3 : Type2;
+	Enumerative b4 : Type2;
+	Enumerative b5 : Type2;
+	Enumerative b6 : Type2;
+	Enumerative b7 : Type2;
+	Enumerative b8 : Type2;
+	Enumerative b9 : Type2;
+	Enumerative b10 : Type2;
+	Enumerative b11 : Type2;
+end    

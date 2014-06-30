@@ -1,0 +1,142 @@
+Model Cocheecologico
+
+Parameters:
+	Boolean Cocheecologico;
+	Boolean Carroceriade4metros;
+	Enumerative Pintura { Metalizada Nometalizada NONE };
+	Enumerative Metalizada { Grisperla Rojoturco Verdecactus Azulcobalto NONE };
+	Enumerative Nometalizada {
+	Blanco Negro Azulmarino Verdeesmeralda Rojofuego NONE };
+	Boolean Cristales;
+	Boolean Lunasdelanteradepilotoycopiloto;
+	Boolean Transparentes;
+	Enumerative Lunastraseraydepasajeros { _r_1_20_26_27_28 Tintadas NONE };
+	Enumerative Tintadas { Tintadooscuro Tintadomedio Tintadosuave NONE };
+	Enumerative Faros { Neon Xenon NONE };
+	Boolean Llantasdealeacionligera;
+	Boolean Equipamentointerior;
+	Enumerative Tapiceria { Cuero Estampado NONE };
+	Enumerative Cuero { _r_2_34_37_38_39_40 _r_2_34_37_38_39_41 Marron NONE };
+	Enumerative Estampado { Liso Moteado NONE };
+	Enumerative Liso {
+	_r_2_34_37_43_46_47_49_50 Rojogranate Verdemusgo Marronroble NONE };
+	Enumerative Moteado {
+	Geometricoverde_rojo_amarillo Hojascamarron_negro_amarillo Balonesblanco_azul_verde NONE };
+	Enumerative Asientosdelanteros { Deportivosenvolventes Asientosdeserie NONE };
+	Enumerative Cinturondeseguridaddelanteros { Deportivos Deserie NONE };
+	Boolean Capacidadpara4personas;
+	Boolean Airbags;
+	Boolean Pilotoycopiloto;
+	Boolean Pasajeros;
+	Boolean Laterales;
+	Boolean _r_2_78_82_83_84;
+	Boolean _r_2_78_82_83_85;
+	Boolean Cinturonesdeseguridadtraseros;
+	Boolean Cirturonesparatresplazas;
+	Boolean Enganchesparasillasdebebe;
+	Boolean a5puertas;
+	Boolean Motormixtogasolina_electrico;
+	Enumerative Baterias { Ion_litio Niquel_cadmio NONE };
+	Boolean Motordegasolina;
+	Boolean a1000cc;
+	Boolean a16valvulas;
+	Boolean Catalizador;
+	Boolean Extras;
+	Boolean Cierrecentralizado;
+	Boolean Sistemaantirrobointegradoenlallavedeencendido;
+	Boolean Sonido;
+	Boolean Radio;
+	Boolean LectordeCDyreproductordeMP3;
+	Boolean Capacidadesespeciales;
+	Boolean LectordearchivosMP3porUSB;
+	Boolean LectordearchivosMP3entarjetasSD;
+	Boolean Cargadorde3CDs;
+	Boolean Ecualizadorpreconfigurado;
+	Boolean Aperturaycierredepuertasadistanciaenlallave;
+	Boolean NavegadorGPSintegrado;
+	Boolean Temperaturainterior;
+	Boolean Aireacondicionado;
+	Enumerative Aclimatador {
+	Controlescomunes Controlesseparadosdepilotocopilotoypasajeros NONE };
+	Boolean Elevalunaselectricoenlaspuertasdelanteras;
+	Boolean Elevalunaselectricoenlasventanillastraseras;
+	Boolean ReproductordeDVDintegradoconpantallaparalospasajeros;
+	Boolean Regulacionelectronicadelosretrovisoresdesdeelinterior;
+	Boolean Regulacionelectronicadelaalturadelosfarosdesdeelinterior;
+	Boolean Sistemaselectronicos;
+	Boolean ABS;
+	Boolean ESP;
+end
+Constraints:
+	# Cocheecologico==true #
+	# Carroceriade4metros==true <=> Cocheecologico==true #
+	# Pintura!=Pintura.NONE <=> Carroceriade4metros==true #
+	# Metalizada!=Metalizada.NONE <=> Pintura==Pintura.Metalizada #
+	# Nometalizada!=Nometalizada.NONE <=> Pintura==Pintura.Nometalizada #
+	# Cristales==true <=> Carroceriade4metros==true #
+	# Lunasdelanteradepilotoycopiloto==true <=> Cristales==true #
+	# Transparentes==true <=> Lunasdelanteradepilotoycopiloto==true #
+	# Lunastraseraydepasajeros!=Lunastraseraydepasajeros.NONE <=> Cristales==true
+	#
+	# Tintadas!=Tintadas.NONE <=>
+	Lunastraseraydepasajeros==Lunastraseraydepasajeros.Tintadas #
+	# Faros!=Faros.NONE <=> Carroceriade4metros==true #
+	# Llantasdealeacionligera==true => Carroceriade4metros==true #
+	# Equipamentointerior==true <=> Cocheecologico==true #
+	# Tapiceria!=Tapiceria.NONE <=> Equipamentointerior==true #
+	# Cuero!=Cuero.NONE <=> Tapiceria==Tapiceria.Cuero #
+	# Estampado!=Estampado.NONE <=> Tapiceria==Tapiceria.Estampado #
+	# Liso!=Liso.NONE <=> Estampado==Estampado.Liso #
+	# Moteado!=Moteado.NONE <=> Estampado==Estampado.Moteado #
+	# Asientosdelanteros!=Asientosdelanteros.NONE <=> Equipamentointerior==true #
+	# Cinturondeseguridaddelanteros!=Cinturondeseguridaddelanteros.NONE <=>
+	Equipamentointerior==true #
+	# Capacidadpara4personas==true <=> Equipamentointerior==true #
+	# Airbags==true <=> Equipamentointerior==true #
+	# Pilotoycopiloto==true <=> Airbags==true #
+	# Pasajeros==true => Airbags==true #
+	# Laterales==true => Airbags==true #
+	# Laterales==true => ( _r_2_78_82_83_84==true || _r_2_78_82_83_85==true) #
+	# _r_2_78_82_83_84==true => Laterales==true #
+	# _r_2_78_82_83_85==true => Laterales==true #
+	# Cinturonesdeseguridadtraseros==true <=> Equipamentointerior==true #
+	# Cirturonesparatresplazas==true <=> Cinturonesdeseguridadtraseros==true #
+	# Enganchesparasillasdebebe==true <=> Cinturonesdeseguridadtraseros==true #
+	# a5puertas==true <=> Cocheecologico==true #
+	# Motormixtogasolina_electrico==true <=> Cocheecologico==true #
+	# Baterias!=Baterias.NONE <=> Motormixtogasolina_electrico==true #
+	# Motordegasolina==true <=> Motormixtogasolina_electrico==true #
+	# a1000cc==true <=> Motordegasolina==true #
+	# a16valvulas==true <=> Motordegasolina==true #
+	# Catalizador==true <=> Motordegasolina==true #
+	# Extras==true <=> Cocheecologico==true #
+	# Cierrecentralizado==true <=> Extras==true #
+	# Sistemaantirrobointegradoenlallavedeencendido==true => Extras==true #
+	# Sonido==true <=> Extras==true #
+	# Radio==true <=> Sonido==true #
+	# LectordeCDyreproductordeMP3==true <=> Sonido==true #
+	# Capacidadesespeciales==true => Sonido==true #
+	# LectordearchivosMP3porUSB==true <=> Capacidadesespeciales==true #
+	# LectordearchivosMP3entarjetasSD==true <=> Capacidadesespeciales==true #
+	# Cargadorde3CDs==true <=> Capacidadesespeciales==true #
+	# Ecualizadorpreconfigurado==true <=> Sonido==true #
+	# Aperturaycierredepuertasadistanciaenlallave==true => Extras==true #
+	# NavegadorGPSintegrado==true => Extras==true #
+	# Temperaturainterior==true => Extras==true #
+	# Aireacondicionado==true => Temperaturainterior==true #
+	# Aclimatador!=Aclimatador.NONE => Temperaturainterior==true #
+	# Elevalunaselectricoenlaspuertasdelanteras==true <=> Extras==true #
+	# Elevalunaselectricoenlasventanillastraseras==true => Extras==true #
+	# ReproductordeDVDintegradoconpantallaparalospasajeros==true => Extras==true #
+	# Regulacionelectronicadelosretrovisoresdesdeelinterior==true <=> Extras==true
+	#
+	# Regulacionelectronicadelaalturadelosfarosdesdeelinterior==true <=>
+	Extras==true #
+	# Sistemaselectronicos==true <=> Cocheecologico==true #
+	# ABS==true <=> Sistemaselectronicos==true #
+	# ESP==true <=> Sistemaselectronicos==true #
+	# ! Asientosdelanteros==Asientosdelanteros.Deportivosenvolventes ||
+	Cinturondeseguridaddelanteros==Cinturondeseguridaddelanteros.Deportivos #
+	# Sistemaantirrobointegradoenlallavedeencendido==true || !
+	Aperturaycierredepuertasadistanciaenlallave==true #
+end

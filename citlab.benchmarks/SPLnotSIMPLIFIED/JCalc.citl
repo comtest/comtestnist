@@ -1,0 +1,30 @@
+Model JCalc
+
+Parameters:
+	Boolean JCalc;
+	Enumerative LANG { PT_BR EN NONE };
+	Boolean MENU;
+	Boolean FILE;
+	Boolean HELP;
+	Boolean EDIT;
+	Boolean SAVE;
+	Enumerative LOOKANDFEEL { Metal System Motif GTK Windows NONE };
+	Boolean ANALYZER;
+	Boolean PERFORMANCE;
+	Enumerative DEVICE { Z6 Milestone PC NONE };
+	Boolean COMMA;
+end
+Constraints:
+	# JCalc==true #
+	# LANG!=LANG.NONE <=> JCalc==true #
+	# MENU==true <=> JCalc==true #
+	# FILE==true <=> MENU==true #
+	# HELP==true <=> MENU==true #
+	# EDIT==true => MENU==true #
+	# SAVE==true => MENU==true #
+	# LOOKANDFEEL!=LOOKANDFEEL.NONE => JCalc==true #
+	# ANALYZER==true => JCalc==true #
+	# PERFORMANCE==true => JCalc==true #
+	# DEVICE!=DEVICE.NONE <=> JCalc==true #
+	# COMMA==true => JCalc==true #
+end

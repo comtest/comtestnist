@@ -1,0 +1,54 @@
+Model ATMsoftware
+
+Parameters:
+	Boolean ATMsoftware;
+	Enumerative UserInterface { Basic2Dview Deluxe3Dview NONE };
+	Boolean Bankingfunctionality;
+	Boolean Checkingbalance;
+	Boolean Withdrawnmoney;
+	Boolean Depositmoney;
+	Boolean Viewtransaction;
+	Boolean Printingstatement;
+	Boolean Changeaccountpassword;
+	Boolean Changemaximumlimitforwithdrawal;
+	Boolean Localtransfertothesamebank;
+	Boolean Localtransfertootherbanks;
+	Boolean Detuschbank;
+	Boolean Stadtparkasse;
+	Boolean Volksbank;
+	Boolean Internationaltransfer;
+	Boolean Moneyexchange;
+	Boolean Checkingmoneyexchangerate;
+	Boolean Printingbalanceafterwithdrawal;
+	Boolean Additionalfunctionality;
+	Boolean Mobiletop_up;
+	Boolean Paythebills;
+	Enumerative Languageselection { German English French Italian NONE };
+end
+Constraints:
+	# ATMsoftware==true #
+	# UserInterface!=UserInterface.NONE <=> ATMsoftware==true #
+	# Bankingfunctionality==true <=> ATMsoftware==true #
+	# Checkingbalance==true <=> Bankingfunctionality==true #
+	# Withdrawnmoney==true <=> Bankingfunctionality==true #
+	# Depositmoney==true => Bankingfunctionality==true #
+	# Viewtransaction==true <=> Bankingfunctionality==true #
+	# Printingstatement==true => Bankingfunctionality==true #
+	# Changeaccountpassword==true <=> Bankingfunctionality==true #
+	# Changemaximumlimitforwithdrawal==true => Bankingfunctionality==true #
+	# Localtransfertothesamebank==true => Bankingfunctionality==true #
+	# Localtransfertootherbanks==true => Bankingfunctionality==true #
+	# Localtransfertootherbanks==true => ( Detuschbank==true ||
+	Stadtparkasse==true || Volksbank==true) #
+	# Detuschbank==true => Localtransfertootherbanks==true #
+	# Stadtparkasse==true => Localtransfertootherbanks==true #
+	# Volksbank==true => Localtransfertootherbanks==true #
+	# Internationaltransfer==true => Bankingfunctionality==true #
+	# Moneyexchange==true => Bankingfunctionality==true #
+	# Checkingmoneyexchangerate==true => Bankingfunctionality==true #
+	# Printingbalanceafterwithdrawal==true <=> Bankingfunctionality==true #
+	# Additionalfunctionality==true => ATMsoftware==true #
+	# Mobiletop_up==true => Additionalfunctionality==true #
+	# Paythebills==true => Additionalfunctionality==true #
+	# Languageselection!=Languageselection.NONE => Additionalfunctionality==true #
+end

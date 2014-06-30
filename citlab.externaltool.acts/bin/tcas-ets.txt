@@ -1,0 +1,12 @@
+Cur_Vertical_Sep,High_Confidence,Two_of_Three_Reports_Valid,Own_Tracked_Alt,Other_Tracked_Alt,Own_Tracked_Alt_Rate,Alt_Layer_Value,Up_Separation,Down_Separation,Other_RAC,Other_Capability,Climb_Inhibit
+299,true,true,1,1,600,0,0,0,NO_INTENT,TCAS_TA,true
+300,false,false,2,2,601,1,0,399,DO_NOT_CLIMB,TCAS_TA,false
+601,true,false,1,2,600,2,0,400,DO_NOT_DESCEND,TCAS_TA,false
+299,false,true,2,1,601,3,0,499,DO_NOT_CLIMB,OTHER,true
+300,false,true,1,1,601,0,0,500,DO_NOT_DESCEND,TCAS_TA,false
+601,false,true,2,2,600,1,0,639,NO_INTENT,TCAS_TA,true
+299,false,false,2,1,601,2,0,640,NO_INTENT,OTHER,false
+300,true,false,1,2,600,3,0,739,NO_INTENT,TCAS_TA,true
+601,true,false,2,1,601,0,0,740,DO_NOT_CLIMB,TCAS_TA,true
+299,true,true,1,2,600,1,0,840,DO_NOT_DESCEND,OTHER,true
+300,false,true,1,2,600,2,399,0,DO_NOT_CLIMB,TCAS_TA,false

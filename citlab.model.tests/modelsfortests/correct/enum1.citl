@@ -1,0 +1,9 @@
+Model enumerative
+
+Parameters:
+
+	Enumerative A { a1 a2 a3};
+	
+	Enumerative B { b1 b2 b3}; 
+	
+end

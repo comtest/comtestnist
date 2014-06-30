@@ -1,0 +1,83 @@
+Model Inventory
+
+Parameters:
+	Boolean Inventory;
+	Boolean CatalogManagement;
+	Boolean ItemAssociations;
+	Boolean Services;
+	Boolean Identification;
+	Boolean RFID;
+	Boolean BarCode;
+	Boolean ItemClassification;
+	Boolean Categories;
+	Boolean Tags;
+	Boolean Items;
+	Boolean Generic;
+	Boolean Assembly;
+	Boolean Perishable;
+	Boolean Serialized;
+	Boolean RawMaterial;
+	Boolean StockManagement;
+	Boolean Transactions;
+	Boolean Increase;
+	Boolean Decrease;
+	Boolean Transfer;
+	Boolean Adjustment;
+	Boolean Consignment;
+	Boolean Allocation;
+	Boolean Assembling;
+	Boolean WarehouseManagement;
+	Boolean SerialTracking;
+	Boolean ExpirationControl;
+	Boolean UnitsConversion;
+	Boolean PhysicalCounting;
+	Enumerative ValuationMethod { FIFO LIFO AVG NONE };
+	Enumerative InventoryMethod { Perpetual Periodic NONE };
+end
+Constraints:
+	# Inventory==true #
+	# CatalogManagement==true <=> Inventory==true #
+	# ItemAssociations==true => CatalogManagement==true #
+	# Services==true => CatalogManagement==true #
+	# Identification==true => CatalogManagement==true #
+	# Identification==true => ( RFID==true || BarCode==true) #
+	# RFID==true => Identification==true #
+	# BarCode==true => Identification==true #
+	# ItemClassification==true <=> CatalogManagement==true #
+	# ItemClassification==true => ( Categories==true || Tags==true) #
+	# Categories==true => ItemClassification==true #
+	# Tags==true => ItemClassification==true #
+	# Items==true <=> CatalogManagement==true #
+	# Items==true => ( Generic==true || Assembly==true || Perishable==true ||
+	Serialized==true || RawMaterial==true) #
+	# Generic==true => Items==true #
+	# Assembly==true => Items==true #
+	# Perishable==true => Items==true #
+	# Serialized==true => Items==true #
+	# RawMaterial==true => Items==true #
+	# StockManagement==true <=> Inventory==true #
+	# Transactions==true <=> StockManagement==true #
+	# Transactions==true => ( Increase==true || Decrease==true || Transfer==true
+	|| Adjustment==true || Consignment==true || Allocation==true ||
+	Assembling==true) #
+	# Increase==true => Transactions==true #
+	# Decrease==true => Transactions==true #
+	# Transfer==true => Transactions==true #
+	# Adjustment==true => Transactions==true #
+	# Consignment==true => Transactions==true #
+	# Allocation==true => Transactions==true #
+	# Assembling==true => Transactions==true #
+	# WarehouseManagement==true => StockManagement==true #
+	# SerialTracking==true => StockManagement==true #
+	# ExpirationControl==true => StockManagement==true #
+	# UnitsConversion==true <=> StockManagement==true #
+	# PhysicalCounting==true <=> StockManagement==true #
+	# ValuationMethod!=ValuationMethod.NONE <=> StockManagement==true #
+	# InventoryMethod!=InventoryMethod.NONE <=> StockManagement==true #
+	# Assembly==true || ! Assembling==true #
+	# WarehouseManagement==true || ! Transfer==true #
+	# ! SerialTracking==true || Identification==true #
+	# ExpirationControl==true || ! Perishable==true #
+	# Identification==true || ! Serialized==true #
+	# ItemAssociations==true || ! Assembly==true #
+end

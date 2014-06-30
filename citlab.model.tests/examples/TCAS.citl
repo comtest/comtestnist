@@ -1,0 +1,36 @@
+// basic Model spec for the TCAS example
+// Andrea Calvagna 2007
+// ag: ATTENZIONE Asmetal vuole solo costanti con almeno due lettere maiuscole all'inizio
+// sal non premette di riusare le costanti enumarative
+
+Model TCAS
+
+
+Types:
+
+    EnumerativeType D1   {INT_299   INT_300   INT_601};
+    EnumerativeType D2   {INT_1   INT_2};
+    EnumerativeType D3   {INT3_600  INT3_601};
+    EnumerativeType D4   {INT4_0  INT4_1  INT4_2  INT4_3};
+    EnumerativeType D5   {INT_0  INT_399  INT_400  INT_499  INT_500  INT_639  INT_640  INT_739  INT_740  INT_840 };
+    EnumerativeType D6   { NO_ITENT   DO_NOT_CLIMB   DO_NOT_DESCEND };
+    EnumerativeType D7   {TCAS_TA   OTHER};
+    end
+Parameters:
+
+ Enumerative cur_Vertical_Sep :D1
+; Boolean high_Confidence; Boolean two_of_Three_Reports_Valid; Enumerative own_Tracked_Alt   : D2
+; Enumerative other_Tracked_Alt : D2
+; Enumerative own_Tracked_Alt_Rate : D3
+; Enumerative alt_Layer_Value : D4
+; Enumerative up_Separation : D5
+; Enumerative down_Separation : D5
+; Enumerative other_RAC : D6
+; Enumerative other_Capability : D7
+; Boolean climb_Inhibit
+
+// dimensione: 7 var x 2, 2 x 3, 1 x 4, 2 x 10  
+
+// deinizioni e init nulla
+; end
+

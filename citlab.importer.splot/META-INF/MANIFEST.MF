@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SplotImporter
+Bundle-SymbolicName: citlab.importer.splot;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: citlab.splotimporter.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ citlab.core;bundle-version="1.0.0",
+ citlab.model;bundle-version="1.0.0",
+ org.junit
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ClassPath: .,
+ libs/splar_citlab.jar

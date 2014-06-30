@@ -1,0 +1,53 @@
+//
+// benchmark from Covering Arrays by Simulated Annealing (CASA) suite
+// http://cse.unl.edu/~citportal/tools/casa/benchmarks.zip
+// 
+Model benchmark_23
+
+Parameters:
+	Boolean b0;
+	Boolean b1;
+	Boolean b2;
+	Boolean b3;
+	Enumerative e4 { el0 el1 el2 el3 el4 el5 };
+	Boolean b5;
+	Boolean b6;
+	Boolean b7;
+	Boolean b8;
+	Boolean b9;
+	Boolean b10;
+	Boolean b11;
+	Boolean b12;
+	Boolean b13;
+	Boolean b14;
+	Boolean b15;
+	Boolean b16;
+	Enumerative e17 { el0 el1 el2 };
+	Boolean b18;
+	Boolean b19;
+	Boolean b20;
+	Boolean b21;
+	Boolean b22;
+	Boolean b23;
+	Boolean b24;
+	Boolean b25;
+	Boolean b26;
+end
+Constraints:
+	# b0!=true OR b1!=false #
+	# e4!=e4.el4 OR b5!=true #
+	# e4!=e4.el5 OR b5!=true #
+	# b0!=true OR b1!=false #
+	# b3!=false OR e4!=e4.el4 #
+	# b3!=true OR e4!=e4.el5 #
+	# b1!=false OR e4!=e4.el0 #
+	# b0!=true OR b3!=false #
+	# b1!=true OR e4!=e4.el3 #
+	# b1!=true OR b2!=false #
+	# b3!=false OR b5!=false #
+	# b3!=true OR b5!=false #
+	# b3!=false OR b5!=false #
+	# b0!=false OR e4!=e4.el2 OR b5!=true #
+	# b0!=true OR b1!=false OR b3!=true #
+end
+

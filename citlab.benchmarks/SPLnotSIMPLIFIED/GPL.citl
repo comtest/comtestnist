@@ -1,0 +1,48 @@
+Model GPL
+
+Parameters:
+	Boolean GPL;
+	Boolean Driver;
+	Boolean Benchmark;
+	Enumerative Gtp { directed undirected NONE };
+	Enumerative Weight { weighted unweighted NONE };
+	Enumerative Search { BFS DFS NONE };
+	Boolean Algorithms;
+	Boolean number;
+	Boolean connected;
+	Boolean stronglyc;
+	Boolean cycle;
+	Boolean mstprim;
+	Boolean mstkruskal;
+	Boolean shortest;
+end
+Constraints:
+	# GPL==true #
+	# Driver==true <=> GPL==true #
+	# Benchmark==true <=> Driver==true #
+	# Gtp!=Gtp.NONE <=> GPL==true #
+	# Weight!=Weight.NONE => GPL==true #
+	# Search!=Search.NONE => GPL==true #
+	# Algorithms==true <=> GPL==true #
+	# Algorithms==true => ( number==true || connected==true || stronglyc==true ||
+	cycle==true || mstprim==true || mstkruskal==true || shortest==true) #
+	# number==true => Algorithms==true #
+	# connected==true => Algorithms==true #
+	# stronglyc==true => Algorithms==true #
+	# cycle==true => Algorithms==true #
+	# mstprim==true => Algorithms==true #
+	# mstkruskal==true => Algorithms==true #
+	# shortest==true => Algorithms==true #
+	# Gtp==Gtp.undirected || ! mstkruskal==true #
+	# Weight==Weight.unweighted || ! mstkruskal==true #
+	# Gtp==Gtp.undirected || ! mstprim==true #
+	# Gtp==Gtp.undirected || ! stronglyc==true #
+	# Weight==Weight.unweighted || ! mstprim==true #
+	# Search==Search.DFS || ! cycle==true #
+	# ! mstprim==true || ! mstkruskal==true #
+	# Gtp==Gtp.undirected || ! connected==true #
+	# Gtp==Gtp.directed || ! shortest==true #
+	# Search!=Search.NONE || ! connected==true #
+	# Weight==Weight.unweighted || ! shortest==true #
+	# Search!=Search.NONE || ! number==true #
+end

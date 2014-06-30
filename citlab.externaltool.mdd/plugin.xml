@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="citlab.core.generators">
+      <Generator
+            Algorithm="MDD"
+            GeneratorPrototype="citlab.externaltool.mdd.TSGeneratorByMedici"
+            Name="Mdd Generator"
+            suppor_gen_properties="true"
+            support_constraints="true"
+            support_seeds="false"
+            support_testgoals="false">
+      </Generator>
+   </extension>
+   <extension
+         id="citlab.exporter.medici"
+         name="Medici"
+         point="citlab.core.coders">
+      <Coder
+            CoderPrototype="citlab.externaltool.mdd.ToMediciExporter"
+            Name="MediciExporter"
+            OtherToolLanguage="medici">
+      </Coder>
+   </extension>
+
+</plugin>

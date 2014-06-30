@@ -1,0 +1,44 @@
+Model MobilePhone
+
+Parameters:
+	Boolean MobilePhone;
+	Boolean UtilityFunctions;
+	Boolean Calls;
+	Boolean Messaging;
+	Boolean SMS;
+	Boolean MMS;
+	Boolean Games;
+	Boolean Alarm;
+	Boolean RingingTones;
+	Boolean Settings;
+	Enumerative OS { Symbian WinCE NONE };
+	Boolean JavaSupport;
+	Boolean Media;
+	Boolean Camera;
+	Boolean MP3;
+	Boolean Connectivity;
+	Boolean USB;
+	Boolean Bluetooth;
+end
+Constraints:
+	# MobilePhone==true #
+	# UtilityFunctions==true <=> MobilePhone==true #
+	# Calls==true <=> UtilityFunctions==true #
+	# Messaging==true <=> UtilityFunctions==true #
+	# Messaging==true => ( SMS==true || MMS==true) #
+	# SMS==true => Messaging==true #
+	# MMS==true => Messaging==true #
+	# Games==true => UtilityFunctions==true #
+	# Alarm==true <=> UtilityFunctions==true #
+	# RingingTones==true <=> UtilityFunctions==true #
+	# Settings==true <=> MobilePhone==true #
+	# OS!=OS.NONE <=> Settings==true #
+	# JavaSupport==true => Settings==true #
+	# Media==true => MobilePhone==true #
+	# Camera==true <=> Media==true #
+	# MP3==true => Media==true #
+	# Connectivity==true => MobilePhone==true #
+	# USB==true <=> Connectivity==true #
+	# Bluetooth==true => Connectivity==true #
+	# ! Games==true || JavaSupport==true #
+end

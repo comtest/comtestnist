@@ -1,0 +1,27 @@
+<feature_model name="My feature model">
+  <meta>                                                                 
+  <data name="description">Model description</data>                
+  <data name="creator">Model's creator</data>                      
+  <data name="email">Model creator's email</data>                  
+  <data name="date">Model creation date</data>                     
+  <data name="department">Model creator's department</data>        
+  <data name="organization">Model creator's organization</data>    
+  <data name="address">Model creator's address</data>              
+  <data name="phone">Model creator's phone</data>                  
+  <data name="website">Model creator's website</data>              
+  <data name="reference">Model's related publication</data>        
+  </meta>
+  <feature_tree>  
+:r root (root_id)
+	:m man1          
+		:g [1,*]       
+			: a (id_a)   
+			: b (id_b)   
+	:o opt3 (id_opt3)
+		:g [1,1]             
+			: d (id_d)         
+			: e (id_e)         
+  </feature_tree>    
+  <constraints>
+  </constraints>
+</feature_model>     

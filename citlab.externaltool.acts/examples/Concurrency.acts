@@ -1,0 +1,18 @@
+[System]
+ss
+
+[Parameter]
+p1 (enum): v1, v2
+p2 (enum): v1, v2
+p3 (enum): v1, v2
+p4 (enum): true, false
+p5 (enum): true, false
+
+[Constraint]
+C1: (p3 != "v1" OR p2 != "v1" OR p5 != "false" OR p4 != "false" OR p1 != "v1")
+C2: (p1 != "v2" OR p5 != "true")
+C3: (p2 != "v1" OR p5 != "false" OR p4 != "true" OR p3 != "v2" OR p1 != "v1")
+C4: (p5 != "true" OR p2 != "v2")
+C5: (p4 != "false" OR p3 != "v2" OR p1 != "v1")
+C6: (p4 != "true" OR p1 != "v2")
+C7: (p3 != "v1" OR p4 != "true")

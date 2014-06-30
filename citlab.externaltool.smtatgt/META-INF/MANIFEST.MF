@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Smtatgt
+Bundle-SymbolicName: citlab.externaltool.smtatgt;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: citlab.core;bundle-version="1.0.0",
+ citlab.model;bundle-version="1.0.0",
+ citlab.testsuite;bundle-version="1.0.0",
+ citlab.model.tests;bundle-version="1.0.0"
+Bundle-ClassPath: .,
+ libs/truezip.jar,
+ libs/asmeta.emf.jar,
+ libs/atgt_cit.jar

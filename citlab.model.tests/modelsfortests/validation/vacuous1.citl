@@ -1,0 +1,14 @@
+// 
+Model vacuous1
+
+Parameters:
+	Boolean a;
+	Boolean b;
+end
+Constraints:
+	# a==false#
+	# a==true  => b==true #
+end  
+	
+
+

@@ -1,0 +1,77 @@
+Model czerwonka_pairwise_2006_4
+
+Types:
+	EnumerativeType et2 { e0 e1 e2 };
+end
+
+Parameters:
+
+	Enumerative e10 { e0 e1 e2 e3 };
+
+	Enumerative e20: et2;
+	Enumerative e21: et2;
+	Enumerative e22: et2;
+	Enumerative e23: et2;
+	Enumerative e24: et2;
+	Enumerative e25: et2;
+	Enumerative e26: et2;
+	Enumerative e27: et2;
+	Enumerative e28: et2;
+	Enumerative e29: et2;
+	Enumerative e210: et2;
+	Enumerative e211: et2;
+	Enumerative e212: et2;
+	Enumerative e213: et2;
+	Enumerative e214: et2;
+	Enumerative e215: et2;
+	Enumerative e216: et2;
+	Enumerative e217: et2;
+	Enumerative e218: et2;
+	Enumerative e219: et2;
+	Enumerative e220: et2;
+	Enumerative e221: et2;
+	Enumerative e222: et2;
+	Enumerative e223: et2;
+	Enumerative e224: et2;
+	Enumerative e225: et2;
+	Enumerative e226: et2;
+	Enumerative e227: et2;
+	Enumerative e228: et2;
+	Enumerative e229: et2;
+	Enumerative e230: et2;
+	Enumerative e231: et2;
+	Enumerative e232: et2;
+	Enumerative e233: et2;
+	Enumerative e234: et2;
+	Enumerative e235: et2;
+	Enumerative e236: et2;
+	Enumerative e237: et2;
+	Enumerative e238: et2;
+
+	Boolean b30;
+	Boolean b31;
+	Boolean b32;
+	Boolean b33;
+	Boolean b34;
+	Boolean b35;
+	Boolean b36;
+	Boolean b37;
+	Boolean b38;
+	Boolean b39;
+	Boolean b310;
+	Boolean b311;
+	Boolean b312;
+	Boolean b313;
+	Boolean b314;
+	Boolean b315;
+	Boolean b316;
+	Boolean b317;
+	Boolean b318;
+	Boolean b319;
+	Boolean b320;
+	Boolean b321;
+	Boolean b322;
+	Boolean b323;
+	Boolean b324;
+
+end

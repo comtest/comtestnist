@@ -1,0 +1,16 @@
+Model CA3x3_2x2
+
+Types:
+	EnumerativeType Type3 { ONE TWO THREE };
+	EnumerativeType Type4 { BONE BTWO BTHREE BFOUR };
+end
+Parameters:
+	Enumerative v1 : Type3;
+	Enumerative v2 : Type3;
+	Enumerative v3 : Type3;
+	Boolean v4;
+	Boolean v5;
+	Boolean v6;
+end
+	
+   

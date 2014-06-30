@@ -1,0 +1,39 @@
+//
+// from : Itai Segall , Rachel Tzoref - Brill , and Eitan Farchi .
+// Using binary decision diagrams for combinatorial test design. 
+// In Proceedings of the 2011 International Symposium on Software Testing and Analysis ( ISSTA '11).
+//  
+Model ProcessorComm1
+
+Parameters:
+	Enumerative p1 { v1 v2 };
+	Enumerative p2 { v1 v2 };
+	Enumerative p3 { v1 v2 v3 };
+	Numbers p4 { -1 0 1 };
+	Numbers p5 { -1 0 1 };
+	Numbers p6 { -1 0 1 };
+	Numbers p7 { -1 0 1 };
+	Enumerative p8 { v1 v2 };
+	Enumerative p9 { v1 v2 v3 };
+	Enumerative p10 { v1 v2 v3 v4 };
+	Enumerative p11 { v1 v2 v3 v4 };
+	Enumerative p12 { v1 v2 v3 v4 };
+	Enumerative p13 { v1 v2 v3 v4 };
+	Enumerative p14 { v1 v2 v3 v4 };
+	Enumerative p15 { v1 v2 v3 v4 };
+end
+Constraints:
+	# ( p15!=p15.v3 OR p1!=p1.v2) #
+	# ( p9!=p9.v2 OR p1!=p1.v2) #
+	# ( p1!=p1.v2 OR p14!=p14.v4) #
+	# ( p15!=p15.v2 OR p1!=p1.v2) #
+	# ( p9!=p9.v1 OR p1!=p1.v2) #
+	# ( p15!=p15.v4 OR p1!=p1.v2) #
+	# ( p14!=p14.v3 OR p1!=p1.v2) #
+	# ( p14!=p14.v2 OR p1!=p1.v2) #
+	# ( p13!=p13.v4 OR p1!=p1.v2) #
+	# ( p3!=p3.v2 OR p2!=p2.v2) #
+	# ( p13!=p13.v2 OR p1!=p1.v2) #
+	# ( p3!=p3.v1 OR p2!=p2.v1) #
+	# ( p1!=p1.v2 OR p13!=p13.v3) #
+end

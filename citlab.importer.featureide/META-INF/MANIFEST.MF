@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Featureide Importer
+Bundle-SymbolicName: citlab.importer.featureide;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: citlab.importer.featureide.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.junit,
+ citlab.model;bundle-version="1.0.0",
+ citlab.core;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ClassPath: .,
+ featureide_fm_core_citlab.jar,
+ org.sat4j.core.jar

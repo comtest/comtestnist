@@ -1,0 +1,34 @@
+Model colbourn_deterministic_2004_4
+
+Types:
+	EnumerativeType et3 { e0 e1 e2 e3 };
+	EnumerativeType et4 { e0 e1 e2 };
+end
+
+Parameters:
+
+	Enumerative e10 { e0 e1 e2 e3 e4 };
+
+	Enumerative e20 { e0 e1 e2 e3 e4 e5 };
+
+	Enumerative e30: et3;
+	Enumerative e31: et3;
+	Enumerative e32: et3;
+	Enumerative e33: et3;
+	Enumerative e34: et3;
+	Enumerative e35: et3;
+
+	Enumerative e40: et4;
+	Enumerative e41: et4;
+	Enumerative e42: et4;
+	Enumerative e43: et4;
+	Enumerative e44: et4;
+	Enumerative e45: et4;
+	Enumerative e46: et4;
+	Enumerative e47: et4;
+
+	Boolean b50;
+	Boolean b51;
+	Boolean b52;
+
+end

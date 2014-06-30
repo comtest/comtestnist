@@ -1,0 +1,123 @@
+[System]
+ss
+
+[Parameter]
+p1 (enum) v1, v2, v3
+p2 (enum) v1, v2, v3, v4
+p3 (enum) v1, v2, v3
+p4 (enum) v1, v2, v3
+p5 (enum) v1, v2, v3
+
+[#onstraint]
+#1 (p5 != "v1" OR p2 != "v4" OR p3 != "v2" OR p4 != "v3" OR p1 != "v1")
+#2 (p1 != "v3" OR p5 != "v2" OR p4 != "v3" OR p3 != "v1" OR p2 != "v3") #
+#3 (p1 != "v3" OR p5 != "v1" OR p4 != "v1" OR p3 != "v2" OR p2 != "v1") #
+#4 (p5 != "v1" OR p4 != "v1" OR p3 != "v3" OR p1 != "v1" OR p2 != "v2") #
+#5 (p1 != "v3" OR p5 != "v1" OR p4 != "v1" OR p3 != "v2" OR p2 != "v3") #
+#6 (p1 != "v3" OR p5 != "v1" OR p3 != "v3" OR p2 != "v4" OR p4 != "v2") #
+#7 (p5 != "v2" OR p4 != "v3" OR p3 != "v1" OR p2 != "v3" OR p1 != "v1") #
+#8 (p4 != "v2" OR p3 != "v1" OR p2 != "v3" OR p5 != "v3" OR p1 != "v1") #
+#9 (p1 != "v3" OR p5 != "v2" OR p4 != "v1" OR p2 != "v4" OR p3 != "v1") #
+#10 (p5 != "v1" OR p1 != "v2" OR p2 != "v4" OR p4 != "v3" OR p3 != "v1") #
+#11 (p5 != "v1" OR p2 != "v4" OR p4 != "v2" OR p3 != "v1" OR p1 != "v1") #
+#12 (p1 != "v3" OR p5 != "v1" OR p2 != "v4" OR p3 != "v2" OR p4 != "v3") #
+#13 (p3 != "v3" OR p1 != "v2" OR p4 != "v3" OR p2 != "v1" OR p5 != "v3") #
+#14 (p1 != "v3" OR p5 != "v2" OR p4 != "v1" OR p3 != "v1" OR p2 != "v3") #
+#15 (p5 != "v1" OR p4 != "v1" OR p3 != "v3" OR p1 != "v2" OR p2 != "v1") #
+#16 (p1 != "v3" OR p5 != "v2" OR p2 != "v4" OR p4 != "v3" OR p3 != "v1") #
+#17 (p5 != "v1" OR p4 != "v1" OR p3 != "v3" OR p1 != "v2" OR p2 != "v3") #
+#18 (p1 != "v3" OR p5 != "v1" OR p4 != "v1" OR p3 != "v3" OR p2 != "v2") #
+#19 (p5 != "v1" OR p1 != "v2" OR p4 != "v3" OR p2 != "v1" OR p3 != "v1") #
+#20 (p5 != "v1" OR p4 != "v1" OR p3 != "v3" OR p1 != "v2" OR p2 != "v4") #
+#21 (p4 != "v1" OR p3 != "v3" OR p5 != "v3" OR p1 != "v1" OR p2 != "v2") #
+#22 (p5 != "v1" OR p4 != "v1" OR p2 != "v4" OR p3 != "v2" OR p1 != "v1") #
+#23 (p1 != "v3" OR p2 != "v4" OR p3 != "v2" OR p4 != "v3" OR p5 != "v3") #
+#24 (p5 != "v1" OR p4 != "v1" OR p1 != "v2" OR p3 != "v1" OR p2 != "v3") #
+#25 (p1 != "v3" OR p4 != "v1" OR p3 != "v2" OR p2 != "v3" OR p5 != "v3") #
+#26 (p5 != "v1" OR p4 != "v1" OR p3 != "v1" OR p1 != "v1" OR p2 != "v2") #
+#27 (p1 != "v3" OR p2 != "v4" OR p4 != "v2" OR p3 != "v1" OR p5 != "v3") #
+#28 (p1 != "v3" OR p3 != "v3" OR p4 != "v2" OR p2 != "v1" OR p5 != "v3") #
+#29 (p5 != "v1" OR p3 != "v3" OR p1 != "v2" OR p4 != "v3" OR p2 != "v1") #
+#30 (p5 != "v1" OR p3 != "v3" OR p4 != "v2" OR p2 != "v3" OR p1 != "v1") #
+#31 (p5 != "v1" OR p3 != "v3" OR p1 != "v2" OR p4 != "v3" OR p2 != "v3") #
+#32 (p5 != "v2" OR p3 != "v3" OR p2 != "v4" OR p4 != "v3" OR p1 != "v1") #
+#33 (p1 != "v3" OR p5 != "v1" OR p3 != "v2" OR p4 != "v3" OR p2 != "v3") #
+#34 (p4 != "v1" OR p1 != "v2" OR p2 != "v4" OR p3 != "v1" OR p5 != "v3") #
+#35 (p1 != "v3" OR p5 != "v1" OR p3 != "v2" OR p4 != "v3" OR p2 != "v1") #
+#36 (p1 != "v3" OR p5 != "v2" OR p4 != "v1" OR p3 != "v3" OR p2 != "v1") #
+#37 (p1 != "v2" OR p2 != "v4" OR p4 != "v3" OR p3 != "v1" OR p5 != "v3") #
+#38 (p1 != "v3" OR p5 != "v2" OR p4 != "v1" OR p3 != "v3" OR p2 != "v3") #
+#39 (p1 != "v3" OR p5 != "v2" OR p4 != "v1" OR p3 != "v3" OR p2 != "v4") #
+#40 (p1 != "v3" OR p5 != "v1" OR p4 != "v1" OR p3 != "v1" OR p2 != "v2") #
+#41 (p1 != "v3" OR p5 != "v2" OR p3 != "v3" OR p2 != "v4" OR p4 != "v3") #
+#42 (p1 != "v3" OR p5 != "v1" OR p4 != "v2" OR p3 != "v1" OR p2 != "v3") #
+#43 (p5 != "v2" OR p4 != "v1" OR p3 != "v3" OR p2 != "v1" OR p1 != "v1") #
+#44 (p1 != "v3" OR p5 != "v1" OR p4 != "v3" OR p3 != "v1" OR p2 != "v2") #
+#45 (p1 != "v3" OR p5 != "v1" OR p2 != "v4" OR p4 != "v2" OR p3 != "v1") #
+#46 (p1 != "v2" OR p4 != "v3" OR p2 != "v1" OR p3 != "v1" OR p5 != "v3") #
+#47 (p4 != "v3" OR p3 != "v1" OR p5 != "v3" OR p1 != "v1" OR p2 != "v2") #
+#48 (p5 != "v1" OR p4 != "v1" OR p1 != "v2" OR p2 != "v1" OR p3 != "v1") #
+#49 (p3 != "v3" OR p2 != "v4" OR p4 != "v2" OR p5 != "v3" OR p1 != "v1") #
+#50 (p5 != "v1" OR p3 != "v3" OR p2 != "v4" OR p4 != "v2" OR p1 != "v1") #
+#51 (p1 != "v3" OR p5 != "v1" OR p4 != "v2" OR p2 != "v1" OR p3 != "v1") #
+#52 (p1 != "v3" OR p4 != "v1" OR p3 != "v2" OR p2 != "v1" OR p5 != "v3") #
+#53 (p1 != "v3" OR p3 != "v3" OR p4 != "v3" OR p5 != "v3" OR p2 != "v2") #
+#54 (p1 != "v3" OR p3 != "v2" OR p4 != "v3" OR p2 != "v1" OR p5 != "v3") #
+#55 (p4 != "v1" OR p3 != "v3" OR p1 != "v2" OR p2 != "v4" OR p5 != "v3") #
+#56 (p5 != "v1" OR p3 != "v3" OR p4 != "v2" OR p2 != "v1" OR p1 != "v1") #
+#57 (p1 != "v3" OR p5 != "v1" OR p4 != "v1" OR p2 != "v4" OR p3 != "v2") #
+#58 (p1 != "v3" OR p4 != "v1" OR p2 != "v4" OR p3 != "v2" OR p5 != "v3") #
+#59 (p4 != "v1" OR p1 != "v2" OR p3 != "v1" OR p2 != "v3" OR p5 != "v3") #
+#60 (p5 != "v1" OR p3 != "v2" OR p4 != "v3" OR p2 != "v1" OR p1 != "v1") #
+#61 (p5 != "v2" OR p4 != "v1" OR p3 != "v3" OR p2 != "v3" OR p1 != "v1") #
+#62 (p4 != "v2" OR p2 != "v1" OR p3 != "v1" OR p5 != "v3" OR p1 != "v1") #
+#63 (p5 != "v2" OR p4 != "v1" OR p2 != "v1" OR p3 != "v1" OR p1 != "v1") #
+#64 (p5 != "v1" OR p4 != "v2" OR p3 != "v1" OR p2 != "v3" OR p1 != "v1") #
+#65 (p4 != "v1" OR p2 != "v4" OR p3 != "v2" OR p5 != "v3" OR p1 != "v1") #
+#66 (p1 != "v3" OR p4 != "v1" OR p3 != "v3" OR p5 != "v3" OR p2 != "v2") #
+#67 (p1 != "v3" OR p4 != "v1" OR p3 != "v1" OR p5 != "v3" OR p2 != "v2") #
+#68 (p4 != "v1" OR p1 != "v2" OR p2 != "v1" OR p3 != "v1" OR p5 != "v3") #
+#69 (p4 != "v1" OR p3 != "v3" OR p1 != "v2" OR p2 != "v3" OR p5 != "v3") #
+#70 (p1 != "v3" OR p5 != "v2" OR p4 != "v1" OR p2 != "v1" OR p3 != "v1") #
+#71 (p5 != "v1" OR p4 != "v2" OR p2 != "v1" OR p3 != "v1" OR p1 != "v1") #
+#72 (p5 != "v2" OR p4 != "v1" OR p3 != "v1" OR p2 != "v3" OR p1 != "v1") #
+#73 (p4 != "v1" OR p3 != "v1" OR p5 != "v3" OR p1 != "v1" OR p2 != "v2") #
+#74 (p5 != "v2" OR p4 != "v1" OR p2 != "v4" OR p3 != "v1" OR p1 != "v1") #
+#75 (p5 != "v1" OR p4 != "v1" OR p3 != "v2" OR p2 != "v3" OR p1 != "v1") #
+#76 (p1 != "v3" OR p5 != "v1" OR p3 != "v3" OR p4 != "v2" OR p2 != "v3") #
+#77 (p1 != "v3" OR p4 != "v3" OR p3 != "v1" OR p5 != "v3" OR p2 != "v2") #
+#78 (p1 != "v3" OR p5 != "v1" OR p3 != "v3" OR p4 != "v2" OR p2 != "v1") #
+#79 (p5 != "v2" OR p3 != "v3" OR p4 != "v3" OR p2 != "v3" OR p1 != "v1") #
+#80 (p1 != "v3" OR p3 != "v3" OR p4 != "v2" OR p2 != "v3" OR p5 != "v3") #
+#81 (p1 != "v3" OR p5 != "v2" OR p4 != "v3" OR p2 != "v1" OR p3 != "v1") #
+#82 (p1 != "v3" OR p3 != "v2" OR p4 != "v3" OR p2 != "v3" OR p5 != "v3") #
+#83 (p1 != "v3" OR p4 != "v2" OR p3 != "v1" OR p2 != "v3" OR p5 != "v3") #
+#84 (p5 != "v1" OR p1 != "v2" OR p4 != "v3" OR p3 != "v1" OR p2 != "v3") #
+#85 (p3 != "v3" OR p4 != "v2" OR p2 != "v3" OR p5 != "v3" OR p1 != "v1") #
+#86 (p5 != "v1" OR p3 != "v3" OR p1 != "v2" OR p2 != "v4" OR p4 != "v3") #
+#87 (p4 != "v1" OR p3 != "v2" OR p2 != "v1" OR p5 != "v3" OR p1 != "v1") #
+#88 (p5 != "v1" OR p3 != "v2" OR p4 != "v3" OR p2 != "v3" OR p1 != "v1") #
+#89 (p2 != "v4" OR p4 != "v2" OR p3 != "v1" OR p5 != "v3" OR p1 != "v1") #
+#90 (p1 != "v3" OR p5 != "v2" OR p3 != "v3" OR p4 != "v3" OR p2 != "v3") #
+#91 (p5 != "v1" OR p4 != "v1" OR p1 != "v2" OR p2 != "v4" OR p3 != "v1") #
+#92 (p3 != "v3" OR p1 != "v2" OR p4 != "v3" OR p2 != "v3" OR p5 != "v3") #
+#93 (p1 != "v3" OR p5 != "v2" OR p3 != "v3" OR p4 != "v3" OR p2 != "v1") #
+#94 (p1 != "v3" OR p5 != "v1" OR p3 != "v3" OR p4 != "v3" OR p2 != "v2") #
+#95 (p4 != "v1" OR p3 != "v3" OR p1 != "v2" OR p2 != "v1" OR p5 != "v3") #
+#96 (p2 != "v4" OR p3 != "v2" OR p4 != "v3" OR p5 != "v3" OR p1 != "v1") #
+#97 (p4 != "v1" OR p3 != "v2" OR p2 != "v3" OR p5 != "v3" OR p1 != "v1") #
+#98 (p3 != "v2" OR p4 != "v3" OR p2 != "v1" OR p5 != "v3" OR p1 != "v1") #
+#99 (p3 != "v3" OR p1 != "v2" OR p2 != "v4" OR p4 != "v3" OR p5 != "v3") #
+#100 (p1 != "v2" OR p4 != "v3" OR p3 != "v1" OR p2 != "v3" OR p5 != "v3") #
+#101 (p5 != "v2" OR p4 != "v3" OR p2 != "v1" OR p3 != "v1" OR p1 != "v1") #
+#102 (p1 != "v3" OR p4 != "v2" OR p2 != "v1" OR p3 != "v1" OR p5 != "v3") #
+#103 (p3 != "v3" OR p4 != "v3" OR p5 != "v3" OR p1 != "v1" OR p2 != "v2") #
+#104 (p5 != "v1" OR p3 != "v3" OR p4 != "v3" OR p1 != "v1" OR p2 != "v2") #
+#105 (p3 != "v2" OR p4 != "v3" OR p2 != "v3" OR p5 != "v3" OR p1 != "v1") #
+#106 (p5 != "v2" OR p2 != "v4" OR p4 != "v3" OR p3 != "v1" OR p1 != "v1") #
+#107 (p1 != "v3" OR p3 != "v3" OR p2 != "v4" OR p4 != "v2" OR p5 != "v3") #
+#108 (p5 != "v1" OR p4 != "v3" OR p3 != "v1" OR p1 != "v1" OR p2 != "v2") #
+#109 (p5 != "v1" OR p4 != "v1" OR p3 != "v2" OR p2 != "v1" OR p1 != "v1") #
+#110 (p5 != "v2" OR p4 != "v1" OR p3 != "v3" OR p2 != "v4" OR p1 != "v1") #
+#111 (p3 != "v3" OR p4 != "v2" OR p2 != "v1" OR p5 != "v3" OR p1 != "v1") #
+#112 (p5 != "v2" OR p3 != "v3" OR p4 != "v3" OR p2 != "v1" OR p1 != "v1") #

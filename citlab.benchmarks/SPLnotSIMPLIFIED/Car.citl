@@ -1,0 +1,25 @@
+Model Car
+
+Parameters:
+	Boolean Car;
+	Boolean AutomatedDrivingController;
+	Enumerative CollisionAvoidanceBraking {
+	StandardAvoidance EnhancedAvoidance NONE };
+	Boolean ParallelParking;
+	Boolean Sensors;
+	Boolean LateralRangeFinder;
+	Boolean ForwardRangeFinder;
+end
+Constraints:
+	# Car==true #
+	# AutomatedDrivingController==true => Car==true #
+	# CollisionAvoidanceBraking!=CollisionAvoidanceBraking.NONE <=>
+	AutomatedDrivingController==true #
+	# ParallelParking==true => AutomatedDrivingController==true #
+	# Sensors==true <=> Car==true #
+	# LateralRangeFinder==true => Sensors==true #
+	# ForwardRangeFinder==true => Sensors==true #
+	# ! CollisionAvoidanceBraking==CollisionAvoidanceBraking.EnhancedAvoidance ||
+	ForwardRangeFinder==true #
+	# ! ParallelParking==true || LateralRangeFinder==true #
+end

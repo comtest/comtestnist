@@ -1,0 +1,93 @@
+Model CA4_3x39_2x35
+
+Types:
+	EnumerativeType Type3 {
+	ONE
+	TWO
+	THREE
+	};  EnumerativeType Type4 {
+	BONE
+	BTWO
+	BTHREE
+	BFOUR
+	};
+end
+Parameters:
+	Enumerative a1 : Type4;
+	Enumerative b1 : Type3;
+	Enumerative b2 : Type3;
+	Enumerative b3 : Type3;
+	Enumerative b4 : Type3;
+	Enumerative b5 : Type3;
+	Enumerative b6 : Type3;
+	Enumerative b7 : Type3;
+	Enumerative b8 : Type3;
+	Enumerative b9 : Type3;
+	Enumerative b10 : Type3;
+	Enumerative b11 : Type3;
+	Enumerative b12 : Type3;
+	Enumerative b13 : Type3;
+	Enumerative b14 : Type3;
+	Enumerative b15 : Type3;
+	Enumerative b16 : Type3;
+	Enumerative b17 : Type3;
+	Enumerative b18 : Type3;
+	Enumerative b19 : Type3;
+	Enumerative b20 : Type3;
+	Enumerative b21 : Type3;
+	Enumerative b22 : Type3;
+	Enumerative b23 : Type3;
+	Enumerative b24 : Type3;
+	Enumerative b25 : Type3;
+	Enumerative b26 : Type3;
+	Enumerative b27 : Type3;
+	Enumerative b28 : Type3;
+	Enumerative b29 : Type3;
+	Enumerative b30 : Type3;
+	Enumerative b31 : Type3;
+	Enumerative b32 : Type3;
+	Enumerative b33 : Type3;
+	Enumerative b34 : Type3;
+	Enumerative b35 : Type3;
+	Enumerative b36 : Type3;
+	Enumerative b37 : Type3;
+	Enumerative b38 : Type3;
+	Enumerative b39 : Type3;
+	Boolean c1;
+	Boolean c2;
+	Boolean c3;
+	Boolean c4;
+	Boolean c5;
+	Boolean c6;
+	Boolean c7;
+	Boolean c8;
+	Boolean c9;
+	Boolean c10;
+	Boolean c11;
+	Boolean c12;
+	Boolean c13;
+	Boolean c14;
+	Boolean c15;
+	Boolean c16;
+	Boolean c17;
+	Boolean c18;
+	Boolean c19;
+	Boolean c20;
+	Boolean c21;
+	Boolean c22;
+	Boolean c23;
+	Boolean c24;
+	Boolean c25;
+	Boolean c26;
+	Boolean c27;
+	Boolean c28;
+	Boolean c29;
+	Boolean c30;
+	Boolean c31;
+	Boolean c32;
+	Boolean c33;
+	Boolean c34;
+	Boolean c35; 
+end
+	
+   

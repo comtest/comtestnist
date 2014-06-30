@@ -1,0 +1,28 @@
+Model MobileGame
+
+Parameters:
+	Boolean MobileGame;
+	Boolean Input;
+	Boolean MovementDetection;
+	Boolean SpeechInput;
+	Boolean Keypad;
+	Boolean Touchscreen;
+	Boolean Output;
+	Boolean ForceFeedback;
+	Boolean NetworkSupport;
+	Boolean OnlineMultiplayer;
+end
+Constraints:
+	# MobileGame==true #
+	# Input==true <=> MobileGame==true #
+	# Input==true => ( MovementDetection==true || SpeechInput==true ||
+	Keypad==true || Touchscreen==true) #
+	# MovementDetection==true => Input==true #
+	# SpeechInput==true => Input==true #
+	# Keypad==true => Input==true #
+	# Touchscreen==true => Input==true #
+	# Output==true => MobileGame==true #
+	# ForceFeedback==true => Output==true #
+	# NetworkSupport==true => MobileGame==true #
+	# OnlineMultiplayer==true => NetworkSupport==true #
+end

@@ -1,0 +1,13 @@
+Model bool1
+
+Parameters:
+	Boolean a1;
+	Boolean a2;
+end
+Constraints:
+	# a1==true or a2==true #
+	# a1==false or a2==false #
+	# a1!=true or a2!=true #
+	# a1!=false or a2!=false #
+end 
+

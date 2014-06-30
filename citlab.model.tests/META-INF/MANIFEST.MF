@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: citlab.model.tests
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: citlab.model.tests; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: citlab.model,
+ org.eclipse.xtext.junit4,
+ org.eclipse.xtext.ui.junit,
+ citlab.model.ui;bundle-version="1.0.0",
+ org.eclipse.core.runtime,
+ org.eclipse.ui.workbench;resolution:=optional,
+ org.eclipse.jdt.junit4.runtime,
+ org.junit
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: citlab.model,
+ citlab.model.rnd,
+ citlab.model.test,
+ citlab.model.util
+Import-Package: org.hamcrest.core,
+ org.junit;
+ org.junit.runner;version="4.5.0",
+ org.junit.runner.manipulation;version="4.5.0",
+ org.junit.runner.notification;version="4.5.0",
+ org.junit.runners;version="4.5.0",
+ org.junit.runners.model;version="4.5.0"

@@ -1,0 +1,74 @@
+Model tai_test_2002_3
+
+Types:
+	EnumerativeType et1 { e0 e1 e2 e3 };
+	EnumerativeType et2 { e0 e1 e2 };
+end
+
+Parameters:
+
+	Enumerative e10: et1;
+	Enumerative e11: et1;
+	Enumerative e12: et1;
+	Enumerative e13: et1;
+	Enumerative e14: et1;
+	Enumerative e15: et1;
+	Enumerative e16: et1;
+	Enumerative e17: et1;
+	Enumerative e18: et1;
+	Enumerative e19: et1;
+	Enumerative e110: et1;
+	Enumerative e111: et1;
+	Enumerative e112: et1;
+	Enumerative e113: et1;
+	Enumerative e114: et1;
+
+	Enumerative e20: et2;
+	Enumerative e21: et2;
+	Enumerative e22: et2;
+	Enumerative e23: et2;
+	Enumerative e24: et2;
+	Enumerative e25: et2;
+	Enumerative e26: et2;
+	Enumerative e27: et2;
+	Enumerative e28: et2;
+	Enumerative e29: et2;
+	Enumerative e210: et2;
+	Enumerative e211: et2;
+	Enumerative e212: et2;
+	Enumerative e213: et2;
+	Enumerative e214: et2;
+	Enumerative e215: et2;
+	Enumerative e216: et2;
+
+	Boolean b30;
+	Boolean b31;
+	Boolean b32;
+	Boolean b33;
+	Boolean b34;
+	Boolean b35;
+	Boolean b36;
+	Boolean b37;
+	Boolean b38;
+	Boolean b39;
+	Boolean b310;
+	Boolean b311;
+	Boolean b312;
+	Boolean b313;
+	Boolean b314;
+	Boolean b315;
+	Boolean b316;
+	Boolean b317;
+	Boolean b318;
+	Boolean b319;
+	Boolean b320;
+	Boolean b321;
+	Boolean b322;
+	Boolean b323;
+	Boolean b324;
+	Boolean b325;
+	Boolean b326;
+	Boolean b327;
+	Boolean b328;
+
+end

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="generators" name="generators" schema="schema/generators.exsd"/>
+   <extension-point id="coders" name="coders" schema="schema/coders.exsd"/>
+   <extension-point id="TestSuiteExporters" name="TestSuiteExporters" schema="schema/TestSuiteExporters.exsd"/>
+   <extension-point id="importers" name="importers" schema="schema/importers.exsd"/>
+   <extension-point id="portfolio" name="portfolio" schema="schema/portfolio.exsd"/>
+</plugin>

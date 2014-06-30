@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/citlab.model/src-gen" editDirectory="/citlab.model.edit/src"
+    editorDirectory="/citlab.model.editor/src" modelPluginID="citlab.model" forceOverwrite="true"
+    modelName="CitL" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="citlab.model.edit"
+    editorPluginID="citlab.model.editor" runtimeVersion="2.9">
+  <genPackages prefix="CitL" basePackage="citlab.model" disposableProviderFactory="true"
+      ecorePackage="CitL.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CitL.ecore#//Operators">
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//Operators/GT"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//Operators/LT"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//Operators/GE"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//Operators/LE"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//Operators/EQ"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//Operators/NE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CitL.ecore#//AndOperators">
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//AndOperators/and"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//AndOperators/andmi"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//AndOperators/ANDma"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CitL.ecore#//OrOperators">
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//OrOperators/or"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//OrOperators/ormi"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//OrOperators/ORma"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CitL.ecore#//PlusMinusOperators">
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//PlusMinusOperators/Plus"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//PlusMinusOperators/Minus"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CitL.ecore#//ModMultDivOperators">
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//ModMultDivOperators/Mod"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//ModMultDivOperators/Mult"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//ModMultDivOperators/Div"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CitL.ecore#//ImpliesOperator">
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//ImpliesOperator/Impl"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//ImpliesOperator/Iff"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="CitL.ecore#//BooleanConst">
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//BooleanConst/false"/>
+      <genEnumLiterals ecoreEnumLiteral="CitL.ecore#//BooleanConst/true"/>
+    </genEnums>
+    <genClasses ecoreClass="CitL.ecore#//CitModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//CitModel/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//CitModel/definitions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//CitModel/Types"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//CitModel/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//CitModel/constraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//CitModel/seeds"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//CitModel/testGoals"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//Constant"/>
+    <genClasses ecoreClass="CitL.ecore#//ConstantNumber">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//ConstantNumber/value"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//Parameter"/>
+    <genClasses ecoreClass="CitL.ecore#//ParametersEx">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//ParametersEx/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//NumericalEx"/>
+    <genClasses ecoreClass="CitL.ecore#//Numerical"/>
+    <genClasses ecoreClass="CitL.ecore#//EnumerativeType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//EnumerativeType/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//NamedType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//NamedType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//AnonymousType"/>
+    <genClasses ecoreClass="CitL.ecore#//Enumerative">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//Enumerative/namedType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//Enumerative/atype"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//Element">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//Element/name"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//Boolean"/>
+    <genClasses ecoreClass="CitL.ecore#//Numbers">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//Numbers/values"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//Range">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//Range/begin"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//Range/end"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//Range/step"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//Rule"/>
+    <genClasses ecoreClass="CitL.ecore#//Expression"/>
+    <genClasses ecoreClass="CitL.ecore#//AtomicPredicate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//AtomicPredicate/op"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//BoolAssign">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//BoolAssign/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//BoolAssign/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//EnumAssign">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//EnumAssign/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//EnumAssign/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//RelationalExpression">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//RelationalExpression/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//RelationalExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//NumberLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//NumberLiteral/number"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//NumberLiteral/numerical"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//Seed">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//Seed/AssigmentSeedList"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//Aseed">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//Aseed/op"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//SeedNumberLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//SeedNumberLiteral/number"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//SeedNumberLiteral/constant"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//EnumSeed">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//EnumSeed/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//EnumSeed/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//NumericalSeed">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//NumericalSeed/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//NumericalSeed/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//BoolAssignSeed">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CitL.ecore#//BoolAssignSeed/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//BoolAssignSeed/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//OrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//OrExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//OrExpression/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//OrExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//AndExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//AndExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//AndExpression/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//AndExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//ImpliesExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//ImpliesExpression/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//ImpliesExpression/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//ImpliesExpression/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//NotExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//NotExpression/predicate"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//PlusMinus">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//PlusMinus/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//PlusMinus/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//PlusMinus/right"/>
+    </genClasses>
+    <genClasses ecoreClass="CitL.ecore#//ModMultDiv">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//ModMultDiv/left"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CitL.ecore#//ModMultDiv/op"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CitL.ecore#//ModMultDiv/right"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

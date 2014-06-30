@@ -1,0 +1,28 @@
+Model ahmed_development_2011_9
+
+Types:
+	EnumerativeType et1 { e0 e1 e2 e3 e4 e5 e6 e7 e8 e9 };
+end
+
+Parameters:
+
+	Enumerative e10: et1;
+	Enumerative e11: et1;
+
+	Enumerative e20 { e0 e1 e2 e3 e4 e5 e6 e7 e8 };
+
+	Enumerative e30 { e0 e1 e2 e3 e4 e5 e6 e7 };
+
+	Enumerative e40 { e0 e1 e2 e3 e4 e5 e6 };
+
+	Enumerative e50 { e0 e1 e2 e3 e4 e5 };
+
+	Enumerative e60 { e0 e1 e2 e3 e4 };
+
+	Enumerative e70 { e0 e1 e2 e3 };
+
+	Enumerative e80 { e0 e1 e2 };
+
+	Boolean b90;
+
+end
