@@ -60,6 +60,7 @@ import de.ovgu.featureide.core.listeners.IProjectListener;
 import de.ovgu.featureide.fm.core.AbstractCorePlugin;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.FeatureModelWriterIFileWrapper;
+import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelWriter;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter;
 
 /**
@@ -495,7 +496,9 @@ public class CorePlugin extends AbstractCorePlugin {
 		featureModel.initFMComposerExtension(project);
 		featureModel.createDefaultValues(project.getName());
 		try {
-			new FeatureModelWriterIFileWrapper(new XmlFeatureModelWriter(featureModel)).writeToFile(project.getFile("model.xml"));
+			// wayman
+//			new FeatureModelWriterIFileWrapper(new XmlFeatureModelWriter(featureModel)).writeToFile(project.getFile("model.xml"));
+			new FeatureModelWriterIFileWrapper(new XmlClassificationTreeModelWriter(featureModel)).writeToFile(project.getFile("model.xml"));
 		} catch (CoreException e) {
 			CorePlugin.getDefault().logError("Error while creating feature model", e);
 		}

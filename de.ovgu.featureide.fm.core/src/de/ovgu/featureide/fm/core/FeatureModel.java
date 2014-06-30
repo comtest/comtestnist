@@ -168,20 +168,18 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 	public void createDefaultValues(String projectName) {
 		String rootName = getValidJavaIdentifier(projectName);
 		
-		// wayman
-		// debug
-		System.out.println("create default values");
-		
 		Feature root;
 		if (!"".equals(rootName)) {
 			root = getFeature(rootName);
 		} else {
 			root = getFeature("Root");
 		}
-		root.setAbstract(true);
-		Feature feature = new Feature(this, "Base");
-		root.addChild(feature);
-		addFeature(feature);
+		
+		// wayman
+//		root.setAbstract(true);
+//		Feature feature = new Feature(this, "Base");
+//		root.addChild(feature);
+//		addFeature(feature);
 	}
 	
 	/**

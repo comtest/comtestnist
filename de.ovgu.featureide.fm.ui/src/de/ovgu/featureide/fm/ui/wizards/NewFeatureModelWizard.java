@@ -44,6 +44,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.io.FeatureModelWriterIFileWrapper;
+import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelWriter;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
 
@@ -78,7 +79,9 @@ public class NewFeatureModelWizard extends Wizard implements INewWizard {
 			IFile file = root.getFile(localFilePath);
 			featureModel.initFMComposerExtension(file.getProject());
 			try {
-				new FeatureModelWriterIFileWrapper(new XmlFeatureModelWriter(featureModel)).writeToFile(file);
+				// wayman
+//				new FeatureModelWriterIFileWrapper(new XmlFeatureModelWriter(featureModel)).writeToFile(file);
+				new FeatureModelWriterIFileWrapper(new XmlClassificationTreeModelWriter(featureModel)).writeToFile(file);
 				file.refreshLocal(IResource.DEPTH_INFINITE, null);
 			} catch (CoreException e) {
 				FMUIPlugin.getDefault().logError(e);
@@ -87,7 +90,9 @@ public class NewFeatureModelWizard extends Wizard implements INewWizard {
 		} else {
 			// case: is no file in workspace
 			File file = fullFilePath.toFile();
-			new XmlFeatureModelWriter(featureModel).writeToFile(file);
+			// wayman
+//			new XmlFeatureModelWriter(featureModel).writeToFile(file);
+			new XmlClassificationTreeModelWriter(featureModel).writeToFile(file);
 		}
 		return true;
 	}
