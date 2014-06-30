@@ -32,6 +32,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.CompositionFeature;
+import de.ovgu.featureide.fm.core.RangeClassFeature;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.FeatureStatus;
@@ -89,8 +90,20 @@ public class FeatureFigure extends Figure implements GUIDefaults {
 
 		label.setLocation(new Point(FEATURE_INSETS.left, FEATURE_INSETS.top));
 		
-		setName(feature.getName());
-
+		//Abhi
+		if(feature.kind == FeatureKind.Class)
+		{
+			setName(((ClassFeature) feature).getValue());
+		}
+		else if(feature.kind == FeatureKind.RangeClass)
+		{
+			setName(((RangeClassFeature) feature).getValue());
+		}
+		else
+		{
+			setName(feature.getName());
+		}
+		
 		setProperties();
 		
 		

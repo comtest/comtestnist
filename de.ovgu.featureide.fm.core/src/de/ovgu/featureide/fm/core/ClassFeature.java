@@ -39,7 +39,7 @@ import org.prop4j.NodeWriter;
 //Just a wrapper around feature
 public class ClassFeature extends Feature {
 
-	public String value;
+	private String value;
 	
 	public ClassFeature(FeatureModel featureModel, String name) {
 		super(featureModel, name);
@@ -52,5 +52,14 @@ public class ClassFeature extends Feature {
 	
 	public void setValue(String v) {
 		value = v;
+		fireValueChanged(); //Abhi
+	}
+	
+	//Abhi
+	private void fireValueChanged() {
+		PropertyChangeEvent event = new PropertyChangeEvent(this, VALUE_CHANGED,
+				Boolean.FALSE, Boolean.TRUE);
+		for (PropertyChangeListener listener : listenerList)
+			listener.propertyChange(event);
 	}
 }

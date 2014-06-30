@@ -463,7 +463,8 @@ public class Feature implements PropertyConstants, PropertyChangeListener {
 	// return new Rectangle(location, size);
 	// }
 
-	private LinkedList<PropertyChangeListener> listenerList = new LinkedList<PropertyChangeListener>();
+	//Abhi Changes to Protected
+	protected LinkedList<PropertyChangeListener> listenerList = new LinkedList<PropertyChangeListener>();
 
 	public void addListener(PropertyChangeListener listener) {
 		if (!listenerList.contains(listener))

@@ -43,4 +43,7 @@ public interface PropertyConstants {
 	String FEATURE_NAME_CHANGED = "NAME_CHANGED";
 	String ATTRIBUTE_CHANGED = "ATTRIBUTE_CHANGED";
 	String CONSTRAINT_SELECTED = "CONSTRAINT_SELECTED";
+	//Abhi
+	String VALUE_CHANGED = "VALUE_CHANGED";
+	//Abhi
 }
