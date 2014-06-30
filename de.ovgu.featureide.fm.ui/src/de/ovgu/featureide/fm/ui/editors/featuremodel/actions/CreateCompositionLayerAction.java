@@ -27,6 +27,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
+import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation;
@@ -79,8 +80,8 @@ public class CreateCompositionLayerAction extends SingleSelectionAction{
 
 	@Override
 	protected void updateProperties() {
-		//setEnabled(true);
-		setEnabled(feature.isRoot());//Abhi
+		
+		setEnabled(feature.isRoot() || feature.kind == FeatureKind.Composition || feature.kind == FeatureKind.Class);//Abhi
 		setChecked(false);
 	}
 
