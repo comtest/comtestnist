@@ -79,8 +79,7 @@ public class CreateClassificationLayerAction extends SingleSelectionAction{
 
 	@Override
 	protected void updateProperties() {
-		//setEnabled(true);
-		setEnabled(feature.kind == FeatureKind.Composition); //Abhi
+		setEnabled(feature.kind == FeatureKind.Composition || feature.isRoot() || feature.kind == FeatureKind.Class); //Abhi
 		setChecked(false);
 	}
 
