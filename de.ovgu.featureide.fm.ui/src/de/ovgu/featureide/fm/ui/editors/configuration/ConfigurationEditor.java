@@ -75,6 +75,7 @@ import de.ovgu.featureide.fm.core.configuration.ConfigurationWriter;
 import de.ovgu.featureide.fm.core.configuration.SelectableFeature;
 import de.ovgu.featureide.fm.core.configuration.Selection;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelReader;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.GUIDefaults;
@@ -417,7 +418,9 @@ public class ConfigurationEditor extends MultiPageEditorPart implements
 	 */
 	private void readFeatureModel() {
 		featureModel.initFMComposerExtension(file.getProject());
-		XmlFeatureModelReader reader = new XmlFeatureModelReader(featureModel);
+		// wayman
+//		XmlFeatureModelReader reader = new XmlFeatureModelReader(featureModel);
+		XmlClassificationTreeModelReader reader = new XmlClassificationTreeModelReader(featureModel);
 		try {
 			reader.readFromFile(modelFile);
 		} catch (FileNotFoundException e) {

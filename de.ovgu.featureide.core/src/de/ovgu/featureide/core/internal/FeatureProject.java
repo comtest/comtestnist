@@ -77,6 +77,7 @@ import de.ovgu.featureide.fm.core.io.FeatureModelReaderIFileWrapper;
 import de.ovgu.featureide.fm.core.io.FeatureModelWriterIFileWrapper;
 import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
 import de.ovgu.featureide.fm.core.io.guidsl.GuidslReader;
+import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelReader;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
 import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter;
 
@@ -233,7 +234,9 @@ public class FeatureProject extends BuilderMarkerHandler implements
 
 		featureModel = new FeatureModel();
 		featureModel.addListener(new FeatureModelChangeListner());
-		modelReader = new FeatureModelReaderIFileWrapper(new XmlFeatureModelReader(featureModel));
+		// wayman
+//		modelReader = new FeatureModelReaderIFileWrapper(new XmlFeatureModelReader(featureModel));
+		modelReader = new FeatureModelReaderIFileWrapper(new XmlClassificationTreeModelReader(featureModel));
 
 		// initialize project structure
 		try {
