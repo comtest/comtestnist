@@ -82,7 +82,11 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 		{
 			((ClassFeature) newFeature).setValue("1"); //Abhi -- Setting some default value to the feature.
 		}
-		
+		else if(((ClassificationFeature) feature).getDataType() == "Enum")
+		{
+			((ClassFeature) newFeature).setValue("SampleEnum"); //Abhi -- Setting some default value to the feature.
+		}
+		//Abhi
 		
 		featureModel.addFeature(newFeature);
 		feature = featureModel.getFeature(feature.getName());
