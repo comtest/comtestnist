@@ -60,11 +60,23 @@ public class FeatureValueChangeOperation extends AbstractFeatureModelOperation {
 			classFeature.setValue(newValue);
 		}*/
 		//featureModel.getRenamingsManager().renameFeature(oldName, newName);
+		
+		//Abhi
+		if(classFeature != null)
+		{
+			classFeature.setValue(newValue);
+		}
 	}
 
 	@Override
 	protected void undo() {
 		//featureModel.getRenamingsManager().renameFeature(newName, oldName);
+		
+		//Abhi
+		if(classFeature != null)
+		{
+			classFeature.setValue(oldValue);
+		}
 	}
 
 }

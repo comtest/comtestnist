@@ -32,6 +32,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TextCellEditor;
 
 import de.ovgu.featureide.fm.core.ClassFeature;
+import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
@@ -75,6 +76,14 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
 		
 		newFeature = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
+		
+		//Abhi
+		if(((ClassificationFeature) feature).getDataType() == "Integer")
+		{
+			((ClassFeature) newFeature).setValue("1"); //Abhi -- Setting some default value to the feature.
+		}
+		
+		
 		featureModel.addFeature(newFeature);
 		feature = featureModel.getFeature(feature.getName());
 		feature.addChild(newFeature);
