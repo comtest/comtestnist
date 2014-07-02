@@ -28,6 +28,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 import de.ovgu.featureide.fm.core.ClassificationFeature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
@@ -88,7 +89,7 @@ public class SetTypeBooleanAction extends SingleSelectionAction{
 			ClassificationFeature classificationFeature = (ClassificationFeature) feature;
 			if(feature.kind != null)
 			{
-				if(classificationFeature.dataType == null || (!classificationFeature.dataType.equalsIgnoreCase("Boolean")))
+				if(classificationFeature.getDataType() == null || (!classificationFeature.getDataType().equalsIgnoreCase(FeatureConstants.TYPE_BOOLEAN)))
 					setEnabled(feature.kind == FeatureKind.Classification); //Abhi
 			}
 		}

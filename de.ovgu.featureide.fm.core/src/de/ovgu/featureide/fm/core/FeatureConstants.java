@@ -20,38 +20,16 @@
  */
 package de.ovgu.featureide.fm.core;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.annotation.CheckForNull;
-
-import org.prop4j.NodeWriter;
-
 /**
  * TODO description
  * 
  * @author abhisheksharma
  */
+public  class FeatureConstants {
 
-//Just a wrapper around feature
-public class ClassificationFeature extends Feature {
-
-	private String dataType; //Abhi
+	public static String TYPE_INTEGER = "Integer";
+	public static String TYPE_ENUM = "Enum";
+	public static String TYPE_BOOLEAN = "Boolean";
+	public static String TYPE_RANGE = "Range";
 	
-	public ClassificationFeature(FeatureModel featureModel, String name) {
-		super(featureModel, name);
-		this.kind = FeatureKind.Classification;
-	}
-	
-	// wayman
-	public String getDataType() {
-		return dataType;
-	}
-	
-	public void setDataType(String type) {
-		dataType = type;
-	}
 }

@@ -33,6 +33,7 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator;
@@ -48,7 +49,6 @@ import de.ovgu.featureide.fm.ui.editors.featuremodel.layouts.FeatureDiagramLayou
 public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 
 	private static final String LABEL = "Boolean";
-	private Feature feature;
 	private Object viewer;
 	private Feature newFeature;
 	private Object diagramEditor;
@@ -57,7 +57,6 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 	public SetTypeBooleanOperation(Feature feature,
 			Object viewer, FeatureModel featureModel, Object diagramEditor) {
 		super(featureModel, LABEL);
-		this.feature = feature;
 		this.viewer = viewer;
 		this.diagramEditor = diagramEditor;
 	}
@@ -71,8 +70,7 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		classificationfeature = (ClassificationFeature)feature;
-		this.classificationfeature.dataType = "Boolean"; //Abhi
+		this.classificationfeature.setDataType(FeatureConstants.TYPE_BOOLEAN); //Abhi
 		
 		/*
 		 * the model must be refreshed here else the new feature will not be found
@@ -83,6 +81,6 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void undo() {
-		this.classificationfeature.dataType = null;
+		this.classificationfeature.setDataType(null);
 	}
 }

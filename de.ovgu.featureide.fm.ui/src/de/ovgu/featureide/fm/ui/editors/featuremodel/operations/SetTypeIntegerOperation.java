@@ -32,6 +32,7 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator;
@@ -69,12 +70,12 @@ public class SetTypeIntegerOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		this.classificationfeature.dataType = "Integer"; //Abhi
+		this.classificationfeature.setDataType(FeatureConstants.TYPE_INTEGER); //Abhi
 
 	}
 
 	@Override
 	protected void undo() {
-		this.classificationfeature.dataType = null;
+		this.classificationfeature.setDataType(null);
 	}
 }

@@ -28,6 +28,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 import de.ovgu.featureide.fm.core.ClassificationFeature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
@@ -88,7 +89,7 @@ public class SetTypeEnumAction extends SingleSelectionAction{
 			ClassificationFeature classificationFeature = (ClassificationFeature) feature;
 			if(feature.kind != null)
 			{
-				if(classificationFeature.dataType == null || (!classificationFeature.dataType.equalsIgnoreCase("Enum")))
+				if(classificationFeature.getDataType() == null || (!classificationFeature.getDataType().equalsIgnoreCase(FeatureConstants.TYPE_ENUM)))
 					setEnabled(feature.kind == FeatureKind.Classification); //Abhi
 			}
 		}

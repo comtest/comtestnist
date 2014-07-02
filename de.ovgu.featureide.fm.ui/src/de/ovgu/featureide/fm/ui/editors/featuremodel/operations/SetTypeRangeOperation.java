@@ -28,6 +28,7 @@ import org.eclipse.core.runtime.Status;
 
 import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 
 /**
@@ -61,15 +62,13 @@ public class SetTypeRangeOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		classificationfeature = (ClassificationFeature)feature;
-		this.classificationfeature.dataType = null;
+		this.classificationfeature.setDataType(FeatureConstants.TYPE_RANGE); //Abhi
 
 	}
 
 	@Override
 	protected void undo() {
-		String[] name = this.feature.getName().split("*");
-		this.classificationfeature.setName(name[0].toString());
+		this.classificationfeature.setDataType(null);
 		
 	}
 }
