@@ -1,21 +1,15 @@
 package citlab.junitexporter;
 
-import citlab.core.ext.ICitLabTestSuiteExporter;
-import citlab.cvsexporter.CVSExporter;
-import citlab.testsuite.Assignment;
-import citlab.testsuite.Test;
-import citlab.testsuite.TestSuite;
-
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import citlab.core.ext.ICitLabTestSuiteExporter;
+import citlab.cvsexporter.CVSExporter;
+import citlab.testsuite.Assignment;
+import citlab.testsuite.TestSuite;
 
 
 public class JUnitExporter extends ICitLabTestSuiteExporter {
