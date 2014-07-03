@@ -36,7 +36,7 @@ public class RenameAction extends SingleSelectionAction {
 	private Object diagramEditor;
 
 	public RenameAction(Object viewer, FeatureModel featureModel, Object graphicalViewer) {
-		super("Rename (F2)", viewer);
+		super("Change/Rename (F2)", viewer);
 		this.setAccelerator(SWT.F2);
 		this.diagramEditor = graphicalViewer;
 	}

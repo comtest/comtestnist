@@ -32,7 +32,9 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TextCellEditor;
 
 import de.ovgu.featureide.fm.core.ClassFeature;
+import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator;
@@ -75,6 +77,18 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
 		
 		newFeature = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
+		
+
+		if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_INTEGER)
+		{
+			((ClassFeature) newFeature).setValue("1"); //Abhi -- Setting some default value to the feature.
+		}
+		else if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_ENUM)
+		{
+			((ClassFeature) newFeature).setValue("SampleEnum"); //Abhi -- Setting some default value to the feature.
+		}
+
+		
 		featureModel.addFeature(newFeature);
 		feature = featureModel.getFeature(feature.getName());
 		feature.addChild(newFeature);
@@ -84,6 +98,7 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 		 * the model must be refreshed here else the new feature will not be found
 		 */
 		featureModel.handleModelDataChanged();
+		
 		if(feature != null && feature.kind == FeatureKind.Classification)
 		{
 			feature.changeToOr(); //Abhi

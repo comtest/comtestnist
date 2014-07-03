@@ -39,6 +39,8 @@ import org.prop4j.NodeWriter;
 //Just a wrapper around feature
 public class ClassFeature extends Feature {
 
+	private String concreteValue; //Abhi (Class under a class SCENARIO)
+	
 	private String value;
 	
 	public ClassFeature(FeatureModel featureModel, String name) {
@@ -61,5 +63,19 @@ public class ClassFeature extends Feature {
 				Boolean.FALSE, Boolean.TRUE);
 		for (PropertyChangeListener listener : listenerList)
 			listener.propertyChange(event);
+	}
+
+	/**
+	 * @return the concreteValue
+	 */
+	public String getConcreteValue() {
+		return concreteValue;
+	}
+
+	/**
+	 * @param concreteValue the concreteValue to set
+	 */
+	public void setConcreteValue(String concreteValue) {
+		this.concreteValue = concreteValue;
 	}
 }

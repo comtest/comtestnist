@@ -81,7 +81,7 @@ public class CreateClassLayerAction extends SingleSelectionAction{
 
 	@Override
 	protected void updateProperties() {
-		setEnabled(feature.kind == FeatureKind.Classification); //Abhi
+		setEnabled(feature.kind == FeatureKind.Classification && ((ClassificationFeature) feature).getDataType() != null); //Abhi
 		setChecked(false);
 	}
 
