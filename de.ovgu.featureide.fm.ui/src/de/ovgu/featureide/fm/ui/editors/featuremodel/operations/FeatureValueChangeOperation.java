@@ -21,8 +21,11 @@
 package de.ovgu.featureide.fm.ui.editors.featuremodel.operations;
 
 import de.ovgu.featureide.fm.core.ClassFeature;
+import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
+import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 
 /**
  * TODO description
@@ -64,7 +67,28 @@ public class FeatureValueChangeOperation extends AbstractFeatureModelOperation {
 		//Abhi
 		if(classFeature != null)
 		{
-			classFeature.setValue(newValue);
+			if(classFeature.getParent() instanceof ClassificationFeature)
+			{
+				String dataType = ((ClassificationFeature) classFeature.getParent()).getDataType();
+				if(dataType != null)
+				{
+					if(dataType == FeatureConstants.TYPE_INTEGER || dataType == FeatureConstants.TYPE_RANGE)
+					{
+						if(isInteger(newValue))
+							this.classFeature.setValue(newValue);
+					}
+						
+					else
+					{
+						this.classFeature.setValue(newValue);
+					}
+				}
+						
+			}
+			else
+			{
+				this.classFeature.setValue(newValue);
+			}
 		}
 	}
 
@@ -77,6 +101,16 @@ public class FeatureValueChangeOperation extends AbstractFeatureModelOperation {
 		{
 			classFeature.setValue(oldValue);
 		}
+	}
+	
+	public boolean isInteger(String s) {
+	    try { 
+	        Integer.parseInt(s); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    }
+	    // only got here if we didn't return false
+	    return true;
 	}
 
 }
