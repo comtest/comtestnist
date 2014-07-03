@@ -49,14 +49,13 @@ public class SetTypeIntegerOperation extends AbstractFeatureModelOperation {
 
 	private static final String LABEL = "Integer";
 	private Object viewer;
-	private Feature newFeature;
+	private Feature feature;
 	private Object diagramEditor;
-	private ClassificationFeature classificationfeature;
 
-	public SetTypeIntegerOperation(ClassificationFeature classificationfeature,
+	public SetTypeIntegerOperation(Feature feature,
 			Object viewer, FeatureModel featureModel, Object diagramEditor) {
 		super(featureModel, LABEL);
-		this.classificationfeature = classificationfeature;
+		this.feature = feature;
 		this.viewer = viewer;
 		this.diagramEditor = diagramEditor;
 	}
@@ -70,12 +69,12 @@ public class SetTypeIntegerOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		this.classificationfeature.setDataType(FeatureConstants.TYPE_INTEGER); //Abhi
+		((ClassificationFeature) feature).setDataType(FeatureConstants.TYPE_INTEGER); //Abhi
 
 	}
 
 	@Override
 	protected void undo() {
-		this.classificationfeature.setDataType(null);
+		((ClassificationFeature) feature).setDataType(null);
 	}
 }

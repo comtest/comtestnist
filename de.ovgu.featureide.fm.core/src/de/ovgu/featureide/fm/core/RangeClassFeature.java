@@ -39,6 +39,8 @@ public class RangeClassFeature extends ClassFeature {
 	// wayman: initialize the value
 	private boolean isMin = false; 
 	
+	//We do not need this; just follow the structure of the ClassNode 
+	//and use the VALUE attribute
 	private int minValue;
 	private int maxValue;
 

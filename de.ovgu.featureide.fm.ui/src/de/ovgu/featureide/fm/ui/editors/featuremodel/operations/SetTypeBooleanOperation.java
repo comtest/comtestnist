@@ -54,7 +54,6 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 	private Object diagramEditor;
 	private Feature newFeature1;
 	private Feature newFeature2;
-	private ClassificationFeature classificationfeature;
 
 	public SetTypeBooleanOperation(Feature feature,
 			Object viewer, FeatureModel featureModel, Object diagramEditor) {
@@ -78,6 +77,7 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 	
 		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
 		
+		//Abhi : Automatically Add two Class Nodes when the Classification Type is Boolean
 		//Create True Node
 		newFeature1 = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
 		((ClassFeature) newFeature1).setValue("true");
@@ -106,8 +106,9 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 		 * the model must be refreshed here else the new feature will not be found
 		 */
 		featureModel.handleModelDataChanged();
+		//Abhi : Automatically Add two Class Nodes when the Classification Type is Boolean
 		
-		this.classificationfeature.setDataType(FeatureConstants.TYPE_BOOLEAN); //Abhi
+		((ClassificationFeature) this.feature).setDataType(FeatureConstants.TYPE_BOOLEAN); //Abhi
 		
 		featureModel.handleModelDataChanged();
 
@@ -116,7 +117,7 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void undo() {
-		this.classificationfeature.setDataType(null);
+		((ClassificationFeature) this.feature).setDataType(null); //Abhi
 		
 		newFeature1 = featureModel.getFeature(newFeature1.getName());
 		featureModel.deleteFeature(newFeature1);

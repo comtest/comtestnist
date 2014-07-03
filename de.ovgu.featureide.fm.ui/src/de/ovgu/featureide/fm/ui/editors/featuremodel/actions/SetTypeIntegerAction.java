@@ -66,7 +66,7 @@ public class SetTypeIntegerAction extends SingleSelectionAction{
 	public void run() {
 		//New 
 		SetTypeIntegerOperation op = new SetTypeIntegerOperation(
-				classificationFeature, viewer, featureModel, diagramEditor);
+				feature, viewer, featureModel, diagramEditor);
 		op.addContext((IUndoContext) featureModel.getUndoContext());
 
 		try {

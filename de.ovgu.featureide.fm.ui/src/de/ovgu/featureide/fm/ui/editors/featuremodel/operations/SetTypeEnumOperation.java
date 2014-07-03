@@ -51,15 +51,15 @@ public class SetTypeEnumOperation extends AbstractFeatureModelOperation {
 
 	private static final String LABEL = "Enum";
 	private Object viewer;
-	private Feature newFeature;
+	private Feature feature;
 	private Object diagramEditor;
-	private ClassificationFeature classificationfeature;
 
 	public SetTypeEnumOperation(Feature feature,
 			Object viewer, FeatureModel featureModel, Object diagramEditor) {
 		super(featureModel, LABEL);
 		this.viewer = viewer;
 		this.diagramEditor = diagramEditor;
+		this.feature = feature;
 	}
 
 	@Override
@@ -71,13 +71,13 @@ public class SetTypeEnumOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		this.classificationfeature.setDataType(FeatureConstants.TYPE_ENUM); //Abhi
+		((ClassificationFeature) this.feature).setDataType(FeatureConstants.TYPE_ENUM); //Abhi
 
 	}
 
 	@Override
 	protected void undo() {
-		this.classificationfeature.setDataType(null);
+		((ClassificationFeature) this.feature).setDataType(null);
 		
 	}
 }
