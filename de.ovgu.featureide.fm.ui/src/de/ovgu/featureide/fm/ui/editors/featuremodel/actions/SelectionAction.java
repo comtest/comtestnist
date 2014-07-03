@@ -46,6 +46,7 @@ public class SelectionAction extends Action {
 
 	public boolean isClassificationNodeSelected = false; //Abhi
 	public boolean isTypeSet = false;
+	public boolean isNodeRangeClass = false;
 	
 	private ISelectionChangedListener listener = new ISelectionChangedListener() {
 		public void selectionChanged(SelectionChangedEvent event) {
@@ -83,6 +84,15 @@ public class SelectionAction extends Action {
 					else 
 					{
 						isClassificationNodeSelected = false;
+					}
+					
+					if(((FeatureEditPart) selection.getFirstElement()).getFeature().kind == FeatureKind.RangeClass)
+					{
+						isNodeRangeClass = true;
+					}
+					else
+					{
+						isNodeRangeClass = false;
 					}
 						
 					//ABhi

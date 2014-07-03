@@ -51,7 +51,7 @@ public class FeatureDirectEditPolicy extends DirectEditPolicy {
 	protected Command getDirectEditCommand(DirectEditRequest request) {
 		//Abhi
 		String newValue = (String) request.getCellEditor().getValue();
-		if(feature.kind == FeatureKind.Class) //Abhi
+		if(feature.kind == FeatureKind.Class || feature.kind == FeatureKind.RangeClass) //Abhi
 			return new FeatureValueChangeCommand(featureModel, feature, ((ClassFeature) feature).getValue(), newValue);
 		else 
 			return new FeatureRenamingCommand(featureModel, feature.getName(), newValue);

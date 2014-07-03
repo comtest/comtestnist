@@ -373,7 +373,8 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			menu.add(createConstraintAction);
 			menu.add(renameAction);
 			//menu.add(deleteAction); //Abhi
-			menu.add(deleteAllAction);
+			if(selectionAction.isNodeRangeClass == false)
+				menu.add(deleteAllAction);
 			menu.add(new Separator());
 			//connectionEntrys(menu);//Abhi
 			//menu.add(mandatoryAction); //Abhi
