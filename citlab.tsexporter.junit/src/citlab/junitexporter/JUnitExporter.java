@@ -31,27 +31,6 @@ public class JUnitExporter extends ICitLabTestSuiteExporter {
 			e.printStackTrace();
 		}
 
-//		Path jsonFilePath = FileSystems.getDefault().getPath(fileName);
-//		String fileNameWithoutExtension = fileName.substring(0, fileName.length() - 4);
-//		JSONArray ts = createJSONedTestCases(input);
-//		JSONObject jsonTestSuite = new JSONObject();
-//		jsonTestSuite.put("model", input.getModel().getName());
-//		jsonTestSuite.put("strength", input.getStrength());
-//		jsonTestSuite.put("algorithm", input.getGeneratorName());
-//		jsonTestSuite.put("testCases", ts);
-//		Test firstTest = input.getTests().get(0);
-//		int numParams = firstTest.getAssignments().size();
-//		jsonTestSuite.put("numParams", numParams);
-//		for(int i = 0 ; i < numParams; i++) {
-//			jsonTestSuite.put("paramName" + i, firstTest.getAssignments().get(i).getParameter().getName());
-//		}
-//		try {
-//			BufferedWriter fileWriter = Files.newBufferedWriter(jsonFilePath, StandardCharsets.UTF_8);
-//			fileWriter.write(jsonTestSuite.toJSONString());
-//			fileWriter.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 	}
 
 	private String getJunitAnnotation(TestSuite input, String csvFileName) {
@@ -90,20 +69,5 @@ public class JUnitExporter extends ICitLabTestSuiteExporter {
 				+ "\n//This is a sample template\n";
 		return header;
 	}
-
-	/*
-	private JSONArray createJSONedTestCases(TestSuite input) {
-		JSONArray ts = new JSONArray();
-		JSONArray t;
-		for (Test test : input.getTests()) {
-			t = new JSONArray();
-			for(Assignment ass : test.getAssignments()) {
-				t.add(ass.getValue());
-			}
-			ts.add(t);
-		}
-
-		return ts;
-	}*/
 
 }
