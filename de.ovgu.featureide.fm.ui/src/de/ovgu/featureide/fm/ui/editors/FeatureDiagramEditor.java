@@ -386,7 +386,7 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			//menu.add(subMenuLayout); //Abhi
 			//menu.add(subMenuCalculations); //Abhi
 			menu.add(new Separator());
-			if(selectionAction.isClassificationNodeSelected == true)
+			if(selectionAction.isClassificationNodeSelected == true && selectionAction.isTypeSet == false)
 				menu.add(subMenuTypeSet);
 
 			//menu.add(reverseOrderAction);

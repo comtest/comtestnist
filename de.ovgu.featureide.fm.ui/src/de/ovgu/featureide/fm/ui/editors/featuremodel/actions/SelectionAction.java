@@ -30,6 +30,7 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 
 import de.ovgu.featureide.fm.core.Constraint;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.ConstraintEditPart;
@@ -44,6 +45,7 @@ import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart;
 public class SelectionAction extends Action {
 
 	public boolean isClassificationNodeSelected = false; //Abhi
+	public boolean isTypeSet = false;
 	
 	private ISelectionChangedListener listener = new ISelectionChangedListener() {
 		public void selectionChanged(SelectionChangedEvent event) {
@@ -69,7 +71,15 @@ public class SelectionAction extends Action {
 					if(((FeatureEditPart) selection.getFirstElement()).getFeature().kind == FeatureKind.Classification)
 					{
 						isClassificationNodeSelected = true;
-					}
+						if(((ClassificationFeature) ((FeatureEditPart) selection.getFirstElement()).getFeature()).getDataType() == null || ((ClassificationFeature) ((FeatureEditPart) selection.getFirstElement()).getFeature()).getDataType() == " ")
+						{
+							isTypeSet = false;
+						}
+						else
+						{
+							isTypeSet = true;
+						}
+ 					}
 					else 
 					{
 						isClassificationNodeSelected = false;

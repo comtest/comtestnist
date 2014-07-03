@@ -201,7 +201,24 @@ public class FeatureFigure extends Figure implements GUIDefaults {
 			if (feature.isHidden()) toolTip += HIDDEN;
 		}
 		
-		if (!feature.isRoot()) toolTip += FEATURE;
+		//Abhi
+		String kind = feature.kind == FeatureKind.RangeClass ? "Class" : feature.kind.toString();
+		if (kind != null && !kind.equals(" ")) {
+			toolTip += "\r\n" + "\r\n Node: " + kind;
+		}
+		
+		//Abhi 
+		if(feature instanceof ClassificationFeature)
+		{
+			String dataType = ((ClassificationFeature) feature).getDataType();
+			if(dataType != null && !dataType.equals(" "))
+			{
+				toolTip += "\r\n" + "\r\n DataType: " + dataType;
+			}
+		
+		}
+		
+		//if (!feature.isRoot()) toolTip += FEATURE; //Abhi
 		
 		if ((feature.getFeatureStatus() == FeatureStatus.DEAD) && modelIsValid){
 			setBackgroundColor(FMPropertyManager.getDeadFeatureBackgroundColor());
