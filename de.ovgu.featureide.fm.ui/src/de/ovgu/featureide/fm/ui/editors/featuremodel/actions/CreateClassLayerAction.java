@@ -63,7 +63,7 @@ public class CreateClassLayerAction extends SingleSelectionAction{
 	public void run() {
 		//New 
 		FeatureCreateClassLayerOperation op = new FeatureCreateClassLayerOperation(
-				feature, viewer, featureModel, diagramEditor); //Abhi
+				feature, viewer, featureModel, diagramEditor, null); //Abhi
 		op.addContext((IUndoContext) featureModel.getUndoContext());
 
 		try {

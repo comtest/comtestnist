@@ -54,13 +54,15 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 	private Object viewer;
 	private Feature newFeature;
 	private Object diagramEditor;
+	private String value; //Abhi: We might want to pass a default value maybe for some situation
 
 	public FeatureCreateClassLayerOperation(Feature feature,
-			Object viewer, FeatureModel featureModel, Object diagramEditor) {
+			Object viewer, FeatureModel featureModel, Object diagramEditor, String value) {
 		super(featureModel, LABEL);
 		this.feature = feature;
 		this.viewer = viewer;
 		this.diagramEditor = diagramEditor;
+		this.value = value;
 	}
 
 	@Override
@@ -79,13 +81,20 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 		newFeature = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
 		
 		//Abhi
-		if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_INTEGER)
+		if(this.value == null)			
 		{
-			((ClassFeature) newFeature).setValue("1"); //Abhi -- Setting some default value to the feature.
+			if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_INTEGER)
+			{
+				((ClassFeature) newFeature).setValue("1"); //Abhi -- Setting some default value to the feature.
+			}
+			else if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_ENUM)
+			{
+				((ClassFeature) newFeature).setValue("SampleEnum"); //Abhi -- Setting some default value to the feature.
+			}
 		}
-		else if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_ENUM)
+		else
 		{
-			((ClassFeature) newFeature).setValue("SampleEnum"); //Abhi -- Setting some default value to the feature.
+			((ClassFeature) newFeature).setValue(this.value);
 		}
 		//Abhi
 		
@@ -98,6 +107,7 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 		 * the model must be refreshed here else the new feature will not be found
 		 */
 		featureModel.handleModelDataChanged();
+		
 		if(feature != null && feature.kind == FeatureKind.Classification)
 		{
 			feature.changeToOr(); //Abhi

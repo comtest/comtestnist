@@ -50,8 +50,10 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 
 	private static final String LABEL = "Boolean";
 	private Object viewer;
-	private Feature newFeature;
+	private Feature feature;
 	private Object diagramEditor;
+	private Feature newFeature1;
+	private Feature newFeature2;
 	private ClassificationFeature classificationfeature;
 
 	public SetTypeBooleanOperation(Feature feature,
@@ -59,6 +61,7 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 		super(featureModel, LABEL);
 		this.viewer = viewer;
 		this.diagramEditor = diagramEditor;
+		this.feature = feature;
 	}
 
 	@Override
@@ -70,17 +73,59 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		this.classificationfeature.setDataType(FeatureConstants.TYPE_BOOLEAN); //Abhi
+		
+		
+		
+		
+		/*
+		 * the model must be refreshed here else the new feature will not be found
+		 */
+		//featureModel.handleModelDataChanged();
+		
+		int number = 0;
+	
+		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
+		
+		//Create True Node
+		newFeature1 = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
+		((ClassFeature) newFeature1).setValue("true");
+	
+		featureModel.addFeature(newFeature1);
+		feature = featureModel.getFeature(feature.getName());
+		feature.addChild(newFeature1);
+		FeatureDiagramLayoutHelper.initializeLayerFeaturePosition(featureModel, newFeature1, feature);
 		
 		/*
 		 * the model must be refreshed here else the new feature will not be found
 		 */
 		featureModel.handleModelDataChanged();
 
+		// Create False Node
+		newFeature2 = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
+		((ClassFeature) newFeature2).setValue("false");
+	
+		featureModel.addFeature(newFeature2);
+		feature = featureModel.getFeature(feature.getName());
+		feature.addChild(newFeature2);
+		FeatureDiagramLayoutHelper.initializeLayerFeaturePosition(featureModel, newFeature2, feature);
+		
+		this.classificationfeature.setDataType(FeatureConstants.TYPE_BOOLEAN); //Abhi
+		/*
+		 * the model must be refreshed here else the new feature will not be found
+		 */
+		featureModel.handleModelDataChanged();
+		
 	}
+
 
 	@Override
 	protected void undo() {
 		this.classificationfeature.setDataType(null);
+		
+		newFeature1 = featureModel.getFeature(newFeature1.getName());
+		featureModel.deleteFeature(newFeature1);
+		
+		newFeature2 = featureModel.getFeature(newFeature2.getName());
+		featureModel.deleteFeature(newFeature2);
 	}
 }

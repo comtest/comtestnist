@@ -32,6 +32,7 @@ import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
+import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassLayerOperation;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.SetTypeBooleanOperation;
 
 
@@ -63,6 +64,7 @@ public class SetTypeBooleanAction extends SingleSelectionAction{
 
 	@Override
 	public void run() {
+		
 		//New 
 		SetTypeBooleanOperation op = new SetTypeBooleanOperation(
 				feature, viewer, featureModel, diagramEditor);
@@ -74,6 +76,7 @@ public class SetTypeBooleanAction extends SingleSelectionAction{
 		} catch (ExecutionException e) {
 			FMUIPlugin.getDefault().logError(e);
 		}
+		
 	}
 
 	@Override
