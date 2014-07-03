@@ -93,6 +93,7 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 		featureModel.handleModelDataChanged();
 
 		// Create False Node
+		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
 		newFeature2 = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
 		((ClassFeature) newFeature2).setValue("false");
 	
