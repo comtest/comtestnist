@@ -54,15 +54,13 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 	private Object viewer;
 	private Feature newFeature;
 	private Object diagramEditor;
-	private String value; //Abhi: We might want to pass a default value maybe for some situation
 
 	public FeatureCreateClassLayerOperation(Feature feature,
-			Object viewer, FeatureModel featureModel, Object diagramEditor, String value) {
+			Object viewer, FeatureModel featureModel, Object diagramEditor) {
 		super(featureModel, LABEL);
 		this.feature = feature;
 		this.viewer = viewer;
 		this.diagramEditor = diagramEditor;
-		this.value = value;
 	}
 
 	@Override
@@ -80,23 +78,16 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 		
 		newFeature = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
 		
-		//Abhi
-		if(this.value == null)			
+
+		if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_INTEGER)
 		{
-			if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_INTEGER)
-			{
-				((ClassFeature) newFeature).setValue("1"); //Abhi -- Setting some default value to the feature.
-			}
-			else if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_ENUM)
-			{
-				((ClassFeature) newFeature).setValue("SampleEnum"); //Abhi -- Setting some default value to the feature.
-			}
+			((ClassFeature) newFeature).setValue("1"); //Abhi -- Setting some default value to the feature.
 		}
-		else
+		else if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_ENUM)
 		{
-			((ClassFeature) newFeature).setValue(this.value);
+			((ClassFeature) newFeature).setValue("SampleEnum"); //Abhi -- Setting some default value to the feature.
 		}
-		//Abhi
+
 		
 		featureModel.addFeature(newFeature);
 		feature = featureModel.getFeature(feature.getName());

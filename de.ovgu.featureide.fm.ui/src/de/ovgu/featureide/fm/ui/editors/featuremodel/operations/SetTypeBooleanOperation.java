@@ -73,15 +73,7 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		
-		
-		
-		
-		/*
-		 * the model must be refreshed here else the new feature will not be found
-		 */
-		//featureModel.handleModelDataChanged();
-		
+
 		int number = 0;
 	
 		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
@@ -109,12 +101,15 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 		feature.addChild(newFeature2);
 		FeatureDiagramLayoutHelper.initializeLayerFeaturePosition(featureModel, newFeature2, feature);
 		
-		this.classificationfeature.setDataType(FeatureConstants.TYPE_BOOLEAN); //Abhi
 		/*
 		 * the model must be refreshed here else the new feature will not be found
 		 */
 		featureModel.handleModelDataChanged();
 		
+		this.classificationfeature.setDataType(FeatureConstants.TYPE_BOOLEAN); //Abhi
+		
+		featureModel.handleModelDataChanged();
+
 	}
 
 
