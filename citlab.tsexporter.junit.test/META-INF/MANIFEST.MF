@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Package for testing the JUnit Exporter Plugin
+Bundle-SymbolicName: citlab.tsexporter.junit.test;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Fragment-Host: citlab.tsexporter.junit;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.junit

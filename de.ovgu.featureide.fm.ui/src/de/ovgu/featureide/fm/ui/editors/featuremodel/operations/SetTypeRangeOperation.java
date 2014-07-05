@@ -26,9 +26,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 
+import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
+import de.ovgu.featureide.fm.core.RangeClassFeature;
+import de.ovgu.featureide.fm.ui.editors.featuremodel.layouts.FeatureDiagramLayoutHelper;
 
 /**
  * TODO description
@@ -40,9 +44,9 @@ public class SetTypeRangeOperation extends AbstractFeatureModelOperation {
 	private static final String LABEL = "Range";
 	private Feature feature;
 	private Object viewer;
-	private Feature newFeature;
+	private Feature newFeature1;
+	private Feature newFeature2;
 	private Object diagramEditor;
-	private ClassificationFeature classificationfeature;
 
 	public SetTypeRangeOperation(Feature feature,
 			Object viewer, FeatureModel featureModel, Object diagramEditor) {
@@ -61,15 +65,60 @@ public class SetTypeRangeOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		classificationfeature = (ClassificationFeature)feature;
-		this.classificationfeature.dataType = null;
+		int number = 0;
+		
+		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
+		
+		//Abhi : Automatically Add two Class Nodes when the Classification Type is Range
+		//Create Min Node
+		newFeature1 = new RangeClassFeature(featureModel, "ClassNode" + number); //Abhi
+		((RangeClassFeature) newFeature1).setMin(true);
+		((RangeClassFeature) newFeature1).setValue("1");
+	
+		featureModel.addFeature(newFeature1);
+		feature = featureModel.getFeature(feature.getName());
+		feature.addChild(newFeature1);
+		FeatureDiagramLayoutHelper.initializeLayerFeaturePosition(featureModel, newFeature1, feature);
+		
+		/*
+		 * the model must be refreshed here else the new feature will not be found
+		 */
+		featureModel.handleModelDataChanged();
 
+		// Create Max Node
+		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
+		newFeature2 = new RangeClassFeature(featureModel, "ClassNode" + number); //Abhi
+		((RangeClassFeature) newFeature2).setMin(false);
+		((RangeClassFeature) newFeature2).setValue("10");
+	
+		featureModel.addFeature(newFeature2);
+		feature = featureModel.getFeature(feature.getName());
+		feature.addChild(newFeature2);
+		FeatureDiagramLayoutHelper.initializeLayerFeaturePosition(featureModel, newFeature2, feature);
+		
+		/*
+		 * the model must be refreshed here else the new feature will not be found
+		 */
+		featureModel.handleModelDataChanged();
+		//Abhi : Automatically Add two Class Nodes when the Classification Type is Boolean
+		
+		
+		((ClassificationFeature) this.feature).setDataType(FeatureConstants.TYPE_RANGE); //Abhi
+		/*
+		 * the model must be refreshed here else the new feature will not be found
+		 */
+		featureModel.handleModelDataChanged();
 	}
 
 	@Override
 	protected void undo() {
-		String[] name = this.feature.getName().split("*");
-		this.classificationfeature.setName(name[0].toString());
+		((ClassificationFeature) this.feature).setDataType(null); //Abhi
+		
+		newFeature1 = featureModel.getFeature(newFeature1.getName());
+		featureModel.deleteFeature(newFeature1);
+		
+		newFeature2 = featureModel.getFeature(newFeature2.getName());
+		featureModel.deleteFeature(newFeature2);
 		
 	}
 }

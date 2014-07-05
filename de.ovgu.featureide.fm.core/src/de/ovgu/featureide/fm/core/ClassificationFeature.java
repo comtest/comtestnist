@@ -39,7 +39,7 @@ import org.prop4j.NodeWriter;
 //Just a wrapper around feature
 public class ClassificationFeature extends Feature {
 
-	public String dataType; //Abhi
+	private String dataType; //Abhi
 	
 	public ClassificationFeature(FeatureModel featureModel, String name) {
 		super(featureModel, name);

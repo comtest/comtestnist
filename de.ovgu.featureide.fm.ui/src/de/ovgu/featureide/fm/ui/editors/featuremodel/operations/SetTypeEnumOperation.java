@@ -33,6 +33,7 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator;
@@ -49,18 +50,16 @@ import de.ovgu.featureide.fm.ui.editors.featuremodel.layouts.FeatureDiagramLayou
 public class SetTypeEnumOperation extends AbstractFeatureModelOperation {
 
 	private static final String LABEL = "Enum";
-	private Feature feature;
 	private Object viewer;
-	private Feature newFeature;
+	private Feature feature;
 	private Object diagramEditor;
-	private ClassificationFeature classificationfeature;
 
 	public SetTypeEnumOperation(Feature feature,
 			Object viewer, FeatureModel featureModel, Object diagramEditor) {
 		super(featureModel, LABEL);
-		this.feature = feature;
 		this.viewer = viewer;
 		this.diagramEditor = diagramEditor;
+		this.feature = feature;
 	}
 
 	@Override
@@ -72,14 +71,13 @@ public class SetTypeEnumOperation extends AbstractFeatureModelOperation {
 
 	@Override
 	protected void redo() {
-		classificationfeature = (ClassificationFeature)feature;
-		this.classificationfeature.dataType = "Enum"; //Abhi
+		((ClassificationFeature) this.feature).setDataType(FeatureConstants.TYPE_ENUM); //Abhi
 
 	}
 
 	@Override
 	protected void undo() {
-		this.classificationfeature.dataType = null;
+		((ClassificationFeature) this.feature).setDataType(null);
 		
 	}
 }

@@ -63,14 +63,17 @@ public class ModelLayoutEditPolicy extends LayoutEditPolicy {
 		if (child instanceof ConstraintEditPart)
 			return new ConstraintMoveEditPolicy((ConstraintEditPart) child,
 					this);
+		//Abhi 
 		if (child instanceof FeatureEditPart)
 			return new FeatureMoveEditPolicy((FeatureEditPart) child, this);
-		if (child instanceof LegendEditPart)
-			return new LegendMoveEditPolicy((LegendEditPart) child, this);
+		//if (child instanceof LegendEditPart)
+			//return new LegendMoveEditPolicy((LegendEditPart) child, this);
+		//Abhi
 		return null;
 	}
 
-	@Override
+	//Abhi
+	/*@Override
 	protected Command getMoveChildrenCommand(Request request) {
 		cmd = null;
 		if (request instanceof ChangeBoundsRequest) {
@@ -115,7 +118,7 @@ public class ModelLayoutEditPolicy extends LayoutEditPolicy {
 			}
 		}
 		return cmd;
-	}
+	}*/
 
 	public Command getConstraintCommand() {
 		return cmd;
@@ -125,6 +128,16 @@ public class ModelLayoutEditPolicy extends LayoutEditPolicy {
 	protected Command getCreateCommand(CreateRequest request) {
 		// no creation supported
 		
+		return null;
+	}
+
+	//Abhi
+	/* (non-Javadoc)
+	 * @see org.eclipse.gef.editpolicies.LayoutEditPolicy#getMoveChildrenCommand(org.eclipse.gef.Request)
+	 */
+	@Override
+	protected Command getMoveChildrenCommand(Request request) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

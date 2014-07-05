@@ -39,6 +39,7 @@ import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.ui.PlatformUI;
 
+import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.Constraint;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureConnection;
@@ -223,6 +224,14 @@ public class FeatureEditPart extends AbstractGraphicalEditPart implements
 		} else if (ATTRIBUTE_CHANGED.equals(prop)) {
 			getFeatureFigure().setProperties();
 		}
+		//Abhi
+		else if(VALUE_CHANGED.equals(prop))
+		{
+			getFeatureFigure().setName(((ClassFeature)getFeature()).getValue());
+			FeatureUIHelper.setSize(getFeature(), getFeatureFigure()
+					.getSize());
+		}
+		//Abhi
 	}
 
 }

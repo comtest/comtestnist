@@ -373,7 +373,8 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			menu.add(createConstraintAction);
 			menu.add(renameAction);
 			//menu.add(deleteAction); //Abhi
-			menu.add(deleteAllAction);
+			if(selectionAction.isNodeRangeClass == false)
+				menu.add(deleteAllAction);
 			menu.add(new Separator());
 			//connectionEntrys(menu);//Abhi
 			//menu.add(mandatoryAction); //Abhi
@@ -386,7 +387,7 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			//menu.add(subMenuLayout); //Abhi
 			//menu.add(subMenuCalculations); //Abhi
 			menu.add(new Separator());
-			if(selectionAction.isClassificationNodeSelected == true)
+			if(selectionAction.isClassificationNodeSelected == true && selectionAction.isTypeSet == false)
 				menu.add(subMenuTypeSet);
 
 			//menu.add(reverseOrderAction);

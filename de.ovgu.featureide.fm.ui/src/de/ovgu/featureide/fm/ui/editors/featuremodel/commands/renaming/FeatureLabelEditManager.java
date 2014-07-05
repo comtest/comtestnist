@@ -27,6 +27,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.ToolTip;
 
+import de.ovgu.featureide.fm.core.ClassFeature;
+import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.GUIDefaults;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart;
@@ -42,6 +45,8 @@ import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart;
 public class FeatureLabelEditManager extends DirectEditManager implements GUIDefaults {
 
 	private FeatureModel featureModel;
+	//Abhi
+	private ClassFeature classfeature;
 
 	public FeatureLabelEditManager(FeatureEditPart editpart, Class<?> editorType, 
 			FeatureCellEditorLocator locator, FeatureModel featureModel) {
@@ -49,12 +54,26 @@ public class FeatureLabelEditManager extends DirectEditManager implements GUIDef
 		this.featureModel = featureModel;
 	}
 	
+	//Abhi (Special Handling for the Class Feature since we need to show VALUE instead of NAME)
+	public FeatureLabelEditManager(FeatureEditPart editpart, Class<?> editorType, 
+			FeatureCellEditorLocator locator, FeatureModel featureModel, ClassFeature classFeature) {
+		super(editpart, editorType, locator);
+		this.featureModel = featureModel;
+		//Abhi
+		this.classfeature = classFeature;
+	}
+	
 	
 	@Override
 	protected void initCellEditor() {
 		final CellEditor cellEditor = getCellEditor();
 		final Control control = cellEditor.getControl();
-		final String oldValue = ((FeatureEditPart) getEditPart()).getFeature().getName();
+		//Abhi we want to set the value based on the KIND of the NODE
+		// If class Node we want to show the value and not the name
+		
+		final String oldValue = (((FeatureEditPart) getEditPart()).getFeature()) instanceof ClassFeature ?
+								((ClassFeature) ((FeatureEditPart) getEditPart()).getFeature()).getValue() : ((FeatureEditPart) getEditPart()).getFeature().getName();
+
 		
 		control.setFont(DEFAULT_FONT);
 		cellEditor.setValue(oldValue);
@@ -65,15 +84,33 @@ public class FeatureLabelEditManager extends DirectEditManager implements GUIDef
 			public void editorValueChanged(boolean oldValidState, boolean newValidState) {
 				closeTooltip();
 				String value = (String) cellEditor.getValue();
-				if (!value.equals(oldValue)) {
+				//If we have Class Feature we do not call these rules.
+				
+				// TODO #Abhi - We might have to add own rules. Need to think about this.
+				if (!value.equals(oldValue) && ((FeatureEditPart) getEditPart()).getFeature().kind != FeatureKind.Class
+						&& ((FeatureEditPart) getEditPart()).getFeature().kind != FeatureKind.RangeClass) 
+				{
 					if (value.equalsIgnoreCase(oldValue)) {
-						createTooltip("It is not recommended to change upper and lower case. You currently try to rename " + oldValue + " to " + value + ".", SWT.ICON_WARNING);
+						createTooltip("It is not recommended to change upper and lower case. You currently try to rename " + oldValue + " to " + value + ".", SWT.ICON_WARNING, "Invalid Name");
 					// TODO #455 wrong usage of extension
 					} else if ((!featureModel.getFMComposerExtension().isValidFeatureName(value))) {
-						createTooltip(featureModel.getFMComposerExtension().getErroMessage(), SWT.ICON_ERROR);
+						createTooltip(featureModel.getFMComposerExtension().getErroMessage(), SWT.ICON_ERROR, "Invalid Name");
 					} else if (featureModel.getFeatureNames().contains(value)) {
-						createTooltip("This name is already used for another feature.", SWT.ICON_ERROR);
+						createTooltip("This name is already used for another feature.", SWT.ICON_ERROR, "Invalid Name");
 					}
+				}
+				
+				else if(!value.equals(oldValue) && (((FeatureEditPart) getEditPart()).getFeature().kind == FeatureKind.Class
+												   || ((FeatureEditPart) getEditPart()).getFeature().kind == FeatureKind.RangeClass ))
+				{
+					if(isInteger(oldValue))
+					{
+						if(isInteger(value) == false)
+						{
+							createTooltip("Invalid Entry. Please enter an Integer", SWT.ICON_ERROR, "Invalid Value");
+						}
+					}
+						
 				}
 			}
 			
@@ -81,14 +118,24 @@ public class FeatureLabelEditManager extends DirectEditManager implements GUIDef
 				closeTooltip();
 			}
 			
+			public boolean isInteger(String s) {
+			    try { 
+			        Integer.parseInt(s); 
+			    } catch(NumberFormatException e) { 
+			        return false; 
+			    }
+			    // only got here if we didn't return false
+			    return true;
+			}
+			
 			public void applyEditorValue() {
 				closeTooltip();
 			}
-			private void createTooltip(String message, int icon) {
+			private void createTooltip(String message, int icon, String titleText) {
 				tooltip = new ToolTip(control.getShell(), SWT.BALLOON | icon);
 				tooltip.setAutoHide(false);
 				tooltip.setLocation(control.toDisplay(control.getSize().x/2, control.getSize().y + 5));
-				tooltip.setText("Invalid Name");
+				tooltip.setText(titleText);
 				tooltip.setMessage(message);
 				tooltip.setVisible(true);
 			}
