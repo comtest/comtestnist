@@ -15,8 +15,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
+import java.util.List;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -120,7 +127,7 @@ public class ActiveResourceExtractor {
 					IDialogConstants.CANCEL_LABEL}, 0);
 		
 		//Path currentRelativePath = Paths.get("");
-		String s = System.getProperty("user.dir");
+		//String s = System.getProperty("user.dir");
 		
 					
 		int choose=-1;
@@ -130,6 +137,8 @@ public class ActiveResourceExtractor {
 				) {
 			
 			choose = 0;
+			file = ActiveResourceExtractor.extractResource().getLocation().toOSString();
+			
 
 //			choose=open.open();
 //			if( choose==0){
@@ -151,7 +160,9 @@ public class ActiveResourceExtractor {
 			file = ComBFileSelection.open();
 		}
 		
-		File tempFile = new File("/Users/waymantan/Desktop/citlfiles/Phone.citl");
+		String path = file.substring(0,file.lastIndexOf(File.separator));
+		
+		File tempFile = new File(path + File.separator + "Phone.citl");
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter(tempFile);
@@ -172,6 +183,19 @@ public class ActiveResourceExtractor {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IWorkspaceRoot root = workspace.getRoot();
+		List<IProject> prjs = Arrays.asList(root.getProjects());
+		if (prjs !=null)
+		for (IProject p : prjs){
+			try {
+				p.refreshLocal(IResource.DEPTH_INFINITE, null);
+			} catch (CoreException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 		return tempFile.getAbsolutePath();
