@@ -7,10 +7,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.eclipse.core.filesystem.EFS;
-import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
@@ -39,13 +37,11 @@ public class JUnitExporter extends ICitLabTestSuiteExporter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		IWorkbenchWindow window = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow();
-		IWorkbenchPage page = window.getActivePage();
-		IFileStore outputFile;
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow()
+				.getActivePage();
 		try {
-			outputFile = EFS.getStore(javaFilePath.toUri());
-			IDE.openEditorOnFileStore(page, outputFile);
+			IDE.openEditorOnFileStore(page, EFS.getStore(javaFilePath.toUri()));
 		} catch (PartInitException e1) {
 			// TODO Auto-generated catch block
 			 e1.printStackTrace();
