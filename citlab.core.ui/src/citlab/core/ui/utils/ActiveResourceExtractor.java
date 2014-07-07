@@ -185,6 +185,7 @@ public class ActiveResourceExtractor {
 			e.printStackTrace();
 		}
 		
+		// Refresh the project workspace in eclipse
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IWorkspaceRoot root = workspace.getRoot();
 		List<IProject> prjs = Arrays.asList(root.getProjects());
