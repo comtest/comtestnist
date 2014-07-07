@@ -40,10 +40,10 @@ public class Junit_Feature_Model {
 		System.out.println("Unit Test : test_Feature_Model_Root_Creation");
 		
 		FeatureModel featureModel = new FeatureModel();
-		assertNull(featureModel.getRootFeature());
+		assertNull(featureModel.getRoot());
 		featureModel.createDefaultValues("Testing");
 		
-		Feature root = featureModel.getRootFeature();
+		Feature root = featureModel.getRoot();
 		
 		
 		assertNotNull(root);
