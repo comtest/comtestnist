@@ -4,7 +4,8 @@ Bundle-Name: Feature Model Core Plug-in
 Bundle-SymbolicName: de.ovgu.featureide.fm.core;singleton:=true
 Bundle-Version: 2.7.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.core.resources
+ org.eclipse.core.resources,
+ org.junit;bundle-version="4.11.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: Jakarta.DRAttributes,
  Jakarta.SwingUtils;uses:="javax.swing",
