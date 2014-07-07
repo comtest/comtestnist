@@ -43,10 +43,10 @@ public class Junit_Feature_Model_Operation {
 		System.out.println("Unit Test : test_Feature_Model_Root_Classification");
 		
 		FeatureModel featureModel = new FeatureModel();
-		assertNull(featureModel.getRootFeature());
+		assertNull(featureModel.getRoot());
 		featureModel.createDefaultValues("Testing_With_Classification_Node");
 		
-		Feature root = featureModel.getRootFeature();
+		Feature root = featureModel.getRoot();
 		assertNotNull(root);
 		assertEquals("Testing_With_Classification_Node",root.getName());	 
 		assertEquals(1, featureModel.getFeatureTable().size());
