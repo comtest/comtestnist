@@ -82,7 +82,8 @@ public class XmlClassificationTreeModelWriter extends AbstractFeatureModelWriter
 	 * @param doc document to write
 	 */
     protected void createXmlDoc(Document doc) {
-    	// debug
+    	// debug 
+    	// debug 2
     	System.out.println("debug xml writing");
         Element root = doc.createElement(FEATURE_MODEL);
     	Element struct = doc.createElement(STRUCT);
