@@ -119,6 +119,20 @@ public class Feature implements PropertyConstants, PropertyChangeListener {
 	
 	public FeatureKind kind; //Abhi 
 	
+	/**
+	 * @return the kind
+	 */
+	public FeatureKind getKind() {
+		return kind;
+	}
+
+	/**
+	 * @param kind the kind to set
+	 */
+	public void setKind(FeatureKind kind) {
+		this.kind = kind;
+	}
+
 	private String name;
 
 	private boolean mandatory = false;
