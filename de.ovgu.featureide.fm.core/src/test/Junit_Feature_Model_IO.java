@@ -41,10 +41,10 @@ public class Junit_Feature_Model_IO {
 		System.out.println("Unit Test : test_Feature_Model_Root_IO");
 		
 		FeatureModel featureModel = new FeatureModel();
-		assertNull(featureModel.getRootFeature());
+		assertNull(featureModel.getRoot());
 		featureModel.createDefaultValues("Testing_For_IO");
 		
-		Feature root = featureModel.getRootFeature();
+		Feature root = featureModel.getRoot();
 		assertNotNull(root);
 		assertEquals("Testing_For_IO",root.getName());	 
 		assertEquals(1, featureModel.getFeatureTable().size());
