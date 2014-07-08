@@ -44,13 +44,8 @@ public class Junit_Feature_Model {
 		featureModel.createDefaultValues("Testing");
 		
 		Feature root = featureModel.getRoot();
-		
-		
 		assertNotNull(root);
-		
 		assertEquals("Testing",root.getName());	 
-		
-		
 		assertEquals(1, featureModel.getFeatureTable().size());
 
 	}
