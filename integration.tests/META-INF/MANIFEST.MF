@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: integration.tests
+Bundle-Version: 1.0.0.qualifier
+Export-Package: integration.tests
+Require-Bundle: de.ovgu.featureide.fm.core;bundle-version="2.7.0",
+ de.ovgu.featureide.ui;bundle-version="2.7.0",
+ citlab.core;bundle-version="1.0.0",
+ citlab.core.ui;bundle-version="1.0.0",
+ citlab.generator.ipo;bundle-version="1.0.0",
+ citlab.importer.featureide;bundle-version="1.0.0",
+ citlab.tsexporter.junit;bundle-version="1.0.0",
+ citlab.tsexporter.csv;bundle-version="1.0.0"
