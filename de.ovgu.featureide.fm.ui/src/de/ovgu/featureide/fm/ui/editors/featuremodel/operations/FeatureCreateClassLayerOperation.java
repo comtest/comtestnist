@@ -74,6 +74,7 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 	protected void redo() {
 		int number = 0;
 
+
 		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
 		
 		newFeature = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
@@ -81,11 +82,11 @@ public class FeatureCreateClassLayerOperation extends AbstractFeatureModelOperat
 
 		if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_INTEGER)
 		{
-			((ClassFeature) newFeature).setValue("1"); //Abhi -- Setting some default value to the feature.
+			((ClassFeature) newFeature).setValue(String.valueOf(number)); //Abhi -- Setting some default value to the feature.
 		}
 		else if(((ClassificationFeature) feature).getDataType() == FeatureConstants.TYPE_ENUM)
 		{
-			((ClassFeature) newFeature).setValue("SampleEnum"); //Abhi -- Setting some default value to the feature.
+			((ClassFeature) newFeature).setValue("Enum" + number); //Abhi -- Setting some default value to the feature.
 		}
 
 		
