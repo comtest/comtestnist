@@ -22,10 +22,18 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import org.junit.Test;
 
+import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
+import de.ovgu.featureide.fm.core.Feature.FeatureKind;
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelReader;
+import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelWriter;
 
 /**
  * TODO description
@@ -36,7 +44,7 @@ public class Junit_Feature_Model_IO {
 
 	// TODO : dkrew : need to work on this
 	@Test
-	public void test_Feature_Model_Root_IO() {
+	public void test_Feature_Model_Root_IO() throws FileNotFoundException, UnsupportedModelException {
 	
 		System.out.println("Unit Test : test_Feature_Model_Root_IO");
 		
@@ -48,6 +56,42 @@ public class Junit_Feature_Model_IO {
 		assertNotNull(root);
 		assertEquals("Testing_For_IO",root.getName());	 
 		assertEquals(1, featureModel.getFeatureTable().size());
+		
+
+		
+		// Following the REDO logic from the operator
+		Feature newFeature = new ClassificationFeature(featureModel, "Testing_Classification_Node");
+		featureModel.addFeature(newFeature);
+		Feature feature = featureModel.getFeature(root.getName());
+		feature.addChild(newFeature);
+		
+		XmlClassificationTreeModelWriter writer = new XmlClassificationTreeModelWriter(featureModel);
+		
+		// Creating file for testing
+		File file = new File("testing.file");
+		writer.writeToFile(file);
+
+
+		// Using a new feature model
+		FeatureModel featureModel_Read = new FeatureModel();
+		XmlClassificationTreeModelReader reader = new XmlClassificationTreeModelReader(featureModel_Read);
+		reader.readFromFile(file);
+		
+		//System.out.println(featureModel_Read.toString());
+//		System.out.println(featureModel_Read.getFeatureNames());
+	
+		Feature root_from_read = featureModel_Read.getFeature("Testing_For_IO");
+		assertNotNull(root_from_read);
+		
+		Feature classification_node_from_read = featureModel_Read.getFeature("Testing_Classification_Node");
+		assertNotNull(classification_node_from_read);
+		
+		
+		
+		
+		// Cleaning up the file for testing
+		file.delete();
+		
 		
 		
 
