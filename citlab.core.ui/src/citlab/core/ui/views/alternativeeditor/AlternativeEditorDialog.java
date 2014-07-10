@@ -219,41 +219,29 @@ public class AlternativeEditorDialog extends Dialog {
 		btnOK.setText("OK");
 		txtProjectName.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				// debug
-				projectName = txtProjectName.getText();
-				fileName = txtFileName.getText();
-				
-				btnOK.setEnabled(false);
-				if(txtProjectName.getText()!=null && txtFileName.getText()!=null)
-				{
-					if (txtProjectName.getText().charAt(0) != ' ' && 
-							!txtProjectName.getText().equals("") &&
-							txtFileName.getText().charAt(0) != ' ' && 
-							!txtFileName.getText().equals(""))
-						btnOK.setEnabled(true);
-				} 
+				toggleButton(btnOK);
 			}
 		});
 		
 		txtFileName.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				// debug
-				projectName = txtProjectName.getText();
-				fileName = txtFileName.getText();
-				
-				btnOK.setEnabled(false);
-				if(txtProjectName.getText()!=null && txtFileName.getText()!=null)
-				{
-					if (txtProjectName.getText().charAt(0) != ' ' && 
-							!txtProjectName.getText().equals("") &&
-							txtFileName.getText().charAt(0) != ' ' && 
-							!txtFileName.getText().equals(""))
-						btnOK.setEnabled(true);
-				}
+				toggleButton(btnOK);			
 			}
 		});
 		
 		return container;
+	}
+	
+	protected void toggleButton(Button btn) {
+		if(txtProjectName.getText()!=null && 
+				!txtProjectName.getText().equals("") &&
+				txtProjectName.getText().charAt(0) != ' ' &&
+				txtFileName.getText()!=null && 
+				!txtFileName.getText().equals("") &&
+				txtFileName.getText().charAt(0) != ' ' )
+			btn.setEnabled(true);
+		else
+			btn.setEnabled(false);
 	}
 
 	/**
@@ -298,4 +286,6 @@ public class AlternativeEditorDialog extends Dialog {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
+	
+	
 }

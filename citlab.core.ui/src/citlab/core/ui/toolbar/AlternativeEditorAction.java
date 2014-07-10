@@ -76,8 +76,7 @@ public class AlternativeEditorAction extends Action {
 					.createExecutableExtension("AlternativeEditorPrototype");
 
 			if (o instanceof ICitLabAlternativeEditor) {
-				AlternativeEditorDialog alternativeEditorDialog = new AlternativeEditorDialog(parent,
-						extension);
+				AlternativeEditorDialog alternativeEditorDialog = new AlternativeEditorDialog(parent, extension);
 				alternativeEditorDialog.open();
 
 			} else
