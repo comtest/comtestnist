@@ -143,6 +143,6 @@ public class NewFeatureModelWizard extends Wizard implements INewWizard {
 			page = new NewFeatureModelWizardPage("", javaElement.getResource().getProject());
 		} else {
 			page = new NewFeatureModelWizardPage("", null);
-		}
+		}	
 	}
 }

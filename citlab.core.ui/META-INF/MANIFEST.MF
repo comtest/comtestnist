@@ -29,4 +29,9 @@ Export-Package: citlab.core.ui;uses:="org.eclipse.jface.resource,org.eclipse.ui.
  citlab.core.ui.views.importer
 Bundle-ClassPath: .,
  swt-grouplayout.jar
-Import-Package: org.junit
+Import-Package: de.ovgu.featureide.fm.core,
+ de.ovgu.featureide.fm.core.io,
+ de.ovgu.featureide.fm.core.io.xml,
+ de.ovgu.featureide.fm.ui,
+ de.ovgu.featureide.fm.ui.wizards,
+ org.junit

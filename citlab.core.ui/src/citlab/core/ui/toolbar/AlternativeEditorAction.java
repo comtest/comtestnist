@@ -8,6 +8,7 @@
  * Contributors:
  *   Paolo Vavassori - initial API and implementation
  *   Angelo Gargantini - utils and architecture
+ *   Wayman Tan - add this class
  ******************************************************************************/
 package citlab.core.ui.toolbar;
 
@@ -38,8 +39,10 @@ import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 import citlab.core.ext.ICitLabExporter;
+import citlab.core.ext.ICitLabImporter;
 import citlab.core.ext.ICitLabModelProcessor;
 import citlab.core.ui.views.exporter.CoderDialog;
+import citlab.core.ui.views.importer.ImporterDialog;
 import citlab.core.ui.utils.ActiveResourceExtractor;
 import citlab.model.citL.CitModel;
 import de.ovgu.featureide.fm.core.FeatureModel;
@@ -48,85 +51,39 @@ import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelWriter;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
 import de.ovgu.featureide.fm.ui.wizards.NewFeatureModelWizard;
 
-public class CoderAction extends Action {
+public class AlternativeEditorAction extends Action {
 	private Shell parent;
 	private IConfigurationElement extension;
-	private CitModel citModel = null;
 	
-
-	public CoderAction(IConfigurationElement extension, Shell parent) {
+	public AlternativeEditorAction(IConfigurationElement extension, Shell parent) {
 		super();
 		this.extension = extension;
 		this.parent = parent;
 		Bundle bundle = Platform.getBundle("citlab.core.ui");
 
 		ImageDescriptor myImage = ImageDescriptor.createFromURL(FileLocator
-				.find(bundle, new Path("icons/c.png"), null));
+				.find(bundle, new Path("icons/i.gif"), null));
 		this.setImageDescriptor(myImage);
 
 	};
 
 	@Override
 	public void run() {
+		try {
+			final Object o = extension
+					.createExecutableExtension("AlternativeEditorPrototype");
 
-		final String file = ActiveResourceExtractor.citlFileSelect();
-		if (file != null && !file.equals(""))
-			try {
+			if (o instanceof ICitLabImporter) {
+				ImporterDialog coderDialog = new ImporterDialog(parent,
+						extension);
+				coderDialog.open();
 
-				final Object o = extension
-						.createExecutableExtension("CoderPrototype");
+			} else
+				showMessage("The importer class is not valid");
 
-				if (o instanceof ICitLabExporter) {
-					ISafeRunnable runnable = new ISafeRunnable() {
-						@Override
-						public void handleException(Throwable exception) {
-							System.out.println("Exception in client");
-						}
-
-						@Override
-						public void run() throws Exception {
-							citModel = ICitLabModelProcessor.getModel(file);
-
-						}
-					};
-					SafeRunner.run(runnable);
-					// Wayman debug
-//					if (citModel != null) {
-//						CoderDialog genDialog = new CoderDialog(parent,citModel, extension,file.substring(0,file.lastIndexOf(File.separator)));
-//						genDialog.open();
-//					} else
-//						showMessage("The ComB CitModel is not valid");
-					
-					String path = file.substring(0,file.lastIndexOf(File.separator));
-					File tempFile = new File(path + File.separator + "newtree.xml");
-					
-					FeatureModel featureModel = new FeatureModel();
-					featureModel.createDefaultValues("");
-					featureModel.initFMComposerExtension(null);
-					
-					// wayman
-					new FeatureModelWriterIFileWrapper(new XmlClassificationTreeModelWriter(featureModel)).writeToFile(tempFile);
-					
-					// Refresh the project workspace in eclipse
-					IWorkspace workspace = ResourcesPlugin.getWorkspace();
-					IWorkspaceRoot root = workspace.getRoot();
-					List<IProject> prjs = Arrays.asList(root.getProjects());
-					if (prjs !=null)
-					for (IProject p : prjs){
-						try {
-							p.refreshLocal(IResource.DEPTH_INFINITE, null);
-						} catch (CoreException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-					
-				}
-
-			} catch (CoreException ex) {
-				System.out.println(ex.getMessage());
-			}
-		
+		} catch (CoreException ex) {
+			System.out.println(ex.getMessage());
+		}		
 	}
 
 	private void showMessage(String message) {
