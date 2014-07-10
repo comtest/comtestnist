@@ -53,12 +53,8 @@ public class GeneratorAction extends Action {
 	@Override
 	public void run() {
 
-		//final String file = ActiveResourceExtractor.citlFileSelect();
+		final String file = ActiveResourceExtractor.citlFileSelect();
 		
-		final String file = ActiveResourceExtractor.citlFileConversion();
-		
-		
-
 		if (file != null && !file.equals(""))
 			try {
 
