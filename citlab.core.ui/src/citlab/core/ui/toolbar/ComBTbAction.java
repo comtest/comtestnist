@@ -76,6 +76,10 @@ public class ComBTbAction implements IWorkbenchWindowPulldownDelegate {
 			menuManager.addMenuListener(new IMenuListener() {
 				@Override
 				public void menuAboutToShow(IMenuManager manager) {
+					// wayman
+					menuManager.add(new Separator("Alternative Editors"));
+					ComBTbAction.this.fillContextMenuWithId(manager,
+							"citlab.core.AlternativeEditors");
 					menuManager.add(new Separator("Importers"));
 					ComBTbAction.this.fillContextMenuWithId(manager,
 							"citlab.core.importers");
@@ -115,6 +119,12 @@ public class ComBTbAction implements IWorkbenchWindowPulldownDelegate {
 						ImporterAction importer = new ImporterAction (EX[i], parent);
 						importer.setText(EX[i].getAttribute("Name"));
 						menuManager.add(importer);
+					}
+					// wayman
+					if (id.equals("citlab.core.AlternativeEditors")) {
+						AlternativeEditorAction alternativeEditor = new AlternativeEditorAction (EX[i], parent);
+						alternativeEditor.setText(EX[i].getAttribute("Name"));
+						menuManager.add(alternativeEditor);
 					}
 				}
 

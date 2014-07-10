@@ -38,9 +38,11 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
+import citlab.core.ext.ICitLabAlternativeEditor;
 import citlab.core.ext.ICitLabExporter;
 import citlab.core.ext.ICitLabImporter;
 import citlab.core.ext.ICitLabModelProcessor;
+import citlab.core.ui.views.alternativeeditor.AlternativeEditorDialog;
 import citlab.core.ui.views.exporter.CoderDialog;
 import citlab.core.ui.views.importer.ImporterDialog;
 import citlab.core.ui.utils.ActiveResourceExtractor;
@@ -73,13 +75,13 @@ public class AlternativeEditorAction extends Action {
 			final Object o = extension
 					.createExecutableExtension("AlternativeEditorPrototype");
 
-			if (o instanceof ICitLabImporter) {
-				ImporterDialog coderDialog = new ImporterDialog(parent,
+			if (o instanceof ICitLabAlternativeEditor) {
+				AlternativeEditorDialog alternativeEditorDialog = new AlternativeEditorDialog(parent,
 						extension);
-				coderDialog.open();
+				alternativeEditorDialog.open();
 
 			} else
-				showMessage("The importer class is not valid");
+				showMessage("The alternative editor class is not valid");
 
 		} catch (CoreException ex) {
 			System.out.println(ex.getMessage());

@@ -17,7 +17,9 @@ Require-Bundle:
  org.eclipse.ui.views,
  org.eclipse.gef,
  de.ovgu.featureide.fm.core,
- org.junit;bundle-version="4.11.0"
+ org.junit;bundle-version="4.11.0",
+ citlab.core;bundle-version="1.0.0",
+ citlab.model;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: de.ovgu.featureide.fm.ui,
  de.ovgu.featureide.fm.ui.actions,

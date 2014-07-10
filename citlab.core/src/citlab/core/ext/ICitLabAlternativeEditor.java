@@ -22,7 +22,5 @@ public abstract class ICitLabAlternativeEditor {
 	 * @param newFileName
 	 * @return
 	 */
-	public abstract void openEditor (String newFileName);
-
-	
+	public abstract void openEditor (String projectName, String fileName) throws InvalidAlternativeEditorException;	
 }

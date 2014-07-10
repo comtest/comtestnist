@@ -15,12 +15,27 @@ package citlab.core.ui.views.alternativeeditor;
 
 
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.beans.PojoObservables;
+import org.eclipse.core.databinding.observable.list.WritableList;
+import org.eclipse.core.databinding.observable.map.IObservableMap;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -37,22 +52,39 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+import org.eclipse.jface.databinding.viewers.ObservableMapLabelProvider;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.ide.IDE;
 import org.eclipse.xtext.parsetree.reconstr.Serializer;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -61,6 +93,7 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 
 import citlab.core.ext.CitLabException;
+import citlab.core.ext.ICitLabAlternativeEditor;
 import citlab.core.ext.ICitLabImporter;
 import citlab.core.ext.NotValidModelException;
 import citlab.model.citL.CitModel;
@@ -72,17 +105,14 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 public class AlternativeEditorDialog extends Dialog {
-	private Resource resource;
-	private CitModel result;
 	private IConfigurationElement element;
-	private String fileExtension;
-	private String path;
-	private Serializer SERIALIZER;
-	private XtextResourceSet resourceSet;
-	private Button btnNewButton_1;
-	private Button btnSimplify;
-	private StyledText preview;
-	private TreeViewer treeViewer;
+	private List<IProject> prjs;
+	private Table tableProjects;
+	private TableViewer tableViewer;
+	private String fileName = "newfile";
+	private String projectName= "newProject";
+	private Text txtFileName;
+	private Text txtProjectName;
 	
 
 	/**
@@ -94,86 +124,145 @@ public class AlternativeEditorDialog extends Dialog {
 		super(parentShell);
 		setShellStyle(SWT.CLOSE | SWT.MIN | SWT.MAX);
 		this.element = element;
-		Injector injector = Guice
-				.createInjector(new citlab.model.CitLRuntimeModule());
-		resourceSet = injector.getInstance(XtextResourceSet.class);
-		SERIALIZER = injector.getInstance(Serializer.class);
-
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		IWorkspaceRoot root = workspace.getRoot();
+		prjs= Arrays.asList(root.getProjects());
 	}
 
 	/**
 	 * Create contents of the dialog.
 	 * 
 	 * @param parent
-	 * @param lblNewLabel
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite container = (Composite) super.createDialogArea(parent);
-		container.setLayout(null);
-		preview = new StyledText(container, SWT.BORDER | SWT.V_SCROLL| SWT.H_SCROLL);
-		preview.setDoubleClickEnabled(false);
-		preview.setEditable(false);
-		preview.setBounds(90, 10, 430, 308);
-		if (element.getAttribute("OtherToolLanguage") != null)
-			preview.setText(element.getAttribute("OtherToolLanguage")
-					.toUpperCase());
-		treeViewer = new TreeViewer(container, SWT.BORDER);
-		Tree tree = treeViewer.getTree();
-		tree.setBounds(545, 10, 248, 308);
-		btnNewButton_1 = new Button(container, SWT.NONE);
-		btnNewButton_1.setEnabled(false);
-		btnNewButton_1.setGrayed(true);
-		btnNewButton_1.addSelectionListener(new SelectionAdapter() {
+		
+		final Label nameLabel = new Label(container, SWT.NONE);
+		nameLabel.setText("New File Name");
+		txtFileName = new Text(container, SWT.BORDER);
+		txtFileName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		final Button rdBtnCreateProject = new Button(container, SWT.CHECK);
+		rdBtnCreateProject.setText("Create Project");
+		
+		txtProjectName = new Text(container, SWT.BORDER);		
+		txtProjectName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+		final Button rdBtnSelectProject = new Button(container, SWT.CHECK);		
+		rdBtnSelectProject.setText("Select Project");
+		rdBtnCreateProject.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				PrjSelectionDialog prj = new PrjSelectionDialog(getShell(),
-						SERIALIZER, result);
-				prj.open();
-				close();
+				rdBtnCreateProject.setSelection(true);
+				rdBtnSelectProject.setSelection(false);
+				tableProjects.setEnabled(false);
+				txtProjectName.setEnabled(true);
 			}
 		});
-
-		btnNewButton_1.setBounds(10, 71, 74, 41);
-		btnNewButton_1.setText("Save/edit");
-		btnSimplify = new Button(container, SWT.NONE);
-		btnSimplify.addSelectionListener(new SelectionAdapter() {
+		rdBtnCreateProject.setSelection(true);
+		rdBtnSelectProject.setSelection(false);
+		tableViewer = new TableViewer(container, SWT.BORDER | SWT.FULL_SELECTION);
+		tableProjects = tableViewer.getTable();
+		tableProjects.setHeaderVisible(true);
+		tableProjects.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		tableProjects.setEnabled(false);
+		txtProjectName.setEnabled(true);
+		
+		
+		rdBtnSelectProject.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				result = new Simplificator(result).getSimplifiedVersion();
-				result.setName(result.getName() + "_smp");
-				fillPreview(result, preview, treeViewer, result.getName()
-						+ ".citl");
-
+				rdBtnCreateProject.setSelection(false);
+				rdBtnSelectProject.setSelection(true);
+				tableProjects.setEnabled(true);
+				txtProjectName.setEnabled(false);
 			}
-		});
-		btnSimplify.setText("Simplify");
-		btnSimplify.setGrayed(true);
-		btnSimplify.setEnabled(false);
-		btnSimplify.setBounds(10, 118, 74, 41);
-		Button btnNewButton = new Button(container, SWT.NONE);
-		btnNewButton.setBounds(10, 10, 74, 41);
-		btnNewButton.addSelectionListener(new SelectionAdapter() {
-
+		});	
+		
+		TableColumn tblclmnName = new TableColumn(tableProjects, SWT.NONE);
+		tblclmnName.setWidth(100);
+		tblclmnName.setText("Name");
+		
+		TableColumn tblclmnNewColumn = new TableColumn(tableProjects, SWT.NONE);
+		tblclmnNewColumn.setWidth(403);
+		tblclmnNewColumn.setText("Path");
+		
+		final Button btnOK = new Button(container, SWT.NONE);
+		btnOK.setEnabled(false);
+		GridData gd_btnNewButton = new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1);
+		gd_btnNewButton.widthHint = 223;
+		btnOK.setLayoutData(gd_btnNewButton);
+		btnOK.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {
-				openSelected();
+			public void widgetSelected(SelectionEvent e) {	          
+				try {
+					final Object o = element
+							.createExecutableExtension("AlternativeEditorPrototype");
+
+					if (o instanceof ICitLabAlternativeEditor) {
+						((ICitLabAlternativeEditor) o).openEditor(txtProjectName.getText(), txtFileName.getText());
+					}					
+					close();
+				} catch (CitLabException e1) {
+					MessageBox m =new MessageBox(getShell(),SWT.ERROR);
+					m.setMessage("Alternative editor not Valid \n" + e1.getTrace());
+					m.open();
+					e1.printStackTrace();
+				} catch (CoreException e1) {
+					MessageBox m =new MessageBox(getShell(),SWT.ERROR);
+					m.setMessage("Alternative editor not Valid");
+					e1.printStackTrace();
+				}
+			}			
+		});
+		btnOK.setText("OK");
+		txtProjectName.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				// debug
+				projectName = txtProjectName.getText();
+				fileName = txtFileName.getText();
+				
+				btnOK.setEnabled(false);
+				if(txtProjectName.getText()!=null && txtFileName.getText()!=null)
+				{
+					if (txtProjectName.getText().charAt(0) != ' ' && 
+							!txtProjectName.getText().equals("") &&
+							txtFileName.getText().charAt(0) != ' ' && 
+							!txtFileName.getText().equals(""))
+						btnOK.setEnabled(true);
+				} 
 			}
 		});
-		btnNewButton.setText("Open");
-
+		
+		txtFileName.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent e) {
+				// debug
+				projectName = txtProjectName.getText();
+				fileName = txtFileName.getText();
+				
+				btnOK.setEnabled(false);
+				if(txtProjectName.getText()!=null && txtFileName.getText()!=null)
+				{
+					if (txtProjectName.getText().charAt(0) != ' ' && 
+							!txtProjectName.getText().equals("") &&
+							txtFileName.getText().charAt(0) != ' ' && 
+							!txtFileName.getText().equals(""))
+						btnOK.setEnabled(true);
+				}
+			}
+		});
+		
 		return container;
 	}
 
 	/**
 	 * Create contents of the button bar.
-	 * 
 	 * @param parent
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
-		createButton(parent, IDialogConstants.CANCEL_ID,
-				IDialogConstants.CANCEL_LABEL, false);
+		initDataBindings();
 	}
 
 	/**
@@ -181,176 +270,32 @@ public class AlternativeEditorDialog extends Dialog {
 	 */
 	@Override
 	protected Point getInitialSize() {
-		return new Point(832, 411);
+		return new Point(532, 483);
+	}
+	protected DataBindingContext initDataBindings() {
+		DataBindingContext bindingContext = new DataBindingContext();
+		//
+		ObservableListContentProvider listContentProvider = new ObservableListContentProvider();
+		IObservableMap[] observeMaps = PojoObservables.observeMaps(listContentProvider.getKnownElements(), IProject.class, new String[]{"name", "locationURI.path"});
+		tableViewer.setLabelProvider(new ObservableMapLabelProvider(observeMaps));
+		tableViewer.setContentProvider(listContentProvider);
+		//
+		WritableList writableList = new WritableList(prjs, IProject.class);
+		tableViewer.setInput(writableList);
+		//
+		IObservableValue tableViewerObserveSingleSelection = ViewersObservables.observeSingleSelection(tableViewer);
+		IObservableValue tableViewerAccessibleObserveDetailValue = PojoObservables.observeDetailValue(tableViewerObserveSingleSelection, "name", String.class);
+		IObservableValue textTextObserveValue = PojoObservables.observeValue(txtProjectName, "text");
+		bindingContext.bindValue(tableViewerAccessibleObserveDetailValue, textTextObserveValue, null, null);
+		//
+		return bindingContext;
 	}
 
-	private void initializedFileDialog(FileDialog fileDialog) {
-		final String[] extensions = { "*.*" };
-		fileDialog.setFilterExtensions(extensions);
-		fileDialog.setFilterPath(Platform.getLocation().toOSString());
-
+	public String getProjectName() {
+		return projectName;
 	}
 
-	private void fillPreview(CitModel result, StyledText preview,
-			TreeViewer treeViewer, String uri) {
-      if(result==null){
-    	  preview.setText("");
-    	  if(treeViewer.getInput() != null)
-    	  treeViewer.setInput(null);
-    	  return;
-      }
-		if (resource == null)
-			resource = resourceSet.createResource(URI.createFileURI(uri));
-		else {
-			resource.getContents().clear();
-			resource.setURI(URI.createFileURI(uri));
-
-		}
-		resource.getContents().add(result);
-		Injector injector = Guice
-				.createInjector(new citlab.model.CitLRuntimeModule());
-		IResourceValidator validator = injector
-				.getInstance(IResourceValidator.class);
-		List<Issue> list = validator.validate(resource, CheckMode.ALL,CancelIndicator.NullImpl);
-		if (list.isEmpty())
-		{
-			
-
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			@SuppressWarnings("rawtypes")
-			Map options = new HashMap();
-			try {
-				resource.save(outputStream, options);
-				preview.setText(outputStream.toString());
-
-			} catch (IOException e) {
-				preview.setText("ERROR");
-				// TODO Auto-generated catch block
-				MessageDialog.openError(getShell(), "ERROR", e.toString());
-			}
-
-			ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-			adapterFactory
-					.addAdapterFactory(new ResourceItemProviderAdapterFactory());
-			adapterFactory.addAdapterFactory(new CitLAdapterFactory());
-			adapterFactory
-					.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-			treeViewer.setContentProvider(new AdapterFactoryContentProvider(
-					adapterFactory));
-
-			treeViewer.setLabelProvider(new AdapterFactoryLabelProvider(
-					adapterFactory));
-			treeViewer.setInput(result.eResource().getResourceSet());
-		}	
-		else{
-			NotValidModelException e = new NotValidModelException("THE MODEL CONTAINS ERRORS\n");
-			for (Issue issue : list) {
-				e.setTrace(issue.toString().concat(" "+e.getTrace()+"\n"));
-				System.err.println(issue);
-			}
-			throw e;
-		}
-		
-	}
-
-	private void openSelected() {
-		result=null;
-		Job open = new Job("Model Importing") {
-		private String trace="";
-         @Inject Shell shell;
-			@Override
-			protected IStatus run(final IProgressMonitor monitor) {
-
-				
-					try {
-						final Object o = element
-								.createExecutableExtension("ImporterPrototype");
-
-						if (o instanceof ICitLabImporter) {
-							ISafeRunnable runnable = new ISafeRunnable() {
-
-								@Override
-								public void handleException(Throwable exception) {
-									System.out.println("Exception in client");
-								}
-
-								@Override
-								public void run() throws Exception {
-
-									// ResourceSet resourceSet = new
-									// ResourceSetImpl();
-									// Register XML resource factory
-									// resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("citl",
-									// new XMIResourceFactoryImpl());
-                                    
-									try {
-										result = ((ICitLabImporter) o)
-												.importModel(path);
-									} catch (CitLabException e){
-										trace=e.getTrace();
-										
-									}catch (Exception e) {
-										e.printStackTrace();
-									}
-
-									
-
-								}
-							};
-							monitor.beginTask("IMPORTING",IProgressMonitor.UNKNOWN );
-							SafeRunner.run(runnable);
-							if (monitor.isCanceled())
-								return Status.CANCEL_STATUS;
-							monitor.done();
-							monitor.setCanceled(true);
-						}
-
-					} catch (CoreException ex) {
-						System.out.println(ex.getMessage());
-					}
-
-				
-				Display.getDefault().asyncExec(new Runnable() {
-
-					@Override
-					public void run() {
-						String name;
-						if(result != null)
-						 name =result.getName() + ".citl" ;
-						else name="";
-						fillPreview(result, preview, treeViewer,
-								name);
-						if (result != null) {
-							btnNewButton_1.setEnabled(true);
-							btnSimplify.setEnabled(true);
-
-							
-							MessageDialog.openInformation(shell, "Complete", "Model correctly imported");
-							
-						} else{
-							btnNewButton_1.setEnabled(false);
-						btnSimplify.setEnabled(false);
-
-						
-						MessageDialog.openError(shell, "Error", "Model not importable \n"+trace);
-					//		throw new RuntimeException(
-						//			"Output null problem with  parsing");
-						}
-
-					}
-
-				});
-				return Status.OK_STATUS;
-			}
-		};
-		FileDialog ComBFileSelection = new FileDialog(getShell());
-		initializedFileDialog(ComBFileSelection);
-		path = ComBFileSelection.open();
-		if (path != null && !path.equals("")) {
-		open.setPriority(Job.INTERACTIVE);
-		open.setUser(true);
-
-		open.schedule();}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
 	}
 }

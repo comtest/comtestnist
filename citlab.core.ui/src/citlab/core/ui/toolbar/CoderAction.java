@@ -90,36 +90,37 @@ public class CoderAction extends Action {
 						}
 					};
 					SafeRunner.run(runnable);
+					
+					if (citModel != null) {
+						CoderDialog genDialog = new CoderDialog(parent,citModel, extension,file.substring(0,file.lastIndexOf(File.separator)));
+						genDialog.open();
+					} else
+						showMessage("The ComB CitModel is not valid");
+					
 					// Wayman debug
-//					if (citModel != null) {
-//						CoderDialog genDialog = new CoderDialog(parent,citModel, extension,file.substring(0,file.lastIndexOf(File.separator)));
-//						genDialog.open();
-//					} else
-//						showMessage("The ComB CitModel is not valid");
-					
-					String path = file.substring(0,file.lastIndexOf(File.separator));
-					File tempFile = new File(path + File.separator + "newtree.xml");
-					
-					FeatureModel featureModel = new FeatureModel();
-					featureModel.createDefaultValues("");
-					featureModel.initFMComposerExtension(null);
-					
-					// wayman
-					new FeatureModelWriterIFileWrapper(new XmlClassificationTreeModelWriter(featureModel)).writeToFile(tempFile);
-					
-					// Refresh the project workspace in eclipse
-					IWorkspace workspace = ResourcesPlugin.getWorkspace();
-					IWorkspaceRoot root = workspace.getRoot();
-					List<IProject> prjs = Arrays.asList(root.getProjects());
-					if (prjs !=null)
-					for (IProject p : prjs){
-						try {
-							p.refreshLocal(IResource.DEPTH_INFINITE, null);
-						} catch (CoreException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
+//					String path = file.substring(0,file.lastIndexOf(File.separator));
+//					File tempFile = new File(path + File.separator + "newtree.xml");
+//					
+//					FeatureModel featureModel = new FeatureModel();
+//					featureModel.createDefaultValues("");
+//					featureModel.initFMComposerExtension(null);
+//					
+//					// wayman
+//					new FeatureModelWriterIFileWrapper(new XmlClassificationTreeModelWriter(featureModel)).writeToFile(tempFile);
+//					
+//					// Refresh the project workspace in eclipse
+//					IWorkspace workspace = ResourcesPlugin.getWorkspace();
+//					IWorkspaceRoot root = workspace.getRoot();
+//					List<IProject> prjs = Arrays.asList(root.getProjects());
+//					if (prjs !=null)
+//					for (IProject p : prjs){
+//						try {
+//							p.refreshLocal(IResource.DEPTH_INFINITE, null);
+//						} catch (CoreException e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
+//					}
 					
 				}
 
