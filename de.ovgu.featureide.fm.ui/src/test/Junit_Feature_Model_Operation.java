@@ -30,6 +30,7 @@ import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation;
 
+
 /**
  * TODO description
  * 
@@ -66,9 +67,6 @@ public class Junit_Feature_Model_Operation {
 		assertEquals(2, featureModel.getFeatures().size());
 		assertEquals(1 , root.getChildrenCount());
 		assertTrue(root.getChildren().get(0).getKind().equals(FeatureKind.Classification));
-		
-		
-		
 		
 	}
 	
