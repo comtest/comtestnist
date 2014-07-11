@@ -1,10 +1,7 @@
 package citlab.externaltool.casa;
 
 import citlab.model.citL.CitModel;
-import citlab.model.citL.Element;
 import citlab.model.citL.Enumerative;
-import citlab.model.citL.EnumerativeType;
-import citlab.model.citL.ModelUtils;
 import citlab.model.citL.Numbers;
 import citlab.model.citL.Parameter;
 import citlab.model.citL.Range;
@@ -40,21 +37,12 @@ public class ToCasaParametersExporter {
   
   public CharSequence toCasaCode(final CitModel sm, final int n) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append(n, "");
-    _builder.newLineIfNotEmpty();
-    EList<Parameter> _parameters = sm.getParameters();
-    int _size = _parameters.size();
-    _builder.append(_size, "");
-    _builder.newLineIfNotEmpty();
-    {
-      EList<Parameter> _parameters_1 = sm.getParameters();
-      for(final Parameter param : _parameters_1) {
-        CharSequence _size_1 = this.getSize(param);
-        _builder.append(_size_1, "");
-        _builder.append(" ");
-      }
-    }
-    _builder.newLineIfNotEmpty();
+    _builder.append("\ufffd\ufffdn\ufffd\ufffd");
+    _builder.newLine();
+    _builder.append("\ufffd\ufffdsm.getParameters.size\ufffd\ufffd");
+    _builder.newLine();
+    _builder.append("\ufffd\ufffdFOR param :sm.getParameters\ufffd\ufffd\ufffd\ufffdparam.getSize\ufffd\ufffd \ufffd\ufffdENDFOR\ufffd\ufffd");
+    _builder.newLine();
     return _builder;
   }
   
@@ -65,10 +53,7 @@ public class ToCasaParametersExporter {
       if (param instanceof Enumerative) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        EnumerativeType _enumerativeType = ModelUtils.getEnumerativeType(((Enumerative) param));
-        EList<Element> _elements = _enumerativeType.getElements();
-        int _size = _elements.size();
-        _builder.append(_size, "");
+        _builder.append("\ufffd\ufffdModelUtils::getEnumerativeType(param as Enumerative).elements.size\ufffd\ufffd");
         _switchResult = _builder;
       }
     }
@@ -84,9 +69,7 @@ public class ToCasaParametersExporter {
       if (param instanceof Numbers) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        EList<Integer> _values = ((Numbers) param).getValues();
-        int _size = _values.size();
-        _builder.append(_size, "");
+        _builder.append("\ufffd\ufffd(param as Numbers).getValues.size\ufffd\ufffd");
         _switchResult = _builder;
       }
     }
@@ -98,21 +81,11 @@ public class ToCasaParametersExporter {
         boolean _notEquals = (_step != 0);
         if (_notEquals) {
           StringConcatenation _builder = new StringConcatenation();
-          Integer _end = ((Range) param).getEnd();
-          Integer _begin = ((Range) param).getBegin();
-          int _minus = ((_end).intValue() - (_begin).intValue());
-          int _step_1 = ((Range) param).getStep();
-          int _divide = (_minus / (((Integer) Integer.valueOf(_step_1))).intValue());
-          String _string = Integer.valueOf(_divide).toString();
-          _builder.append(_string, "");
+          _builder.append("\ufffd\ufffd(((param as Range).end-(param as Range).begin)/(param as Range).step as Integer).toString\ufffd\ufffd");
           _xifexpression = _builder;
         } else {
           StringConcatenation _builder_1 = new StringConcatenation();
-          Integer _end_1 = ((Range) param).getEnd();
-          Integer _begin_1 = ((Range) param).getBegin();
-          int _minus_1 = ((_end_1).intValue() - (_begin_1).intValue());
-          String _string_1 = ((Integer) Integer.valueOf(_minus_1)).toString();
-          _builder_1.append(_string_1, "");
+          _builder_1.append("\ufffd\ufffd(((param as Range).end-(param as Range).begin) as Integer).toString\ufffd\ufffd");
           _xifexpression = _builder_1;
         }
         _switchResult = _xifexpression;
