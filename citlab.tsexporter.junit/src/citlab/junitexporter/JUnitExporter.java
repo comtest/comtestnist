@@ -8,6 +8,8 @@ import java.nio.file.Path;
 
 import org.eclipse.core.filesystem.EFS;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -23,32 +25,19 @@ public class JUnitExporter extends ICitLabTestSuiteExporter {
 
 	@Override
 	public void generateOutput(TestSuite input, String fileName) {
-		Path javaFilePath = FileSystems.getDefault().getPath(fileName);
-		String csvFileName = fileName.substring(0, fileName.length() - 4) + "csv";
-		CVSExporter cvsExporter = new CVSExporter();
-		cvsExporter.generateOutput(input, csvFileName);
-		String header = getJUnitParamsHeader(input, fileName);
-		String annotation = getJunitAnnotation(input, csvFileName);
-		try {
-			BufferedWriter fileWriter = Files.newBufferedWriter(javaFilePath, StandardCharsets.UTF_8);
-			fileWriter.write(header);
-			fileWriter.write(annotation);
-			fileWriter.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		Path filePath = FileSystems.getDefault().getPath(fileName);
+		if(! Files.exists(filePath)) {
+			new CVSExporter().generateOutput(input, fileName);
 		}
-		IWorkbenchPage page = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow()
-				.getActivePage();
-		try {
-			IDE.openEditorOnFileStore(page, EFS.getStore(javaFilePath.toUri()));
-		} catch (PartInitException e1) {
-			// TODO Auto-generated catch block
-			 e1.printStackTrace();
-		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		JUnitTemplateWizard junitWizard = new JUnitTemplateWizard(
+				PlatformUI.getWorkbench(),
+				input,
+				fileName);
+		WizardDialog wd = new WizardDialog(
+				Display.getDefault().getActiveShell(),
+				junitWizard
+			);
+		wd.open();
 	}
 
 	private String getJunitAnnotation(TestSuite input, String csvFileName) {
