@@ -45,7 +45,11 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 	public JUnitTemplateWizard(IWorkbench workbench,
 			TestSuite testSuite, String osSafeCsvFilePath) {
 		super();
-		this.init(workbench, StructuredSelection.EMPTY);
+		if(this.getSelection() == null) {
+			this.init(workbench, StructuredSelection.EMPTY);
+		} else {
+			this.init(workbench, this.getSelection());
+		}
 		this.testSuite = testSuite;
 		this.osSafeCsvFilePath = osSafeCsvFilePath;
 	}
