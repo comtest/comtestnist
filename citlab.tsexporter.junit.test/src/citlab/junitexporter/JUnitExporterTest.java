@@ -32,14 +32,17 @@ public class JUnitExporterTest {
 	public TemporaryFolder tmpDir = new TemporaryFolder();
 
 	private TestSuite testSuite;
-	private String templateName;
-	private String templateSuffix;
-	private String testSuiteSuffix;
+	private String testSuiteName;
 	
 	@Before
 	public void createTestData() {
+		testSuite = createTestSuite();
+		testSuiteName = "param42.csv";
+	}
+
+	private TestSuite createTestSuite() {
 		TestsuiteFactory tsFact = TestsuiteFactory.eINSTANCE;
-		testSuite = tsFact.createTestSuite();
+		TestSuite testSuite = tsFact.createTestSuite();
 		assertNotNull(testSuite);
 
 		citlab.testsuite.Test testCase = tsFact.createTest();
@@ -61,25 +64,24 @@ public class JUnitExporterTest {
 			testCase.getAssignments().add(assignment);
 		}
 		testSuite.getTests().add(testCase);
-		templateName = "TestExporter";
-		templateSuffix = ".java";
-		testSuiteSuffix = ".csv";
+		return testSuite;
 	}
 
 	/**
 	 * Test method for {@link citlab.junitexporter.JUnitExporter#generateOutput(citlab.testsuite.TestSuite, java.lang.String)}.
+	 * This method tests if a new csv file is created when one does not exists.
 	 * @throws IOException When temporary file can not be created
 	 */
 	@Test
 	public void testGenerateOutput() throws IOException {
 		JUnitExporter junitExporter = new JUnitExporter();
-		String templatePrefix = tmpDir.newFolder("test").getPath()
-				+ "/" + templateName;
-		junitExporter.generateOutput(
-				testSuite,
-				templatePrefix + templateSuffix);
-		assertTrue(Files.exists(Paths.get(templatePrefix + templateSuffix)));
-		assertTrue(Files.exists(Paths.get(templatePrefix + testSuiteSuffix)));
+		String testSuiteFileName = tmpDir.newFolder("test").getPath() + "/" + testSuiteName;
+		//assert that file does not exists before
+		assertTrue(! Files.exists(Paths.get(testSuiteFileName)));
+		//then call the generateOutput method
+		junitExporter.generateOutput(testSuite, testSuiteFileName);
+		//and assert that the testSuite is exported
+		assertTrue(Files.exists(Paths.get(testSuiteFileName)));
 	}
 
 	@After
