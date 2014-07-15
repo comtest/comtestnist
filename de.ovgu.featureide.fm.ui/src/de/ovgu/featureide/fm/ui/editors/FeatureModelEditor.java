@@ -382,11 +382,24 @@ public class FeatureModelEditor extends MultiPageEditorPart implements
 		//changes to OldPageIndex from inside these methods
 		//(used to block page changes in case of errors in the model)
 		oldPageIndex = newPageIndex;
-		getPage(oldPageIndex).pageChangeFrom(newPageIndex);
-		getPage(newPageIndex).pageChangeTo(oldPage);
-
 		
-		super.pageChange(newPageIndex);
+		// wayman
+		IFeatureModelEditorPage oldFMPage = getPage(oldPageIndex);
+		if (oldFMPage != null) {
+			oldFMPage.pageChangeFrom(newPageIndex);
+		}
+		
+		IFeatureModelEditorPage newFMPage = getPage(newPageIndex);
+		if (newFMPage != null) {
+			newFMPage.pageChangeTo(oldPage);
+			super.pageChange(newPageIndex);			
+		}
+//			
+//		getPage(oldPageIndex).pageChangeFrom(newPageIndex);
+//		getPage(newPageIndex).pageChangeTo(oldPage);
+//
+//		
+//		super.pageChange(newPageIndex);
 	}
 
 	/**
