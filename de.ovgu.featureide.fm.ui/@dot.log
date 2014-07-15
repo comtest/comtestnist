@@ -1,0 +1,814 @@
+# 7/14/14 9:28:44 PM EDT
+# Eclipse Compiler for Java(TM) v20140114-1555, 3.9.2, Copyright IBM Corp 2000, 2013. All rights reserved.
+----------
+1. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/citlabextension/ClassificationTreeEditorForCitLab.java (at line 23)
+	import java.io.ByteArrayInputStream;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import java.io.ByteArrayInputStream is never used
+----------
+2. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/citlabextension/ClassificationTreeEditorForCitLab.java (at line 24)
+	import java.io.InputStream;
+	       ^^^^^^^^^^^^^^^^^^^
+The import java.io.InputStream is never used
+----------
+3. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/citlabextension/ClassificationTreeEditorForCitLab.java (at line 37)
+	import org.eclipse.ui.IWorkbench;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.IWorkbench is never used
+----------
+4. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/citlabextension/ClassificationTreeEditorForCitLab.java (at line 40)
+	import org.eclipse.ui.PartInitException;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.PartInitException is never used
+----------
+5. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/citlabextension/ClassificationTreeEditorForCitLab.java (at line 42)
+	import org.eclipse.ui.ide.IDE;
+	       ^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.ide.IDE is never used
+----------
+----------
+6. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 74)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.AndAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.AndAction is never used
+----------
+7. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 80)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateCompoundAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateCompoundAction is never used
+----------
+8. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 90)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.MandatoryAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.MandatoryAction is never used
+----------
+9. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 91)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.OrAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.OrAction is never used
+----------
+10. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 100)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.AutomatedCalculationsAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.AutomatedCalculationsAction is never used
+----------
+11. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 101)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.ConstrainsCalculationsAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.ConstrainsCalculationsAction is never used
+----------
+12. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 102)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.FeaturesOnlyCalculationAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.FeaturesOnlyCalculationAction is never used
+----------
+13. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 103)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.RedundantConstrainsCalculationsAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.RedundantConstrainsCalculationsAction is never used
+----------
+14. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 104)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.RunManualCalculationsAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.calculations.RunManualCalculationsAction is never used
+----------
+15. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 157)
+	private LegendAction legendAction;
+	                     ^^^^^^^^^^^^
+The value of the field FeatureDiagramEditor.legendAction is not used
+----------
+16. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 163)
+	private ReverseOrderAction reverseOrderAction;
+	                           ^^^^^^^^^^^^^^^^^^
+The value of the field FeatureDiagramEditor.reverseOrderAction is not used
+----------
+17. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureDiagramEditor.java (at line 404)
+	else if(1==2){ //Abhi Purposeful Dead Code
+		//else if (andAction.isEnabled() || orAction.isEnabled()
+			//	|| alternativeAction.isEnabled()) {
+			//connectionEntrys(menu);
+		} else {
+	             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Dead code
+----------
+----------
+18. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureModelEditor.java (at line 82)
+	import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader is never used
+----------
+19. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/FeatureModelEditor.java (at line 83)
+	import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter is never used
+----------
+----------
+20. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/AdvancedConfigurationPage.java (at line 31)
+	import org.eclipse.jface.viewers.DoubleClickEvent;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.DoubleClickEvent is never used
+----------
+21. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/AdvancedConfigurationPage.java (at line 32)
+	import org.eclipse.jface.viewers.IDoubleClickListener;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.IDoubleClickListener is never used
+----------
+----------
+22. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationEditor.java (at line 34)
+	import javax.annotation.CheckForNull;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Access restriction: The type CheckForNull is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+23. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationEditor.java (at line 35)
+	import javax.annotation.Nonnull;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^
+Access restriction: The type Nonnull is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+24. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationEditor.java (at line 79)
+	import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelReader is never used
+----------
+25. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationEditor.java (at line 107)
+	@Nonnull
+	 ^^^^^^^
+Access restriction: The type Nonnull is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+26. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationEditor.java (at line 263)
+	@CheckForNull
+	 ^^^^^^^^^^^^
+Access restriction: The type CheckForNull is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+----------
+27. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationTreeViewer.java (at line 27)
+	import org.eclipse.jface.viewers.DoubleClickEvent;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.DoubleClickEvent is never used
+----------
+28. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationTreeViewer.java (at line 28)
+	import org.eclipse.jface.viewers.IDoubleClickListener;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.IDoubleClickListener is never used
+----------
+29. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationTreeViewer.java (at line 29)
+	import org.eclipse.jface.viewers.ITreeSelection;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.ITreeSelection is never used
+----------
+30. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationTreeViewer.java (at line 34)
+	import de.ovgu.featureide.fm.core.configuration.Configuration;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.configuration.Configuration is never used
+----------
+31. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationTreeViewer.java (at line 35)
+	import de.ovgu.featureide.fm.core.configuration.SelectableFeature;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.configuration.SelectableFeature is never used
+----------
+32. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/configuration/ConfigurationTreeViewer.java (at line 36)
+	import de.ovgu.featureide.fm.core.configuration.Selection;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.configuration.Selection is never used
+----------
+----------
+33. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/GUIBasics.java (at line 23)
+	import javax.annotation.CheckReturnValue;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Access restriction: The type CheckReturnValue is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+34. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/GUIBasics.java (at line 35)
+	@CheckReturnValue
+	 ^^^^^^^^^^^^^^^^
+Access restriction: The type CheckReturnValue is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+----------
+35. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/GUIDefaults.java (at line 38)
+	import de.ovgu.featureide.fm.ui.properties.FMPropertyManager;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.properties.FMPropertyManager is never used
+----------
+----------
+36. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/AbstractConstraintEditorAction.java (at line 33)
+	import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter is never used
+----------
+----------
+37. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/CreateClassLayerAction.java (at line 35)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation is never used
+----------
+----------
+38. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/CreateCompositionLayerAction.java (at line 33)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation is never used
+----------
+----------
+39. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeBooleanAction.java (at line 25)
+	import org.eclipse.jface.resource.ImageDescriptor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.resource.ImageDescriptor is never used
+----------
+40. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeBooleanAction.java (at line 27)
+	import org.eclipse.ui.ISharedImages;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.ISharedImages is never used
+----------
+41. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeBooleanAction.java (at line 35)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassLayerOperation;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassLayerOperation is never used
+----------
+----------
+42. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeEnumAction.java (at line 25)
+	import org.eclipse.jface.resource.ImageDescriptor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.resource.ImageDescriptor is never used
+----------
+43. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeEnumAction.java (at line 27)
+	import org.eclipse.ui.ISharedImages;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.ISharedImages is never used
+----------
+----------
+44. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeIntegerAction.java (at line 26)
+	import org.eclipse.jface.resource.ImageDescriptor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.resource.ImageDescriptor is never used
+----------
+45. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeIntegerAction.java (at line 28)
+	import org.eclipse.ui.ISharedImages;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.ISharedImages is never used
+----------
+46. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeIntegerAction.java (at line 36)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation is never used
+----------
+----------
+47. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeRangeAction.java (at line 25)
+	import org.eclipse.jface.resource.ImageDescriptor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.resource.ImageDescriptor is never used
+----------
+48. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/actions/SetTypeRangeAction.java (at line 27)
+	import org.eclipse.ui.ISharedImages;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.ISharedImages is never used
+----------
+----------
+49. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/commands/FeatureValueChangeCommand.java (at line 31)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureRenamingOperation;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureRenamingOperation is never used
+----------
+----------
+50. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/commands/renaming/FeatureLabelEditManager.java (at line 31)
+	import de.ovgu.featureide.fm.core.Feature;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.Feature is never used
+----------
+51. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/commands/renaming/FeatureLabelEditManager.java (at line 49)
+	private ClassFeature classfeature;
+	                     ^^^^^^^^^^^^
+The value of the field FeatureLabelEditManager.classfeature is not used
+----------
+----------
+52. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 26)
+	import org.eclipse.core.commands.ExecutionException;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.core.commands.ExecutionException is never used
+----------
+53. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 27)
+	import org.eclipse.core.commands.operations.IUndoContext;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.core.commands.operations.IUndoContext is never used
+----------
+54. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 29)
+	import org.eclipse.draw2d.GridLayout;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.GridLayout is never used
+----------
+55. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 31)
+	import org.eclipse.draw2d.Label;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.Label is never used
+----------
+56. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 41)
+	import org.eclipse.ui.PlatformUI;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.PlatformUI is never used
+----------
+57. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 47)
+	import de.ovgu.featureide.fm.ui.FMUIPlugin;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.FMUIPlugin is never used
+----------
+58. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 48)
+	import de.ovgu.featureide.fm.ui.editors.FeatureDiagramExtension;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.FeatureDiagramExtension is never used
+----------
+59. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 49)
+	import de.ovgu.featureide.fm.ui.editors.FeatureUIHelper;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.FeatureUIHelper is never used
+----------
+60. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 51)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.figures.CircleDecoration;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.figures.CircleDecoration is never used
+----------
+61. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 52)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.figures.RelationDecoration;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.figures.RelationDecoration is never used
+----------
+62. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 53)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureChangeGroupTypeOperation;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureChangeGroupTypeOperation is never used
+----------
+63. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 65)
+	private Figure toolTipContent = new Figure();
+	               ^^^^^^^^^^^^^^
+The value of the field ConnectionEditPart.toolTipContent is not used
+----------
+64. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 138)
+	private FeatureModel getFeatureModel() {
+	                     ^^^^^^^^^^^^^^^^^
+The method getFeatureModel() from the type ConnectionEditPart is never used locally
+----------
+65. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 159)
+	Feature source = ((FeatureConnection) getModel()).getSource();
+	        ^^^^^^
+The value of the local variable source is not used
+----------
+66. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 161)
+	Feature target = ((FeatureConnection) getModel()).getTarget();
+	        ^^^^^^
+The value of the local variable target is not used
+----------
+67. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 163)
+	boolean parentHidden = false;
+	        ^^^^^^^^^^^^
+The value of the local variable parentHidden is not used
+----------
+68. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 182)
+	Feature target = connectionModel.getTarget();
+	        ^^^^^^
+The value of the local variable target is not used
+----------
+69. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/ConnectionEditPart.java (at line 183)
+	RotatableDecoration targetDecoration = null;
+	                    ^^^^^^^^^^^^^^^^
+The value of the local variable targetDecoration is not used
+----------
+----------
+70. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/FeatureEditPart.java (at line 28)
+	import org.eclipse.core.commands.ExecutionException;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.core.commands.ExecutionException is never used
+----------
+71. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/FeatureEditPart.java (at line 29)
+	import org.eclipse.core.commands.operations.IUndoContext;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.core.commands.operations.IUndoContext is never used
+----------
+72. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/FeatureEditPart.java (at line 40)
+	import org.eclipse.ui.PlatformUI;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.ui.PlatformUI is never used
+----------
+73. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/FeatureEditPart.java (at line 48)
+	import de.ovgu.featureide.fm.ui.FMUIPlugin;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.FMUIPlugin is never used
+----------
+74. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/editparts/FeatureEditPart.java (at line 53)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureSetMandatoryOperation;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureSetMandatoryOperation is never used
+----------
+----------
+75. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/figures/FeatureFigure.java (at line 72)
+	private static String FEATURE = " feature ";
+	                      ^^^^^^^
+The value of the field FeatureFigure.FEATURE is not used
+----------
+----------
+76. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/DeleteOperation.java (at line 50)
+	import de.ovgu.featureide.fm.ui.editors.FeatureModelEditor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.FeatureModelEditor is never used
+----------
+77. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/DeleteOperation.java (at line 54)
+	import de.ovgu.featureide.fm.ui.views.outline.FmOutlinePage;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.views.outline.FmOutlinePage is never used
+----------
+----------
+78. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/FeatureValueChangeOperation.java (at line 28)
+	import de.ovgu.featureide.fm.core.Feature.FeatureKind;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.Feature.FeatureKind is never used
+----------
+----------
+79. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 28)
+	import org.eclipse.gef.tools.DirectEditManager;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.gef.tools.DirectEditManager is never used
+----------
+80. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 29)
+	import org.eclipse.gef.ui.parts.GraphicalViewerImpl;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.gef.ui.parts.GraphicalViewerImpl is never used
+----------
+81. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 30)
+	import org.eclipse.jface.viewers.StructuredSelection;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.StructuredSelection is never used
+----------
+82. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 31)
+	import org.eclipse.jface.viewers.TextCellEditor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.TextCellEditor is never used
+----------
+83. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 38)
+	import de.ovgu.featureide.fm.core.Feature.FeatureKind;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.Feature.FeatureKind is never used
+----------
+84. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 39)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator is never used
+----------
+85. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 40)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureLabelEditManager;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureLabelEditManager is never used
+----------
+86. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 41)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart is never used
+----------
+87. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 52)
+	private Object viewer;
+	               ^^^^^^
+The value of the field SetTypeBooleanOperation.viewer is not used
+----------
+88. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeBooleanOperation.java (at line 54)
+	private Object diagramEditor;
+	               ^^^^^^^^^^^^^
+The value of the field SetTypeBooleanOperation.diagramEditor is not used
+----------
+----------
+89. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 28)
+	import org.eclipse.gef.tools.DirectEditManager;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.gef.tools.DirectEditManager is never used
+----------
+90. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 29)
+	import org.eclipse.gef.ui.parts.GraphicalViewerImpl;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.gef.ui.parts.GraphicalViewerImpl is never used
+----------
+91. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 30)
+	import org.eclipse.jface.viewers.StructuredSelection;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.StructuredSelection is never used
+----------
+92. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 31)
+	import org.eclipse.jface.viewers.TextCellEditor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.TextCellEditor is never used
+----------
+93. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 33)
+	import de.ovgu.featureide.fm.core.ClassFeature;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.ClassFeature is never used
+----------
+94. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 38)
+	import de.ovgu.featureide.fm.core.Feature.FeatureKind;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.Feature.FeatureKind is never used
+----------
+95. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 39)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator is never used
+----------
+96. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 40)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureLabelEditManager;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureLabelEditManager is never used
+----------
+97. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 41)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart is never used
+----------
+98. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 42)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.layouts.FeatureDiagramLayoutHelper;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.layouts.FeatureDiagramLayoutHelper is never used
+----------
+99. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 53)
+	private Object viewer;
+	               ^^^^^^
+The value of the field SetTypeEnumOperation.viewer is not used
+----------
+100. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeEnumOperation.java (at line 55)
+	private Object diagramEditor;
+	               ^^^^^^^^^^^^^
+The value of the field SetTypeEnumOperation.diagramEditor is not used
+----------
+----------
+101. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 27)
+	import org.eclipse.gef.tools.DirectEditManager;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.gef.tools.DirectEditManager is never used
+----------
+102. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 28)
+	import org.eclipse.gef.ui.parts.GraphicalViewerImpl;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.gef.ui.parts.GraphicalViewerImpl is never used
+----------
+103. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 29)
+	import org.eclipse.jface.viewers.StructuredSelection;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.StructuredSelection is never used
+----------
+104. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 30)
+	import org.eclipse.jface.viewers.TextCellEditor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.TextCellEditor is never used
+----------
+105. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 32)
+	import de.ovgu.featureide.fm.core.ClassFeature;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.ClassFeature is never used
+----------
+106. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 37)
+	import de.ovgu.featureide.fm.core.Feature.FeatureKind;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.Feature.FeatureKind is never used
+----------
+107. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 38)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureCellEditorLocator is never used
+----------
+108. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 39)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureLabelEditManager;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.renaming.FeatureLabelEditManager is never used
+----------
+109. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 40)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.FeatureEditPart is never used
+----------
+110. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 41)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.layouts.FeatureDiagramLayoutHelper;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.layouts.FeatureDiagramLayoutHelper is never used
+----------
+111. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 51)
+	private Object viewer;
+	               ^^^^^^
+The value of the field SetTypeIntegerOperation.viewer is not used
+----------
+112. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeIntegerOperation.java (at line 53)
+	private Object diagramEditor;
+	               ^^^^^^^^^^^^^
+The value of the field SetTypeIntegerOperation.diagramEditor is not used
+----------
+----------
+113. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeRangeOperation.java (at line 29)
+	import de.ovgu.featureide.fm.core.ClassFeature;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.ClassFeature is never used
+----------
+114. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeRangeOperation.java (at line 46)
+	private Object viewer;
+	               ^^^^^^
+The value of the field SetTypeRangeOperation.viewer is not used
+----------
+115. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/operations/SetTypeRangeOperation.java (at line 49)
+	private Object diagramEditor;
+	               ^^^^^^^^^^^^^
+The value of the field SetTypeRangeOperation.diagramEditor is not used
+----------
+----------
+116. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 23)
+	import org.eclipse.draw2d.ColorConstants;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.ColorConstants is never used
+----------
+117. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 24)
+	import org.eclipse.draw2d.FigureUtilities;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.FigureUtilities is never used
+----------
+118. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 25)
+	import org.eclipse.draw2d.FreeformLayer;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.FreeformLayer is never used
+----------
+119. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 26)
+	import org.eclipse.draw2d.Graphics;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.Graphics is never used
+----------
+120. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 27)
+	import org.eclipse.draw2d.IFigure;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.IFigure is never used
+----------
+121. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 30)
+	import org.eclipse.draw2d.XYAnchor;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.XYAnchor is never used
+----------
+122. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 32)
+	import org.eclipse.draw2d.geometry.PrecisionRectangle;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.geometry.PrecisionRectangle is never used
+----------
+123. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 36)
+	import de.ovgu.featureide.fm.ui.editors.FeatureUIHelper;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.FeatureUIHelper is never used
+----------
+124. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 49)
+	private FeatureEditPart editPart;
+	                        ^^^^^^^^
+The value of the field FeatureMoveEditPolicy.editPart is not used
+----------
+125. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 51)
+	private ModelLayoutEditPolicy superPolicy;
+	                              ^^^^^^^^^^^
+The value of the field FeatureMoveEditPolicy.superPolicy is not used
+----------
+126. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 53)
+	private FeatureDragAndDropCommand cmd;
+	                                  ^^^
+The value of the field FeatureMoveEditPolicy.cmd is not used
+----------
+127. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 60)
+	private Point s;
+	              ^
+The value of the field FeatureMoveEditPolicy.s is not used
+----------
+128. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 62)
+	private RectangleFigure r;
+	                        ^
+The value of the field FeatureMoveEditPolicy.r is not used
+----------
+129. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/FeatureMoveEditPolicy.java (at line 64)
+	private PolylineConnection c;
+	                           ^
+The value of the field FeatureMoveEditPolicy.c is not used
+----------
+----------
+130. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 23)
+	import org.eclipse.draw2d.geometry.Point;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.geometry.Point is never used
+----------
+131. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 24)
+	import org.eclipse.draw2d.geometry.Rectangle;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.draw2d.geometry.Rectangle is never used
+----------
+132. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 30)
+	import org.eclipse.gef.requests.ChangeBoundsRequest;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.gef.requests.ChangeBoundsRequest is never used
+----------
+133. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 33)
+	import de.ovgu.featureide.fm.core.Constraint;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.Constraint is never used
+----------
+134. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 34)
+	import de.ovgu.featureide.fm.core.Feature;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.Feature is never used
+----------
+135. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 36)
+	import de.ovgu.featureide.fm.ui.editors.FeatureUIHelper;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.FeatureUIHelper is never used
+----------
+136. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 37)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.ConstraintDragAndDropCommand;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.ConstraintDragAndDropCommand is never used
+----------
+137. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 38)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.FeatureDragAndDropCommand;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.FeatureDragAndDropCommand is never used
+----------
+138. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 39)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.LegendDragAndDropCommand;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.commands.LegendDragAndDropCommand is never used
+----------
+139. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 42)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.LegendEditPart;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.LegendEditPart is never used
+----------
+140. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 43)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.figures.LegendFigure;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.figures.LegendFigure is never used
+----------
+141. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/editors/featuremodel/policies/ModelLayoutEditPolicy.java (at line 52)
+	private final FeatureModel featureModel;
+	                           ^^^^^^^^^^^^
+The value of the field ModelLayoutEditPolicy.featureModel is not used
+----------
+----------
+142. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/properties/FMPropertyManager.java (at line 25)
+	import javax.annotation.CheckReturnValue;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Access restriction: The type CheckReturnValue is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+143. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/properties/FMPropertyManager.java (at line 41)
+	import de.ovgu.featureide.fm.ui.properties.page.FMPropertyPage;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.properties.page.FMPropertyPage is never used
+----------
+144. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/properties/FMPropertyManager.java (at line 52)
+	@CheckReturnValue
+	 ^^^^^^^^^^^^^^^^
+Access restriction: The type CheckReturnValue is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+----------
+145. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/views/outline/FmOutlinePageContextMenu.java (at line 34)
+	import org.eclipse.jface.viewers.DoubleClickEvent;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.DoubleClickEvent is never used
+----------
+146. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/views/outline/FmOutlinePageContextMenu.java (at line 35)
+	import org.eclipse.jface.viewers.IDoubleClickListener;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import org.eclipse.jface.viewers.IDoubleClickListener is never used
+----------
+147. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/views/outline/FmOutlinePageContextMenu.java (at line 53)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.AndAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.AndAction is never used
+----------
+148. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/views/outline/FmOutlinePageContextMenu.java (at line 57)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateCompoundAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateCompoundAction is never used
+----------
+149. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/views/outline/FmOutlinePageContextMenu.java (at line 59)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateLayerAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateLayerAction is never used
+----------
+150. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/views/outline/FmOutlinePageContextMenu.java (at line 60)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.DeleteAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.DeleteAction is never used
+----------
+151. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/views/outline/FmOutlinePageContextMenu.java (at line 64)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.MandatoryAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.MandatoryAction is never used
+----------
+152. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/views/outline/FmOutlinePageContextMenu.java (at line 65)
+	import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.OrAction;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.OrAction is never used
+----------
+----------
+153. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/wizards/NewFeatureModelWizard.java (at line 48)
+	import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The import de.ovgu.featureide.fm.core.io.xml.XmlFeatureModelWriter is never used
+----------
+----------
+154. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/wizards/NewFeatureModelWizardPage.java (at line 23)
+	import javax.annotation.CheckForNull;
+	       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Access restriction: The type CheckForNull is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+155. WARNING in /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.ui/src/de/ovgu/featureide/fm/ui/wizards/NewFeatureModelWizardPage.java (at line 48)
+	@CheckForNull
+	 ^^^^^^^^^^^^
+Access restriction: The type CheckForNull is not accessible due to restriction on classpath entry /Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar
+----------
+155 problems (155 warnings)
