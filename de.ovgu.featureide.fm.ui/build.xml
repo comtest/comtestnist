@@ -471,7 +471,7 @@
 		<copy file="${build.result.folder}/junit/jars/org.hamcrest.core_1.3.0.v201303031735.jar" todir="${build.result.folder}/bin" />	
 		<junit printsummary="yes" fork="true" haltonfailure="yes">
 							 <classpath refid="junit.class.path" />
-								<formatter type="xml" />
+								<formatter type="plain" />
 								<batchtest todir="junit/">
 									<fileset dir="src">
 										<include name="*Junit*" />
