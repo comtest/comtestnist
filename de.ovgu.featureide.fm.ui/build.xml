@@ -276,6 +276,7 @@
 
 	<target name="clean" depends="init" description="Clean the plug-in: de.ovgu.featureide.fm.core of all the zips, jars and logs created.">
 		<delete dir="${build.result.folder}/@dot"/>
+		<delete dir="${build.result.folder}/$(buildDirectory)"/>
 		<delete file="${build.result.folder}/src.zip"/>
 		<delete file="${plugin.destination}/de.ovgu.featureide.fm.core_2.7.0.201407142323.jar"/>
 		<delete file="${plugin.destination}/de.ovgu.featureide.fm.core_2.7.0.201407142323.zip"/>
@@ -302,15 +303,6 @@
 								</batchtest>
 							</junit>
 						  </target>
-
-	  <target name="junitreport">
-	        <junitreport todir="junit/">
-	            <fileset dir="junit/">
-	                <include name="TEST-*.xml"/>
-	            </fileset>
-	            <report format="frames" todir="junit/"/>
-	        </junitreport>
-	    </target>	  	
 
 
 	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: de.ovgu.featureide.fm.core.">
