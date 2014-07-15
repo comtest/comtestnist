@@ -21,7 +21,6 @@
  * See http://www.fosd.de/featureide/ for further information.
  */
 
-package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
