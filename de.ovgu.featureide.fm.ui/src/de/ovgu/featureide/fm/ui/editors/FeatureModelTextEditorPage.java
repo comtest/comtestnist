@@ -90,6 +90,12 @@ public class FeatureModelTextEditorPage extends TextEditor implements
 	 */
 	public boolean updateDiagram() {
 		IDocumentProvider provider = getDocumentProvider();
+		// Wayman: check if it is null first
+		if (provider == null) {
+			// When the editor is closed return false
+			return false;
+		}
+		
 		IDocument document = provider.getDocument(getEditorInput());
 		String text = document.get();
 		featureModelEditor.fmFile.deleteAllModelMarkers();

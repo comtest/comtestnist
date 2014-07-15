@@ -11,9 +11,9 @@
  ******************************************************************************/
 package citlab.core.ui.views.alternativeeditor;
 
-
-
-
+/** alternative editor dialog to open the editor 
+ * Author: Wayman Tan
+ */
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

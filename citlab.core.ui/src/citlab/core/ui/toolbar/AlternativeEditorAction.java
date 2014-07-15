@@ -12,6 +12,11 @@
  ******************************************************************************/
 package citlab.core.ui.toolbar;
 
+/** alternative editor action in the CitLab platform 
+ * Author: Wayman Tan
+ */
+
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
