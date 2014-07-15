@@ -110,10 +110,12 @@
 			<patternset includes="e4-ide.jar"/>
 		</unzip>
 	</target>
-	
+	<!-- Abhishek -->
 	<path id="junit.class.path">
-		<pathelement location="../../../Eclipse_Nist/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+	    <fileset dir="bin" includes="*.jar"/> 
+	    <pathelement location="bin"/>
 	</path>
+		
 	<target name="@dot" depends="init,@dot.nestedJars" unless="@dot" description="Create jar: de.ovgu.featureide.fm.ui @dot.">
 		<delete dir="${build.result.folder}/@dot"/>
 		<mkdir dir="${build.result.folder}/@dot"/>
@@ -464,13 +466,15 @@
 	
 
 					
-	<target name="junit">
+	<target name="junit" depends="@dot">
+	    <copy file="${build.result.folder}/junit/jars/junit.jar" todir="${build.result.folder}/bin" />
+		<copy file="${build.result.folder}/junit/jars/org.hamcrest.core_1.3.0.v201303031735.jar" todir="${build.result.folder}/bin" />	
 		<junit printsummary="yes" fork="true" haltonfailure="yes">
 							 <classpath refid="junit.class.path" />
-								<formatter type="plain" />
+								<formatter type="xml" />
 								<batchtest todir="junit/">
 									<fileset dir="src">
-										<include name="**/*Junit*" />
+										<include name="*Junit*" />
 									</fileset>
 								</batchtest>
 							</junit>
