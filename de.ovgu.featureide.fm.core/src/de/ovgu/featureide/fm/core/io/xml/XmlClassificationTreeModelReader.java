@@ -159,8 +159,6 @@ public class XmlClassificationTreeModelReader extends AbstractFeatureModelReader
 				parent.setDescription(nodeValue);
 				continue;
 			}
-		
-//			boolean mandatory = false;
 			
 			boolean _abstract = false;
 			boolean hidden = false;
@@ -178,8 +176,6 @@ public class XmlClassificationTreeModelReader extends AbstractFeatureModelReader
 					String attributeValue = node.getNodeValue();
 					if (attributeName.equals(ABSTRACT)) {
 						_abstract = attributeValue.equals(TRUE);
-//					} else if (attributeName.equals(MANDATORY)) {
-//						mandatory = attributeValue.equals(TRUE);
 					} else if (attributeName.equals(NAME)) {
 						name = attributeValue;
 					} else if (attributeName.equals(HIDDEN)) {
@@ -211,25 +207,9 @@ public class XmlClassificationTreeModelReader extends AbstractFeatureModelReader
 			if (!featureModel.getFMComposerExtension().isValidFeatureName(name)) {
 				throwError(name + "is no valid feature name", e);
 			}
-//			Feature f = new Feature(featureModel, name);
-//			f.setMandatory(true);
-//			if (nodeName.equals(AND)) {
-//				f.setAnd();
-//			} else if (nodeName.equals(ALT)) {
-//				f.setAlternative();
-//			} else if (nodeName.equals(OR)) {
-//				f.setOr();
-//			} else if (nodeName.equals(FEATURE)) {
-//				
-//			} else {
-//				throwError("Unknown feature type: " + nodeName, e);
-//			}
 			
 			Feature f = null;
-			// wayman
-			// debug
-			//if (nodeName.equals(ROOT)) {
-			if (nodeName.equals(UNKNOWN) || nodeName.equals(ROOT)) {
+			if (nodeName.equals(ROOT)) {
 				f = new RootFeature(featureModel, name);
 			} else if (nodeName.equals(COMPOSITION)) {
 				f = new CompositionFeature(featureModel, name);
@@ -260,7 +240,6 @@ public class XmlClassificationTreeModelReader extends AbstractFeatureModelReader
 			}
 						
 			f.setAbstract(_abstract);
-//			f.setMandatory(mandatory);
 			f.setHidden(hidden);
 			if (featureLocation != null) {
 				f.setNewLocation(featureLocation);
