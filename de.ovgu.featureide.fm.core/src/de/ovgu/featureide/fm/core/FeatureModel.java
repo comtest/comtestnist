@@ -54,6 +54,13 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 	 * a {@link Hashtable} containing all features
 	 */
 	private final Map<String, Feature> featureTable = new ConcurrentHashMap<String, Feature>();
+	
+	/**
+	 * the classification feature list containing all 
+	 * classification features. This is used for CitLab model conversion
+	 * author: Wayman Tan
+	 */
+	private final List<ClassificationFeature> classificationNodeList = new LinkedList<ClassificationFeature>();
 
 	protected final List<Constraint> constraints = new LinkedList<Constraint>();
 	
@@ -143,6 +150,8 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 			rootFeature = null;
 		}
 		featureTable.clear();
+		// wayman
+		classificationNodeList.clear();
 		renamingsManager.clear();
 		constraints.clear();
 		comments.clear();
@@ -230,6 +239,10 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 		if (featureTable.containsKey(name))
 			return false;
 		featureTable.put(name, feature);
+		// wayman: add the classification node to the list
+		if (feature instanceof ClassificationFeature) {
+			classificationNodeList.add((ClassificationFeature)feature);
+		}
 		return true;
 	}
 	
@@ -306,6 +319,13 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 		return featureTable;
 	}
 	
+	/**
+	 * @return the classification node list
+	 */
+	public List<ClassificationFeature> getClassificationNodeList() {
+		return classificationNodeList;
+	}
+	
 	public Set<String> getFeatureNames() {
 		return Collections.unmodifiableSet(featureTable.keySet());
 	}
@@ -353,6 +373,12 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 		parent.removeChild(feature);
 		featureTable.remove(name);
 		featureOrderList.remove(name);
+		
+		// wayman
+		if (feature instanceof ClassificationFeature){
+			classificationNodeList.remove((ClassificationFeature)feature);
+		}
+		
 		return true;
 	}
 	
