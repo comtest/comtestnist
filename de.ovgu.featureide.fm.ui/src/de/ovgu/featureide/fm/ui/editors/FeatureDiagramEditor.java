@@ -74,6 +74,7 @@ import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.AlternativeAction;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.AndAction;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.AutoLayoutConstraintAction;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.ChangeFeatureDescriptionAction;
+import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.ConvertCitLabModelAction;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateClassLayerAction;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateClassificationLayerAction;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.actions.CreateCompositionLayerAction;
@@ -146,6 +147,7 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 	//private OrAction orAction; //Abhi
 	private AlternativeAction alternativeAction; //Abhi
 	private RenameAction renameAction;
+	private ConvertCitLabModelAction convertCitLabModelAction; //Wayman
 	private ChangeFeatureDescriptionAction changeFeatureDescriptionAction;
 	
 	private ShowHiddenFeaturesAction showHiddenFeaturesAction;
@@ -277,6 +279,7 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 		//orAction = new OrAction(this, featureModel); //Abhi 
 		alternativeAction = new AlternativeAction(this, featureModel); //Abhi
 		renameAction = new RenameAction(this, featureModel, null);
+		convertCitLabModelAction = new ConvertCitLabModelAction(this, featureModel); //Wayman
 
 		selectionAction = new SelectionAction(this, featureModel);
 
@@ -419,6 +422,10 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			menu.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 			menu.add(showHiddenFeaturesAction);
 		}
+		menu.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+		
+		// Wayman: add the citlab conversion action to the menu
+		menu.add(convertCitLabModelAction);
 		menu.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
 
 		// call of the FeatureDiagramExtensions (for features only)

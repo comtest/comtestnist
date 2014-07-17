@@ -48,7 +48,7 @@ import de.ovgu.featureide.fm.core.RangeClassFeature;
  */
 public class CitLabModelConverter {
 	
-	public CitModel importModel(FeatureModel fm) throws UnconvertibleModelException {
+	public CitModel convertModel(FeatureModel fm) throws UnconvertibleModelException {
 		// validate to ensure the model is ready for conversion
 		validateModel(fm);
 		
@@ -67,7 +67,7 @@ public class CitLabModelConverter {
 	}
 	
 	public void validateModel(FeatureModel featureModel) throws UnconvertibleModelException {
-		
+		// TODO by Wayman
 	}
 	
 	

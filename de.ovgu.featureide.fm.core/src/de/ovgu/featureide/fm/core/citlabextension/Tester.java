@@ -43,7 +43,7 @@ public class Tester {
 			reader.readFromFile(file);
 			System.out.println("Model read!");
 			CitLabModelConverter citLabConverter = new CitLabModelConverter();	
-			CitModel citModel = citLabConverter.importModel(featureModel);
+			CitModel citModel = citLabConverter.convertModel(featureModel);
 			System.out.println("Model converted!");		
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

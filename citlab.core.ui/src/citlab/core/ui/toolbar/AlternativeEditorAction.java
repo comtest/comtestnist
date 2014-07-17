@@ -52,11 +52,6 @@ import citlab.core.ui.views.exporter.CoderDialog;
 import citlab.core.ui.views.importer.ImporterDialog;
 import citlab.core.ui.utils.ActiveResourceExtractor;
 import citlab.model.citL.CitModel;
-import de.ovgu.featureide.fm.core.FeatureModel;
-import de.ovgu.featureide.fm.core.io.FeatureModelWriterIFileWrapper;
-import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelWriter;
-import de.ovgu.featureide.fm.ui.FMUIPlugin;
-import de.ovgu.featureide.fm.ui.wizards.NewFeatureModelWizard;
 
 public class AlternativeEditorAction extends Action {
 	private Shell parent;
