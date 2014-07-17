@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="de.ovgu.featureide.fm.core" default="build.jars" basedir=".">
+
+	<property name="p2.build.repo" value="file:${buildDirectory}/buildRepo"/>
+	<property name="basews" value="${ws}"/>
+	<property name="baseos" value="${os}"/>
+	<property name="basearch" value="${arch}"/>
+	<property name="basenl" value="${nl}"/>
+	<property name="bundleId" value="de.ovgu.featureide.fm.core"/>
+	<property name="bundleVersion" value="2.7.0.201407142323"/>
+	<property name="p2.publishonerror" value="false"/>
+
+	<!-- Compiler settings. -->
+	<property name="javacFailOnError" value="false"/>
+	<property name="javacDebugInfo" value="on"/>
+	<property name="javacVerbose" value="false"/>
+	<property name="logExtension" value=".log"/>
+	<property name="compilerArg" value=""/>
+	<property name="compilation.prereq.log" value="${buildDirectory}/prereqErrors.log"/>
+	<property name="javacSource" value="1.3"/>
+	<property name="javacTarget" value="1.2"/>
+	<condition property="dir_bootclasspath" value="${java.home}/../Classes">
+		<and>
+			<os family="mac"/>
+			<available file="${java.home}/../Classes" type="dir"/>
+		</and>
+	</condition>
+	<property name="dir_bootclasspath" value="${java.home}/lib"/>
+	<path id="path_bootclasspath">
+		<fileset dir="${dir_bootclasspath}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	<property name="bootclasspath" refid="path_bootclasspath"/>
+	<condition property="bundleBootClasspath" value="${JavaSE-1.6}"	>
+		<isset property="JavaSE-1.6"/>
+	</condition>
+	<condition property="bundleJavacSource" value="1.6"	>
+		<isset property="JavaSE-1.6"/>
+	</condition>
+	<condition property="bundleJavacTarget" value="1.6"	>
+		<isset property="JavaSE-1.6"/>
+	</condition>
+	<property name="bundleJavacSource" value="${javacSource}"/>
+	<property name="bundleJavacTarget" value="${javacTarget}"/>
+	<property name="bundleBootClasspath" value="${bootclasspath}"/>
+
+	<target name="init" depends="properties">
+		<condition property="pluginTemp" value="${buildTempFolder}/plugins"		>
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="pluginTemp" value="${basedir}"/>
+		<condition property="build.result.folder" value="${pluginTemp}/de.ovgu.featureide.fm.core_2.7.0.201407142323"		>
+			<isset property="buildTempFolder"/>
+		</condition>
+		<property name="build.result.folder" value="${basedir}"/>
+		<property name="temp.folder" value="${basedir}/temp.folder"/>
+		<property name="plugin.destination" value="${basedir}"/>
+		<condition property="p2.publish.parts" value="true"		>
+			<istrue value="${p2.gathering}"/>
+		</condition>
+		<property name="compilation.problem.marker" value="${build.result.folder}/compilation.problem"/>
+		<condition property="compilation.problem.marker.exists" value="true"		>
+			<and>
+			<available file="${compilation.problem.marker}"/>
+			<isfalse value="${p2.publishonerror}"/>
+			</and>
+		</condition>
+	</target>
+
+	<target name="properties" if="eclipse.running">
+		<property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+
+	</target>
+
+	<target name="build.update.jar" depends="init" description="Build the plug-in: de.ovgu.featureide.fm.core for an update site.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<jar destfile="${plugin.destination}/de.ovgu.featureide.fm.core_2.7.0.201407142323.jar" basedir="${temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323" filesetmanifest="merge"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="@dot.nestedJars">
+		<mkdir dir="${buildDirectory}/nestedJars/org.eclipse.equinox.registry_3.5.301.v20130717-1549"/>
+		<unzip src="../../../Eclipse_Nist/plugins/org.eclipse.equinox.registry_3.5.301.v20130717-1549.jar" dest="${buildDirectory}/nestedJars/org.eclipse.equinox.registry_3.5.301.v20130717-1549" overwrite="false">
+			<patternset includes="runtime_registry_compatibility.jar"/>
+		</unzip>
+	</target>
+	
+	<!-- Abhishek -->
+	<path id="junit.class.path">
+	    <fileset dir="bin" includes="*.jar"/> 
+	    <pathelement location="bin"/>
+	</path>
+	    	
+	<target name="@dot" depends="init,@dot.nestedJars" unless="@dot" description="Create jar: de.ovgu.featureide.fm.core @dot.">
+		<delete dir="${build.result.folder}/@dot"/>
+		<mkdir dir="${build.result.folder}/@dot"/>
+		<path id="@dot.classpath">
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.runtime_3.9.100.v20131218-1515.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/javax.annotation_1.1.0.v201209060031.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/javax.inject_1.0.0.v20091030.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.osgi_3.9.1.v20140110-1610.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.equinox.common_3.6.200.v20130402-1505.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.jobs_3.5.300.v20130429-1813.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.runtime.compatibility.registry_3.5.200.v20130514-1256/runtime_registry_compatibility.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.runtime.compatibility.registry_3.5.200.v20130514-1256"/>
+			<pathelement path="${buildDirectory}/nestedJars/org.eclipse.equinox.registry_3.5.301.v20130717-1549/runtime_registry_compatibility.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.equinox.registry_3.5.301.v20130717-1549.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.equinox.preferences_3.5.100.v20130422-1538.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.contenttype_3.4.200.v20130326-1255.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.runtime.compatibility.auth_3.2.300.v20120523-2004.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.equinox.app_1.3.100.v20130327-1442.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.osgi.services_3.3.100.v20130513-1956.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/javax.servlet_3.0.0.v201112011016.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.resources_3.8.101.v20130717-0806.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.ant.core_3.2.500.v20140203-1328.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.variables_3.2.700.v20130402-1741.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.expressions_3.4.501.v20131118-1915.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.filesystem_1.4.0.v20130514-1240.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.eclipse.core.filesystem.macosx_1.3.0.v20100505-2103.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+			<pathelement path="../../../Eclipse_Nist/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+			<pathelement path="lib/guidsl.jar"/>
+			<pathelement path="${build.result.folder}/../de.ovgu.featureide.fm.core_2.7.0.201407142323/lib/guidsl.jar"/>
+			<pathelement path="lib/jakarta.jar"/>
+			<pathelement path="${build.result.folder}/../de.ovgu.featureide.fm.core_2.7.0.201407142323/lib/jakarta.jar"/>
+			<pathelement path="lib/org.sat4j.core.jar"/>
+			<pathelement path="${build.result.folder}/../de.ovgu.featureide.fm.core_2.7.0.201407142323/lib/org.sat4j.core.jar"/>
+			<pathelement path="lib/annotations.jar"/>
+			<pathelement path="${build.result.folder}/../de.ovgu.featureide.fm.core_2.7.0.201407142323/lib/annotations.jar"/>
+			<pathelement path="lib/guava-r09.jar"/>
+			<pathelement path="${build.result.folder}/../de.ovgu.featureide.fm.core_2.7.0.201407142323/lib/guava-r09.jar"/>
+			<pathelement path="lib/org.sat4j.pb.jar"/>
+			<pathelement path="${build.result.folder}/../de.ovgu.featureide.fm.core_2.7.0.201407142323/lib/org.sat4j.pb.jar"/>
+			<pathelement path="lib/antlr-3.4.jar"/>
+			<pathelement path="${build.result.folder}/../de.ovgu.featureide.fm.core_2.7.0.201407142323/lib/antlr-3.4.jar"/>
+		</path>
+		<!-- compile the source code -->
+		<javac destdir="${build.result.folder}/@dot" failonerror="${javacFailOnError}" verbose="${javacVerbose}" debug="${javacDebugInfo}" includeAntRuntime="no" bootclasspath="${bundleBootClasspath}" source="${bundleJavacSource}" target="${bundleJavacTarget}"		>
+			<compilerarg line="${compilerArg}" compiler="${build.compiler}"/>
+			<classpath refid="@dot.classpath" />
+			<src path="src/"			/>
+			<compilerarg value="@${basedir}/javaCompiler...args" compiler="org.eclipse.jdt.core.JDTCompilerAdapter"			/>
+			<compilerarg line="-log &apos;${build.result.folder}/@dot${logExtension}&apos;" compiler="org.eclipse.jdt.core.JDTCompilerAdapter"			/>
+		</javac>
+		<antcall target="checkCompilationResults"/>
+		<!-- Copy necessary resources -->
+		<copy todir="${build.result.folder}/@dot" failonerror="true" overwrite="false">
+			<fileset dir="src/">
+				<exclude name="**/*.java"/>
+				<exclude name="**/package.htm*"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="src.zip" depends="init" unless="src.zip">
+		<mkdir dir="${build.result.folder}"/>
+		<antcall target="zip.src.zip"/>
+	</target>
+	<target name="zip.src.zip">
+		<zip destfile="${build.result.folder}/src.zip" filesonly="false" whenempty="skip" update="false">
+			<fileset dir="src/">
+				<include name="**/*.java"/>
+			</fileset>
+		</zip>
+	</target>
+	<target name="copy.src.zip">
+		<copy todir="${source.destination.folder}/" failonerror="true" overwrite="true">
+			<fileset dir="src/">
+				<include name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="build.jars" depends="init" description="Compile classes and build nested jars for the plug-in: de.ovgu.featureide.fm.core.">
+		<delete file="${compilation.problem.marker}" quiet="true"/>
+		<available property="@dot" file="${build.result.folder}/@dot"/>
+		<antcall target="@dot"/>
+	</target>
+
+	<target name="checkCompilationResults" if="compilation.error.occured">
+		<echo file="${compilation.problem.marker}" message="de.ovgu.featureide.fm.core_2.7.0.201407142323${line.separator}compilation.error.occured=${compilation.error.occured}"/>
+		<eclipse.logCompileError bundle="de.ovgu.featureide.fm.core_2.7.0.201407142323" log="${compilation.prereq.log}">
+		</eclipse.logCompileError>
+	</target>
+
+	<target name="build.sources" depends="init">
+		<available property="src.zip" file="${build.result.folder}/src.zip"/>
+		<antcall target="src.zip"/>
+	</target>
+
+	<target name="publish.bin.parts" depends="init" if="p2.publish.parts" unless="compilation.problem.marker.exists">
+		<mkdir dir="${build.result.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323"/>
+		<copy todir="${build.result.folder}" failonerror="true" overwrite="true">
+			<fileset dir="${basedir}">
+				<include name="META-INF/MANIFEST.MF"/>
+				<include name="plugin.xml"/>
+				<include name="fragment.xml"/>
+			</fileset>
+		</copy>
+		<eclipse.versionReplacer path="${build.result.folder}" version="2.7.0.201407142323"/>
+		<antcall target="apitools.generation">
+			<param name="target.folder" value="${build.result.folder}"/>
+			<param name="projectLocation" value="${basedir}"/>
+			<param name="binary.folders" value="${build.result.folder}/@dot:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/org.sat4j.pb.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/jakarta.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/org.sat4j.core.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/antlr-3.4.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/guava-r09.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/guidsl.jar"/>
+			<param name="projectName" value="${bundleId}_${bundleVersion}"/>
+		</antcall>
+		<eclipse.gatherBundle 
+		   metadataRepository="${p2.build.repo}"
+		   artifactRepository="${p2.build.repo}"
+		   buildResultFolder="${build.result.folder}"
+		   baseDirectory="${basedir}"
+		/>
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323"/>
+		<copy todir="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323" failonerror="true" overwrite="false">
+			<fileset dir="${build.result.folder}/@dot">
+				<include name="**"/>
+			</fileset>
+		</copy>
+		<copy todir="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323" failonerror="true" overwrite="true">
+			<fileset dir="${basedir}">
+				<include name="META-INF/"/>
+				<include name="lib/"/>
+				<include name="plugin.xml"/>
+				<include name="src/"/>
+			</fileset>
+		</copy>
+		<eclipse.versionReplacer path="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323" version="2.7.0.201407142323"/>
+		<antcall target="apitools.generation">
+			<param name="target.folder" value="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323"/>
+			<param name="projectLocation" value="${basedir}"/>
+			<param name="binary.folders" value="${build.result.folder}/@dot:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/org.sat4j.pb.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/annotations.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/jakarta.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/org.sat4j.core.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/antlr-3.4.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/guava-r09.jar:/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core/lib/guidsl.jar"/>
+			<param name="projectName" value="${bundleId}_${bundleVersion}"/>
+		</antcall>
+	</target>
+
+	<target name="build.zips" depends="init">
+	</target>
+
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323"/>
+		<copy file="${build.result.folder}/src.zip" todir="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323" failonerror="false" overwrite="false"/>
+		<antcall target="copy.src.includes">
+			<param name="source.destination.folder" value="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323"/>
+		</antcall>
+	</target>
+
+	<target name="gather.individual.sources" depends="init">
+		<antcall target="copy.src.zip">
+			<param name="source.destination.folder" value="${destination.temp.folder}"/>
+		</antcall>
+		<antcall target="copy.src.includes">
+			<param name="source.destination.folder" value="${destination.temp.folder}"/>
+		</antcall>
+	</target>
+
+	<target name="copy.src.includes" depends="init">
+	</target>
+
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323"/>
+		<copy todir="${destination.temp.folder}/de.ovgu.featureide.fm.core_2.7.0.201407142323" failonerror="false" overwrite="false">
+			<fileset dir="${build.result.folder}">
+				<include name="@dot${logExtension}"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean" depends="init" description="Clean the plug-in: de.ovgu.featureide.fm.core of all the zips, jars and logs created.">
+		<delete dir="${build.result.folder}/@dot"/>
+		<delete file="${build.result.folder}/src.zip"/>
+		<delete file="${plugin.destination}/de.ovgu.featureide.fm.core_2.7.0.201407142323.jar"/>
+		<delete file="${plugin.destination}/de.ovgu.featureide.fm.core_2.7.0.201407142323.zip"/>
+		<delete dir="${temp.folder}"/>
+		<delete file="${compilation.problem.marker}" quiet="true"/>
+	</target>
+
+	<target name="refresh" depends="init" if="eclipse.running" description="Refresh this folder.">
+		<eclipse.convertPath fileSystemPath="/Users/abhisheksharma/Documents/gui_workspace/waterfall/de.ovgu.featureide.fm.core" property="resourcePath"/>
+		<eclipse.refreshLocal resource="${resourcePath}" depth="infinite"/>
+	</target>
+	
+	
+	<target name="junit" depends="@dot">
+	    <copy file="${build.result.folder}/junit/jars/junit.jar" todir="${build.result.folder}/bin" />
+		<copy file="${build.result.folder}/junit/jars/org.hamcrest.core_1.3.0.v201303031735.jar" todir="${build.result.folder}/bin" />	
+		<junit printsummary="yes" fork="true" haltonfailure="yes">
+							 <classpath refid="junit.class.path" />
+								<formatter type="plain" />
+								<batchtest todir="junit/">
+									<fileset dir="src">
+										<include name="*Junit*" />
+									</fileset>
+								</batchtest>
+							</junit>
+						  </target>
+
+	  <target name="junitreport">
+	        <junitreport todir="junit/">
+	            <fileset dir="junit/">
+	                <include name="TEST-*.xml"/>
+	            </fileset>
+	            <report format="frames" todir="junit/"/>
+	        </junitreport>
+	    </target>	  	
+
+
+	<target name="zip.plugin" depends="init" description="Create a zip containing all the elements for the plug-in: de.ovgu.featureide.fm.core.">
+		<delete dir="${temp.folder}"/>
+		<mkdir dir="${temp.folder}"/>
+		<antcall target="build.jars"/>
+		<antcall target="build.sources"/>
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<antcall target="gather.sources">
+			<param name="destination.temp.folder" value="${temp.folder}/"/>
+		</antcall>
+		<delete>
+			<fileset dir="${temp.folder}">
+				<include name="**/*.bin${logExtension}"/>
+			</fileset>
+		</delete>
+		<zip destfile="${plugin.destination}/de.ovgu.featureide.fm.core_2.7.0.201407142323.zip" basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
+		<delete dir="${temp.folder}"/>
+	</target>
+
+	<target name="apitools.generation" if="generateAPIDescription">
+		<apitooling.apigeneration  projectName="${projectName}" project="${projectLocation}" binary="${binary.folders}" target="${target.folder}" extramanifests="${extraManifests}" allownonapiproject="${allowNonApiProject}"		/>
+	</target>
+
+</project>

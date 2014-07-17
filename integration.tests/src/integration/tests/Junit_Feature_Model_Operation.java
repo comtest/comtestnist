@@ -1,6 +1,4 @@
-
-
-/* FeatureIDE - A Framework for Feature-Oriented Software Development
+ /* FeatureIDE - A Framework for Feature-Oriented Software Development
  * Copyright (C) 2005-2013  FeatureIDE team, University of Magdeburg, Germany
  *
  * This file is part of FeatureIDE.
@@ -20,8 +18,8 @@
  *
  * See http://www.fosd.de/featureide/ for further information.
  */
+package integration.tests;
 
-package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -43,7 +41,6 @@ public class Junit_Feature_Model_Operation {
 	@Test
 	public void test_Feature_Model_Root_Classification() {
 	
-		
 		System.out.println("Unit Test : test_Feature_Model_Root_Classification");
 		
 		FeatureModel featureModel = new FeatureModel();

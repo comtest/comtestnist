@@ -4,8 +4,8 @@
    <extension
          point="citlab.core.TestSuiteExporters">
       <TestSuiteExporter
-            ExporterName="JUnitExporter"
-            FileExtension="*.java"
+            ExporterName="Select/create csv file and generate Junit template"
+            FileExtension="*.csv"
             ITSPrototype="citlab.junitexporter.JUnitExporter">
       </TestSuiteExporter>
    </extension>

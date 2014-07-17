@@ -16,3 +16,4 @@ Import-Package: citlab.core.ext,
  org.eclipse.jface.preference
 Bundle-ClassPath: .,
  acts_cmd_v2_r2.8.jar
+Export-Package: citlab.acts

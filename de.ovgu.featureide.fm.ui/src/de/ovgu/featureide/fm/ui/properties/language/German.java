@@ -37,20 +37,20 @@ public class German implements ILanguage {
 	private static final String ABSTRACT = "Abstrakt";
 	private static final String CONCRETE = "Konkret";
 	private static final String HIDDEN = "Versteckt";
-	private static final String DEAD = "Unwählbar";
+	private static final String DEAD = "Unwhlbar";
 	private static final String FALSE_OPTIONAL ="Falsch-optional";
 	private static final String ALTERNATIVE = "Alternative";
 	private static final String OR = "Oder";
 	private static final String OPTIONAL = "Optional";
 	private static final String INDETHIDDEN = "Unbestimmbar versteckt";
 	private static final String REDUNDANT = "Redundantes Constraint";
-	private static final String DEAD_CONST = "Constraint macht feature unerfüllbar";
-	private static final String UNSATISFIABLE_CONST = "Unerfüllbares constraint";
+	private static final String DEAD_CONST = "Constraint macht feature unerfllbar";
+	private static final String UNSATISFIABLE_CONST = "Unerfllbares constraint";
 	private static final String TAUTOLOGY_CONST = "Constraint ist Tautologie";
-	private static final String VOID_MODEL_CONST = "Constraint macht Produktlinie unerfüllbar";
+	private static final String VOID_MODEL_CONST = "Constraint macht Produktlinie unerfllbar";
 	private static final String FALSE_OPTIONAL_CONSTRAINT = "Falsch-otionales constraint";	
 	
-	
+	   
 	@Override
 	public String getRedundantConst() {
 		return REDUNDANT;
@@ -76,7 +76,7 @@ public class German implements ILanguage {
 		return VOID_MODEL_CONST;
 	}
 	 	
-
+   
 	@Override
 	public String getIndetHidden() {
 		return INDETHIDDEN;
@@ -84,7 +84,7 @@ public class German implements ILanguage {
 	
 	@Override
 	public String getName() {
-		return NAME;
+		return NAME; 
 	}
 	
 	@Override
