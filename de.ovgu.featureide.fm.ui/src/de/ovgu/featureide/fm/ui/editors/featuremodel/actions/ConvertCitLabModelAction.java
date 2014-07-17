@@ -186,7 +186,8 @@ public class ConvertCitLabModelAction extends Action {
        try {
     	   IWorkbench wb = PlatformUI.getWorkbench();
     	   IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
-    	   IDE.openEditor(win.getActivePage(), file);
+    	   IWorkbenchPage page = win.getActivePage();
+    	   IDE.openEditor(page, file);
        } catch (PartInitException e1) {
     	   // TODO Auto-generated catch block
     	   e1.printStackTrace();
