@@ -1,9 +1,10 @@
-package citlab.core.ui.views.generator;
+package unit;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import citlab.core.ui.views.generator.TestSuiteView;
 import citlab.model.citL.CitLFactory;
 import citlab.model.citL.Parameter;
 import citlab.testsuite.Assignment;

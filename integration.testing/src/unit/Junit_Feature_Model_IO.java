@@ -18,7 +18,7 @@
  *
  * See http://www.fosd.de/featureide/ for further information.
  */
-package test;
+package unit;
 
 import static org.junit.Assert.*;
 

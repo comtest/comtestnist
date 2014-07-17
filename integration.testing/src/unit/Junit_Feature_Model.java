@@ -1,5 +1,3 @@
-
-
 /* FeatureIDE - A Framework for Feature-Oriented Software Development
  * Copyright (C) 2005-2013  FeatureIDE team, University of Magdeburg, Germany
  *
@@ -20,65 +18,37 @@
  *
  * See http://www.fosd.de/featureide/ for further information.
  */
+package unit;
 
-package test;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
-import de.ovgu.featureide.fm.core.Feature.FeatureKind;
-import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation;
-
 
 /**
  * TODO description
  * 
  * @author Douglas Rew
  */
-public class Junit_Feature_Model_Operation {
+public class Junit_Feature_Model {
 
 	@Test
-	public void test_Feature_Model_Root_Classification() {
+	public void test_Feature_Model_Root_Creation() {
 	
-		
-		System.out.println("Unit Test : test_Feature_Model_Root_Classification");
+		System.out.println("Unit Test : test_Feature_Model_Root_Creation");
 		
 		FeatureModel featureModel = new FeatureModel();
 		assertNull(featureModel.getRoot());
-		featureModel.createDefaultValues("Testing_With_Classification_Node");
+		featureModel.createDefaultValues("Testing");
 		
 		Feature root = featureModel.getRoot();
 		assertNotNull(root);
-		assertEquals("Testing_With_Classification_Node",root.getName());	 
+		assertEquals("Testing",root.getName());	 
 		assertEquals(1, featureModel.getFeatureTable().size());
 
-		FeatureCreateClassificationLayerOperation operator = 
-				new FeatureCreateClassificationLayerOperation(root, null, featureModel, null);
-		assertNotNull(operator);
-		
-		// Following the REDO logic from the operator
-		Integer number = 0;
-		Feature newFeature = new ClassificationFeature(featureModel, "ClassificationNode" + number++);
-		featureModel.addFeature(newFeature);
-		Feature feature = featureModel.getFeature(root.getName());
-		feature.addChild(newFeature);
-		
-		
-		assertEquals(2, featureModel.getFeatures().size());
-		assertEquals(1 , root.getChildrenCount());
-		assertTrue(root.getChildren().get(0).getKind().equals(FeatureKind.Classification));
-		
 	}
 	
-	// TODO : dkrew add in different combinations    
-//	@Test
-//	public void test_Feature_Model_Root_Classification() {
-//		
-//	}
 
 }
-
-
