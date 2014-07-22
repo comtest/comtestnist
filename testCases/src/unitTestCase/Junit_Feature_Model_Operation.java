@@ -1,3 +1,4 @@
+package unitTestCase;
 
 
 /* FeatureIDE - A Framework for Feature-Oriented Software Development
@@ -41,8 +42,8 @@ public class Junit_Feature_Model_Operation {
 
 	@Test
 	public void test_Feature_Model_Root_Classification() {
-	
-		assertEquals(0,0);
+	   
+		assertEquals(0,0);   
 		/*System.out.println("Unit Test : test_Feature_Model_Root_Classification");
 		
 		FeatureModel featureModel = new FeatureModel();
