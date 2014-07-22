@@ -401,10 +401,12 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			menu.add(createConstraintAction);
 			menu.add(editConstraintAction);
 			menu.add(deleteAction);
-		} else if (legendLayoutAction.isEnabled()) {
+		} 
+		
+		/*else if (legendLayoutAction.isEnabled()) {
 			//menu.add(legendLayoutAction);
 			//menu.add(legendAction);
-		} 
+		} */
 		
 		else if(1==2){ //Abhi Purposeful Dead Code
 		//else if (andAction.isEnabled() || orAction.isEnabled()
