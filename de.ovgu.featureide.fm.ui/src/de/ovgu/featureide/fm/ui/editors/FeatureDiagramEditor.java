@@ -215,9 +215,10 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 					return;
 				int difX = newLoc.x - oldLoc.x;
 				
-				if (!FMPropertyManager.isLegendHidden()) {
+				//Abhi We do not want the Legend
+				/*if (!FMPropertyManager.isLegendHidden()) {
 					moveLegend(fm, difX);
-				}
+				}*/
 
 			}
 
@@ -228,13 +229,14 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			 * @param fm
 			 * @param delta
 			 */
+			/*
 			private void moveLegend(FeatureModel fm, int delta) {
 				org.eclipse.draw2d.geometry.Point location = FeatureUIHelper
 						.getLegendFigure(fm).getLocation();
 				FeatureUIHelper.getLegendFigure(fm).setLocation(
 						new org.eclipse.draw2d.geometry.Point(
 								location.x + delta, location.y));
-			}
+			}*/ 
 
 			@Override
 			public void controlMoved(ControlEvent e) {

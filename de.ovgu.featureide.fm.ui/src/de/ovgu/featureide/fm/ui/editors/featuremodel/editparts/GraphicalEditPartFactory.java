@@ -48,8 +48,8 @@ public class GraphicalEditPartFactory implements EditPartFactory {
 
 		if (model instanceof Constraint)
 			return new ConstraintEditPart((Constraint) model);
-		if (model instanceof Legend)
-			return new LegendEditPart((Legend) model);
+		//if (model instanceof Legend)
+			//return new LegendEditPart((Legend) model);
 		return null;
 	}
 
