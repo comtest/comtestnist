@@ -1,5 +1,3 @@
-
-
 /* FeatureIDE - A Framework for Feature-Oriented Software Development
  * Copyright (C) 2005-2013  FeatureIDE team, University of Magdeburg, Germany
  *
@@ -20,8 +18,12 @@
  *
  * See http://www.fosd.de/featureide/ for further information.
  */
+package unitTestCase;
 
 import static org.junit.Assert.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import org.junit.Test;
 
@@ -29,55 +31,70 @@ import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
-import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassificationLayerOperation;
-
+import de.ovgu.featureide.fm.core.io.UnsupportedModelException;
+import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelReader;
+import de.ovgu.featureide.fm.core.io.xml.XmlClassificationTreeModelWriter;
 
 /**
  * TODO description
  * 
  * @author Douglas Rew
  */
-public class Junit_Feature_Model_Operation {
+public class Junit_Feature_Model_IO {
 
+	// TODO : dkrew : need to work on this
 	@Test
-	public void test_Feature_Model_Root_Classification() {
+	public void test_Feature_Model_Root_IO() throws FileNotFoundException, UnsupportedModelException {
 	
-		assertEquals(0,0);
-		/*System.out.println("Unit Test : test_Feature_Model_Root_Classification");
+		System.out.println("Unit Test : test_Feature_Model_Root_IO");
 		
 		FeatureModel featureModel = new FeatureModel();
 		assertNull(featureModel.getRoot());
-		featureModel.createDefaultValues("Testing_With_Classification_Node");
+		featureModel.createDefaultValues("Testing_For_IO");
 		
 		Feature root = featureModel.getRoot();
 		assertNotNull(root);
-		assertEquals("Testing_With_Classification_Node",root.getName());	 
+		assertEquals("Testing_For_IO",root.getName());	 
 		assertEquals(1, featureModel.getFeatureTable().size());
+		
 
-		FeatureCreateClassificationLayerOperation operator = 
-				new FeatureCreateClassificationLayerOperation(root, null, featureModel, null);
-		assertNotNull(operator);
 		
 		// Following the REDO logic from the operator
-		Integer number = 0;
-		Feature newFeature = new ClassificationFeature(featureModel, "ClassificationNode" + number++);
+		Feature newFeature = new ClassificationFeature(featureModel, "Testing_Classification_Node");
 		featureModel.addFeature(newFeature);
 		Feature feature = featureModel.getFeature(root.getName());
 		feature.addChild(newFeature);
 		
+		XmlClassificationTreeModelWriter writer = new XmlClassificationTreeModelWriter(featureModel);
 		
-		assertEquals(2, featureModel.getFeatures().size());
-		assertEquals(1 , root.getChildrenCount());
-		assertTrue(root.getChildren().get(0).getKind().equals(FeatureKind.Classification));*/
+		// Creating file for testing
+		File file = new File("testing.file");
+		writer.writeToFile(file);
+
+
+		// Using a new feature model
+		FeatureModel featureModel_Read = new FeatureModel();
+		XmlClassificationTreeModelReader reader = new XmlClassificationTreeModelReader(featureModel_Read);
+		reader.readFromFile(file);
 		
-	}
+		//System.out.println(featureModel_Read.toString());
+//		System.out.println(featureModel_Read.getFeatureNames());
 	
-	// TODO : dkrew add in different combinations    
-//	@Test
-//	public void test_Feature_Model_Root_Classification() {
-//		
-//	}
+		Feature root_from_read = featureModel_Read.getFeature("Testing_For_IO");
+		assertNotNull(root_from_read);
+		
+		Feature classification_node_from_read = featureModel_Read.getFeature("Testing_Classification_Node");
+		assertNotNull(classification_node_from_read);
+		
+		
+		
+		
+		// Cleaning up the file for testing
+		file.delete();
+		
+		
+		
+
+	}
 
 }
-
-

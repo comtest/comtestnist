@@ -1,3 +1,4 @@
+
 /* FeatureIDE - A Framework for Feature-Oriented Software Development
  * Copyright (C) 2005-2013  FeatureIDE team, University of Magdeburg, Germany
  *
@@ -45,13 +46,11 @@ public class GraphicalEditPartFactory implements EditPartFactory {
 
 		if (model instanceof FeatureConnection)
 			return new ConnectionEditPart((FeatureConnection) model);
-
+  
 		if (model instanceof Constraint)
 			return new ConstraintEditPart((Constraint) model);
-		
 		//if (model instanceof Legend)
 			//return new LegendEditPart((Legend) model);
-		
 		return null;
 	}
 
