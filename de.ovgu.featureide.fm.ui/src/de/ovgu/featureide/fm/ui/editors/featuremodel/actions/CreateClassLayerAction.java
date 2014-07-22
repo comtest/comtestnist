@@ -29,6 +29,7 @@ import org.eclipse.ui.PlatformUI;
 
 import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.FeatureCreateClassLayerOperation;
@@ -81,7 +82,10 @@ public class CreateClassLayerAction extends SingleSelectionAction{
 
 	@Override
 	protected void updateProperties() {
-		setEnabled(feature.kind == FeatureKind.Classification && ((ClassificationFeature) feature).getDataType() != null); //Abhi
+		//Abhi
+		setEnabled(feature.kind == FeatureKind.Classification && ((ClassificationFeature) feature).getDataType() != null
+					&& ((ClassificationFeature) feature).getDataType() != FeatureConstants.TYPE_BOOLEAN
+					&& ((ClassificationFeature) feature).getDataType() != FeatureConstants.TYPE_RANGE); 
 		setChecked(false);
 	}
 
