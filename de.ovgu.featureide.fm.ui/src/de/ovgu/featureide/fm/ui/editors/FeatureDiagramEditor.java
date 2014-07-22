@@ -288,8 +288,8 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 		reverseOrderAction = new ReverseOrderAction(this, featureModel);
 
 		// legendAction = new LegendAction(this, featureModel);
-		legendLayoutAction = new LegendLayoutAction(this, featureModel);
-		legendAction = new LegendAction(this, featureModel);
+		//legendLayoutAction = new LegendLayoutAction(this, featureModel);
+		//legendAction = new LegendAction(this, featureModel);
 		showHiddenFeaturesAction = new ShowHiddenFeaturesAction(this,
 				featureModel);
 
