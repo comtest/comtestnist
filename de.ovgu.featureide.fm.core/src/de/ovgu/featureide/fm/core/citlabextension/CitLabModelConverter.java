@@ -75,7 +75,7 @@ public class CitLabModelConverter {
 				// return false if the leaf node is not a ClassNode
 				if (!(node instanceof ClassFeature)) {
 					throw new UnconvertibleModelException(node.getName() + 
-							"cannot be a leaf node because it is not a Class node.");				
+							" cannot be a leaf node because it is not a Class node.");				
 				}
 			}
 			
@@ -84,14 +84,14 @@ public class CitLabModelConverter {
 				String value = ((ClassFeature)node).getValue();
 				if (value == null||"".equals(value)) {
 					throw new UnconvertibleModelException(node.getName() + 
-							"does not have a value.");					
+							" does not have a value.");					
 				}
 				
 				if (node.isAbstract()) {
 					String concreteValue = ((ClassFeature)node).getConcreteValue();
 					if (concreteValue == null||"".equals(concreteValue)) {
-						throw new UnconvertibleModelException("Abstract Class node" + node.getName() + 
-								"does not have a concrete value.");					
+						throw new UnconvertibleModelException("Abstract Class node " + node.getName() + 
+								" does not have a concrete value.");					
 					}
 				}
 			}
@@ -106,7 +106,7 @@ public class CitLabModelConverter {
 					String grandParentDataType = ((ClassificationFeature)grandParent).getDataType();
 					if(!(dataType.equals(grandParentDataType))) {
 						throw new UnconvertibleModelException(node.getName() + 
-								"does not have the same type with its parents.");
+								" does not have the same type with its parents.");
 					}
 				}				
 			}

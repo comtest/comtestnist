@@ -55,7 +55,8 @@ public class FMPropertyManager extends FMPropertyManagerDefaults implements GUID
 	/* ****************************************************
 	 * current values
 	 ******************************************************/
-	private volatile static Boolean CURRENT_HIDE_LEGEND = null;
+	// wayman
+	private volatile static Boolean CURRENT_HIDE_LEGEND = true;
 	private volatile static Boolean CURRENT_HIDE_BORDER_COLOR = null;
 	private volatile static Color CURRENT_LEGEND_FORGOUND = null;
 	private volatile static Color CURRENT_LEGEND_BACKGROUND = null;
