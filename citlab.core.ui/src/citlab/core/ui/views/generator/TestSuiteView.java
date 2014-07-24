@@ -3,6 +3,7 @@
  */
 package citlab.core.ui.views.generator;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,8 +87,13 @@ public class TestSuiteView extends ViewPart {
 	private TestSuite inputlist;
 	private TableColumnLayout layout;
 	private StyledText styledText;
-
-
+	
+	private Integer original_Column_Size;
+	private Integer additional_Column_Size;
+	private Button addColumnButton;
+	private Button removeColumnButton;
+	private List<TextCellEditor> cellEditors;
+	private List<TableColumn> tableColumns;
 
 	public TestSuiteView() {
 		// TODO Auto-generated constructor stub
@@ -120,7 +126,6 @@ public class TestSuiteView extends ViewPart {
 		tableViewer = new TableViewer(composite_1, SWT.BORDER
 				| SWT.FULL_SELECTION | SWT.H_SCROLL |SWT.V_SCROLL);
 		
-		
 		tableViewer.setLabelProvider(new MyLabelProvider());
 		tableViewer.setContentProvider(ArrayContentProvider.getInstance());
 
@@ -150,12 +155,10 @@ public class TestSuiteView extends ViewPart {
 				| ColumnViewerEditor.KEYBOARD_ACTIVATION;
 
 		TableViewerEditor.create(tableViewer, focusCellManager, actSupport, feature);
-//
-//		
 		tableViewer.getTable().setLinesVisible(true);
 		tableViewer.getTable().setHeaderVisible(true);
 		table= tableViewer.getTable();
-	  composite_1.setLayout(new FillLayout());
+	    composite_1.setLayout(new FillLayout());
 	  
 	  
 	  
@@ -236,6 +239,23 @@ public class TestSuiteView extends ViewPart {
 	  														fd_styledText.left = new FormAttachment(text, 0, SWT.LEFT);
 	  														fd_styledText.right = new FormAttachment(0, 297);
 	  														styledText.setLayoutData(fd_styledText);
+	  														
+	  														addColumnButton = new Button(composite, SWT.NONE);
+	  														FormData fd_addColumnNewButton = new FormData();
+	  														fd_addColumnNewButton.top = new FormAttachment(styledText, 10);
+	  														fd_addColumnNewButton.left = new FormAttachment(text, 0, SWT.LEFT);
+	  														addColumnButton.setLayoutData(fd_addColumnNewButton);
+	  														addColumnButton.setText("Add Column");
+	  														
+	  														
+	  														removeColumnButton = new Button(composite, SWT.NONE);
+	  														FormData fd_removeColumnNewButton = new FormData();
+	  														fd_removeColumnNewButton.top = new FormAttachment(styledText, 10);
+	  														fd_removeColumnNewButton.left = new FormAttachment(addColumnButton, 0, SWT.RIGHT);
+	  														removeColumnButton.setLayoutData(fd_removeColumnNewButton);
+	  														removeColumnButton.setText("Remove Column");
+	  														removeColumnButton.setEnabled(false);
+			composite.pack();
 		
 	}
 
@@ -270,9 +290,9 @@ public class TestSuiteView extends ViewPart {
 		for (int i = 0; i < inputlist.getTests().size(); i++) {
 			if( i == 0 ){
 				Assignment assignment = TestsuiteFactory.eINSTANCE
-						.createAssignment();
+						.createAssignment();       
 				Parameter parameter = CitLFactory.eINSTANCE.createParameter();
-				parameter.setName("Expected Value");
+				parameter.setName("Expected Value_"+additional_Column_Size);
 				assignment.setParameter(parameter);
 				assignment.setValue("*");
 				inputlist.getTests().get(i).getAssignments().add(assignment);
@@ -280,7 +300,7 @@ public class TestSuiteView extends ViewPart {
 				Assignment assignment = TestsuiteFactory.eINSTANCE
 						.createAssignment();
 				Parameter parameter = CitLFactory.eINSTANCE.createParameter();
-				parameter.setName("Expected Value");
+				parameter.setName("Expected Value_"+additional_Column_Size);
 				assignment.setParameter(parameter);
 				assignment.setValue("*");
 				inputlist.getTests().get(i).getAssignments().add(assignment);
@@ -290,67 +310,26 @@ public class TestSuiteView extends ViewPart {
 		return inputlist;
 	}
 
+	public TestSuite removeExpextedValueColumn(final TestSuite inputlist){
+		int removal = inputlist.getTests().get(0).getAssignments().size();
+		for (int i = 0; i < inputlist.getTests().size(); i++) {
+			if( i == 0 ){
+				
+				inputlist.getTests().get(i).getAssignments().remove(removal-1);
+			} else {
+				
+				inputlist.getTests().get(i).getAssignments().remove(removal-1);
+			}
+		}
+		return inputlist;
+	}
 	public void setTestsuite(final TestSuite inputlist) {
 
 		this.inputlist = inputlist;
-		add_in_expected_value_col(inputlist);
-		String[] columLabels = generate_column_name().toArray(new String[0]);
-		TextCellEditor[] cellEditors = new TextCellEditor[columLabels.length];
+		original_Column_Size = inputlist.getTests().get(0).getAssignments().size();
+		additional_Column_Size = 0;
+		handleTestSuiteModification();
 
-		for(int i = 0; i<columLabels.length; i++){
-			cellEditors[i] = new TextCellEditor(tableViewer.getTable());
-		}
-
-		tableViewer.setCellEditors(cellEditors);
-		tableViewer.setColumnProperties(columLabels);
-		
-		    
-		for (String label : columLabels) {
-			createColumnFor(tableViewer, label);
-		}
-		tableViewer.setInput(createModel());
-		
-//		
-//		TableColumn[] columnOfTheModel = new TableColumn[this.inputlist
-//				.getTests().get(0).getAssignments().size() + 1];
-//		TableViewerColumn[]  tableViewerColumn = new TableViewerColumn[this.inputlist
-//		                                               				.getTests().get(0).getAssignments().size() + 1];
-//
-//		columnOfTheModel[0] = new TableColumn(table, SWT.NONE);
-//		columnOfTheModel[0].setText("Test");
-//	
-//		int n = 1;
-//		for (Assignment i : this.inputlist.getTests().get(0).getAssignments()) {
-//			tableViewerColumn[n] = new TableViewerColumn(
-//					tableViewer, SWT.NONE);
-//
-//			columnOfTheModel[n] = tableViewerColumn[n].getColumn();
-//	      
-//
-//			columnOfTheModel[n].setText(i.getParameter().getName());
-//			n++;
-//		}
-//		int testnumber = 0;
-//		for (Test test : this.inputlist.getTests()) {
-//			testnumber++;
-//			TableItem item = new TableItem(table, SWT.NONE);
-//			item.setText(0, Integer.toString(testnumber));
-//			item.setForeground(0, SWTResourceManager.getColor(SWT.COLOR_RED));
-//			int i = 1;
-//			for (Assignment assignment : test.getAssignments()) {
-//				item.setText(i, assignment.getValue());
-//				i++;
-//
-//			}
-//		}
-		table.setRedraw(true);
-		table.pack();
-//		for (int i = 0, n1 = columnOfTheModel.length; i < n1; i++) {
-//			//columnOfTheModel[i].pack();
-//		 layout.setColumnData(columnOfTheModel[i], new ColumnWeightData(10));
-//			 
-//		}
-         
 		text_2.setText((String.valueOf(this.inputlist.getTests().size())));
 		text_1.setText((String.valueOf(this.inputlist.getGeneratorTime())));
 		text.setText(this.inputlist.getGeneratorName());
@@ -364,20 +343,123 @@ public class TestSuiteView extends ViewPart {
 
 			}
 		});
-		btnNewButton.setBounds(397, 33, 271, 25);
 		btnNewButton.setText("Export");
 
+		
+		
+		addColumnButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				additional_Column_Size++;
+				add_in_expected_value_col(inputlist);
+				buildColumn();
+				
+				if(additional_Column_Size > 0){
+					removeColumnButton.setEnabled(true);
+				}
+
+			}
+		});
+		//addColumnButton.setBounds(397, 180, 271, 25);
+		
+		
+		removeColumnButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(additional_Column_Size > 0){
+					removeExpextedValueColumn(inputlist);
+					disposeColumn();
+					additional_Column_Size--;
+					
+					if(additional_Column_Size <= 0){
+						removeColumnButton.setEnabled(false);
+					}
+				}
+			
+				
+			}
+		});
+		
 		styledText.setText(this.getPartName()+"\n"+
 		"\n"+"N-WISE= "+ inputlist.getStrength());
 
 	}
 	
+	private void handleTestSuiteModification(){
+		
+		buildCellEditors();
+		
+	}
+	private void buildCellEditors(){
+		String[] columLabels = generate_column_name().toArray(new String[0]);
+		cellEditors = new ArrayList<TextCellEditor>();  
+
+		for(int i = 0; i<columLabels.length; i++){
+			cellEditors.add(new TextCellEditor(tableViewer.getTable()));
+		}
+
+		tableViewer.setCellEditors(cellEditors.toArray(new TextCellEditor[0]));
+		tableViewer.setColumnProperties(columLabels);
+		
+		
+		tableColumns = new ArrayList<TableColumn>();
+		for (String label : columLabels) {
+			createColumnFor(tableViewer, label);
+		}
+		tableViewer.setInput(createModel());
+	
+		table.setRedraw(true);
+		table.pack();
+	}
+	
+	private void disposeCellEditrors(){
+		for(CellEditor editor : tableViewer.getCellEditors()){
+			editor.dispose();
+		}
+		for(TableColumn col : tableViewer.getTable().getColumns() ){
+			col.dispose();
+		}
+		tableViewer.setColumnProperties(null);
+		tableViewer.setInput(null);		
+	}
+	
+	private void buildColumn(){
+		
+		String[] columLabels = generate_column_name().toArray(new String[0]);
+		
+		// Adding in the new text cell editor in our List
+		cellEditors.add( new TextCellEditor(tableViewer.getTable()));
+		tableViewer.setCellEditors(cellEditors.toArray(new TextCellEditor[0]));
+		tableViewer.setColumnProperties(columLabels);
+		createColumnFor(tableViewer, columLabels[columLabels.length-1]);
+		tableViewer.setInput(createModel());
+		tableViewer.refresh();
+	}
+	
+	private void disposeColumn(){
+		// Adding in one because the cellEditors and tableColumns has the TEST column
+		int index = inputlist.getTests().get(0).getAssignments().size()+1;
+		cellEditors.get(index).dispose();
+		tableColumns.get(index).dispose();
+		cellEditors.remove(index);
+		tableColumns.remove(index);
+		
+		String[] columLabels = generate_column_name().toArray(new String[0]);
+		tableViewer.setColumnProperties(columLabels);
+		tableViewer.setInput(createModel());
+		tableViewer.refresh();
+		
+	}
 	private void createColumnFor(TableViewer v, String label) {
 		TableColumn column = new TableColumn(v.getTable(), SWT.NONE);
 		
 		column.setMoveable(true);
 		column.setText(label);
 		column.pack();
+		
+		tableColumns.add(column);
+		
+		
 	}
 
 	private List<MyModel> createModel() {
