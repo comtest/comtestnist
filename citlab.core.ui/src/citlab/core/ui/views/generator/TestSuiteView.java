@@ -304,7 +304,7 @@ public class TestSuiteView extends ViewPart {
 		tableViewer.setCellEditors(cellEditors);
 		tableViewer.setColumnProperties(columLabels);
 		
-		
+		    
 		for (String label : columLabels) {
 			createColumnFor(tableViewer, label);
 		}
