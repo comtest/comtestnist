@@ -21,21 +21,34 @@
 package de.ovgu.featureide.fm.core.citlabextension;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import citlab.model.citL.AnonymousType;
+import citlab.model.citL.BoolAssign;
 import citlab.model.citL.Boolean;
+import citlab.model.citL.BooleanConst;
 import citlab.model.citL.CitLFactory;
 import citlab.model.citL.CitModel;
 import citlab.model.citL.Element;
+import citlab.model.citL.EnumAssign;
 import citlab.model.citL.Enumerative;
+import citlab.model.citL.Expression;
+import citlab.model.citL.ImpliesExpression;
+import citlab.model.citL.ImpliesOperator;
+import citlab.model.citL.ModelUtils;
+import citlab.model.citL.NumberLiteral;
 import citlab.model.citL.Numbers;
+import citlab.model.citL.Operators;
 import citlab.model.citL.Range;
 import citlab.model.citL.impl.CitLPackageImpl;
 import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
+import de.ovgu.featureide.fm.core.Constraint;
+import de.ovgu.featureide.fm.core.ConstraintAttribute;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
@@ -44,9 +57,11 @@ import de.ovgu.featureide.fm.core.RangeClassFeature;
 /**
  * TODO description
  * 
- * @author Wayman Tan
+ * @author Wayman Tan, dkrew
  */
 public class CitLabModelConverter {
+	
+	Map<Feature, Expression> choosenExpr = new HashMap<Feature, Expression>();
 	
 	public CitModel convertModel(FeatureModel fm) throws UnconvertibleModelException {
 		// validate to ensure the model is ready for conversion
@@ -61,7 +76,7 @@ public class CitLabModelConverter {
 		// add parameters 
 		addParameterFor(fm, result);
 		// add the constraints
-		addConstraints(fm, result);
+	//	addConstraintsMine(fm, result);   
 		
 		return result;		
 	}
@@ -142,6 +157,28 @@ public class CitLabModelConverter {
 					bool.setName(normalize(classificationNode.getName()));
 					result.getParameters().add(bool);
 					
+					ClassFeature cf1 = (ClassFeature) classificationNode.getChildren().getFirst();
+					ClassFeature cf2 = (ClassFeature) classificationNode.getChildren().getLast();
+					
+//					System.out.println("lets build");
+//					System.out.println(cf1.getName());
+//					System.out.println(cf1.getValue());
+//					
+//					System.out.println(cf2.getName());
+//					System.out.println(cf2.getValue());
+					
+					BoolAssign boolassign_True = CitLFactory.eINSTANCE.createBoolAssign();
+					boolassign_True.setOp(Operators.EQ);
+					boolassign_True.setLeft(bool);
+					boolassign_True.setRight(BooleanConst.TRUE);
+					setChosen(cf1, boolassign_True);
+					
+					BoolAssign boolassign_False = CitLFactory.eINSTANCE.createBoolAssign();
+					boolassign_False.setOp(Operators.EQ);
+					boolassign_False.setLeft(bool);
+					boolassign_False.setRight(BooleanConst.FALSE);
+					setChosen(cf2, boolassign_False);
+					
 				} else if (classificationNode.getDataType().equals(FeatureConstants.TYPE_RANGE)) {
 					Range range = CitLFactory.eINSTANCE.createRange();
 					range.setName(normalize(classificationNode.getName()));
@@ -152,33 +189,91 @@ public class CitLabModelConverter {
 					if (rangeClass1.isMin()) {
 						range.setBegin(Integer.parseInt(rangeClass1.getValue()));
 						range.setEnd(Integer.parseInt(rangeClass2.getValue()));
+						System.out.println("From type Range");
+						
+						setChosen(rangeClass1, 	
+								getEnumAssignWithOneValue(rangeClass1, rangeClass1.toString()));
+						
 					} else {
 						range.setBegin(Integer.parseInt(rangeClass2.getValue()));
 						range.setEnd(Integer.parseInt(rangeClass1.getValue()));			
+						
+						System.out.println("From type Range");
+
+						setChosen(rangeClass2, 	
+								getEnumAssignWithOneValue(rangeClass2, rangeClass2.toString()));
 					}
 					result.getParameters().add(range);
+					
+				
+					
+					
 				
 				} else {
 					List<String> values = getParameterValues(classificationNode);
+					List<Feature> featureList = getParameterFeature(classificationNode);
 					if (classificationNode.getDataType().equals(FeatureConstants.TYPE_ENUM)) {
 						Enumerative enume = CitLFactory.eINSTANCE.createEnumerative();
 						enume.setName(normalize(classificationNode.getName()));
 						AnonymousType atype = CitLFactory.eINSTANCE.createAnonymousType();
 						enume.setAtype(atype);
 						enume.setNamedType(null);
+						
+						
+						int counter_for_feature_List = 0;
 						for (String value : values) {
 							Element e = CitLFactory.eINSTANCE.createElement();
 							e.setName(normalize(value));
 							enume.getAtype().getElements().add(e);
+							
+							
+							
+							setChosen(featureList.get(counter_for_feature_List), 
+									getEnumAssignWithOneValue(featureList.get(counter_for_feature_List), value));
+							counter_for_feature_List++;
 						}
+		
+
+						// For Constraints/////////////////////////////////////////
+//						Element e = CitLFactory.eINSTANCE.createElement();
+//						System.out.println("adding ina NONE");
+//						e.setName("NONE");
+//						enume.getAtype().getElements().add(e);
+//						
+//						// I believe this will hava all the ranges...
+//						System.out.println("From type ENUM");
+//						EnumAssign enumAssign = CitLFactory.eINSTANCE .createEnumAssign();
+//						enumAssign.setLeft(enume);
+//						enumAssign.setOp(Operators.NE);
+//						enumAssign.setRight(ModelUtils.getEnumElement(enume, "NONE"));
+//						setChosen(classificationNode, enumAssign);
+						/////////////////////////////////////////////////////////////////////
 						result.getParameters().add(enume);
+					
 					} else if (classificationNode.getDataType().equals(FeatureConstants.TYPE_INTEGER)) {
 						Numbers numbers = CitLFactory.eINSTANCE.createNumbers();
 						numbers.setName(normalize(classificationNode.getName()));
+						int counter_for_feature_List = 0;
 						for (String value : values) {						
 							numbers.getValues().add(Integer.parseInt(value));
+							//setChosen(classificationNode, normalize(numbers.toString()));
+							
+							setChosen(featureList.get(counter_for_feature_List), 
+									getEnumAssignWithOneValue(featureList.get(counter_for_feature_List), value));
+							counter_for_feature_List++;
 						}
-						result.getParameters().add(numbers);															
+						result.getParameters().add(numbers);			
+			
+						
+//						System.out.println("From type INTEGER");
+//						Enumerative en = getEnumerative(classificationNode);
+//						EnumAssign enumAssign = CitLFactory.eINSTANCE .createEnumAssign();
+//						enumAssign.setLeft(en);
+//						enumAssign.setOp(Operators.NE);
+//						enumAssign.setRight(ModelUtils.getEnumElement(en, "NONE"));
+//						setChosen(classificationNode, enumAssign);
+						
+						
 					}
 				}
 			}
@@ -218,8 +313,113 @@ public class CitLabModelConverter {
 		return values;
 	}
 
-	private void addConstraints(FeatureModel fm, CitModel result) {
+	
+	private List<Feature> getParameterFeature(ClassificationFeature classificationNode) {
+		List<Feature> values = new LinkedList<Feature>();
+		LinkedList<Feature> children = classificationNode.getChildren();
+		for(Feature child : children) {
+			// ignore the hidden node
+			if (child.isHidden())
+				continue;
+			LinkedList<Feature> grandChildren = child.getChildren();
+			// get the value if there is no further child
+			if (grandChildren.isEmpty()) {
+				values.add(((ClassFeature)child));				
+			} else {
+				// there should be only one node attached 
+				// to a class node
+				Feature grandChild = grandChildren.getFirst();
+				if (grandChild.isHidden()) {
+					// if the node attached to the class node 
+					// is hidden, add the value of the class node
+					values.add(((ClassFeature)child));
+				} else {
+					List<Feature> subValues = getParameterFeature((ClassificationFeature) grandChild);
+					values.addAll(subValues);
+				}
+			}
+				
+		}
+		return values;
+	}
+	private void addConstraintsMine(FeatureModel fm, CitModel result) {
+		System.out.println("addConstraintsaddConstraints");
+		
+
+		
+		
+	//	System.out.println(result.getConstraints().get(0).toString());
+		ConstraintConverter converter = new ConstraintConverter(choosenExpr);
+		for (Constraint c : fm.getConstraints()) {
+			// if the constraint is useless, skip it
+			ConstraintAttribute attribute = c.getConstraintAttribute();
+			if ((attribute == ConstraintAttribute.REDUNDANT)
+					|| (attribute == ConstraintAttribute.DEAD)
+					|| (attribute == ConstraintAttribute.TAUTOLOGY))
+				continue;
+			
+			
+			System.out.println(c.toString());
+			System.out.println(c.getNode().toString());
+			System.out.println(c.getContainedFeatures());
+			Expression expr = converter.visit(c.getNode());
+			result.getConstraints().add(expr);
+			System.out.println(expr.toString());
+		}
 		// TODO by Douglas
 
 	}
+	
+	private void setChosen(Feature currentNode, Expression expr) {
+		choosenExpr.put(currentNode, expr);
+	};
+	
+	// This will generate an enumerative for all type except boolean
+	Enumerative getEnumerative(Feature root) {
+		Enumerative enume = CitLFactory.eINSTANCE.createEnumerative();
+		System.out.println("Setting name    " + root.getName());
+		enume.setName(normalize(root.getName()));
+		AnonymousType atype = CitLFactory.eINSTANCE.createAnonymousType();
+		enume.setAtype(atype);
+		enume.setNamedType(null);
+		for (Feature nephew : root.getChildren()) {
+			Element e = CitLFactory.eINSTANCE.createElement();
+			e.setName(normalize(nephew.getName()));
+			System.out.println("Setting child  " + nephew.getName());
+			enume.getAtype().getElements().add(e);
+		}
+		Element e = CitLFactory.eINSTANCE.createElement();
+		
+		System.out.println("adding ina NONE");
+		e.setName("NONE");
+		enume.getAtype().getElements().add(e);
+		return enume;
+	}
+	
+	
+	private EnumAssign getEnumAssignWithOneValue(Feature root, String nodeName){
+		
+		Enumerative enume = CitLFactory.eINSTANCE.createEnumerative();
+		enume.setName(normalize(root.getName()));
+		AnonymousType atype = CitLFactory.eINSTANCE.createAnonymousType();
+		enume.setAtype(atype);
+		enume.setNamedType(null);
+
+		Element e = CitLFactory.eINSTANCE.createElement();
+		e.setName(nodeName);
+		enume.getAtype().getElements().add(e);
+		
+		
+	
+		EnumAssign enumAssign = CitLFactory.eINSTANCE .createEnumAssign();
+		enumAssign.setLeft(enume);
+		enumAssign.setOp(Operators.EQ);
+		enumAssign.setRight(ModelUtils.getEnumElement(enume, nodeName));
+		
+		return enumAssign;
+	}
+	
+	
+	
+
 }
