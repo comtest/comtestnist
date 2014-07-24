@@ -83,21 +83,29 @@ public class CitLabModelConverter {
 			if (node instanceof ClassFeature) {
 				String value = ((ClassFeature)node).getValue();
 				if (value == null||"".equals(value)) {
-					throw new UnconvertibleModelException(node.getName() + 
-							" does not have a value.");					
+					throw new UnconvertibleModelException(node.getName() +
+															" under " + node.getParent().getName() +
+															" does not have a value.");					
 				}
 				
 				if (node.isAbstract()) {
 					String concreteValue = ((ClassFeature)node).getConcreteValue();
 					if (concreteValue == null||"".equals(concreteValue)) {
 						throw new UnconvertibleModelException("Abstract Class node " + node.getName() + 
-								" does not have a concrete value.");					
+															" under " + node.getParent().getName() +
+															" does not have a concrete value.");					
 					}
 				}
 			}
 			
-			// ensure all Classification nodes are in same type with their parent Classification node
 			if (node instanceof ClassificationFeature) {
+				// ensure all Classification nodes should at least have two children
+				if (children.size() < 2) {
+					throw new UnconvertibleModelException(node.getName() + 
+							" should have at least 2 children.");
+				}
+				
+				// ensure all Classification nodes are in same type with their parent Classification node
 				Feature parent = node.getParent();
 				if (parent instanceof ClassFeature) {
 					// Currently only allow a Classification node added to a class node
