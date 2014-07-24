@@ -23,6 +23,7 @@ package de.ovgu.featureide.fm.core.citlabextension;
 import java.text.Normalizer;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import citlab.model.citL.AnonymousType;
 import citlab.model.citL.Boolean;
@@ -31,7 +32,6 @@ import citlab.model.citL.CitModel;
 import citlab.model.citL.Element;
 import citlab.model.citL.Enumerative;
 import citlab.model.citL.Numbers;
-import citlab.model.citL.Numerical;
 import citlab.model.citL.Range;
 import citlab.model.citL.impl.CitLPackageImpl;
 import de.ovgu.featureide.fm.core.ClassFeature;
@@ -66,8 +66,51 @@ public class CitLabModelConverter {
 		return result;		
 	}
 	
-	public void validateModel(FeatureModel featureModel) throws UnconvertibleModelException {
-		// TODO by Wayman
+	public void validateModel(FeatureModel featureModel) throws UnconvertibleModelException {		
+		Map<String, Feature> featureTable = featureModel.getFeatureTable();
+		for(Feature node: featureTable.values()) {
+			LinkedList<Feature> children = node.getChildren();
+			// ensure all the leaf nodes are Class nodes
+			if (children.isEmpty()) {
+				// return false if the leaf node is not a ClassNode
+				if (!(node instanceof ClassFeature)) {
+					throw new UnconvertibleModelException(node.getName() + 
+							"cannot be a leaf node because it is not a Class node.");				
+				}
+			}
+			
+			// ensure all Class nodes contain values
+			if (node instanceof ClassFeature) {
+				String value = ((ClassFeature)node).getValue();
+				if (value == null||"".equals(value)) {
+					throw new UnconvertibleModelException(node.getName() + 
+							"does not have a value.");					
+				}
+				
+				if (node.isAbstract()) {
+					String concreteValue = ((ClassFeature)node).getConcreteValue();
+					if (concreteValue == null||"".equals(concreteValue)) {
+						throw new UnconvertibleModelException("Abstract Class node" + node.getName() + 
+								"does not have a concrete value.");					
+					}
+				}
+			}
+			
+			// ensure all Classification nodes are in same type with their parent Classification node
+			if (node instanceof ClassificationFeature) {
+				Feature parent = node.getParent();
+				if (parent instanceof ClassFeature) {
+					// Currently only allow a Classification node added to a class node
+					Feature grandParent = parent.getParent();
+					String dataType = ((ClassificationFeature)node).getDataType();
+					String grandParentDataType = ((ClassificationFeature)grandParent).getDataType();
+					if(!(dataType.equals(grandParentDataType))) {
+						throw new UnconvertibleModelException(node.getName() + 
+								"does not have the same type with its parents.");
+					}
+				}				
+			}
+		}		
 	}
 	
 	

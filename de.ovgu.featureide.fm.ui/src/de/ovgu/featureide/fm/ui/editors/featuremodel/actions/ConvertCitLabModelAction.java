@@ -40,6 +40,9 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.ISharedImages;
@@ -111,26 +114,15 @@ public class ConvertCitLabModelAction extends Action {
 
 
 	@Override
-	public void run() {
-//		DeleteAllOperation op = new DeleteAllOperation(featureModel, feature);
-//
-//		op.addContext((IUndoContext) featureModel.getUndoContext());
-//
-//		try {
-//			PlatformUI.getWorkbench().getOperationSupport()
-//					.getOperationHistory().execute(op, null, null);
-//		} catch (ExecutionException e) {
-//			FMUIPlugin.getDefault().logError(e);
-//
-//		}
-		
+	public void run() {		
 		CitLabModelConverter citConverter = new CitLabModelConverter();
 		try {
 			CitModel citModel = citConverter.convertModel(featureModel);
-//			String name = citModel.getName();
 			saveModel(citModel);
 		} catch (UnconvertibleModelException e) {
-			// TODO Auto-generated catch block
+			MessageBox m =new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),SWT.ERROR);
+			m.setMessage(e.getMessage());
+			m.open();
 			e.printStackTrace();
 		}
 		
