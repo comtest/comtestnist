@@ -207,6 +207,7 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 						.getLocation(fm.getRoot());
 				if (oldLoc == null)
 					return;
+				
 				internRefresh(true);
 
 				org.eclipse.draw2d.geometry.Point newLoc = FeatureUIHelper
@@ -725,12 +726,17 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			refresh();
 		} else if (MODEL_LAYOUT_CHANGED.equals(prop)) {
 			featureModelEditor.setPageModified(true);
+			refresh();
+			refreshGraphics(null);
 		} else if (REDRAW_DIAGRAM.equals(prop)) {
 			getControl().setBackground(
 					FMPropertyManager.getDiagramBackgroundColor());
 			setContents(getFeatureModel());
+			refresh();
 			refreshGraphics(null);
 		} else if (REFRESH_ACTIONS.equals(prop)) {
+			refresh();
+			refreshGraphics(null);
 			// additional actions can be refreshed here
 			// legendAction.refresh();
 			//legendLayoutAction.refresh(); //abhi
