@@ -61,7 +61,14 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 	 * author: Wayman Tan
 	 */
 	private final List<ClassificationFeature> classificationNodeList = new LinkedList<ClassificationFeature>();
-
+	
+	/**
+	 * this class feature list containing all class features 
+	 * author: Abhishek Sharma
+	 */
+	private final List<ClassFeature> classNodeList = new LinkedList<ClassFeature>();
+	
+	
 	protected final List<Constraint> constraints = new LinkedList<Constraint>();
 	
 	/**
@@ -152,6 +159,8 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 		featureTable.clear();
 		// wayman
 		classificationNodeList.clear();
+		//abhi
+		classNodeList.clear();
 		renamingsManager.clear();
 		constraints.clear();
 		comments.clear();
@@ -243,6 +252,12 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 		if (feature instanceof ClassificationFeature) {
 			classificationNodeList.add((ClassificationFeature)feature);
 		}
+		
+		//Abhishek: add the class node to the list 
+		if(feature instanceof ClassFeature){
+			classNodeList.add((ClassFeature) feature);
+		}
+			
 		return true;
 	}
 	
@@ -377,6 +392,11 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 		// wayman
 		if (feature instanceof ClassificationFeature){
 			classificationNodeList.remove((ClassificationFeature)feature);
+		}
+		
+		// Abhi
+		if (feature instanceof ClassFeature){
+			classNodeList.remove((ClassFeature)feature);
 		}
 		
 		return true;
@@ -791,6 +811,13 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 			}
 		}
 		return x + " ] ";
+	}
+
+	/**
+	 * @return the classNodeList
+	 */
+	public List<ClassFeature> getClassNodeList() {
+		return classNodeList;
 	}
 
 }

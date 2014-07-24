@@ -519,7 +519,7 @@ public class ConstraintDialog implements GUIDefaults {
 
 		});
 		
-		featureTableViewer.setInput(featureModel.getFeatures());
+		featureTableViewer.setInput(featureModel.getClassificationNodeList());
 
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.grabExcessVerticalSpace = true;
@@ -714,7 +714,7 @@ public class ConstraintDialog implements GUIDefaults {
 		boolean isWellformed = nodereader.isWellFormed(con, featureModel.getFeatureNames());
 
 		if (!isWellformed) {
-			printHeaderError(nodereader.getErrorMessage());
+			printHeaderError(nodereader.getErrorMessage());	
 			return false;
 		}
 
