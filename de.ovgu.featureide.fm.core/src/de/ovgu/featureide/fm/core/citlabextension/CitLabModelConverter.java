@@ -26,6 +26,9 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import org.eclipse.xtext.EcoreUtil2;
 
 import citlab.model.citL.AnonymousType;
 import citlab.model.citL.BoolAssign;
@@ -44,7 +47,12 @@ import citlab.model.citL.NumberLiteral;
 import citlab.model.citL.Numbers;
 import citlab.model.citL.Operators;
 import citlab.model.citL.Range;
+import citlab.model.citL.Rule;
 import citlab.model.citL.impl.CitLPackageImpl;
+import citlab.model.logic.cnf.SimpleExpressionToString;
+import citlab.model.simplifier.ConstraintSimplifier;
+import citlab.model.simplifier.ParameterSimplifier;
+import citlab.model.simplifier.Simplificator;
 import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
 import de.ovgu.featureide.fm.core.Constraint;
@@ -76,7 +84,7 @@ public class CitLabModelConverter {
 		// add parameters 
 		addParameterFor(fm, result);
 		// add the constraints
-	//	addConstraintsMine(fm, result);   
+		addConstraintsMine(fm, result);   
 		
 		return result;		
 	}
@@ -160,24 +168,17 @@ public class CitLabModelConverter {
 					ClassFeature cf1 = (ClassFeature) classificationNode.getChildren().getFirst();
 					ClassFeature cf2 = (ClassFeature) classificationNode.getChildren().getLast();
 					
-//					System.out.println("lets build");
-//					System.out.println(cf1.getName());
-//					System.out.println(cf1.getValue());
-//					
-//					System.out.println(cf2.getName());
-//					System.out.println(cf2.getValue());
-					
 					BoolAssign boolassign_True = CitLFactory.eINSTANCE.createBoolAssign();
 					boolassign_True.setOp(Operators.EQ);
 					boolassign_True.setLeft(bool);
 					boolassign_True.setRight(BooleanConst.TRUE);
-					setChosen(cf1, boolassign_True);
+					setChosen((Feature)cf1, boolassign_True);
 					
 					BoolAssign boolassign_False = CitLFactory.eINSTANCE.createBoolAssign();
 					boolassign_False.setOp(Operators.EQ);
 					boolassign_False.setLeft(bool);
 					boolassign_False.setRight(BooleanConst.FALSE);
-					setChosen(cf2, boolassign_False);
+					setChosen((Feature)cf2, boolassign_False);
 					
 				} else if (classificationNode.getDataType().equals(FeatureConstants.TYPE_RANGE)) {
 					Range range = CitLFactory.eINSTANCE.createRange();
@@ -192,7 +193,7 @@ public class CitLabModelConverter {
 						System.out.println("From type Range");
 						
 						setChosen(rangeClass1, 	
-								getEnumAssignWithOneValue(rangeClass1, rangeClass1.toString()));
+								getEnumAssignWithOneValue((Feature)rangeClass1, rangeClass1.toString()));
 						
 					} else {
 						range.setBegin(Integer.parseInt(rangeClass2.getValue()));
@@ -200,7 +201,7 @@ public class CitLabModelConverter {
 						
 						System.out.println("From type Range");
 
-						setChosen(rangeClass2, 	
+						setChosen((Feature)rangeClass2, 	
 								getEnumAssignWithOneValue(rangeClass2, rangeClass2.toString()));
 					}
 					result.getParameters().add(range);
@@ -228,7 +229,7 @@ public class CitLabModelConverter {
 							
 							
 							
-							setChosen(featureList.get(counter_for_feature_List), 
+							setChosen((Feature)featureList.get(counter_for_feature_List), 
 									getEnumAssignWithOneValue(featureList.get(counter_for_feature_List), value));
 							counter_for_feature_List++;
 						}
@@ -258,7 +259,7 @@ public class CitLabModelConverter {
 							numbers.getValues().add(Integer.parseInt(value));
 							//setChosen(classificationNode, normalize(numbers.toString()));
 							
-							setChosen(featureList.get(counter_for_feature_List), 
+							setChosen((Feature)featureList.get(counter_for_feature_List), 
 									getEnumAssignWithOneValue(featureList.get(counter_for_feature_List), value));
 							counter_for_feature_List++;
 						}
@@ -345,7 +346,11 @@ public class CitLabModelConverter {
 	private void addConstraintsMine(FeatureModel fm, CitModel result) {
 		System.out.println("addConstraintsaddConstraints");
 		
-
+			for(Entry<Feature,Expression> entry : choosenExpr.entrySet()){
+				System.out.println(entry.getKey().toString());
+				System.out.println(SimpleExpressionToString.eInstance.doSwitch(entry.getValue()));
+				
+			}
 		
 		
 	//	System.out.println(result.getConstraints().get(0).toString());
@@ -366,8 +371,21 @@ public class CitLabModelConverter {
 			result.getConstraints().add(expr);
 			System.out.println(expr.toString());
 		}
+		
+		for(Rule r : result.getConstraints()){
+			System.out.println(SimpleExpressionToString.eInstance.doSwitch(r));
+			
+		}
+		
+//		(display==BW) => (rearCamera==NOC)
+//				(display==BW) => (rearCamera==1MP)
+//				(emailViewer==true) or (((frontCamera!=NOC) => (display!=BW)) and ((textLines) >= (threshold)))
 		// TODO by Douglas
 
+
+		
+		
+		
 	}
 	
 	private void setChosen(Feature currentNode, Expression expr) {
