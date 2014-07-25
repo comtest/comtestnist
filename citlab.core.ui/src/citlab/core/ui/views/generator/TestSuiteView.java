@@ -3,11 +3,19 @@
  */
 package citlab.core.ui.views.generator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -19,6 +27,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xml.type.internal.RegEx.REUtil;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -41,6 +50,7 @@ import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
@@ -51,6 +61,7 @@ import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
@@ -94,6 +105,8 @@ public class TestSuiteView extends ViewPart {
 	private Button removeColumnButton;
 	private List<TextCellEditor> cellEditors;
 	private List<TableColumn> tableColumns;
+	
+	private Button importCVSButton;
 
 	public TestSuiteView() {
 		// TODO Auto-generated constructor stub
@@ -255,6 +268,15 @@ public class TestSuiteView extends ViewPart {
 	  														removeColumnButton.setLayoutData(fd_removeColumnNewButton);
 	  														removeColumnButton.setText("Remove Column");
 	  														removeColumnButton.setEnabled(false);
+	  														
+	  														
+	  														
+	  														importCVSButton = new Button(composite, SWT.NONE);
+	  														FormData fd_importCVSButton = new FormData();
+	  														fd_importCVSButton.top = new FormAttachment(addColumnButton, 10);
+	  														fd_importCVSButton.left = new FormAttachment(text, 0, SWT.LEFT);
+	  														importCVSButton.setLayoutData(fd_importCVSButton);
+	  														importCVSButton.setText("Import From CVS");
 			composite.pack();
 		
 	}
@@ -277,10 +299,8 @@ public class TestSuiteView extends ViewPart {
 		List<String> column_name = new ArrayList<String>();
 		
 		column_name.add("Test");
-		int n = 1;
 		for (Assignment i : this.inputlist.getTests().get(0).getAssignments()) {
 			column_name.add(i.getParameter().getName());
-			n++;
 		}
 	
 		return column_name;
@@ -347,6 +367,34 @@ public class TestSuiteView extends ViewPart {
 
 		
 		
+		importCVSButton.addSelectionListener(new SelectionAdapter() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+//				TestSuiteImporterDialog importDialog = new TestSuiteImporterDialog(
+//						Display.getCurrent().getActiveShell(), inputlist);
+//				importDialog.open();
+				
+				FileDialog fsd = new FileDialog(importCVSButton.getParent().getShell());
+				fsd.setFilterExtensions(new String[] {"*.csv"});
+				fsd.setText("Select CSV for import...");
+				String fileName = fsd.open();
+				
+				List<List<String>> data = checkValidOnImportCSV(fileName);
+				if(data == null ){
+			        Status status = new Status(IStatus.ERROR, "My Plug-in ID", 0, "Error while importing the CSV, please check the CSV file.", null);
+		            ErrorDialog.openError(importCVSButton.getShell(),"Error", "Reason", status);
+				} else {
+					updateInput(data);
+					
+				}
+				
+			}
+			
+		
+		});
+		
 		addColumnButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -385,6 +433,98 @@ public class TestSuiteView extends ViewPart {
 
 	}
 	
+	private void updateInput (List<List<String>> data){
+		int lastIndex = data.get(0).size()-1;
+		String finalResult = data.get(0).get(lastIndex);
+		
+		for (int i = 0; i < inputlist.getTests().size(); i++) {
+			Assignment assignment = TestsuiteFactory.eINSTANCE
+					.createAssignment();
+			Parameter parameter = CitLFactory.eINSTANCE.createParameter();
+			parameter.setName(finalResult);
+			assignment.setParameter(parameter);
+			
+			if(data.get(i+1).size()-1 == lastIndex){
+				assignment.setValue(data.get(i+1).get(lastIndex));	
+			} else{
+				assignment.setValue("");
+			}
+				
+			
+			inputlist.getTests().get(i).getAssignments().add(assignment);
+		}
+		
+		buildColumn();
+		additional_Column_Size++;
+		if(additional_Column_Size > 0){
+			removeColumnButton.setEnabled(true);
+		}
+
+		
+	}
+	
+	private List<List<String>> checkValidOnImportCSV(String fileName){
+		File file = new File(fileName);
+		boolean valid = true;
+		
+		List<List<String>> data = new ArrayList<List<String>>();
+		
+		int counter = 0;
+		if(file.exists()){
+			try {
+				Scanner scan = new Scanner(file);
+				
+				
+				if(scan.hasNext()){
+					List<String> columnName = new ArrayList<String>();
+							
+					for(String name : Arrays.asList(scan.nextLine().split(",")))
+						columnName.add(name.trim());
+					
+					
+					counter++;
+					List<String> origin = generate_column_name();
+					
+					for(int i = 1 ; i < origin.size() ; i++){
+						if( !columnName.contains(origin.get(i))){
+							valid = false;
+							return null;
+						}
+					}
+					
+					if(valid)
+						data.add(columnName);
+				}
+				
+				if(valid){
+					while(scan.hasNext()){
+						List<String> rowData = new ArrayList<String>();
+						
+						for(String name : Arrays.asList(scan.nextLine().split(",")))
+							rowData.add(name.trim());
+						
+						
+						data.add(rowData);
+						counter++;
+					}
+				}
+				
+				//Checking the test case size
+				// Test does not have the column title
+				if(counter != inputlist.getTests().size()+1){
+					return null;
+				}
+				
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return data;
+		
+	}
 	private void handleTestSuiteModification(){
 		
 		buildCellEditors();
