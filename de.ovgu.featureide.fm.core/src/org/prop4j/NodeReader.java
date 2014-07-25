@@ -36,8 +36,9 @@ import java.util.List;
  */
 public class NodeReader {
 
+	//Abhi - Added a new type of Symbol
 	public final static String[] textualSymbols = new String[] { "iff",
-			"implies", "or", "and", "not" };
+			"implies", "or", "and", "=" ,"not"};
 
 	public final static String[] shortSymbols = new String[] { "<=>", "=>",
 			"|", "&", "-" };
@@ -134,13 +135,13 @@ public class NodeReader {
 
 					// recursion for children nodes
 					Node node1 = null;
-					if (i != 4)
+					if (i != 5)
 						node1 = checkExpression(string.substring(0, index),
 								list);
 					Node node2 = checkExpression(string.substring(index
 							+ symbols[i].length(), string.length()), list);
 
-					if (i < 4) {
+					if (i < 5) { //Abhi - Added a new type of Symbol
 						if (index == 0) {
 							errorMessage = "No left Symbol found";
 							error = true;
@@ -153,7 +154,7 @@ public class NodeReader {
 							return new Literal("");
 						}
 
-					} else if (i == 4) {
+					} else if (i == 5) { //Abhi - Added a new type of Symbol
 						if (string.length() - (index + symbols[i].length()) == 0) {
 							errorMessage = "No Symbol found";
 							error = true;
@@ -174,10 +175,15 @@ public class NodeReader {
 						case 3: {
 							return new And(node1, node2);
 						}
+						//Abhi
 						case 4: {
-							return new Not(node2); // Not - only one argument
-	
+							return new Equality(node1, node2);
 						}
+						
+						case 5: {
+							return new Not(node2); // Not - only one argument
+						}
+						
 					}
 				}
 			}

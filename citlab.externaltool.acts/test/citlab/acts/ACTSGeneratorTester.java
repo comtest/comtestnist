@@ -22,9 +22,14 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 
+import com.sun.java.help.search.Rule;
+
 import citlab.core.ext.CitLabException;
 import citlab.core.ext.NotConvertableModel;
+import citlab.model.citL.AndExpression;
 import citlab.model.citL.CitModel;
+import citlab.model.citL.ImpliesExpression;
+import citlab.model.logic.cnf.SimpleExpressionToString;
 import citlab.model.simplifier.Simplificator;
 import citlab.model.test.ModelsFromFilesUtils;
 import citlab.model.test.ModelsFromStringsTester;
@@ -56,8 +61,19 @@ public class ACTSGeneratorTester {
 	public void generatePhone() throws IOException, CitLabException {
 		TSGeneratorByACTS trans = new IpoGGenerator();
 		CitModel bbs = ModelsFromFilesUtils.getBenchmark("phone.citl",true);
-		TestSuite ts = trans.generateTestsAndInfo(bbs, true, true, true,2);
-		assertTrue(ts.getTests().size() > 0);
+		
+		
+		
+		
+		for(citlab.model.citL.Rule r : bbs.getConstraints()){
+			System.out.println(SimpleExpressionToString.eInstance.doSwitch(r));
+			
+		}
+		
+		
+		
+		//TestSuite ts = trans.generateTestsAndInfo(bbs, true, true, true,2);
+		//assertTrue(ts.getTests().size() > 0);
 	}
 
 	@Test

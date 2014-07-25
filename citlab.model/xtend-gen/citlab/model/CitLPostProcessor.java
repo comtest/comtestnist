@@ -48,10 +48,10 @@ public class CitLPostProcessor implements IXtext2EcorePostProcessor {
       body.setSource(GenModelPackage.eNS_URI);
       EClass _eStringToStringMapEntry = EcorePackage.eINSTANCE.getEStringToStringMapEntry();
       EObject _create = EcoreFactory.eINSTANCE.create(_eStringToStringMapEntry);
-      final BasicEMap.Entry<String,String> map = ((BasicEMap.Entry<String,String>) _create);
+      final BasicEMap.Entry<String, String> map = ((BasicEMap.Entry<String, String>) _create);
       map.setKey("body");
       map.setValue("return null;");
-      EMap<String,String> _details = body.getDetails();
+      EMap<String, String> _details = body.getDetails();
       _details.add(map);
       EList<EAnnotation> _eAnnotations = op.getEAnnotations();
       _eAnnotations.add(body);

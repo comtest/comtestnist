@@ -24,6 +24,8 @@ import citlab.model.citL.NumericalSeed;
 import citlab.model.citL.Parameter;
 import citlab.model.citL.Range;
 import citlab.model.citL.SeedNumberLiteral;
+import citlab.model.citL.impl.EnumerativeTypeImpl;
+import citlab.model.services.CitLGrammarAccess.EnumerativeTypeElements;
 import citlab.model.util.Utils.Pair;
 
 /**

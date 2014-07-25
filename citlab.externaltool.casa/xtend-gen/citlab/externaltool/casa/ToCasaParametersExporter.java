@@ -37,11 +37,11 @@ public class ToCasaParametersExporter {
   
   public CharSequence toCasaCode(final CitModel sm, final int n) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\ufffd\ufffdn\ufffd\ufffd");
+    _builder.append("«n»");
     _builder.newLine();
-    _builder.append("\ufffd\ufffdsm.getParameters.size\ufffd\ufffd");
+    _builder.append("«sm.getParameters.size»");
     _builder.newLine();
-    _builder.append("\ufffd\ufffdFOR param :sm.getParameters\ufffd\ufffd\ufffd\ufffdparam.getSize\ufffd\ufffd \ufffd\ufffdENDFOR\ufffd\ufffd");
+    _builder.append("«FOR param :sm.getParameters»«param.getSize» «ENDFOR»");
     _builder.newLine();
     return _builder;
   }
@@ -53,7 +53,7 @@ public class ToCasaParametersExporter {
       if (param instanceof Enumerative) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("\ufffd\ufffdModelUtils::getEnumerativeType(param as Enumerative).elements.size\ufffd\ufffd");
+        _builder.append("«ModelUtils::getEnumerativeType(param as Enumerative).elements.size»");
         _switchResult = _builder;
       }
     }
@@ -69,7 +69,7 @@ public class ToCasaParametersExporter {
       if (param instanceof Numbers) {
         _matched=true;
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("\ufffd\ufffd(param as Numbers).getValues.size\ufffd\ufffd");
+        _builder.append("«(param as Numbers).getValues.size»");
         _switchResult = _builder;
       }
     }
@@ -81,11 +81,11 @@ public class ToCasaParametersExporter {
         boolean _notEquals = (_step != 0);
         if (_notEquals) {
           StringConcatenation _builder = new StringConcatenation();
-          _builder.append("\ufffd\ufffd(((param as Range).end-(param as Range).begin)/(param as Range).step as Integer).toString\ufffd\ufffd");
+          _builder.append("«(((param as Range).end-(param as Range).begin)/(param as Range).step as Integer).toString»");
           _xifexpression = _builder;
         } else {
           StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append("\ufffd\ufffd(((param as Range).end-(param as Range).begin) as Integer).toString\ufffd\ufffd");
+          _builder_1.append("«(((param as Range).end-(param as Range).begin) as Integer).toString»");
           _xifexpression = _builder_1;
         }
         _switchResult = _xifexpression;
