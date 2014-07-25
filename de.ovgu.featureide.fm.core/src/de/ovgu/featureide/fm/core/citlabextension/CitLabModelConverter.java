@@ -349,7 +349,7 @@ public class CitLabModelConverter {
 		
 		
 	//	System.out.println(result.getConstraints().get(0).toString());
-		ConstraintConverter converter = new ConstraintConverter(choosenExpr);
+		/*ConstraintConverter converter = new ConstraintConverter(choosenExpr);
 		for (Constraint c : fm.getConstraints()) {
 			// if the constraint is useless, skip it
 			ConstraintAttribute attribute = c.getConstraintAttribute();
@@ -365,7 +365,7 @@ public class CitLabModelConverter {
 			Expression expr = converter.visit(c.getNode());
 			result.getConstraints().add(expr);
 			System.out.println(expr.toString());
-		}
+		}*/
 		// TODO by Douglas
 
 	}
