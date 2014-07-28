@@ -341,6 +341,7 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 		return classificationNodeList;
 	}
 	
+	
 	public Set<String> getFeatureNames() {
 		return Collections.unmodifiableSet(featureTable.keySet());
 	}

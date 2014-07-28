@@ -28,6 +28,7 @@ import java.util.Locale;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.AbstractOperation;
 import org.eclipse.core.commands.operations.IUndoContext;
+import org.eclipse.gef.ui.stackview.TreeLabelProvider;
 import org.eclipse.jface.fieldassist.ContentProposalAdapter;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -35,6 +36,7 @@ import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerComparator;
@@ -47,6 +49,7 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -69,6 +72,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.internal.dialogs.TreeManager.TreeItemLabelProvider;
 import org.prop4j.Node;
 import org.prop4j.NodeReader;
 import org.prop4j.NodeWriter;
@@ -330,7 +334,7 @@ public class ConstraintDialog implements GUIDefaults {
 		ContentProposalAdapter adapter = new ContentProposalAdapter(
 				constraintText, new ConstraintContentAdapter(),
 				new ConstraintContentProposalProvider(
-						featureModel.getFeatureNames()), null, null);
+						featureModel.getFeatureNames()), null, null); //TODO:Abhi -- We need to change code her to getFeature Names we need.
 
 		adapter.setAutoActivationDelay(500);
 		adapter.setPopupSize(new Point(250, 85));
@@ -381,27 +385,31 @@ public class ConstraintDialog implements GUIDefaults {
 
 			final Button button = new Button(buttonGroup, SWT.PUSH);
 			button.setText(Operator.NAMES[i]);
+			//Abhi - We do not want this.
+			button.setGrayed(true);
 			gridData = new GridData(GridData.FILL_HORIZONTAL);
 			button.setLayoutData(gridData);
-			button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-				public void widgetSelected(
-						org.eclipse.swt.events.SelectionEvent e) {
-					StringBuilder temp = new StringBuilder(constraintText
-							.getText());
-					temp.delete(x, y);
-					temp.insert(x > y ? y : x, /*
-												 * " " +
-												 */button.getText().toLowerCase(Locale.ENGLISH) + " "
+			//Abhi - We do not want to provide this
+			//button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			 
+			//	public void widgetSelected(
+			//			org.eclipse.swt.events.SelectionEvent e) {
+			//		StringBuilder temp = new StringBuilder(constraintText
+			//				.getText());
+			//		temp.delete(x, y);
+			//		temp.insert(x > y ? y : x, /*
+			//									 * " " +
+			//									 */button.getText().toLowerCase(Locale.ENGLISH) + " "
 							
-					/* .replaceAll(" ", "") + " " */);
-					constraintText.setText(temp.toString()); //NodeReader.reduceWhiteSpaces(temp.toString()));
-					constraintText.setFocus();
-					constraintText.setSelection(constraintText.getCharCount());
+			//		/* .replaceAll(" ", "") + " " */);
+			//		constraintText.setText(temp.toString()); //NodeReader.reduceWhiteSpaces(temp.toString()));
+			//		constraintText.setFocus();
+			//		constraintText.setSelection(constraintText.getCharCount());
 
-					validate();
-				}
-			});
-
+			//		validate();
+			//	}
+			//});
+			 
 		}
 
 	}
@@ -414,7 +422,8 @@ public class ConstraintDialog implements GUIDefaults {
 	private void initFeatureGroup(final FeatureModel featuremodel) {
 	
 		featureGroup = new Group(shell, SWT.NONE);
-		featureGroup.setText("Features");
+		//Abhi
+		featureGroup.setText("Classifications");
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.grabExcessVerticalSpace = true;
@@ -431,11 +440,14 @@ public class ConstraintDialog implements GUIDefaults {
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		searchFeatureText.setLayoutData(gridData);
 
-		Composite tableComposite = new Composite(featureGroup, SWT.NONE);
+		Composite tableComposite = new Composite(featureGroup, SWT.NONE);	
+		//Abhi
+		tableComposite.setEnabled(false);
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.grabExcessVerticalSpace = true;
 		tableComposite.setLayoutData(gridData);
+
 
 		final TableViewer featureTableViewer = new TableViewer(tableComposite,
 				SWT.BORDER | SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL);
@@ -517,15 +529,18 @@ public class ConstraintDialog implements GUIDefaults {
 						.getSystemColor(SWT.COLOR_BLACK));
 			}
 
-		});
+		}); 
 		
+
 		featureTableViewer.setInput(featureModel.getClassificationNodeList());
 
 		gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.grabExcessVerticalSpace = true;
 		featureTable.setLayoutData(gridData);
-
-		featureTable.addListener(SWT.MouseDoubleClick, new Listener() {
+		
+		
+		//Abhi - We do not need this.
+		/*featureTable.addListener(SWT.MouseDoubleClick, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
 				TableItem[] selectedItem = featureTable.getSelection();
@@ -548,7 +563,8 @@ public class ConstraintDialog implements GUIDefaults {
 
 				validate();
 			}
-		});
+		});*/
+		
 
 	}
 
