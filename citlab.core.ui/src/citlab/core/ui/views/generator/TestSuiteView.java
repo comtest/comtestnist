@@ -380,15 +380,21 @@ public class TestSuiteView extends ViewPart {
 				fsd.setFilterExtensions(new String[] {"*.csv"});
 				fsd.setText("Select CSV for import...");
 				String fileName = fsd.open();
-				
-				List<List<String>> data = checkValidOnImportCSV(fileName);
-				if(data == null ){
-			        Status status = new Status(IStatus.ERROR, "My Plug-in ID", 0, "Error while importing the CSV, please check the CSV file.", null);
-		            ErrorDialog.openError(importCVSButton.getShell(),"Error", "Reason", status);
+				if(fileName == null){
+					 Status status = new Status(IStatus.ERROR, "My Plug-in ID", 0, "Error while importing the CSV, please check the CSV file.", null);
+			         ErrorDialog.openError(importCVSButton.getShell(),"Error", "Reason", status);
 				} else {
-					updateInput(data);
-					
+					List<List<String>> data = checkValidOnImportCSV(fileName);
+					if(data == null ){
+						 Status status = new Status(IStatus.ERROR, "My Plug-in ID", 0, "Error while importing the CSV, please check the CSV file.", null);
+				         ErrorDialog.openError(importCVSButton.getShell(),"Error", "Reason", status);
+					} else {
+						updateInput(data);
+						
+					}
 				}
+				
+				
 				
 			}
 			
@@ -436,34 +442,58 @@ public class TestSuiteView extends ViewPart {
 	private void updateInput (List<List<String>> data){
 		int lastIndex = data.get(0).size()-1;
 		String finalResult = data.get(0).get(lastIndex);
-		
+		int difference = data.get(0).size() - inputlist.getTests().get(0).getAssignments().size();
 		for (int i = 0; i < inputlist.getTests().size(); i++) {
-			Assignment assignment = TestsuiteFactory.eINSTANCE
-					.createAssignment();
-			Parameter parameter = CitLFactory.eINSTANCE.createParameter();
-			parameter.setName(finalResult);
-			assignment.setParameter(parameter);
-			
-			if(data.get(i+1).size()-1 == lastIndex){
-				assignment.setValue(data.get(i+1).get(lastIndex));	
-			} else{
-				assignment.setValue("");
-			}
+			if(difference == 0){
+				// expected values
+					for(int j = original_Column_Size; j < data.get(0).size() ; j++){
+//						
+//						if(data.get(i+1).size() == data.get(0).size()){
+//							inputlist.getTests().get(i).getAssignments().get(j).setValue(data.get(i+1).get(j));
+//						} else{
+//							inputlist.getTests().get(i).getAssignments().get(j).setValue("");
+//						}
+						
+						inputlist.getTests().get(i).getAssignments().get(j).setValue(data.get(i+1).get(j));
+					}
 				
+				
+			} else if ( difference > 0 ){
+				
+				
+				Assignment assignment = TestsuiteFactory.eINSTANCE
+						.createAssignment();
+				Parameter parameter = CitLFactory.eINSTANCE.createParameter();
+				parameter.setName(finalResult);
+				assignment.setParameter(parameter);
+				
+				if(data.get(i+1).size()-1 == lastIndex){
+					assignment.setValue(data.get(i+1).get(lastIndex));	
+				} else{
+					assignment.setValue("");
+				}
+				inputlist.getTests().get(i).getAssignments().add(assignment);
+			}
 			
-			inputlist.getTests().get(i).getAssignments().add(assignment);
+		}
+		if(difference > 0){
+			buildColumn();
+			additional_Column_Size++;
 		}
 		
-		buildColumn();
-		additional_Column_Size++;
+		
 		if(additional_Column_Size > 0){
 			removeColumnButton.setEnabled(true);
 		}
 
+		tableViewer.refresh();
 		
 	}
 	
 	private List<List<String>> checkValidOnImportCSV(String fileName){
+		if(fileName == null){
+			return null;
+		}
 		File file = new File(fileName);
 		boolean valid = true;
 		
