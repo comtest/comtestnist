@@ -21,6 +21,7 @@ public class JUnitExporter extends ICitLabTestSuiteExporter {
 		if(! Files.exists(filePath)) {
 			new CVSExporter().generateOutput(input, fileName);
 		}
+		try {
 		JUnitTemplateWizard junitWizard = new JUnitTemplateWizard(
 				PlatformUI.getWorkbench(),
 				input,
@@ -30,5 +31,9 @@ public class JUnitExporter extends ICitLabTestSuiteExporter {
 				junitWizard
 			);
 		wd.open();
+		} catch (Exception e) {
+			e.printStackTrace();
+			//ignore as we are running without a UI for the testing
+		}
 	}
 }

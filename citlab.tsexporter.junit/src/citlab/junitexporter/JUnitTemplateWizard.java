@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -18,6 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.jdt.internal.junit.ui.JUnitPlugin;
 import org.eclipse.jdt.internal.junit.wizards.NewTestCaseCreationWizard;
+import org.eclipse.jdt.junit.wizards.NewTestCaseWizardPageOne;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
@@ -50,10 +53,54 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 		} else {
 			this.init(workbench, this.getSelection());
 		}
+
 		this.testSuite = testSuite;
 		this.osSafeCsvFilePath = osSafeCsvFilePath;
 	}
 	
+	@Override
+	public void addPages() {
+		super.addPages();
+		Field pageField = null;
+		Object pageValue = null;
+		NewTestCaseWizardPageOne page = null;
+		try {
+			pageField = NewTestCaseCreationWizard.class.getDeclaredField("fPage1");
+			pageField.setAccessible(true);
+			pageValue = pageField.get(this);
+			pageField.setAccessible(false);
+			if (pageValue == null) {
+				throw new RuntimeException("can not set junit4");
+			} else {
+				page = (NewTestCaseWizardPageOne) pageValue;
+			}
+			page.setJUnit4(true, false);
+			
+		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e1) {
+			// TODO Auto-generated catch block
+			System.out.println("check field name of super class");
+			e1.printStackTrace();
+		}
+//		//IWizardPage page = super.getPage("NewTestCaseCreationWizardPage");
+//		java.lang.reflect.Method m = null;
+//		try {
+//		//	m = page.getClass().
+//		//			 getMethod("setJUnit4", boolean.class, boolean.class);
+//		} catch (NoSuchMethodException | SecurityException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			return;
+//		}
+//		try {
+//			m.invoke(page, true, false);
+//		} catch (IllegalAccessException | IllegalArgumentException
+//				| InvocationTargetException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+
+		
+	}
 	@Override
 	protected void openResource(final IResource resource) {
 		//original code
@@ -274,8 +321,10 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 
 	private void insertImportStatements(BufferedWriter out, String capturedLine)
 			throws IOException {
-		out.write("//Please make sure you have the junitparams in the build path");
 		out.newLine();
+		out.write("//Add citlab.tsexporter.junit to required bundles "
+				+ "by selecting fix project setup");
+		out.write("//Or add JUnitParams-1.0.2.jar to your build path");
 		out.write("//You can download it from: https://code.google.com/p/junitparams/");
 		out.newLine();
 		out.write("import junitparams.*;");
