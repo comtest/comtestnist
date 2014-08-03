@@ -118,7 +118,9 @@ public class ConvertCitLabModelAction extends Action {
 		CitLabModelConverter citConverter = new CitLabModelConverter();
 		try {
 			CitModel citModel = citConverter.convertModel(featureModel);
-			saveModel(citModel);
+			IFile file = saveModel(citModel);
+			citConverter.covertConstraintsInFile(file); 
+			openFileInWorkbench(file);
 		} catch (UnconvertibleModelException e) {
 			MessageBox m =new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),SWT.ERROR);
 			m.setMessage(e.getMessage());
@@ -128,11 +130,11 @@ public class ConvertCitLabModelAction extends Action {
 		
 	}
 	
-	public void saveModel(CitModel model){
+	public IFile saveModel(CitModel model){
 		IEditorPart  editorPart = extractEditorPart();
 		if (editorPart == null) {
 			// TODO throw exception
-			return;
+			return null;
 		}
 		IFileEditorInput input = (IFileEditorInput)editorPart.getEditorInput() ;
 	    IFile tempFile = input.getFile();
@@ -175,17 +177,22 @@ public class ConvertCitLabModelAction extends Action {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-       try {
-    	   IWorkbench wb = PlatformUI.getWorkbench();
-    	   IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
-    	   IWorkbenchPage page = win.getActivePage();
-    	   IDE.openEditor(page, file);
-       } catch (PartInitException e1) {
-    	   // TODO Auto-generated catch block
-    	   e1.printStackTrace();
-       }
+		
+		return file;
+      
 	}
 	
+	public void openFileInWorkbench(IFile file){
+		 try {
+	    	   IWorkbench wb = PlatformUI.getWorkbench();
+	    	   IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
+	    	   IWorkbenchPage page = win.getActivePage();
+	    	   IDE.openEditor(page, file);
+	       } catch (PartInitException e1) {
+	    	   // TODO Auto-generated catch block
+	    	   e1.printStackTrace();
+	       }
+	}
 	public static IEditorPart extractEditorPart(){
 		IWorkbench iworkbench = PlatformUI.getWorkbench();
 		if (iworkbench == null)
