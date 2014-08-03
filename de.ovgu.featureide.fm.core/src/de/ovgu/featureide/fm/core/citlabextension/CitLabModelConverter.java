@@ -20,6 +20,12 @@
  */
 package de.ovgu.featureide.fm.core.citlabextension;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.net.URI;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,9 +33,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Scanner;
 
+import org.eclipse.core.filesystem.EFS;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.xtext.EcoreUtil2;
 
+import Jakarta.util.BuildUtil.jakFileFilter;
+import citlab.model.citL.AndExpression;
+import citlab.model.citL.AndOperators;
 import citlab.model.citL.AnonymousType;
 import citlab.model.citL.BoolAssign;
 import citlab.model.citL.Boolean;
@@ -70,6 +84,7 @@ import de.ovgu.featureide.fm.core.RangeClassFeature;
 public class CitLabModelConverter {
 	
 	Map<Feature, Expression> choosenExpr = new HashMap<Feature, Expression>();
+	CitModel constrantHolder = null;
 	
 	public CitModel convertModel(FeatureModel fm) throws UnconvertibleModelException {
 		// validate to ensure the model is ready for conversion
@@ -164,6 +179,7 @@ public class CitLabModelConverter {
 					Boolean bool = CitLFactory.eINSTANCE.createBoolean();
 					bool.setName(normalize(classificationNode.getName()));
 					result.getParameters().add(bool);
+					EcoreUtil2.cloneIfContained(bool);
 					
 					ClassFeature cf1 = (ClassFeature) classificationNode.getChildren().getFirst();
 					ClassFeature cf2 = (ClassFeature) classificationNode.getChildren().getLast();
@@ -190,22 +206,17 @@ public class CitLabModelConverter {
 					if (rangeClass1.isMin()) {
 						range.setBegin(Integer.parseInt(rangeClass1.getValue()));
 						range.setEnd(Integer.parseInt(rangeClass2.getValue()));
-						System.out.println("From type Range");
-						
 						setChosen(rangeClass1, 	
-								getEnumAssignWithOneValue((Feature)rangeClass1, rangeClass1.toString()));
+								getEnumAssignWithOneValue((Feature)classificationNode, rangeClass1.getValue()));
 						
 					} else {
 						range.setBegin(Integer.parseInt(rangeClass2.getValue()));
 						range.setEnd(Integer.parseInt(rangeClass1.getValue()));			
-						
-						System.out.println("From type Range");
-
 						setChosen((Feature)rangeClass2, 	
-								getEnumAssignWithOneValue(rangeClass2, rangeClass2.toString()));
+								getEnumAssignWithOneValue(classificationNode, rangeClass2.getValue()));
 					}
 					result.getParameters().add(range);
-					
+					EcoreUtil2.cloneIfContained(range);
 				
 					
 					
@@ -230,26 +241,13 @@ public class CitLabModelConverter {
 							
 							
 							setChosen((Feature)featureList.get(counter_for_feature_List), 
-									getEnumAssignWithOneValue(featureList.get(counter_for_feature_List), value));
+									getEnumAssignWithName(classificationNode, value));
 							counter_for_feature_List++;
 						}
 		
 
-						// For Constraints/////////////////////////////////////////
-//						Element e = CitLFactory.eINSTANCE.createElement();
-//						System.out.println("adding ina NONE");
-//						e.setName("NONE");
-//						enume.getAtype().getElements().add(e);
-//						
-//						// I believe this will hava all the ranges...
-//						System.out.println("From type ENUM");
-//						EnumAssign enumAssign = CitLFactory.eINSTANCE .createEnumAssign();
-//						enumAssign.setLeft(enume);
-//						enumAssign.setOp(Operators.NE);
-//						enumAssign.setRight(ModelUtils.getEnumElement(enume, "NONE"));
-//						setChosen(classificationNode, enumAssign);
-						/////////////////////////////////////////////////////////////////////
 						result.getParameters().add(enume);
+						EcoreUtil2.cloneIfContained(enume);
 					
 					} else if (classificationNode.getDataType().equals(FeatureConstants.TYPE_INTEGER)) {
 						Numbers numbers = CitLFactory.eINSTANCE.createNumbers();
@@ -260,21 +258,11 @@ public class CitLabModelConverter {
 							//setChosen(classificationNode, normalize(numbers.toString()));
 							
 							setChosen((Feature)featureList.get(counter_for_feature_List), 
-									getEnumAssignWithOneValue(featureList.get(counter_for_feature_List), value));
+									getEnumAssignWithOneValue(classificationNode, value));
 							counter_for_feature_List++;
 						}
 						result.getParameters().add(numbers);			
-			
-						
-//						System.out.println("From type INTEGER");
-//						Enumerative en = getEnumerative(classificationNode);
-//						EnumAssign enumAssign = CitLFactory.eINSTANCE .createEnumAssign();
-//						enumAssign.setLeft(en);
-//						enumAssign.setOp(Operators.NE);
-//						enumAssign.setRight(ModelUtils.getEnumElement(en, "NONE"));
-//						setChosen(classificationNode, enumAssign);
-						
-						
+						EcoreUtil2.cloneIfContained(numbers);
 					}
 				}
 			}
@@ -344,17 +332,8 @@ public class CitLabModelConverter {
 		return values;
 	}
 	private void addConstraintsMine(FeatureModel fm, CitModel result) {
-		System.out.println("addCscscsconstraintsaddConstraints");   
-		    
-//			for(Entry<Feature,Expression> entry : choosenExpr.entrySet()){
-//				System.out.println(entry.getKey().toString());
-//				System.out.println(SimpleExpressionToString.eInstance.doSwitch(entry.getValue()));
-//				
-//			}
-//		
-		
-	//	System.out.println(result.getConstraints().get(0).toString());
-		/*ConstraintConverter converter = new ConstraintConverter(choosenExpr);
+		constrantHolder = CitLFactory.eINSTANCE.createCitModel();	
+		ConstraintConverter converter = new ConstraintConverter(choosenExpr);
 		for (Constraint c : fm.getConstraints()) {
 			// if the constraint is useless, skip it
 			ConstraintAttribute attribute = c.getConstraintAttribute();
@@ -362,39 +341,20 @@ public class CitLabModelConverter {
 					|| (attribute == ConstraintAttribute.DEAD)
 					|| (attribute == ConstraintAttribute.TAUTOLOGY))
 				continue;
-			
-			
-			System.out.println(c.toString());
 			System.out.println(c.getNode().toString());
 			System.out.println(c.getContainedFeatures());
 			Expression expr = converter.visit(c.getNode());
-			result.getConstraints().add(expr);
+			constrantHolder.getConstraints().add(expr);
 			System.out.println(expr.toString());
 		}
-		
-		for(Rule r : result.getConstraints()){
-			System.out.println(SimpleExpressionToString.eInstance.doSwitch(r));
-			
-		}
-		
-//		(display==BW) => (rearCamera==NOC)
-//				(display==BW) => (rearCamera==1MP)
-//				(emailViewer==true) or (((frontCamera!=NOC) => (display!=BW)) and ((textLines) >= (threshold)))
-		}*/
-		// TODO by Douglas
-
-   
-		
-		
-		
 	}
 	
 	private void setChosen(Feature currentNode, Expression expr) {
 		choosenExpr.put(currentNode, expr);
-	};
+	}
 	
 	// This will generate an enumerative for all type except boolean
-	Enumerative getEnumerative(Feature root) {
+	public Enumerative getEnumerative(Feature root) {
 		Enumerative enume = CitLFactory.eINSTANCE.createEnumerative();
 		System.out.println("Setting name    " + root.getName());
 		enume.setName(normalize(root.getName()));
@@ -416,7 +376,7 @@ public class CitLabModelConverter {
 	}
 	
 	
-	private EnumAssign getEnumAssignWithOneValue(Feature root, String nodeName){
+	private EnumAssign getEnumAssignWithName(Feature root, String nodeName){
 		
 		Enumerative enume = CitLFactory.eINSTANCE.createEnumerative();
 		enume.setName(normalize(root.getName()));
@@ -426,19 +386,100 @@ public class CitLabModelConverter {
 
 		Element e = CitLFactory.eINSTANCE.createElement();
 		e.setName(nodeName);
-		enume.getAtype().getElements().add(e);
 		
-		
-	
+		// ClassificationNode1==Classification.enum
+		// classificationNode1.enum
 		EnumAssign enumAssign = CitLFactory.eINSTANCE .createEnumAssign();
 		enumAssign.setLeft(enume);
-		enumAssign.setOp(Operators.EQ);
-		enumAssign.setRight(ModelUtils.getEnumElement(enume, nodeName));
+		enumAssign.setOp(Operators.DOT);
+		enumAssign.setRight(e);
 		
-		return enumAssign;
+		Element eOverall = CitLFactory.eINSTANCE.createElement();
+		eOverall.setName(SimpleExpressionToString.eInstance.caseEnumAssign(enumAssign));
+		enume.getAtype().getElements().add(eOverall);
+		
+		EnumAssign enumAssignOverall = CitLFactory.eINSTANCE .createEnumAssign();
+		enumAssignOverall.setLeft(enume);
+		enumAssignOverall.setOp(Operators.EQ);
+		enumAssignOverall.setRight(eOverall);
+		
+		return enumAssignOverall;
 	}
 	
 	
-	
+	private EnumAssign getEnumAssignWithOneValue(Feature root, String nodeValue){
+		
+		Enumerative enumeRange = CitLFactory.eINSTANCE.createEnumerative();
+		enumeRange.setName(normalize(root.getName()));
+		AnonymousType atype = CitLFactory.eINSTANCE.createAnonymousType();
+		enumeRange.setAtype(atype);
+		enumeRange.setNamedType(null);
 
+		Element e = CitLFactory.eINSTANCE.createElement();
+		e.setName(nodeValue);
+		enumeRange.getAtype().getElements().add(e);
+		EnumAssign enumAssignOverall = CitLFactory.eINSTANCE .createEnumAssign();
+		enumAssignOverall.setLeft(enumeRange);
+		enumAssignOverall.setOp(Operators.EQ);
+		enumAssignOverall.setRight(e);
+		
+		return enumAssignOverall;
+	}
+	
+	public void covertConstraintsInFile(IFile file){
+		
+		URI uri = file.getLocationURI();
+
+		// what if file is a link, resolve it.
+		if(file.isLinked()){
+		   uri = file.getRawLocationURI();
+		}
+		File javaFile;
+		RandomAccessFile f;
+		try {
+			javaFile = EFS.getStore(uri).toLocalFile(0, new NullProgressMonitor());
+			f = new RandomAccessFile(javaFile, "rw");
+			boolean locatePointer = false;
+			boolean locateParameter = false;
+			while(!locatePointer){
+				String temp = f.readLine();
+				if(locateParameter){
+					if(temp.equals("end")){
+						locatePointer = true;
+					}
+				} else {
+					if(temp.equals("Parameters:")){
+						locateParameter=true;
+					}
+				}
+			}
+			
+			f.writeBytes(constraintToString());
+			f.close();
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+
+	public String constraintToString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("\nConstraints:\n");
+		for(Rule r : constrantHolder.getConstraints()){
+			String constrinat = SimpleExpressionToString.eInstance.doSwitch(r);
+			sb.append("\t# ");
+			sb.append(constrinat);
+			sb.append(" #\n");
+		}
+		sb.append("end\n");
+		
+		
+		return sb.toString();
+	}
 }
