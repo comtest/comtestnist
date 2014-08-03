@@ -77,7 +77,17 @@ public enum Operators implements Enumerator
    * @generated
    * @ordered
    */
-  NE(5, "NE", "!=");
+  NE(5, "NE", "!="),
+  
+  /**
+   * The '<em><b>NE</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #DOT_VALUE
+   * @generated
+   * @ordered
+   */
+  DOT(6, "DOT", ".");
 
   /**
    * The '<em><b>GT</b></em>' literal value.
@@ -168,6 +178,22 @@ public enum Operators implements Enumerator
    * @ordered
    */
   public static final int NE_VALUE = 5;
+  
+  /**
+   * The '<em><b>DOT</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>NE</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #NE
+   * @model literal="."
+   * @generated
+   * @ordered
+   */
+  public static final int DOT_VALUE = 6;
+  
 
   /**
    * An array of all the '<em><b>Operators</b></em>' enumerators.
@@ -184,6 +210,7 @@ public enum Operators implements Enumerator
       LE,
       EQ,
       NE,
+      DOT
     };
 
   /**
@@ -248,6 +275,7 @@ public enum Operators implements Enumerator
       case LE_VALUE: return LE;
       case EQ_VALUE: return EQ;
       case NE_VALUE: return NE;
+      case DOT_VALUE: return DOT;
     }
     return null;
   }
