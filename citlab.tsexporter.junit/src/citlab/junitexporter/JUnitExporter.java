@@ -32,7 +32,7 @@ public class JUnitExporter extends ICitLabTestSuiteExporter {
 			);
 		wd.open();
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			//ignore as we are running without a UI for the testing
 		}
 	}

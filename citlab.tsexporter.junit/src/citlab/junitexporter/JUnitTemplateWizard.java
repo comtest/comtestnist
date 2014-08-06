@@ -10,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -42,7 +41,7 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 	private String osSafeCsvFilePath;
 	private Pattern importPattern = Pattern.compile("^import.*");
 	private Pattern classPattern = Pattern.compile("^public (static )?class.*");
-	private Pattern methodPattern = Pattern.compile("^(\\s*).+ test\\w*\\(\\) \\{$");
+	private Pattern methodPattern = Pattern.compile("^(\\s*).+ (test\\w*)\\(\\) \\{$");
 	private String newLine = System.getProperty("line.separator");
 
 	public JUnitTemplateWizard(IWorkbench workbench,
@@ -75,32 +74,12 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 				page = (NewTestCaseWizardPageOne) pageValue;
 			}
 			page.setJUnit4(true, false);
-			
 		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e1) {
-			// TODO Auto-generated catch block
 			System.out.println("check field name of super class");
 			e1.printStackTrace();
 		}
-//		//IWizardPage page = super.getPage("NewTestCaseCreationWizardPage");
-//		java.lang.reflect.Method m = null;
-//		try {
-//		//	m = page.getClass().
-//		//			 getMethod("setJUnit4", boolean.class, boolean.class);
-//		} catch (NoSuchMethodException | SecurityException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			return;
-//		}
-//		try {
-//			m.invoke(page, true, false);
-//		} catch (IllegalAccessException | IllegalArgumentException
-//				| InvocationTargetException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-
-		
 	}
+
 	@Override
 	protected void openResource(final IResource resource) {
 		//original code
@@ -174,10 +153,13 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 					insertRunWithAnnotation(out, line);
 					runWithAdded = true;
 
-				//for any @Test annotation
+				//for any @Test annotated method replace with our template
 				} else if(methodPattern.matcher(line).matches()) {
 					insertFileParameters(out, line);
 					fileParametersAdded = true;
+					while(! in.nextLine().matches("^\\s*\\}$")) {
+						//do nothing and skip the method declaration
+					}
 
 				//in case we didn't find any methods, append a sample test method
 				} else if((! in.hasNextLine()) && (! fileParametersAdded)) {
@@ -264,47 +246,120 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 		Matcher m = methodPattern.matcher(capturedLine);
 		m.matches();
 		String indent = m.group(1);
+		String methodName = m.group(2);
 		String prefix = indent + indent + indent;
 
 		//next use a string builder to create the annotation
-		StringBuilder sb = new StringBuilder();
-		sb.append(indent).append("@FileParameters(").append(newLine);
-		sb.append(prefix).append("value = \"");
-		sb.append(osSafeCsvFilePath).append("\",").append(newLine);
-		sb.append(prefix).append("mapper = ");
-		sb.append("CsvWithHeaderMapper.class").append(")").append(newLine);
+		StringBuilder sbParams = new StringBuilder();
+		sbParams.append(indent).append("@FileParameters(").append(newLine);
+		sbParams.append(prefix).append("value = \"");
+		sbParams.append(osSafeCsvFilePath).append("\",").append(newLine);
+		sbParams.append(prefix).append("mapper = ");
+		sbParams.append("CsvWithHeaderMapper.class").append(")").append(newLine);
 
 		//First write down the method declaration as it is except the closing parenthesis
 		//e.g. "public final void testFooBar() {" gets written as
 		//     "public final void testFooBar("
-		String methodNameWithOpenParen = capturedLine.substring(0, capturedLine.length() - 3);
-		sb.append(methodNameWithOpenParen).append(newLine);
+		String methodDeclaration = capturedLine.substring(0, capturedLine.length() - 4);
+		sbParams.append(methodDeclaration).append("(").append(newLine);
 
-		//the suffix is ",\n" i.e. comma and then next parameter on next line
+		//create a separate string builder to write the result exporter
+		String resultExporterName = "sb"
+							       + Character.toUpperCase(methodName.charAt(0))
+							       + methodName.substring(1)
+							       + "Results";
+		StringBuilder sbExport = new StringBuilder();
+		sbExport.append(indent).append(indent).append(resultExporterName).append(newLine);
+
+		//the suffix for params is ",\n" i.e. comma and then next parameter on next line
 		//e.g. "public final void testFooBar(
 		//                   String foo,
 		//                   String bar,
 		//                   String baz
 		//             ) {"
 		String commaNewLine = "," + newLine;
+		//the suffix for export is '.append(", ")' i.e. append and then next parameter on next line
+		//e.g. "sbTestResults
+		//			.append(foo).append(", ")
+		//			.append(bar).append(", ")
+		//			.append(baz).append(", ")
+		//          ;
+		String dotAppendCommaNewLine = ".append(\", \")" + newLine;
 
 		//set suffix to empty before the loop, then set it inside
 		//this avoids the extra dangling suffix after iteration is done
-		String suffix = "";
+		String exportSuffix = "";
+		String paramSuffix = "";
 
 		//use a string builder to iterate over the parameter names
+		//and build the params list as well as result export list
+		String paramName = "";
 		for(Assignment as : testSuite.getTests().get(0).getAssignments()) {
-			sb.append(suffix);
-			suffix = commaNewLine;
-			sb.append(prefix).append("String ");
-			sb.append(as.getParameter().getName().replaceAll("\\W", ""));
+			sbParams.append(paramSuffix);
+			sbExport.append(exportSuffix);
+			paramSuffix = commaNewLine;
+			exportSuffix = dotAppendCommaNewLine;
+			paramName = as.getParameter().getName().replaceAll("\\W", "");
+			sbParams.append(prefix).append("String ");
+			sbParams.append(paramName);
+			sbExport.append(prefix).append(".append(");
+			sbExport.append(paramName).append(")");
 		}
 
 		//after parameter names, close the parenthesis on next line at double indent
-		sb.append(newLine).append(indent).append(indent).append(") {").append(newLine);
+		sbParams.append(newLine).append(indent).append(indent).append(") {").append(newLine);
+		//then write out the export buffer append statements
+		sbParams.append(sbExport.toString()).append(";").append(newLine);
+		sbParams.append(indent).append(indent).append("//test your class here").append(newLine);
+		sbParams.append(indent).append(indent).append("assertTrue(true);").append(newLine);
+		//then close the method declaration
+		sbParams.append(indent).append("}").append(newLine).append(newLine);
+		//and declare the private static buffer to hold the results
+		sbParams.append(indent).append("private static StringBuffer ").append(resultExporterName);
+		sbParams.append(" = new StringBuffer();").append(newLine).append(newLine);
+		//append the after class annotation
+		sbParams.append(indent).append("@AfterClass").append(newLine);
+		sbParams.append(indent).append("public static void exportCsvResult() throws IOException {").append(newLine);
+		sbParams.append(indent).append(indent).append("BufferedWriter resultWriter = Files.newBufferedWriter(").append(newLine);
+		sbParams.append(indent).append(indent).append(indent);
+		sbParams.append("Paths.get(\"").append(osSafeCsvFilePath.substring(0, osSafeCsvFilePath.length() - 4));
+		sbParams.append("_Results.csv\"),").append(newLine);
+		sbParams.append(indent).append(indent).append(indent);
+		sbParams.append("Charset.defaultCharset());").append(newLine);
+		sbParams.append(indent).append(indent).append("resultWriter.write(\"");
+		paramName = "";
+		paramSuffix = "";
+		for(Assignment as : testSuite.getTests().get(0).getAssignments()) {
+			sbParams.append(paramSuffix);
+			paramSuffix = ", ";
+			paramName = as.getParameter().getName();
+			sbParams.append(paramName);
+		}
+		//add the result column
+		sbParams.append(", TestResult\");").append(newLine);
+		sbParams.append(indent).append(indent).append("resultWriter.newLine();").append(newLine);
+		sbParams.append(indent).append(indent).append("resultWriter.write(");
+		sbParams.append(resultExporterName).append(".toString());").append(newLine);
+		sbParams.append(indent).append(indent).append("resultWriter.close();").append(newLine);
+		sbParams.append(indent).append("}").append(newLine).append(newLine);
 
-		//done writing parameter names, now write it out
-		out.write(sb.toString());
+		sbParams.append(indent).append("@Rule").append(newLine);
+		sbParams.append(indent).append("public static TestWatcher addCsvResult = new TestWatcher() {").append(newLine);
+		sbParams.append(indent).append(indent).append("@Override").append(newLine);
+		sbParams.append(indent).append(indent).append("protected void succeeded(Description description) {").append(newLine);
+		sbParams.append(indent).append(indent).append(indent).append(resultExporterName).append(".append(\", Passed\")").append(newLine);
+		sbParams.append(indent).append(indent).append(indent).append(indent).append(".append(System.getProperty(\"line.separator\"));").append(newLine);
+		sbParams.append(indent).append(indent).append("}").append(newLine);
+
+		sbParams.append(indent).append(indent).append("@Override").append(newLine);
+		sbParams.append(indent).append(indent).append("protected void failed(Throwable e, Description description) {").append(newLine);
+		sbParams.append(indent).append(indent).append(indent).append(resultExporterName).append(".append(\", Failed\")").append(newLine);
+		sbParams.append(indent).append(indent).append(indent).append(indent).append(".append(System.getProperty(\"line.separator\"));").append(newLine);
+		sbParams.append(indent).append(indent).append("}").append(newLine);
+		sbParams.append(indent).append("};").append(newLine).append(newLine);
+
+		//done building parameter names, now write it out to the file
+		out.write(sbParams.toString());
 	}
 
 	private void insertRunWithAnnotation(BufferedWriter out, String capturedLine)
@@ -327,12 +382,32 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 		out.write("//Or add JUnitParams-1.0.2.jar to your build path");
 		out.write("//You can download it from: https://code.google.com/p/junitparams/");
 		out.newLine();
-		out.write("import junitparams.*;");
+		out.write("import junitparams.JUnitParamsRunner;");
 		out.newLine();
-		out.write("import junitparams.mappers.*;");
+		out.write("import junitparams.FileParameters;");
+		out.newLine();
+		out.write("import junitparams.mappers.CsvWithHeaderMapper;");
+		out.newLine();
+		out.write("import java.nio.file.Paths;");
+		out.newLine();
+		out.write("import java.nio.file.Files;");
+		out.newLine();
+		out.write("import java.nio.charset.Charset;");
+		out.newLine();
+		out.write("import java.io.BufferedWriter;");
+		out.newLine();
+		out.write("import java.io.IOException;");
+		out.newLine();
 		out.newLine();
 		out.write("import org.junit.runner.RunWith;");
 		out.newLine();
+		out.write("import org.junit.runner.Description;");
+		out.newLine();
+		out.write("import org.junit.rules.TestWatcher;");
+		out.newLine();
+		out.write("import org.junit.AfterClass;");
+		out.newLine();
+		out.write("import org.junit.Rule;");
 		out.newLine();
 		out.write(capturedLine);
 		out.newLine();
