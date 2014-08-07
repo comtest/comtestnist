@@ -478,7 +478,7 @@ public class CitLabModelConverter {
 			sb.append("end\n");
 			return sb.toString();
 		}
-		return null;
+		return "";
 		
 		
 		
