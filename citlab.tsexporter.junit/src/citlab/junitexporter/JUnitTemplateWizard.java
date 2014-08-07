@@ -27,6 +27,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.ide.IDE;
 
+import com.google.common.io.Files;
+
 import citlab.testsuite.Assignment;
 import citlab.testsuite.TestSuite;
 
@@ -177,7 +179,7 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 			out.close();
 			//now simply move the tmp file to the original file path
 			if(resource.getLocation() != null) {
-				tmpFile.renameTo(resource.getLocation().toFile());
+				Files.move(tmpFile, resource.getLocation().toFile());
 			};
 
 		} catch (Exception e) {
