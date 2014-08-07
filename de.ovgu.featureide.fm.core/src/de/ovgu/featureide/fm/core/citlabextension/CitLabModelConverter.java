@@ -341,11 +341,8 @@ public class CitLabModelConverter {
 					|| (attribute == ConstraintAttribute.DEAD)
 					|| (attribute == ConstraintAttribute.TAUTOLOGY))
 				continue;
-			System.out.println(c.getNode().toString());
-			System.out.println(c.getContainedFeatures());
 			Expression expr = converter.visit(c.getNode());
 			constrantHolder.getConstraints().add(expr);
-			System.out.println(expr.toString());
 		}
 	}
 	
@@ -470,16 +467,20 @@ public class CitLabModelConverter {
 
 	public String constraintToString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("\nConstraints:\n");
-		for(Rule r : constrantHolder.getConstraints()){
-			String constrinat = SimpleExpressionToString.eInstance.doSwitch(r);
-			sb.append("\t# ");
-			sb.append(constrinat);
-			sb.append(" #\n");
+		if(constrantHolder.getConstraints().size() > 0){
+			sb.append("\nConstraints:\n");
+			for(Rule r : constrantHolder.getConstraints()){
+				String constrinat = SimpleExpressionToString.eInstance.doSwitch(r);
+				sb.append("\t# ");
+				sb.append(constrinat);
+				sb.append(" #\n");
+			}
+			sb.append("end\n");
+			return sb.toString();
 		}
-		sb.append("end\n");
+		return null;
 		
 		
-		return sb.toString();
+		
 	}
 }
