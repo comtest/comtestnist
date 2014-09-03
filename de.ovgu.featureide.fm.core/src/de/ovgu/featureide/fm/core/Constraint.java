@@ -47,7 +47,22 @@ public class Constraint implements PropertyConstants {
 	private Collection<Feature> falseOptionalFeatures = new LinkedList<Feature>();
  	private ConstraintAttribute attribute = ConstraintAttribute.NORMAL;
 	private Collection<Feature> deadFeatures = new LinkedList<Feature>();
+	private String textExpression = new String();
 	
+	/**
+	 * @return the textExpression
+	 */
+	public String getTextExpression() {
+		return textExpression;
+	}
+
+	/**
+	 * @param textExpression the textExpression to set
+	 */
+	public void setTextExpression(String textExpression) {
+		this.textExpression = textExpression;
+	}
+
 	public Constraint(FeatureModel featureModel, Node propNode) {
 		this.featureModel = featureModel;
 		this.propNode = propNode;
