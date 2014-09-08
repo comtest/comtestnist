@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.internal.junit.ui.JUnitPlugin;
 import org.eclipse.jdt.internal.junit.wizards.NewTestCaseCreationWizard;
 import org.eclipse.jdt.junit.wizards.NewTestCaseWizardPageOne;
@@ -57,13 +58,8 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 		}
 
 		this.testSuite = testSuite;
-		this.osSafeCsvFilePath = osSafeCsvFilePath;
-		this.windowsPathString = this.osSafeCsvFilePath;
-		if (osSafeCsvFilePath.contains(":")) {
-			this.windowsPathString = osSafeCsvFilePath
-					.replaceAll("^.*:", "file:")
-					.replaceAll("\\\\", "\\\\\\\\");
-		}
+		this.osSafeCsvFilePath = osSafeCsvFilePath.replaceAll("\\\\", "\\\\\\\\");
+		this.windowsPathString = this.osSafeCsvFilePath.replaceAll("^.*:", "file:");
 	}
 	
 	@Override
@@ -105,9 +101,10 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 								//read it line by line, and do some regex magic
 								//to insert 'import junitparams.*; and other stuff'
 								insertJunitParamsAnnotation((IFile) resource);
+								resource.refreshLocal(IResource.DEPTH_ZERO, null);
 
 								IDE.openEditor(activePage, (IFile)resource, true);
-							} catch (PartInitException e) {
+							} catch (CoreException e) {
 								JUnitPlugin.log(e);
 							}
 						}
