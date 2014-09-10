@@ -116,7 +116,7 @@ public class NodeReader {
 			errorMessage = " ";
 			string = " " + string.trim() + " ";
 			if ("  ".equals(string)) {
-				errorMessage = "No symbols found.";
+				errorMessage = "Incomplete Constraint. Please continue...";
 				error = true;
 				return new Literal("");
 			}
@@ -199,7 +199,7 @@ public class NodeReader {
 						} else {
 							errorMessage = list
 									.get(Integer.parseInt(string) - 100000)
-									+ " is no valid Feature Name";
+									+ " is no valid Constraint";
 							error = true;
 							return new Literal("");
 						}
@@ -215,13 +215,13 @@ public class NodeReader {
 
 			if (featureNames != null) {
 				if (!featureNames.contains(string)) {
-					errorMessage = string + " is no valid Feature Name";
+					errorMessage = string + " is no valid Constraint Statement";
 					error = true;
 					return new Literal("");
 				}
 			}
 			if (string.contains(" ")) {
-				errorMessage = string + " is no valid Feature Name";
+				errorMessage = string + " is no valid Constraint Statement";
 				error = true;
 				return new Literal("");
 			}
@@ -242,7 +242,7 @@ public class NodeReader {
 	 */
 	public boolean isWellFormed(String constraint, final Collection<String> featureNames) {
 		this.featureNames = featureNames;
-
+		
 		if (!constraint.trim().isEmpty()) {
 			// Check constraint if brackets set correctly
 			int bracketCounter = 0;
@@ -286,7 +286,7 @@ public class NodeReader {
 						|| indEnd + 1 < constraint.length()
 						&& constraint.charAt(indEnd + 1) != ' '
 						&& constraint.charAt(indEnd + 1) != ')') {
-					errorMessage = "Whitespace before and after quoted Featurename required";
+					errorMessage = "Whitespace before and after quoted ClassificationNode or Value is required";
 					return false;
 				}
 
@@ -310,7 +310,7 @@ public class NodeReader {
 						|| indEnd + 1 < constraint.length()
 						&& constraint.charAt(indEnd + 1) != ' '
 						&& constraint.charAt(indEnd + 1) != ')') {
-					errorMessage = "Whitespace before and after quoted Featurename required";
+					errorMessage = "Whitespace before and after quoted ClassificationNode or Value required";
 					return false;
 				}
 

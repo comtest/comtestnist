@@ -73,7 +73,7 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 	
 	/**
 	 * All comment lines from the model file without line number at which they
-	 * occur
+	 * occurxxxx
 	 */
 	private final List<String> comments = new LinkedList<String>();
 
@@ -442,6 +442,13 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 		return Collections.unmodifiableList(nodes);
 	}
 	
+	//Abhi: To get the constriant Text
+	public String getConstraintText(int index)
+	{
+		return constraints.get(index).getConstraintText();
+	}
+	
+	
 	public Node getConstraint(int index) {
 		return constraints.get(index).getNode();
 	}
@@ -487,6 +494,14 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 	public void replacePropNode(int index, Node node) {
 		assert (index < constraints.size());
 		constraints.set(index, new Constraint(this, node));
+	}
+	
+	
+	//Abhi 
+	public void replaceConstraintText(int index, String text, Node node)
+	{
+		assert (index < constraints.size());
+		constraints.set(index, new Constraint(this, text, node));		
 	}
 	
 	public int getConstraintCount() {

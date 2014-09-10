@@ -318,7 +318,14 @@ public class XmlClassificationTreeModelReader extends AbstractFeatureModelReader
 				} else {
 					throwError("Feature \"" + feature + "\" does not exists", e);
 				}
-			} else {
+			} else if (nodeName.equals(CONSTRAINT_EXPRESSION)){
+				
+				String expression = e.getTextContent();
+				System.out.println("Douglas Code: this is what is being sent to the XML    "  + expression);
+				nodes.add(new Literal(expression));
+				
+				
+			} else { 
 				throwError("Unknown constraint type: " + nodeName, e);
 			}
 		}

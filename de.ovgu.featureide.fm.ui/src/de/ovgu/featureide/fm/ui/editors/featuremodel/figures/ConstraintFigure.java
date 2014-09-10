@@ -180,6 +180,11 @@ public class ConstraintFigure extends Figure implements GUIDefaults {
 	}
 	
 	private String getConstraintText(Constraint constraint) {
+		
+		//Abhi:
+		return constraint.getConstraintText();
+		
+		/*
 		if (symbols == null) {
 			symbols = NodeWriter.logicalSymbols;
 			StringBuilder s = new StringBuilder();
@@ -189,6 +194,7 @@ public class ConstraintFigure extends Figure implements GUIDefaults {
 				symbols = NodeWriter.shortSymbols;
 		}
 		return constraint.getNode().toString(symbols);
+		*/
 	}
 
 	private void setText(String newText) {

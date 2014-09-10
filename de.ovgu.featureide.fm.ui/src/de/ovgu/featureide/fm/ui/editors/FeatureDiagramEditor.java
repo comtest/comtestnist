@@ -271,7 +271,7 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 		setTypeBooleanAction = new SetTypeBooleanAction(this,featureModel,null);//Abhi
 		setTypeRangeAction = new SetTypeRangeAction(this,featureModel,null);//Abhi
 		//createCompoundAction = new CreateCompoundAction(this, featureModel,null); //Abhi
-		//deleteAction = new DeleteAction(this, featureModel);
+		deleteAction = new DeleteAction(this, featureModel);
 		deleteAllAction = new DeleteAllAction(this, featureModel);
 		//mandatoryAction = new MandatoryAction(this, featureModel); //Abhi
 		hiddenAction = new HiddenAction(this, featureModel);

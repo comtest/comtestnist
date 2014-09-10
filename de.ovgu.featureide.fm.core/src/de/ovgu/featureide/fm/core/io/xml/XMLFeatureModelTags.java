@@ -46,6 +46,7 @@ public interface XMLFeatureModelTags {
 	static final String TYPE = "type";
 	static final String VALUE = "value";
 	static final String MINIMUM = "minimum";
+	static final String CONSTRAINT_EXPRESSION = "expression";
 	
 	static final String OR = "or";
 	static final String ALT = "alt";

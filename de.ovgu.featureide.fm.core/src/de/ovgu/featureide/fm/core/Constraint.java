@@ -49,6 +49,9 @@ public class Constraint implements PropertyConstants {
 	private Collection<Feature> deadFeatures = new LinkedList<Feature>();
 	private String textExpression = new String();
 	
+	//Abhi:
+	private String constraintText; 
+	
 	/**
 	 * @return the textExpression
 	 */
@@ -63,6 +66,14 @@ public class Constraint implements PropertyConstants {
 		this.textExpression = textExpression;
 	}
 
+	//Abhi: New Constructor for Constraint Setup.
+	public Constraint(FeatureModel featureModel, String constriantText, Node propNode)
+	{
+		this.featureModel = featureModel; 
+		this.constraintText = constriantText;
+		this.propNode = propNode;
+	}
+	
 	public Constraint(FeatureModel featureModel, Node propNode) {
 		this.featureModel = featureModel;
 		this.propNode = propNode;
@@ -268,6 +279,20 @@ public class Constraint implements PropertyConstants {
 	 */
 	public Collection<Feature> getDeadFeatures() {
 		return deadFeatures;
+	}
+
+	/**
+	 * @return the constraintText
+	 */
+	public String getConstraintText() {
+		return constraintText;
+	}
+
+	/**
+	 * @param constraintText the constraintText to set
+	 */
+	public void setConstraintText(String constraintText) {
+		this.constraintText = constraintText;
 	}
 
 }

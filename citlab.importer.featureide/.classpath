@@ -5,6 +5,5 @@
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="featureide_fm_core_citlab.jar"/>
-	<classpathentry kind="lib" path="C:/CMU/2014 Summer/workspace/org.eclipse.xtext-2.6.1/plugins/org.eclipse.xtext"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

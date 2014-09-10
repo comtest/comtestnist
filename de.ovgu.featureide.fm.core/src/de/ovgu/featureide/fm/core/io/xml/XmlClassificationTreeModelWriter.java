@@ -115,7 +115,10 @@ public class XmlClassificationTreeModelWriter extends AbstractFeatureModelWriter
          
            
         	constraints.appendChild(rule);
-    		createPropositionalConstraints(doc, rule, featureModel.getConstraints().get(i).getNode());	
+        	
+        	System.out.println("Douglas : Look for me when you want to change how the expressions are going in.");
+        	featureModel.getConstraints().get(i).setTextExpression("This is my creation  " + i);
+    		createPropositionalConstraintsString(doc, rule, featureModel.getConstraints().get(i).getTextExpression());	
     	}
     	
 //    	root.appendChild(calculations);
@@ -314,7 +317,29 @@ public class XmlClassificationTreeModelWriter extends AbstractFeatureModelWriter
     		createPropositionalConstraints(doc, op, children[i]);
     	}
 	}
- 
+
+    /**
+     * Inserts the tags concerning propositional constraints into the DOM 
+     * document representation
+     * @param doc
+     * @param FeatMod Parent node for the propositional nodes
+     */
+    private void createPropositionalConstraintsString(Document doc, Element xmlNode, String str) {
+    	if (str == null) {
+    		return;
+    	}
+
+    	Element op; 
+		op = doc.createElement(CONSTRAINT_EXPRESSION);
+		xmlNode.appendChild(op);
+		Text text = doc.createTextNode(str);
+		op.appendChild(text);
+		return;
+
+	}
+
+    
+    
     /**
      * Inserts indentations into the text
      * @param text
