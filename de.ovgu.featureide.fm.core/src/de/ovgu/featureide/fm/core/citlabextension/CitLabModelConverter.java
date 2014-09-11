@@ -334,7 +334,7 @@ public class CitLabModelConverter {
 	private void addConstraintsExpressions(FeatureModel fm, CitModel result) {
 		constrantHolder.clear();	
 		for (Constraint c : fm.getConstraints()) {
-			constrantHolder.add(c.getTextExpression());
+			constrantHolder.add(c.getConstraintText());
 		}
 	}
 	
