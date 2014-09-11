@@ -264,7 +264,8 @@ public class XmlClassificationTreeModelReader extends AbstractFeatureModelReader
 			for (Element child: getElements(e.getChildNodes())) {
 				String nodeName = child.getNodeName();
 				if (nodeName.equals(RULE)) {
-					Constraint c = new Constraint(featureModel, parseConstraints2(child.getChildNodes()).getFirst());
+					//Douglas
+					Constraint c = new Constraint(featureModel, parseConstraints2(child.getChildNodes()).getFirst().toString(), parseConstraints2(child.getChildNodes()).getFirst());
 					if (child.hasAttributes()) {
 						NamedNodeMap nodeMap = child.getAttributes();
 						for (int i = 0; i < nodeMap.getLength(); i++) {

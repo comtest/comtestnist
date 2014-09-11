@@ -637,6 +637,8 @@ public class ConstraintDialog implements GUIDefaults {
 
 						StringBuilder newConstraintText = new StringBuilder();
 						
+						ClassificationFeature xyz =  (ClassificationFeature) classFeature.getParent();
+						String abc = xyz.getDataType();
 						if( ((ClassificationFeature) classFeature.getParent()).getDataType() == FeatureConstants.TYPE_ENUM)
 							newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + classFeature.getParent().getName() + "." + selectedTreeItem[0].getText() + " ");
 						else 
