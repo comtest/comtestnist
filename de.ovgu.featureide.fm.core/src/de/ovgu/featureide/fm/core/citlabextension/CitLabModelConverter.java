@@ -84,7 +84,7 @@ import de.ovgu.featureide.fm.core.RangeClassFeature;
 public class CitLabModelConverter {
 	
 	Map<Feature, Expression> choosenExpr = new HashMap<Feature, Expression>();
-	CitModel constrantHolder = null;
+	List<String> constrantHolder = new ArrayList<String>();
 	
 	public CitModel convertModel(FeatureModel fm) throws UnconvertibleModelException {
 		// validate to ensure the model is ready for conversion
@@ -99,7 +99,7 @@ public class CitLabModelConverter {
 		// add parameters 
 		addParameterFor(fm, result);
 		// add the constraints
-		addConstraintsMine(fm, result);   
+		addConstraintsExpressions(fm, result);   
 		
 		return result;		
 	}
@@ -331,18 +331,10 @@ public class CitLabModelConverter {
 		}
 		return values;
 	}
-	private void addConstraintsMine(FeatureModel fm, CitModel result) {
-		constrantHolder = CitLFactory.eINSTANCE.createCitModel();	
-		ConstraintConverter converter = new ConstraintConverter(choosenExpr);
+	private void addConstraintsExpressions(FeatureModel fm, CitModel result) {
+		constrantHolder.clear();	
 		for (Constraint c : fm.getConstraints()) {
-			// if the constraint is useless, skip it
-			ConstraintAttribute attribute = c.getConstraintAttribute();
-			if ((attribute == ConstraintAttribute.REDUNDANT)
-					|| (attribute == ConstraintAttribute.DEAD)
-					|| (attribute == ConstraintAttribute.TAUTOLOGY))
-				continue;
-			Expression expr = converter.visit(c.getNode());
-			constrantHolder.getConstraints().add(expr);
+			constrantHolder.add(c.getTextExpression());
 		}
 	}
 	
@@ -353,7 +345,6 @@ public class CitLabModelConverter {
 	// This will generate an enumerative for all type except boolean
 	public Enumerative getEnumerative(Feature root) {
 		Enumerative enume = CitLFactory.eINSTANCE.createEnumerative();
-		System.out.println("Setting name    " + root.getName());
 		enume.setName(normalize(root.getName()));
 		AnonymousType atype = CitLFactory.eINSTANCE.createAnonymousType();
 		enume.setAtype(atype);
@@ -467,10 +458,10 @@ public class CitLabModelConverter {
 
 	public String constraintToString(){
 		StringBuilder sb = new StringBuilder();
-		if(constrantHolder.getConstraints().size() > 0){
+		if(constrantHolder.size() > 0){
 			sb.append("\nConstraints:\n");
-			for(Rule r : constrantHolder.getConstraints()){
-				String constrinat = SimpleExpressionToString.eInstance.doSwitch(r);
+			for(String r : constrantHolder){
+				String constrinat = r;
 				sb.append("\t# ");
 				sb.append(constrinat);
 				sb.append(" #\n");
