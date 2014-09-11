@@ -67,7 +67,7 @@ public class Constraint implements PropertyConstants {
 		this.featureModel = featureModel;
 		this.propNode = propNode;
 	}
-	
+	 
 	public void setLocation(FMPoint newLocation){
 		location = newLocation;
 	}
