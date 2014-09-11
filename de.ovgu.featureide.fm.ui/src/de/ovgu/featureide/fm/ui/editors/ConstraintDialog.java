@@ -519,7 +519,7 @@ public class ConstraintDialog implements GUIDefaults {
 		//gridData = new GridData(GridData.FILL_HORIZONTAL);
 		//gridData.grabExcessVerticalSpace = true;
 
-		featureTree =featureTreeViewer.getTree();
+		featureTree = featureTreeViewer.getTree();
 		featureTree.setLayoutData(new FillLayout());
 
 		TreeViewerColumn tvColumn = new TreeViewerColumn(featureTreeViewer, SWT.NONE);
@@ -550,8 +550,8 @@ public class ConstraintDialog implements GUIDefaults {
 							}
 							if(((Feature) element).kind == FeatureKind.Class || ((Feature) element).kind == FeatureKind.RangeClass)
 							{
-								return ((ClassFeature) element)
-										.getValue()		
+								return (((ClassFeature) element).getParent())
+										.getName()		
 										.toLowerCase(Locale.ENGLISH)
 										.contains(
 												searchFeatureText.getText()
