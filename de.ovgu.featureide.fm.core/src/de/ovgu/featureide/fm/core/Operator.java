@@ -27,8 +27,8 @@ package de.ovgu.featureide.fm.core;
  */
 public class Operator {
 	//Abhi. Add more features 
-	public static final String[] NAMES = { "Not", "And", "Or",
-		"=>", "!=", "(", ")", "<", ">"};
+	public static final String[] NAMES = { "not", "and", "or",
+		"=>", "!=", "(", ")", "<", ">", "<=", ">="};
 	
 	//Other operators to be added later on
 	// "=", "!=", ">", "<", "<=", ">=" };

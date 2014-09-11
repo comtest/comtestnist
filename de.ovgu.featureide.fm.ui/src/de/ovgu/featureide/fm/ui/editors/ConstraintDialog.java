@@ -484,6 +484,7 @@ public class ConstraintDialog implements GUIDefaults {
 		featureGroupLayout.numColumns = 1;
 		featureGroup.setLayout(featureGroupLayout);
 
+		
 		searchFeatureText = new StyledText(featureGroup, SWT.SINGLE | SWT.LEFT
 				| SWT.BORDER);
 		searchFeatureText.setText(FILTERTEXT);
@@ -493,6 +494,7 @@ public class ConstraintDialog implements GUIDefaults {
 
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		searchFeatureText.setLayoutData(gridData);
+
 
 		Composite tableComposite = new Composite(featureGroup, SWT.NONE);	
 		//Abhi
@@ -508,7 +510,7 @@ public class ConstraintDialog implements GUIDefaults {
 		//PatternFilter filter = new PatternFilter();
 		//featureTree = new FilteredTree(tableComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL, filter,  true);
 
-		final TreeViewer featureTreeViewer = new TreeViewer(tableComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		final TreeViewer featureTreeViewer = new TreeViewer(tableComposite, SWT.FILL_EVEN_ODD | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		featureTreeViewer.setContentProvider(new ViewContentProvider1()); //Need to change here
 		featureTreeViewer.setLabelProvider(new ViewLabelProvider1());
 
@@ -524,7 +526,7 @@ public class ConstraintDialog implements GUIDefaults {
 		TreeColumnLayout tvLayout = new TreeColumnLayout();
 		tableComposite.setLayout(tvLayout);
 		tvColumn.setLabelProvider(new ViewLabelProvider1());
-		tvLayout.setColumnData(tvColumn.getColumn(), new ColumnWeightData(100, 500, false));
+		tvLayout.setColumnData(tvColumn.getColumn(), new ColumnWeightData(100, 500, true));
 		//Abhi
 
 		searchFeatureText.addModifyListener(new ModifyListener() {
@@ -637,9 +639,7 @@ public class ConstraintDialog implements GUIDefaults {
 
 						StringBuilder newConstraintText = new StringBuilder();
 						
-						ClassificationFeature xyz =  (ClassificationFeature) classFeature.getParent();
-						String abc = xyz.getDataType();
-						if( ((ClassificationFeature) classFeature.getParent()).getDataType() == FeatureConstants.TYPE_ENUM)
+						if( ((ClassificationFeature) classFeature.getParent()).getDataType().equalsIgnoreCase(FeatureConstants.TYPE_ENUM))
 							newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + classFeature.getParent().getName() + "." + selectedTreeItem[0].getText() + " ");
 						else 
 							newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + selectedTreeItem[0].getText() + " ");
