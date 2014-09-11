@@ -37,27 +37,96 @@ public class ConstraintEditOperation extends AbstractFeatureModelOperation {
 	private Node propNode;
 	private int index;
 	private Node oldPropNode;
+	
+	//Abhi
+	private String constriantText;
+	private String oldConstriantText;
 
 	public ConstraintEditOperation(Node propNode, FeatureModel featuremodel, int index) {
 		super(featuremodel, LABEL);
 		this.propNode = propNode;
 		this.index = index;
 	}
+	
+	//Abhi:
+	public ConstraintEditOperation(String constraintText, FeatureModel featuremodel, int index, Node propNode) {
+		super(featuremodel, LABEL);
+		this.constriantText = constraintText;
+		this.index = index;
+		this.propNode = propNode;
+	}
+	
+
 
 	@Override
+	/*
+	 * (non-Javadoc)
+	 * @see de.ovgu.featureide.fm.ui.editors.featuremodel.operations.AbstractFeatureModelOperation#redo()
+	 *
 	protected void redo() {
 		oldPropNode = featureModel.getConstraint(index);
 		featureModel.replacePropNode(index, propNode);
 		FeatureDiagramLayoutHelper.initializeConstraintPosition(featureModel, index);
 	}
+	*/
+	
+	protected void redo() {
+		oldPropNode = featureModel.getConstraint(index);
+		featureModel.replacePropNode(index, propNode);
+		
+		oldConstriantText = featureModel.getConstraintText(index);
+		featureModel.replaceConstraintText(index, constriantText, propNode);
+		
+		FeatureDiagramLayoutHelper.initializeConstraintPosition(featureModel, index);
+	}
 
 	@Override
 	protected void undo() {
+		
 		featureModel.replacePropNode(index, oldPropNode);
+		
+		//Abhi
+		featureModel.replaceConstraintText(index, oldConstriantText, oldPropNode);
+		
 		//initialize constraint position in manual layout
 		if(!featureModel.getLayout().hasFeaturesAutoLayout())
 			FeatureDiagramLayoutHelper.initializeConstraintPosition(featureModel,
 							index);
+	}
+
+
+	/**
+	 * @return the constriantText
+	 */
+	public String getConstriantText() {
+		return constriantText;
+	}
+
+
+
+	/**
+	 * @param constriantText the constriantText to set
+	 */
+	public void setConstriantText(String constriantText) {
+		this.constriantText = constriantText;
+	}
+
+
+
+	/**
+	 * @return the oldConstriantText
+	 */
+	public String getOldConstriantText() {
+		return oldConstriantText;
+	}
+
+
+
+	/**
+	 * @param oldConstriantText the oldConstriantText to set
+	 */
+	public void setOldConstriantText(String oldConstriantText) {
+		this.oldConstriantText = oldConstriantText;
 	}
 
 }

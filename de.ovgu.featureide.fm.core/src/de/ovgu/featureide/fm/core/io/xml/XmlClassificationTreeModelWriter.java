@@ -116,7 +116,7 @@ public class XmlClassificationTreeModelWriter extends AbstractFeatureModelWriter
            
         	constraints.appendChild(rule);
         	
-    		createPropositionalConstraintsString(doc, rule, featureModel.getConstraints().get(i).getTextExpression());	
+    		createPropositionalConstraintsString(doc, rule, featureModel.getConstraints().get(i).getConstraintText());	
     	}
     	
 //    	root.appendChild(calculations);

@@ -28,9 +28,10 @@ package de.ovgu.featureide.fm.core;
 public class Operator {
 	//Abhi. Add more features 
 	public static final String[] NAMES = { "Not", "And", "Or",
-		"Implies", "Iff", "(", ")", "=", "!=", ">", "<", "<=", ">=" };
+		"=>", "!=", "(", ")", "<", ">"};
 	
-	//Other operators to be added later on 
+	//Other operators to be added later on
+	// "=", "!=", ">", "<", "<=", ">=" };
 	// "*", "/", "-", "%", "+"
 	
 	/**

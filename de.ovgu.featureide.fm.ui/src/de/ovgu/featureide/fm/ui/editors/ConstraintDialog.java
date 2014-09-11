@@ -28,14 +28,16 @@ import java.util.Locale;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.AbstractOperation;
 import org.eclipse.core.commands.operations.IUndoContext;
-import org.eclipse.gef.ui.stackview.TreeLabelProvider;
 import org.eclipse.jface.fieldassist.ContentProposalAdapter;
 import org.eclipse.jface.layout.TableColumnLayout;
+import org.eclipse.jface.layout.TreeColumnLayout;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellLabelProvider;
 import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
@@ -71,8 +73,12 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.internal.dialogs.TreeManager.TreeItemLabelProvider;
+import org.eclipse.ui.dialogs.FilteredTree;
+import org.eclipse.ui.dialogs.PatternFilter;
+import org.eclipse.ui.internal.dialogs.ViewComparator;
 import org.prop4j.Node;
 import org.prop4j.NodeReader;
 import org.prop4j.NodeWriter;
@@ -82,6 +88,10 @@ import org.sat4j.specs.TimeoutException;
 
 import de.ovgu.featureide.fm.core.Constraint;
 import de.ovgu.featureide.fm.core.Feature;
+import de.ovgu.featureide.fm.core.ClassFeature;
+import de.ovgu.featureide.fm.core.ClassificationFeature;
+import de.ovgu.featureide.fm.core.Feature.FeatureKind;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.FeatureStatus;
 import de.ovgu.featureide.fm.core.Operator;
@@ -91,6 +101,7 @@ import de.ovgu.featureide.fm.ui.FMUIPlugin;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.GUIDefaults;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.ConstraintCreateOperation;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.ConstraintEditOperation;
+import de.ovgu.featureide.fm.ui.views.featuremodeleditview.ViewContentProvider;
 
 /**
  * A simple editor for propositional constraints written below the feature
@@ -104,10 +115,10 @@ import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.ConstraintEditOp
 public class ConstraintDialog implements GUIDefaults {
 
 
-	
+
 	private static final String FILTERTEXT = "type filter text";
 	private Shell shell;
-	
+
 	private String initialConstraint;
 
 	private Label errorMarker;
@@ -116,16 +127,21 @@ public class ConstraintDialog implements GUIDefaults {
 	private String headerText;
 	private Group featureGroup;
 	private StyledText searchFeatureText;
-	private Table featureTable;
+	//Commented as we do not use this. We have featureTree now
+	//private Table featureTable;
+	//Change
+	private Tree featureTree;
 
 	private Group buttonGroup;
 	private Composite constraintTextComposite;
 	private Text constraintText;
+	//Abhi
+	private Text constraintTextforCitLab;
 	private FeatureModel featureModel;
 	private int x, y;
 	private Button okButton;
 	private Constraint constraint;
-	
+
 	/**
 	 * 
 	 * @param featuremodel
@@ -144,7 +160,7 @@ public class ConstraintDialog implements GUIDefaults {
 		} else {
 			titleText = "Edit Propositional Constraint";
 			headerText = "Edit your Constraint";
-			
+
 			initialConstraint = constraint.getNode().toString(
 					NodeWriter.textualSymbols);
 		}
@@ -160,7 +176,9 @@ public class ConstraintDialog implements GUIDefaults {
 		constraintText.setSelection(constraintText.getCharCount());
 		shell.open();
 		if (constraint != null)
-			validate();
+		{}
+			//Abhi: Client decided to validate on CitLab Side
+			//validate();
 	}
 
 	/**
@@ -170,8 +188,9 @@ public class ConstraintDialog implements GUIDefaults {
 		shell = new Shell(Display.getCurrent());
 		shell.setText(titleText);
 		shell.setImage(FEATURE_SYMBOL);
-		shell.setSize(500, 585);
+		shell.setSize(550, 520);
 		GridLayout shellLayout = new GridLayout();
+		//FillLayout shellLayout = new FillLayout();
 		shellLayout.marginWidth = 0;
 		shellLayout.marginHeight = 0;
 		shell.setLayout(shellLayout);
@@ -215,12 +234,12 @@ public class ConstraintDialog implements GUIDefaults {
 		ToolItem helpButton = new ToolItem(helpButtonBar, SWT.NONE);
 		helpButton.setImage(HELP_IMAGE);
 		helpButton
-				.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-					public void widgetSelected(
-							org.eclipse.swt.events.SelectionEvent e) {
-						Program.launch("http://www.cs.utexas.edu/~schwartz/ATS/fopdocs/guidsl.html");
-					}
-				});
+		.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(
+					org.eclipse.swt.events.SelectionEvent e) {
+				Program.launch("http://www.cs.utexas.edu/~schwartz/ATS/fopdocs/guidsl.html");
+			}
+		});
 		FormData formDataHelp = new FormData();
 		formDataHelp.left = new FormAttachment(0, 5);
 		helpButtonBar.setLayoutData(formDataHelp);
@@ -253,13 +272,13 @@ public class ConstraintDialog implements GUIDefaults {
 
 		});
 		cancelButton
-				.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-					public void widgetSelected(
-							org.eclipse.swt.events.SelectionEvent e) {
+		.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+			public void widgetSelected(
+					org.eclipse.swt.events.SelectionEvent e) {
 
-						shell.dispose();
-					}
-				});
+				shell.dispose();
+			}
+		});
 
 	}
 
@@ -328,22 +347,31 @@ public class ConstraintDialog implements GUIDefaults {
 		constraintTextComposite.setLayoutData(gridData);
 		FormLayout constraintTextLayout = new FormLayout();
 		constraintTextComposite.setLayout(constraintTextLayout);
-		constraintText = new Text(constraintTextComposite, SWT.SINGLE
+		constraintText = new Text(constraintTextComposite, SWT.SINGLE | SWT.H_SCROLL 
 				| SWT.BORDER);
 
-		ContentProposalAdapter adapter = new ContentProposalAdapter(
+		//Abhi
+		constraintTextforCitLab = new Text(constraintTextComposite, SWT.SINGLE | SWT.BORDER);
+
+		//Abhi _ Not using the adapter currently. We will try to do this later.
+		/*ContentProposalAdapter adapter = new ContentProposalAdapter(
 				constraintText, new ConstraintContentAdapter(),
 				new ConstraintContentProposalProvider(
 						featureModel.getFeatureNames()), null, null); //TODO:Abhi -- We need to change code her to getFeature Names we need.
 
+
 		adapter.setAutoActivationDelay(500);
 		adapter.setPopupSize(new Point(250, 85));
 		adapter.setLabelProvider(new ConstraintProposalLabelProvider());
+		 */
+
 		FormData formDataConstraintText = new FormData();
 		formDataConstraintText.right = new FormAttachment(100, -5);
 		formDataConstraintText.left = new FormAttachment(0, 5);
 		constraintText.setLayoutData(formDataConstraintText);
 		constraintText.setText(initialConstraint);
+		//Abhi
+		constraintText.setEditable(true); //Temporarily set this as False so the User Doesn't know
 		constraintText.addListener(SWT.FocusOut, new Listener() {
 
 			@Override
@@ -360,7 +388,8 @@ public class ConstraintDialog implements GUIDefaults {
 
 			@Override
 			public void modifyText(ModifyEvent e) {
-				validate();
+				//Abhi: Client decided to validate on CitLab Side
+				//validate();
 
 			}
 
@@ -386,30 +415,52 @@ public class ConstraintDialog implements GUIDefaults {
 			final Button button = new Button(buttonGroup, SWT.PUSH);
 			button.setText(Operator.NAMES[i]);
 			//Abhi - We do not want this.
-			button.setGrayed(true);
+			//button.setGrayed(true);
 			gridData = new GridData(GridData.FILL_HORIZONTAL);
 			button.setLayoutData(gridData);
-			//Abhi - We do not want to provide this
-			//button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
-			 
-			//	public void widgetSelected(
-			//			org.eclipse.swt.events.SelectionEvent e) {
-			//		StringBuilder temp = new StringBuilder(constraintText
-			//				.getText());
-			//		temp.delete(x, y);
-			//		temp.insert(x > y ? y : x, /*
-			//									 * " " +
-			//									 */button.getText().toLowerCase(Locale.ENGLISH) + " "
-							
-			//		/* .replaceAll(" ", "") + " " */);
-			//		constraintText.setText(temp.toString()); //NodeReader.reduceWhiteSpaces(temp.toString()));
-			//		constraintText.setFocus();
-			//		constraintText.setSelection(constraintText.getCharCount());
 
-			//		validate();
-			//	}
-			//});
-			 
+			//TODO: Abhi. We need to provide for this. 
+			button.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+
+				public void widgetSelected(
+						org.eclipse.swt.events.SelectionEvent e) {
+
+					String[] data = constraintText.getText().split(" ");
+
+					if(!Operator.isOperatorName(data[data.length - 1]))
+					{
+						//Abhi
+						StringBuilder tempforBackEnd = new StringBuilder(constraintTextforCitLab.getText());
+						StringBuilder tempforFrontEnd = new StringBuilder(constraintText.getText());
+
+						tempforFrontEnd.delete(x, y);
+
+						tempforBackEnd.append(button.getText().toLowerCase(Locale.ENGLISH) + " ");
+
+						tempforFrontEnd.append(button.getText().toLowerCase(Locale.ENGLISH) + " ");
+
+						//temp.insert(x > y ? y : x, /*
+						//							 * " " +
+						//							 */button.getText().toLowerCase(Locale.ENGLISH) + " "
+						//
+						///* .replaceAll(" ", "") + " " */);
+
+						constraintTextforCitLab.setText(tempforBackEnd.toString());
+						constraintText.setText(tempforFrontEnd.toString()); //NodeReader.reduceWhiteSpaces(temp.toString()));
+
+						constraintText.setFocus();
+						constraintText.setSelection(constraintText.getCharCount());
+
+						//Abhi: Client decided to validate on CitLab Side
+						//validate();
+					}
+					else
+					{
+						printHeaderError("Already selected a Operator. Please select an appropriate Class Node");
+					}
+				}
+			});
+
 		}
 
 	}
@@ -420,14 +471,15 @@ public class ConstraintDialog implements GUIDefaults {
 	 * @param featuremodel
 	 */
 	private void initFeatureGroup(final FeatureModel featuremodel) {
-	
+
 		featureGroup = new Group(shell, SWT.NONE);
 		//Abhi
-		featureGroup.setText("Classifications");
-		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
+		featureGroup.setText("Classification Tree:");
+
+		/*GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace = true;
-		featureGroup.setLayoutData(gridData);
+		gridData.grabExcessVerticalSpace = true;*/
+		//featureGroup.setLayoutData() 
 		GridLayout featureGroupLayout = new GridLayout();
 		featureGroupLayout.numColumns = 1;
 		featureGroup.setLayout(featureGroupLayout);
@@ -437,47 +489,43 @@ public class ConstraintDialog implements GUIDefaults {
 		searchFeatureText.setText(FILTERTEXT);
 		searchFeatureText.setForeground(shell.getDisplay().getSystemColor(
 				SWT.COLOR_GRAY));
-		gridData = new GridData(GridData.FILL_HORIZONTAL);
+
+
+		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		searchFeatureText.setLayoutData(gridData);
 
 		Composite tableComposite = new Composite(featureGroup, SWT.NONE);	
 		//Abhi
-		tableComposite.setEnabled(false);
-		gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace = true;
-		tableComposite.setLayoutData(gridData);
+		//tableComposite.setEnabled(false);
+		//gridData = new GridData(GridData.FILL_HORIZONTAL);
+		//gridData.grabExcessHorizontalSpace = true;
+		//gridData.grabExcessVerticalSpace = true;
+		//tableComposite.setLayoutData(new FillLayout());
 
 
-		final TableViewer featureTableViewer = new TableViewer(tableComposite,
-				SWT.BORDER | SWT.SINGLE | SWT.H_SCROLL | SWT.V_SCROLL);
-		featureTable = featureTableViewer.getTable();
-		featureTableViewer.setContentProvider(new ArrayContentProvider());
-		TableViewerColumn viewerNameColumn = new TableViewerColumn(
-				featureTableViewer, SWT.NONE);
-		TableColumnLayout tableColumnLayout = new TableColumnLayout();
-		tableComposite.setLayout(tableColumnLayout);
-		tableColumnLayout.setColumnData(viewerNameColumn.getColumn(),
-				new ColumnWeightData(100, 100, false));
 
-		featureTableViewer.setComparator(new ViewerComparator() {
+		//Abhi
+		//PatternFilter filter = new PatternFilter();
+		//featureTree = new FilteredTree(tableComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL, filter,  true);
 
-			@Override
-			public int compare(Viewer viewer, Object feature1, Object feature2) {
+		final TreeViewer featureTreeViewer = new TreeViewer(tableComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		featureTreeViewer.setContentProvider(new ViewContentProvider1()); //Need to change here
+		featureTreeViewer.setLabelProvider(new ViewLabelProvider1());
 
-				return ((Feature) feature1).getName().compareToIgnoreCase(
-						((Feature) feature2).getName());
-			}
+		featureTreeViewer.setInput(featureModel.getClassificationNodeList());
 
-		});
+		//gridData = new GridData(GridData.FILL_HORIZONTAL);
+		//gridData.grabExcessVerticalSpace = true;
 
-		viewerNameColumn.setLabelProvider(new CellLabelProvider() {
-			@Override
-			public void update(ViewerCell cell) {
-				cell.setText(((Feature) cell.getElement()).getName());
+		featureTree =featureTreeViewer.getTree();
+		featureTree.setLayoutData(new FillLayout());
 
-			}
-		});
+		TreeViewerColumn tvColumn = new TreeViewerColumn(featureTreeViewer, SWT.NONE);
+		TreeColumnLayout tvLayout = new TreeColumnLayout();
+		tableComposite.setLayout(tvLayout);
+		tvColumn.setLabelProvider(new ViewLabelProvider1());
+		tvLayout.setColumnData(tvColumn.getColumn(), new ColumnWeightData(100, 500, false));
+		//Abhi
 
 		searchFeatureText.addModifyListener(new ModifyListener() {
 
@@ -487,19 +535,40 @@ public class ConstraintDialog implements GUIDefaults {
 					ViewerFilter searchFilter = new ViewerFilter() {
 
 						@Override
-						public boolean select(Viewer viewer, Object parentElement,
-								Object element) {
-							return ((Feature) element)
-									.getName()
-									.toLowerCase(Locale.ENGLISH)
-									.contains(
-											searchFeatureText.getText()
-													.toLowerCase(Locale.ENGLISH));
+						public boolean select(Viewer viewer, Object parentElement, Object element) {
+							if(((Feature) element).kind == FeatureKind.Classification)
+							{
+								return ((Feature) element)
+										.getName()
+										.toLowerCase(Locale.ENGLISH)
+										.contains(
+												searchFeatureText.getText()
+												.toLowerCase(Locale.ENGLISH));
+
+							}
+							if(((Feature) element).kind == FeatureKind.Class || ((Feature) element).kind == FeatureKind.RangeClass)
+							{
+								return ((ClassFeature) element)
+										.getValue()		
+										.toLowerCase(Locale.ENGLISH)
+										.contains(
+												searchFeatureText.getText()
+												.toLowerCase(Locale.ENGLISH));
+							}
+							else
+							{
+								return ((Feature) element)
+										.getName()
+										.toLowerCase(Locale.ENGLISH)
+										.contains(
+												searchFeatureText.getText()
+												.toLowerCase(Locale.ENGLISH));
+							}
 						}
 
 					};
-					featureTableViewer.addFilter(searchFilter);
-
+					//featureTableViewer.addFilter(searchFilter);
+					featureTreeViewer.addFilter(searchFilter);
 				}
 			}
 
@@ -530,41 +599,77 @@ public class ConstraintDialog implements GUIDefaults {
 			}
 
 		}); 
-		
 
-		featureTableViewer.setInput(featureModel.getClassificationNodeList());
-
-		gridData = new GridData(GridData.FILL_HORIZONTAL);
-		gridData.grabExcessVerticalSpace = true;
-		featureTable.setLayoutData(gridData);
-		
-		
-		//Abhi - We do not need this.
-		/*featureTable.addListener(SWT.MouseDoubleClick, new Listener() {
+		//Abhi - New Style of Constraints
+		featureTree.addListener(SWT.MouseDoubleClick, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
-				TableItem[] selectedItem = featureTable.getSelection();
-				StringBuilder temp = new StringBuilder(constraintText.getText());
+				TreeItem[] selectedTreeItem = featureTree.getSelection();
 
-				temp.delete(x, y);
-				if (selectedItem.length > 0) {
-					temp.insert(x > y ? y : x, " " + (selectedItem[0].getText().contains(" ")||Operator.isOperatorName(selectedItem[0].getText()) ? "\"" + selectedItem[0].getText() + "\"" : selectedItem[0].getText())
-							+ " ");
-					
+				Feature classFeature = (Feature) selectedTreeItem[0].getData();
+
+				String[] data = constraintText.getText().split(" ");
+
+				if(classFeature.kind == FeatureKind.Class || classFeature.kind == FeatureKind.RangeClass)
+				{
+					if((constraintTextforCitLab.getText().isEmpty() || Operator.isOperatorName(data[data.length - 1])))
+					{
+
+						//Abhi- Trying something out
+						StringBuilder tempforBackEnd = new StringBuilder(constraintTextforCitLab.getText());
+						StringBuilder tempforFrontEnd = new StringBuilder(constraintText.getText());
+
+						//StringBuilder temp = new StringBuilder(constraintText.getText());
+
+						tempforFrontEnd.delete(x, y);
+
+						//Abhi
+						System.out.println(String.valueOf(x) + " " + String.valueOf(y));
+
+						if (selectedTreeItem.length > 0) {
+							//temp.insert(x > y ? y : x, " " + (selectedTreeItem[0].getText().contains(" ") || Operator.isOperatorName(selectedTreeItem[0].getText()) ? "\"" + selectedTreeItem[0].getText() + "\"" : selectedTreeItem[0].getText())
+							//		+ " ");
+
+							tempforBackEnd.append(" " + classFeature.getName() + " ");
+
+							//tempforFrontEnd.insert(x > y ? y : x, " " + (selectedTreeItem[0].getText().contains(" ") || Operator.isOperatorName(selectedTreeItem[0].getText()) ? "\"" + selectedTreeItem[0].getText() + "\"" : selectedTreeItem[0].getText())+ " ");
+						}
+
+						StringBuilder newConstraintText = new StringBuilder();
+						
+						ClassificationFeature xyz =  (ClassificationFeature) classFeature.getParent();
+						String abc = xyz.getDataType();
+						if( ((ClassificationFeature) classFeature.getParent()).getDataType() == FeatureConstants.TYPE_ENUM)
+							newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + classFeature.getParent().getName() + "." + selectedTreeItem[0].getText() + " ");
+						else 
+							newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + selectedTreeItem[0].getText() + " ");
+							
+
+
+						constraintTextforCitLab.setText(tempforBackEnd.toString());
+						//Abhi - It is very important that this above line is above the line below. 
+						//The listener is on ConstraintText variable so we need to make sure this works.
+
+						constraintText.setText(newConstraintText.toString()); //NodeReader.reduceWhiteSpaces(temp.toString()));
+
+						constraintText.setSelection(constraintText.getCharCount());
+						searchFeatureText.setText(FILTERTEXT);
+						searchFeatureText.setForeground(shell.getDisplay()
+								.getSystemColor(SWT.COLOR_GRAY));
+						constraintText.setFocus();
+						featureTreeViewer.resetFilters();
+
+						//Abhi: Client decided to validate on CitLab Side
+						//validate();
+					}
+					else
+					{
+						printHeaderWarning("Invalid Selection. Please select an OPERATOR first");
+					}
 				}
-				constraintText.setText(temp.toString()); //NodeReader.reduceWhiteSpaces(temp.toString()));
-
-				constraintText.setSelection(constraintText.getCharCount());
-				searchFeatureText.setText(FILTERTEXT);
-				searchFeatureText.setForeground(shell.getDisplay()
-						.getSystemColor(SWT.COLOR_GRAY));
-				constraintText.setFocus();
-				featureTableViewer.resetFilters();
-
-				validate();
 			}
-		});*/
-		
+		});
+
 
 	}
 
@@ -690,7 +795,7 @@ public class ConstraintDialog implements GUIDefaults {
 		}
 		return deadFeaturesAfter;
 	}
-	
+
 	public List<Feature> getFalseOptional(String input, FeatureModel model){
 		List<Feature> list = new ArrayList<Feature>();
 		FeatureModel clonedModel = model.clone();
@@ -698,7 +803,7 @@ public class ConstraintDialog implements GUIDefaults {
 		NodeReader nodeReader = new NodeReader();
 
 		Node propNode = nodeReader.stringToNode(input, clonedModel.getFeatureNames());
-		
+
 		for (Feature feature : model.getFeatures()){
 			if (input.contains(feature.getName())){
 				if (feature.getFeatureStatus() != FeatureStatus.FALSE_OPTIONAL){
@@ -706,17 +811,17 @@ public class ConstraintDialog implements GUIDefaults {
 					clonedModel.getAnalyser().analyzeFeatureModel(null);
 					if (clonedModel.getFeature(feature.getName())
 							.getFeatureStatus() == FeatureStatus.FALSE_OPTIONAL && !list.contains(feature)) 
-								list.add(feature);
+						list.add(feature);
 				}
 			}
 		}
-		
+
 		return list;
 	}
-	
+
 	public String getFalseOptionalString (List<Feature> list){
 		String listString = list.toString();
-		String featureString = "Constraint causes the following features to be false optional: " + '\n';		
+		String featureString = "Constraint causes the following Classification to be false optional: " + '\n';		
 		return featureString + listString.substring(1, listString.length()-1);
 	}
 
@@ -726,7 +831,9 @@ public class ConstraintDialog implements GUIDefaults {
 	 */
 	private boolean validate() {
 		NodeReader nodereader = new NodeReader();
-		String con = constraintText.getText().trim();
+		//Abhi - We need to send some other Text
+		String con = constraintTextforCitLab.getText().trim();
+		//String con = constraintText.getText().trim();
 		boolean isWellformed = nodereader.isWellFormed(con, featureModel.getFeatureNames());
 
 		if (!isWellformed) {
@@ -747,20 +854,20 @@ public class ConstraintDialog implements GUIDefaults {
 		try {
 			if (featureModel.getAnalyser().isValid() && voidsModel(con, featureModel)) {
 
-				printHeaderWarning("constraint makes model void");
+				printHeaderWarning("constraint makes classification tree model void");
 				return false;
 			}
 		} catch (TimeoutException e) {
 			FMUIPlugin.getDefault().logError(e);
 		}
-		
+
 		List<Feature> deadFeatures = getDeadFeatures(con, featureModel);
 		if (!deadFeatures.isEmpty()) {
 			printHeaderWarning(getDeadFeatureString(deadFeatures));
 			return false;
 		}
 
-		
+
 		List<Feature> falseOptionalFeatures = getFalseOptional(con, featureModel);
 		if (!falseOptionalFeatures.isEmpty()){
 			printHeaderWarning(getFalseOptionalString(falseOptionalFeatures));
@@ -769,13 +876,13 @@ public class ConstraintDialog implements GUIDefaults {
 
 		try {
 			if (featureModel.getAnalyser().isValid() && redundant(con)) {
-				printHeaderWarning("The constraint does not change the product line.");
+				printHeaderWarning("The constraint does not change or restrict anything in the Classification Tree Model.");
 				return true;
 			}
 		} catch (TimeoutException e) {
 			FMUIPlugin.getDefault().logError(e);
 		}
-		
+
 		printHeaderText(headerText);
 		return true;
 	}
@@ -807,7 +914,7 @@ public class ConstraintDialog implements GUIDefaults {
 	 * */
 	private String getDeadFeatureString(List<Feature> deadFeatures) {
 		StringBuilder featureString = new StringBuilder();
-		featureString.append("Constraint causes the following features to be dead: ");
+		featureString.append("Constraint causes the following Classification to be dead: ");
 		int count = 0;
 		int featureCount = 0;
 		boolean isNewLine = false;
@@ -884,6 +991,11 @@ public class ConstraintDialog implements GUIDefaults {
 	 */
 	private void closeShell() {
 		NodeReader nodeReader = new NodeReader();
+		//Abhi - We have build a new String for BackEnd
+		//String input = constraintText.getText().trim();
+		
+		//String input = constraintTextforCitLab.getText().trim();
+		
 		String input = constraintText.getText().trim();
 
 		if (input.length() == 0) 
@@ -892,8 +1004,14 @@ public class ConstraintDialog implements GUIDefaults {
 			return;
 		}
 
-		Node propNode = nodeReader.stringToNode(input, featureModel.getFeatureNames());		
 		
+		Node propNode = nodeReader.stringToNode(constraintTextforCitLab.getText().trim(), featureModel.getFeatureNames());		
+		
+		/* Abhi: We are doing simple text constriants. So we do not need this.
+		 * 
+		 *
+		
+
 		if (propNode == null) {
 			printHeaderError(nodeReader.getErrorMessage());
 			return;
@@ -901,20 +1019,22 @@ public class ConstraintDialog implements GUIDefaults {
 		if (!isSatisfiable(input, 1000)) {
 			printHeaderWarning("constraint is unsatisfiable");			
 		}
-		
+		*/
+
 		AbstractOperation op = null;
+		
 		if (constraint != null && featureModel.getConstraints().contains(constraint)) {
 			int index = 0;
 			for (Constraint c : featureModel.getConstraints()) {
-				if (c == constraint) {
-					op = new ConstraintEditOperation(propNode, featureModel, index);
+				if (c.getConstraintText().equalsIgnoreCase(constraint.getConstraintText())) {
+					op = new ConstraintEditOperation(constraint.getConstraintText(), featureModel, index, propNode);
 					break;
 				}
 				index++;
 			}	
 		}
 		if (op == null) {
-			op = new ConstraintCreateOperation(propNode, featureModel);
+			op = new ConstraintCreateOperation(input, featureModel, propNode);
 		}
 		op.addContext((IUndoContext) featureModel.getUndoContext());
 		try {

@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.internal.junit.ui.JUnitPlugin;
 import org.eclipse.jdt.internal.junit.wizards.NewTestCaseCreationWizard;
 import org.eclipse.jdt.junit.wizards.NewTestCaseWizardPageOne;
@@ -41,6 +42,7 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 
 	private TestSuite testSuite;
 	private String osSafeCsvFilePath;
+	private String windowsPathString;
 	private Pattern importPattern = Pattern.compile("^import.*");
 	private Pattern classPattern = Pattern.compile("^public (static )?class.*");
 	private Pattern methodPattern = Pattern.compile("^(\\s*).+ (test\\w*)\\(\\) \\{$");
@@ -56,7 +58,8 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 		}
 
 		this.testSuite = testSuite;
-		this.osSafeCsvFilePath = osSafeCsvFilePath;
+		this.osSafeCsvFilePath = osSafeCsvFilePath.replaceAll("\\\\", "\\\\\\\\");
+		this.windowsPathString = this.osSafeCsvFilePath.replaceAll("^.*:", "file:");
 	}
 	
 	@Override
@@ -98,9 +101,10 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 								//read it line by line, and do some regex magic
 								//to insert 'import junitparams.*; and other stuff'
 								insertJunitParamsAnnotation((IFile) resource);
+								resource.refreshLocal(IResource.DEPTH_ZERO, null);
 
 								IDE.openEditor(activePage, (IFile)resource, true);
-							} catch (PartInitException e) {
+							} catch (CoreException e) {
 								JUnitPlugin.log(e);
 							}
 						}
@@ -214,7 +218,7 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 		  .append("\t@Test").append(newLine)
 		  .append("\t@FileParameters(").append(newLine)
 		  .append("\t\t\t\tvalue = \"")
-		  .append(osSafeCsvFilePath).append("\", ").append(newLine)
+		  .append(windowsPathString).append("\", ").append(newLine)
 		  .append("\t\t\t\tmapper = CsvWithHeaderMapper.class)").append(newLine)
 		  .append("\tpublic void testSampleMethod(").append(newLine);
 
@@ -255,7 +259,7 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 		StringBuilder sbParams = new StringBuilder();
 		sbParams.append(indent).append("@FileParameters(").append(newLine);
 		sbParams.append(prefix).append("value = \"");
-		sbParams.append(osSafeCsvFilePath).append("\",").append(newLine);
+		sbParams.append(windowsPathString).append("\",").append(newLine);
 		sbParams.append(prefix).append("mapper = ");
 		sbParams.append("CsvWithHeaderMapper.class").append(")").append(newLine);
 

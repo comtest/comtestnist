@@ -47,25 +47,24 @@ public class Constraint implements PropertyConstants {
 	private Collection<Feature> falseOptionalFeatures = new LinkedList<Feature>();
  	private ConstraintAttribute attribute = ConstraintAttribute.NORMAL;
 	private Collection<Feature> deadFeatures = new LinkedList<Feature>();
-	private String textExpression = new String();
 	
-	/**
-	 * @return the textExpression
-	 */
-	public String getTextExpression() {
-		return textExpression;
-	}
+	//Abhi:
+	private String constraintText; 
+	
 
-	/**
-	 * @param textExpression the textExpression to set
-	 */
-	public void setTextExpression(String textExpression) {
-		this.textExpression = textExpression;
-	}
 
+	//Abhi: New Constructor for Constraint Setup.
+	public Constraint(FeatureModel featureModel, String constriantText, Node propNode)
+	{
+		this.featureModel = featureModel; 
+		this.constraintText = constriantText;
+		this.propNode = propNode;
+	}
+	
 	public Constraint(FeatureModel featureModel, Node propNode) {
 		this.featureModel = featureModel;
 		this.propNode = propNode;
+		
 	}
 	 
 	public void setLocation(FMPoint newLocation){
@@ -269,5 +268,20 @@ public class Constraint implements PropertyConstants {
 	public Collection<Feature> getDeadFeatures() {
 		return deadFeatures;
 	}
+
+	/**
+	 * @return the constraintText
+	 */
+	public String getConstraintText() {
+		return constraintText;
+	}
+
+	/**
+	 * @param constraintText the constraintText to set
+	 */
+	public void setConstraintText(String constraintText) {
+		this.constraintText = constraintText;
+	}
+	
 
 }

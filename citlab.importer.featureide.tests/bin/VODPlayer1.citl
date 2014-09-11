@@ -1,9 +1,0 @@
-Model VODPlayer
-
-Parameters:
-	Boolean ChangeServer;
-	Boolean Detail;
-	Boolean StopMovie;
-	Boolean Quit;
-	Boolean Pause;
-end

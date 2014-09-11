@@ -60,5 +60,6 @@ Bundle-Vendor: University of Magdeburg
 Import-Package: citlab.importer.featureide,
  citlab.model.citL,
  citlab.model.citL.impl,
+ org.eclipse.core.filesystem,
  org.eclipse.emf.common.util
 

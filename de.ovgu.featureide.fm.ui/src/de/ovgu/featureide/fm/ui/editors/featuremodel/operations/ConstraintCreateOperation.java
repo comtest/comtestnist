@@ -47,6 +47,12 @@ public class ConstraintCreateOperation extends AbstractFeatureModelOperation {
 		constraint = new Constraint(featureModel, node);
 	}
 
+	//Abhi:
+	public ConstraintCreateOperation(String constraintText, FeatureModel featureModel, Node node) {
+		super(featureModel, LABEL);
+		constraint = new Constraint(featureModel, constraintText, node);
+	}
+	
 	@Override
 	protected void redo() {
 		featureModel.addConstraint(constraint);

@@ -75,8 +75,8 @@ public class NodeReader {
 		errorMessage = "";
 		constraint = constraint.trim();
 
-		if (!isWellFormed(constraint, featureNames))
-			return null;
+//		if (!isWellFormed(constraint, featureNames))
+//			return null;
 		return getNode(constraint);
 	}
 
@@ -116,7 +116,7 @@ public class NodeReader {
 			errorMessage = " ";
 			string = " " + string.trim() + " ";
 			if ("  ".equals(string)) {
-				errorMessage = "No symbols found.";
+				errorMessage = "Incomplete Constraint. Please continue...";
 				error = true;
 				return new Literal("");
 			}
@@ -199,7 +199,7 @@ public class NodeReader {
 						} else {
 							errorMessage = list
 									.get(Integer.parseInt(string) - 100000)
-									+ " is no valid Feature Name";
+									+ " is no valid Constraint";
 							error = true;
 							return new Literal("");
 						}
@@ -215,13 +215,13 @@ public class NodeReader {
 
 			if (featureNames != null) {
 				if (!featureNames.contains(string)) {
-					errorMessage = string + " is no valid Feature Name";
+					errorMessage = string + " is no valid Constraint Statement";
 					error = true;
 					return new Literal("");
 				}
 			}
 			if (string.contains(" ")) {
-				errorMessage = string + " is no valid Feature Name";
+				errorMessage = string + " is no valid Constraint Statement";
 				error = true;
 				return new Literal("");
 			}
@@ -242,7 +242,7 @@ public class NodeReader {
 	 */
 	public boolean isWellFormed(String constraint, final Collection<String> featureNames) {
 		this.featureNames = featureNames;
-
+		
 		if (!constraint.trim().isEmpty()) {
 			// Check constraint if brackets set correctly
 			int bracketCounter = 0;
@@ -286,7 +286,7 @@ public class NodeReader {
 						|| indEnd + 1 < constraint.length()
 						&& constraint.charAt(indEnd + 1) != ' '
 						&& constraint.charAt(indEnd + 1) != ')') {
-					errorMessage = "Whitespace before and after quoted Featurename required";
+					errorMessage = "Whitespace before and after quoted ClassificationNode or Value is required";
 					return false;
 				}
 
@@ -310,7 +310,7 @@ public class NodeReader {
 						|| indEnd + 1 < constraint.length()
 						&& constraint.charAt(indEnd + 1) != ' '
 						&& constraint.charAt(indEnd + 1) != ')') {
-					errorMessage = "Whitespace before and after quoted Featurename required";
+					errorMessage = "Whitespace before and after quoted ClassificationNode or Value required";
 					return false;
 				}
 
@@ -331,35 +331,35 @@ public class NodeReader {
 	private Node getNode(String string) {
 
 		LinkedList<String> list = new LinkedList<String>();
-		int counter = 0;
-
-		// replacing all quotation-marked Featurenames with numbers
-		// Same procedure as with brackets -> see below
-		while (string.contains("\"")) {
-
-			int indStart = string.indexOf('\"');
-			int indEnd = string.indexOf('\"', indStart + 1);
-
-			// inner bracket found -> substitution to list
-			// Names are added inclusive quotation marks
-			list.add(string.substring(indStart + 1, indEnd));
-
-			string = string.substring(0, indStart) + (counter + 100000)
-					+ string.substring(indEnd + 1, string.length());
-			counter++;
-		}
-
-		// finding all bracket expressions
-		while (string.contains(")")) {
-			int indEnd = string.indexOf(")");
-			int indStart = string.substring(0, indEnd).lastIndexOf("(");
-
-			// inner bracket found -> substitution to list
-			list.add(string.substring(indStart + 1, indEnd));
-			string = string.substring(0, indStart) + counter
-					+ string.substring(indEnd + 1, string.length());
-			counter++;
-		}
+//		int counter = 0;
+//
+//		// replacing all quotation-marked Featurenames with numbers
+//		// Same procedure as with brackets -> see below
+//		while (string.contains("\"")) {
+//
+//			int indStart = string.indexOf('\"');
+//			int indEnd = string.indexOf('\"', indStart + 1);
+//
+//			// inner bracket found -> substitution to list
+//			// Names are added inclusive quotation marks
+//			list.add(string.substring(indStart + 1, indEnd));
+//
+//			string = string.substring(0, indStart) + (counter + 100000)
+//					+ string.substring(indEnd + 1, string.length());
+//			counter++;
+//		}
+//
+//		// finding all bracket expressions
+//		while (string.contains(")")) {
+//			int indEnd = string.indexOf(")");
+//			int indStart = string.substring(0, indEnd).lastIndexOf("(");
+//
+//			// inner bracket found -> substitution to list
+//			list.add(string.substring(indStart + 1, indEnd));
+//			string = string.substring(0, indStart) + counter
+//					+ string.substring(indEnd + 1, string.length());
+//			counter++;
+//		}
 		return stringToNodeRec(string, list);
 	}
 
@@ -377,7 +377,7 @@ public class NodeReader {
 	private Node stringToNodeRec(String string, List<String> list) {
 		string = " " + string.trim() + " ";
 		// traverse all symbols
-		for (int i = 0; i < symbols.length; i++) {
+		/*for (int i = 0; i < symbols.length; i++) {
 			while (string.contains(" " + symbols[i] + " ")) {
 				int index = string.indexOf(" " + symbols[i] + " ") + 1; // 1st
 																		// symbol
@@ -407,19 +407,19 @@ public class NodeReader {
 				}
 				}
 			}
-		}
+		}*/
 
-		string = string.trim();
-		if (isIntNumber(string)) {
-			if (Integer.parseInt(string) >= 100000) {
-
-				return new Literal(list.get(Integer.parseInt(string) - 100000)
-						.replace("\"", ""));
-
-			} else {
-				return stringToNodeRec(list.get(Integer.parseInt(string)), list);
-			}
-		}
+//		string = string.trim();
+//		if (isIntNumber(string)) {
+//			if (Integer.parseInt(string) >= 100000) {
+//
+//				return new Literal(list.get(Integer.parseInt(string) - 100000)
+//						.replace("\"", ""));
+//
+//			} else {
+//				return stringToNodeRec(list.get(Integer.parseInt(string)), list);
+//			}
+//		}
 
 		return new Literal(string.replace("\"", ""));
 	}

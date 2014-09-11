@@ -281,7 +281,7 @@ public class Feature implements PropertyConstants, PropertyChangeListener {
 		StringBuilder relevant = new StringBuilder();
 		for (Constraint constraint : featureModel.getConstraints()) {
 			
-			relevant.append((relevant.length() == 0 ? " " : "\n ") + "Douglas code here " + constraint.getTextExpression() + " ");
+			relevant.append((relevant.length() == 0 ? " " : "\n ") + "Douglas code here " + constraint.getConstraintText() + " ");
 //			for (Feature f : constraint.getContainedFeatures()) {
 //					if (f.getName().equals(getName())) {
 //						relevant.append((relevant.length() == 0 ? " " : "\n ") + constraint.getNode().toString(NodeWriter.logicalSymbols) + " ");
