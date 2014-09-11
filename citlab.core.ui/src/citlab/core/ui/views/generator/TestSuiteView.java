@@ -294,7 +294,6 @@ public class TestSuiteView extends ViewPart {
 
 	}
 	
-	//TODO: Douglas
 	public List<String> generate_column_name(){
 		List<String> column_name = new ArrayList<String>();
 		
