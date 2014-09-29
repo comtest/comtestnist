@@ -161,8 +161,11 @@ public class ConstraintDialog implements GUIDefaults {
 			titleText = "Edit Propositional Constraint";
 			headerText = "Edit your Constraint";
 
-			initialConstraint = constraint.getNode().toString(
-					NodeWriter.textualSymbols);
+			initialConstraint = constraint.getConstraintText(); 
+					
+			//Abhi: We do not need this since we are showing actual constraint text to the user		
+			//constraint.getNode().toString(
+			//NodeWriter.textualSymbols);
 		}
 
 		initShell();
