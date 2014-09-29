@@ -174,6 +174,12 @@ public class FeatureFigure extends Figure implements GUIDefaults {
 				setBorder(FMPropertyManager.getClassFeatureBorder());
 			}	
 			
+			//sudhi
+			else if(this.feature.kind == FeatureKind.Root)
+			{
+				setBorder(FMPropertyManager.getRootBorder());
+			}
+
 			else 
 			{
 				setBorder(FMPropertyManager.getFeatureBorder());
@@ -187,11 +193,11 @@ public class FeatureFigure extends Figure implements GUIDefaults {
 		
 		if (feature.isAbstract()){
 			setBackgroundColor(FMPropertyManager.getAbstractFeatureBackgroundColor());
-			setBorder(FMPropertyManager.getFeatureBorder());
 			if (feature.isRoot()){
 				toolTip += ROOT;
 			} else {
 				toolTip += ABSTRACT;
+				setBorder(FMPropertyManager.getFeatureBorder());
 			}
 		}
 		

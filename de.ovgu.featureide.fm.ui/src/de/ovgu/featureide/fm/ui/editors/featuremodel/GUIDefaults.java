@@ -64,7 +64,10 @@ public interface GUIDefaults {
 	public static final Color FEATURE_FOREGROUND = GUIBasics.createColor(0.0, 0.0, 0.0);
 	public static final Insets FEATURE_INSETS = new Insets(3, 6, 3, 6);//4, 8, 4, 8
 
-	public static final Color CONCRETE_BACKGROUND = GUIBasics.createColor(0.8, 0.8, 1.0);
+//	public static final Color CONCRETE_BACKGROUND = GUIBasics.createColor(0.8, 0.8, 1.0);
+	//sudhi - make the background color white
+	//this will make the box transparent
+	public static final Color CONCRETE_BACKGROUND = ColorConstants.white;
 	public static final Color CONCRETE_BORDER_COLOR = GUIBasics.createBorderColor(CONCRETE_BACKGROUND);
 	public static final Border CONCRETE_BORDER = new LineBorder(CONCRETE_BORDER_COLOR, 1);
 	public static final Color CONCRETE_SELECTED_BORDER_COLOR = CONCRETE_BORDER_COLOR;

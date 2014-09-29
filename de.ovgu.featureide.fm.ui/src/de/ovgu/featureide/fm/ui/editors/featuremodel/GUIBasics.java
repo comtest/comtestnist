@@ -23,6 +23,7 @@ package de.ovgu.featureide.fm.ui.editors.featuremodel;
 import javax.annotation.CheckReturnValue;
 
 import org.eclipse.draw2d.LineBorder;
+//import org.eclipse.emf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
@@ -58,6 +59,11 @@ public class GUIBasics {
 		return new LineBorder(color, width);
 	}
 	
+	//sudhi
+	public static LineBorder createRoundedBorder(Color color, int width) {
+		return new RoundedLineBorder(color, width, 5);
+	}
+
 	public static boolean unicodeStringTest(Font swtFont, String s) {
 		FontData fd = swtFont.getFontData()[0];
 		java.awt.Font awtFont = new java.awt.Font(fd.getName(),0,fd.getHeight());
