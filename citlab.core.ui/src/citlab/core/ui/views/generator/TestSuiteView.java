@@ -276,7 +276,7 @@ public class TestSuiteView extends ViewPart {
 	  														fd_importCVSButton.top = new FormAttachment(addColumnButton, 10);
 	  														fd_importCVSButton.left = new FormAttachment(text, 0, SWT.LEFT);
 	  														importCVSButton.setLayoutData(fd_importCVSButton);
-	  														importCVSButton.setText("Import From CVS");
+	  														importCVSButton.setText("Import From CSV");
 			composite.pack();
 		
 	}

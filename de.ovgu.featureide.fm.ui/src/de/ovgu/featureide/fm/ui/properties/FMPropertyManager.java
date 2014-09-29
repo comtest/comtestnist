@@ -27,6 +27,7 @@ import javax.annotation.CheckReturnValue;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.draw2d.Border;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -469,21 +470,30 @@ public class FMPropertyManager extends FMPropertyManagerDefaults implements GUID
 		return GUIBasics.createLineBorder(getFeatureBorderColor(), 1);
 	}
 	
+	//sudhi
+	public static Border getRootBorder() {
+		//use dark gray and rounded border
+		return GUIBasics.createRoundedBorder(ColorConstants.black, 3);
+	}
+	
 	//Abhi
 	public static Border getCompositionFeatureBorder(){
-		return GUIBasics.createLineBorder(getFeatureBorderColor(), 3);
+		//sudhi - change color
+		return GUIBasics.createLineBorder(ColorConstants.darkGray, 2);
 	}
 	
 	//Abhi 
 	public static Border getClassificationFeatureBorder()
 	{
-		return GUIBasics.createLineBorder(getFeatureBorderColor(), 1);
+		//sudhi - change color
+		return GUIBasics.createLineBorder(ColorConstants.gray, 1);
 	}
 	
 	//Abhi 
 	public static Border getClassFeatureBorder()
 	{
-		return GUIBasics.createLineBorder(getFeatureBorderColor(), 0);
+		//sudhi - change color
+		return GUIBasics.createLineBorder(ColorConstants.white, 0);
 	}
 	
 
