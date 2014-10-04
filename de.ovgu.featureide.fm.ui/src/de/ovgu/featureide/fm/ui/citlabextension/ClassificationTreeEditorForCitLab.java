@@ -19,7 +19,6 @@
  * See http://www.fosd.de/featureide/ for further information.
  */
 package de.ovgu.featureide.fm.ui.citlabextension;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
@@ -33,6 +32,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.content.IContentDescription;
 import org.eclipse.core.runtime.content.IContentType;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -60,7 +60,9 @@ public class ClassificationTreeEditorForCitLab extends ICitLabAlternativeEditor 
 	 */
 	@Override
 	public void openEditor(String projectName, String fileName)
-			throws InvalidAlternativeEditorException {
+			throws Exception {
+		
+		System.out.println("Douglas ::openEditor ");
 		FeatureModel featureModel = new FeatureModel();
 		featureModel.createDefaultValues("");
 		
@@ -70,6 +72,7 @@ public class ClassificationTreeEditorForCitLab extends ICitLabAlternativeEditor 
 		IFolder folder = project.getFolder("src");
 		// create an XML file for the new classification tree
 		IFile file = folder.getFile(fileName + ".xml");
+		
 		if (!project.exists())
 			try {
 				project.create(null);
@@ -94,7 +97,7 @@ public class ClassificationTreeEditorForCitLab extends ICitLabAlternativeEditor 
 	
 		try {
 			if(file.exists()) {
-				file.delete(true, null);
+				throw new Exception();
 			} 
 				
 			featureModel.initFMComposerExtension(file.getProject());
@@ -109,7 +112,7 @@ public class ClassificationTreeEditorForCitLab extends ICitLabAlternativeEditor 
 		} catch (CoreException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		} 
 //		
 //		try {
 //    	   IWorkbench wb = PlatformUI.getWorkbench();
