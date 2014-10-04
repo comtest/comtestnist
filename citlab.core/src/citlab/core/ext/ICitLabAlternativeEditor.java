@@ -11,6 +11,9 @@
  ******************************************************************************/
 package citlab.core.ext;
 
+import org.eclipse.swt.widgets.Composite;
+
+
 /** an alternative editor in the CitLab platform 
  * Author: Wayman Tan
  */
@@ -21,6 +24,7 @@ public abstract class ICitLabAlternativeEditor {
 	 * 
 	 * @param newFileName
 	 * @return
+	 * @throws Exception 
 	 */
-	public abstract void openEditor (String projectName, String fileName) throws InvalidAlternativeEditorException;	
+	public abstract void openEditor (String projectName, String fileName) throws InvalidAlternativeEditorException, Exception;	
 }
