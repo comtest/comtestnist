@@ -26,6 +26,9 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
+import de.ovgu.featureide.fm.core.ClassFeature;
+import de.ovgu.featureide.fm.core.ClassificationFeature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.ui.FMUIPlugin;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.operations.DeleteAllOperation;
@@ -80,7 +83,21 @@ public class DeleteAllAction extends SingleSelectionAction {
 	 */
 	@Override
 	protected void updateProperties() {
-		setEnabled(!feature.isRoot()); //Abhi
+		boolean booleanClass = false;
+		if(feature instanceof ClassFeature ){
+			if(((ClassFeature) feature).getDataType() != null ){
+				if( ((ClassFeature) feature).getDataType().equals(FeatureConstants.TYPE_BOOLEAN)){
+					booleanClass = true;
+				}
+			}
+			
+		}
+		if(booleanClass){
+			setEnabled(false);
+		} else {
+			setEnabled(!feature.isRoot() ); //Abhi		
+		}
+	
 		setChecked(false);
 	}
 
