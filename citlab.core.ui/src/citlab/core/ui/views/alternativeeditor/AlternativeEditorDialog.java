@@ -17,10 +17,12 @@ package citlab.core.ui.views.alternativeeditor;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +40,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.ISafeRunnable;
 import org.eclipse.core.runtime.IStatus;
@@ -136,7 +139,7 @@ public class AlternativeEditorDialog extends Dialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		Composite container = (Composite) super.createDialogArea(parent);
+		final Composite container = (Composite) super.createDialogArea(parent);
 		
 		final Label nameLabel = new Label(container, SWT.NONE);
 		nameLabel.setText("New File Name");
@@ -197,10 +200,12 @@ public class AlternativeEditorDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {	          
 				try {
+					
 					final Object o = element
 							.createExecutableExtension("AlternativeEditorPrototype");
 
 					if (o instanceof ICitLabAlternativeEditor) {
+						
 						((ICitLabAlternativeEditor) o).openEditor(txtProjectName.getText(), txtFileName.getText());
 					}					
 					close();
@@ -213,6 +218,9 @@ public class AlternativeEditorDialog extends Dialog {
 					MessageBox m =new MessageBox(getShell(),SWT.ERROR);
 					m.setMessage("Alternative editor not Valid");
 					e1.printStackTrace();
+				} catch (Exception e1) {
+					MessageDialog.openError(container.getShell(), "",
+							"File Name already exist.");
 				}
 			}			
 		});
