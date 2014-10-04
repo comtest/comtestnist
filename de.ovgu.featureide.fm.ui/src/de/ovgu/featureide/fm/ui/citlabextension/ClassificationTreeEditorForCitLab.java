@@ -62,7 +62,6 @@ public class ClassificationTreeEditorForCitLab extends ICitLabAlternativeEditor 
 	public void openEditor(String projectName, String fileName)
 			throws Exception {
 		
-		System.out.println("Douglas ::openEditor ");
 		FeatureModel featureModel = new FeatureModel();
 		featureModel.createDefaultValues("");
 		
