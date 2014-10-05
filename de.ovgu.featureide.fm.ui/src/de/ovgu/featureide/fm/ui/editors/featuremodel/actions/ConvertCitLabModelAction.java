@@ -43,7 +43,9 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.IWorkbench;
@@ -52,6 +54,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.xtext.parsetree.reconstr.Serializer;
 import org.eclipse.xtext.resource.XtextResourceSet;
 
@@ -122,7 +125,7 @@ public class ConvertCitLabModelAction extends Action {
 			citConverter.covertConstraintsInFile(file); 
 			openFileInWorkbench(file);
 		} catch (UnconvertibleModelException e) {
-			MessageBox m =new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),SWT.ERROR);
+			MessageBox m = new MessageBox(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),SWT.ERROR);
 			m.setMessage(e.getMessage());
 			m.open();
 			e.printStackTrace();
@@ -167,11 +170,12 @@ public class ConvertCitLabModelAction extends Action {
 	
 		InputStream source = new ByteArrayInputStream(bytes);
 		try {
-			if(!file.exists())
-			file.create(source, IResource.NONE, null);
-			else{
+			if(!file.exists()) {
+				file.create(source, IResource.NONE, null);
+			} else {
 				file.delete(true, null);
-			file.create(source, IResource.FORCE, null);}
+				file.create(source, IResource.FORCE, null);
+			}
 
 		} catch (CoreException e1) {
 			// TODO Auto-generated catch block
@@ -187,6 +191,21 @@ public class ConvertCitLabModelAction extends Action {
 	    	   IWorkbench wb = PlatformUI.getWorkbench();
 	    	   IWorkbenchWindow win = wb.getActiveWorkbenchWindow();
 	    	   IWorkbenchPage page = win.getActivePage();
+	    	   
+	    	   // if an editor with same file name is open, 
+	    	   // need to close that editor first. otherwise
+	    	   // the new editor will disappear.
+	    	   IEditorReference[] refs = page.getEditorReferences();
+	    	   for (IEditorReference ref : refs) {
+	    		   IEditorInput input = ref.getEditorInput();
+	    		   if (input instanceof FileEditorInput) {
+	    			   if (((FileEditorInput)input).getFile().equals(file)) {
+	    				   IEditorReference[] closedRefs = new IEditorReference[1];
+	    				   closedRefs[0] = ref;
+	    				   page.closeEditors(closedRefs, false);
+	    			   }	    			   
+	    		   }	    				   
+	    	   }
 	    	   IDE.openEditor(page, file);
 	       } catch (PartInitException e1) {
 	    	   // TODO Auto-generated catch block
