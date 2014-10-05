@@ -43,6 +43,8 @@ public class ClassFeature extends Feature {
 	
 	private String value;
 	
+	private String constants;
+	
 	public ClassFeature(FeatureModel featureModel, String name) {
 		super(featureModel, name);
 		this.kind = FeatureKind.Class;
@@ -77,5 +79,19 @@ public class ClassFeature extends Feature {
 	 */
 	public void setConcreteValue(String concreteValue) {
 		this.concreteValue = concreteValue;
+	}
+
+	/**
+	 * @return the constants
+	 */
+	public String getDataType() {
+		return constants;
+	}
+
+	/**
+	 * @param tYPE_BOOLEAN the constants to set
+	 */
+	public void setDataType(String tYPE_BOOLEAN) {
+		this.constants = tYPE_BOOLEAN;
 	}
 }

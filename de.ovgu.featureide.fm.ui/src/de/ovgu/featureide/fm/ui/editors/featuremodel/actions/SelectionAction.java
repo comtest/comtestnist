@@ -28,9 +28,11 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 
+import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.Constraint;
 import de.ovgu.featureide.fm.core.Feature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
+import de.ovgu.featureide.fm.core.FeatureConstants;
 import de.ovgu.featureide.fm.core.FeatureModel;
 import de.ovgu.featureide.fm.core.Feature.FeatureKind;
 import de.ovgu.featureide.fm.ui.editors.featuremodel.editparts.ConstraintEditPart;
@@ -47,7 +49,8 @@ public class SelectionAction extends Action {
 	public boolean isClassificationNodeSelected = false; //Abhi
 	public boolean isTypeSet = false;
 	public boolean isNodeRangeClass = false;
-	
+	public boolean isBooleanClassNode = false;
+
 	private ISelectionChangedListener listener = new ISelectionChangedListener() {
 		public void selectionChanged(SelectionChangedEvent event) {
 			IStructuredSelection selection = (IStructuredSelection) event
@@ -58,16 +61,16 @@ public class SelectionAction extends Action {
 					for (Constraint constraint : model.getConstraints()) {
 						if (constraint.isFeatureSelected()) constraint.setFeatureSelected(false);
 					}
-					
+
 					((ConstraintEditPart) selection.getFirstElement()).performRequest(new Request(RequestConstants.REQ_SELECTION));
-					
-					
+
+
 				} else  if (selection.getFirstElement() instanceof FeatureEditPart){
 					for (Feature feature : model.getFeatures()) {
 						if (feature.isConstraintSelected()) feature.setConstraintSelected(false);
 					}
 					((FeatureEditPart) selection.getFirstElement()).performRequest(new Request(RequestConstants.REQ_SELECTION));
-					
+
 					//Abhi
 					if(((FeatureEditPart) selection.getFirstElement()).getFeature().kind == FeatureKind.Classification)
 					{
@@ -80,12 +83,12 @@ public class SelectionAction extends Action {
 						{
 							isTypeSet = true;
 						}
- 					}
+					}
 					else 
 					{
 						isClassificationNodeSelected = false;
 					}
-					
+
 					if(((FeatureEditPart) selection.getFirstElement()).getFeature().kind == FeatureKind.RangeClass)
 					{
 						isNodeRangeClass = true;
@@ -94,13 +97,32 @@ public class SelectionAction extends Action {
 					{
 						isNodeRangeClass = false;
 					}
-						
+
+					if(((FeatureEditPart) selection.getFirstElement()).getFeature() instanceof ClassFeature)
+					{
+						Feature feature = ((FeatureEditPart) selection.getFirstElement()).getFeature();
+
+						if(((ClassificationFeature)((ClassFeature) feature).getParent()).getDataType() != null )
+						{
+							if(((ClassificationFeature)((ClassFeature) feature).getParent()).getDataType().equals(FeatureConstants.TYPE_BOOLEAN))
+							{
+								isBooleanClassNode = true;
+							}
+							else
+							{
+								isBooleanClassNode = false;
+							}
+						}
+
+					}
+
 					//ABhi
-				} else {
+				}
+				else {
 					for (Feature feature : model.getFeatures()) {
 						if (feature.isConstraintSelected()) feature.setConstraintSelected(false);
 					}
-					
+
 					for (Constraint constraint : model.getConstraints()) {
 						if (constraint.isFeatureSelected()) constraint.setFeatureSelected(false);
 					}
@@ -109,29 +131,29 @@ public class SelectionAction extends Action {
 				for (Feature feature : model.getFeatures()) {
 					if (feature.isConstraintSelected()) feature.setConstraintSelected(false);
 				}
-				
+
 				for (Constraint constraint : model.getConstraints()) {
 					if (constraint.isFeatureSelected()) constraint.setFeatureSelected(false);
 				}
 			}
-			
+
 		}
 	};
-	
+
 	private FeatureModel model;
-	
+
 	public SelectionAction (GraphicalViewerImpl viewer, FeatureModel featureModel){
 		super("Selection");
 		this.model = featureModel;
-		
+
 		viewer.addSelectionChangedListener(listener);
 	}
-	
+
 	public boolean isSelectionValid(IStructuredSelection selection){
 		return selection.size() == 1;
 	}
-	
-	
-	
-	
+
+
+
+
 }

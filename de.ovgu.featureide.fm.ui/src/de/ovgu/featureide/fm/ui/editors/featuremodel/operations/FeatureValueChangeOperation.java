@@ -72,7 +72,7 @@ public class FeatureValueChangeOperation extends AbstractFeatureModelOperation {
 				String dataType = ((ClassificationFeature) classFeature.getParent()).getDataType();
 				if(dataType != null)
 				{
-					if(dataType == FeatureConstants.TYPE_INTEGER || dataType == FeatureConstants.TYPE_RANGE)
+					if(dataType.equals(FeatureConstants.TYPE_INTEGER) || dataType.equals(FeatureConstants.TYPE_RANGE))
 					{
 						if(isInteger(newValue))
 							this.classFeature.setValue(newValue);

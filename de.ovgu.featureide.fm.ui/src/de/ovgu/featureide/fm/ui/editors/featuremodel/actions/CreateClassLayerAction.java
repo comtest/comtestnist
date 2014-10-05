@@ -84,8 +84,8 @@ public class CreateClassLayerAction extends SingleSelectionAction{
 	protected void updateProperties() {
 		//Abhi
 		setEnabled(feature.kind == FeatureKind.Classification && ((ClassificationFeature) feature).getDataType() != null
-					&& ((ClassificationFeature) feature).getDataType() != FeatureConstants.TYPE_BOOLEAN
-					&& ((ClassificationFeature) feature).getDataType() != FeatureConstants.TYPE_RANGE); 
+					&& !((ClassificationFeature) feature).getDataType().equals(FeatureConstants.TYPE_BOOLEAN)
+					&& !((ClassificationFeature) feature).getDataType().equals(FeatureConstants.TYPE_RANGE)); 
 		setChecked(false);
 	}
 

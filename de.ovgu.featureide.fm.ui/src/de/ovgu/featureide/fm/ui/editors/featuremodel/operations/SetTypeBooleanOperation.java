@@ -80,6 +80,7 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 		//Abhi : Automatically Add two Class Nodes when the Classification Type is Boolean
 		//Create True Node
 		newFeature1 = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
+		((ClassFeature)newFeature1).setDataType(FeatureConstants.TYPE_BOOLEAN);
 		((ClassFeature) newFeature1).setValue("true");
 	
 		featureModel.addFeature(newFeature1);
@@ -96,6 +97,7 @@ public class SetTypeBooleanOperation extends AbstractFeatureModelOperation {
 		while (featureModel.getFeatureNames().contains("ClassNode" + ++number));
 		newFeature2 = new ClassFeature(featureModel, "ClassNode" + number); //Abhi
 		((ClassFeature) newFeature2).setValue("false");
+		((ClassFeature)newFeature2).setDataType(FeatureConstants.TYPE_BOOLEAN);
 	
 		featureModel.addFeature(newFeature2);
 		feature = featureModel.getFeature(feature.getName());
