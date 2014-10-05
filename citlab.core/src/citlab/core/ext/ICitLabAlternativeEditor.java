@@ -11,8 +11,6 @@
  ******************************************************************************/
 package citlab.core.ext;
 
-import org.eclipse.swt.widgets.Composite;
-
 
 /** an alternative editor in the CitLab platform 
  * Author: Wayman Tan

@@ -377,15 +377,26 @@ public class FeatureDiagramEditor extends ScrollingGraphicalViewer implements
 			menu.add(createClassLayerAction);//Abhi
 			menu.add(createCompositionLayerAction); //Abhi
 			menu.add(createConstraintAction);
-			menu.add(renameAction);
+			
+			if(selectionAction.isBooleanClassNode == false)
+				menu.add(renameAction);
+			
 			//menu.add(deleteAction); //Abhi
-			if(selectionAction.isNodeRangeClass == false)
+			if(selectionAction.isNodeRangeClass == true || selectionAction.isBooleanClassNode == true)
+			{
+				//Do Nothing
+			}
+			else
+			{
 				menu.add(deleteAllAction);
+			}
 			menu.add(new Separator());
 			//connectionEntrys(menu);//Abhi
 			//menu.add(mandatoryAction); //Abhi
 			menu.add(abstractAction);
-			menu.add(hiddenAction);
+			
+			//Abhi: Hiding this Temporarily
+			//menu.add(hiddenAction);
 			menu.add(changeFeatureDescriptionAction);
 			menu.add(new Separator());
 			menu.add(zoomIn); //Abhi

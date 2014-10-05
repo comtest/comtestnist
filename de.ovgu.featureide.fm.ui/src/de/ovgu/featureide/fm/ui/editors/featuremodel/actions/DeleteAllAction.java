@@ -83,10 +83,11 @@ public class DeleteAllAction extends SingleSelectionAction {
 	 */
 	@Override
 	protected void updateProperties() {
+		/**
 		boolean booleanClass = false;
 		if(feature instanceof ClassFeature ){
-			if(((ClassFeature) feature).getDataType() != null ){
-				if( ((ClassFeature) feature).getDataType().equals(FeatureConstants.TYPE_BOOLEAN)){
+			if(((ClassificationFeature)((ClassFeature) feature).getParent()).getDataType() != null ){
+				if(((ClassificationFeature)((ClassFeature) feature).getParent()).getDataType().equals(FeatureConstants.TYPE_BOOLEAN)){
 					booleanClass = true;
 				}
 			}
@@ -95,9 +96,10 @@ public class DeleteAllAction extends SingleSelectionAction {
 		if(booleanClass){
 			setEnabled(false);
 		} else {
-			setEnabled(!feature.isRoot() ); //Abhi		
-		}
-	
+			setEnabled(!feature.isRoot()); //Abhi		
+		}*/
+		
+		setEnabled(!feature.isRoot()); //Abhi
 		setChecked(false);
 	}
 
