@@ -11,6 +11,7 @@
  ******************************************************************************/
 package citlab.core.ui.views.generator;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.CoreException;
@@ -36,6 +37,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.ui.ISharedImages;
@@ -164,7 +166,35 @@ public class TestSuiteExporterDialog extends Dialog {
 							fileDialog.setFilterPath(Platform.getLocation()
 									.toOSString());
 
-							final String fileName = fileDialog.open();
+							boolean done = false;
+							String tmpFileName = null;
+							while (!done) {
+								tmpFileName = fileDialog.open();
+								if (tmpFileName == null) {
+									//User has cancelled, so move to next version
+									done = true;
+								} else {
+									File file = new File(tmpFileName);
+									if (file.exists()) {
+										//file already exists, ask for confirmation
+										MessageBox mb = new MessageBox(fileDialog.getParent(),
+												SWT.ICON_WARNING | SWT.YES | SWT.NO);
+										mb.setMessage(tmpFileName + " already exists. Do you want to replace it?");
+										done = mb.open() == SWT.YES;
+									} else {
+										//file does not exists
+										done = true;
+									}
+								}
+							}
+							//if the user has cancelled, fileName will be null, in which case skip
+							if (tmpFileName == null) {
+								aborted = true;
+								continue;
+							}
+							//else set the fileName string to export
+							final String fileName = tmpFileName;
+
 							final Object o = EX[index]
 									.createExecutableExtension("ITSPrototype");
 							if (o instanceof ICitLabTestSuiteExporter) {
