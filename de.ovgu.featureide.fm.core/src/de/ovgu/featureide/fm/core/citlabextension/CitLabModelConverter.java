@@ -235,6 +235,14 @@ public class CitLabModelConverter {
 						int counter_for_feature_List = 0;
 						for (String value : values) {
 							Element e = CitLFactory.eINSTANCE.createElement();
+							
+							// check if the value is integer
+							// if it is surround with double quotes 
+							// so that citlab can take it as enum 
+							if (value.matches("[0-9]+")) {
+								value = "\"" + value + "\"";
+							}
+							
 							e.setName(normalize(value));
 							enume.getAtype().getElements().add(e);
 							
