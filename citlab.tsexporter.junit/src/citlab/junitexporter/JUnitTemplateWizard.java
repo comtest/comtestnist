@@ -382,11 +382,8 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 
 	private void insertImportStatements(BufferedWriter out, String capturedLine)
 			throws IOException {
-		out.newLine();
-		out.write("//Add citlab.tsexporter.junit to required bundles "
-				+ "by selecting fix project setup");
-		out.write("//Or add JUnitParams-1.0.2.jar to your build path");
-		out.write("//You can download it from: https://code.google.com/p/junitparams/");
+		out.write("//Download and add JUnitParams-1.0.2.jar to your build path");
+		out.write("//You can download it from: https://junitparams.googlecode.com/files/JUnitParams-1.0.2.jar");
 		out.newLine();
 		out.write("import junitparams.JUnitParamsRunner;");
 		out.newLine();
