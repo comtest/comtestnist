@@ -81,7 +81,7 @@ public class CreateCompositionLayerAction extends SingleSelectionAction{
 	@Override
 	protected void updateProperties() {
 		
-		setEnabled(feature.isRoot() || feature.kind == FeatureKind.Composition || feature.kind == FeatureKind.Class);//Abhi
+		setEnabled(feature.isRoot() || feature.kind == FeatureKind.Composition); // || feature.kind == FeatureKind.Class);//Abhi
 		setChecked(false);
 	}
 
