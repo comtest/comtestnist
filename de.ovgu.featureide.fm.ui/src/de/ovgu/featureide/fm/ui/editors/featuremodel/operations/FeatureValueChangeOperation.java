@@ -77,7 +77,12 @@ public class FeatureValueChangeOperation extends AbstractFeatureModelOperation {
 						if(isInteger(newValue))
 							this.classFeature.setValue(newValue);
 					}
-						
+					
+					else if(dataType.equals(FeatureConstants.TYPE_ENUM) && isInteger(newValue))
+					{
+							
+						this.classFeature.setValue("INT_" + newValue);
+					}
 					else
 					{
 						this.classFeature.setValue(newValue);
