@@ -719,7 +719,12 @@ public class TestSuiteView extends ViewPart {
 				columnText = element.toString();
 			} else {
 				if (inputlist.getTests().get(Integer.parseInt(element.toString())).getAssignments() != null){
-					columnText = inputlist.getTests().get(Integer.parseInt(element.toString())).getAssignments().get(columnIndex-1).getValue();	
+					String input_txt = inputlist.getTests().get(Integer.parseInt(element.toString())).getAssignments().get(columnIndex-1).getValue();	
+					if(input_txt.contains("\"")){
+						input_txt = input_txt.replace("\"", "");
+						inputlist.getTests().get(Integer.parseInt(element.toString())).getAssignments().get(columnIndex-1).setValue(input_txt);
+					}
+					columnText = input_txt;
 				}
 				
 			}
