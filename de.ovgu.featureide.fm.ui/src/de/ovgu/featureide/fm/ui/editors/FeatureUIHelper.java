@@ -27,6 +27,8 @@ import java.util.WeakHashMap;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.editparts.ZoomListener;
+import org.eclipse.gef.editparts.ZoomManager;
 
 import de.ovgu.featureide.fm.core.Constraint;
 import de.ovgu.featureide.fm.core.FMPoint;
@@ -53,6 +55,28 @@ public class FeatureUIHelper {
 	private static ArrayList <FeatureModel> hasVerticalLayout= new ArrayList<FeatureModel>();
 	private static ArrayList <FeatureModel> showHiddenFeatures = new ArrayList<FeatureModel>();;
 	
+	//sudhi - manually apply the zoom fix bug
+	//see github issue https://github.com/tthuem/FeatureIDE/issues/138
+	private static double zoomFactor = 1.0;
+	private static ZoomManager zoomManager = null;
+	
+	public static void setZoomManager(ZoomManager zoomManager) {
+		FeatureUIHelper.zoomManager = zoomManager;
+		if(zoomManager==null)
+			return;
+		zoomManager.addZoomListener(new ZoomListener() {
+			@Override
+			public void zoomChanged(double newZoomFactor) {
+				FeatureUIHelper.zoomFactor = newZoomFactor;
+			}
+		});
+	}
+
+	public static ZoomManager getZoomManager() {
+		return zoomManager;
+	}
+	//done patching
+
 	public static Dimension getLegendSize(FeatureModel featureModel){
 		return legendSize.get(featureModel);
 	}

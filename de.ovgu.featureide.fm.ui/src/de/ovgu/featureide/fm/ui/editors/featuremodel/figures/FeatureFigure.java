@@ -24,10 +24,12 @@ import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.GridLayout;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.editparts.ZoomListener;
 
 import de.ovgu.featureide.fm.core.ClassFeature;
 import de.ovgu.featureide.fm.core.ClassificationFeature;
@@ -80,6 +82,14 @@ public class FeatureFigure extends Figure implements GUIDefaults {
 		this.feature = feature;
 		this.featureModel = featureModel;
 		
+		//manual patching zoom issue see:https://github.com/tthuem/FeatureIDE/issues/138
+		FeatureUIHelper.getZoomManager().addZoomListener(new ZoomListener(){
+			@Override
+			public void zoomChanged(double arg0) {
+				enforceLabelSize();
+			}
+		});
+		
 		sourceAnchor = new SourceAnchor(this, feature);
 		targetAnchor = new TargetAnchor(this, feature);
 		
@@ -107,9 +117,10 @@ public class FeatureFigure extends Figure implements GUIDefaults {
 		setProperties();
 		
 		
+		//manual patching zoom issue see:https://github.com/tthuem/FeatureIDE/issues/138
+		enforceLabelSize();
 		FeatureUIHelper.setSize(feature,getSize());
-		
-		add(label);
+		add(label, label.getBounds());
 		setOpaque(true);
 
 		if (FeatureUIHelper.getLocation(feature) != null)
@@ -120,6 +131,13 @@ public class FeatureFigure extends Figure implements GUIDefaults {
 		}
 	}
 	
+	//manual patching zoom issue see:https://github.com/tthuem/FeatureIDE/issues/138
+	protected void enforceLabelSize() {
+		if(getChildren().isEmpty())
+			return;
+		setConstraint((IFigure) getChildren().get(0), label.getBounds().getExpanded(5,  0));
+	}
+
 	boolean isHidden(Feature feature){
 		if(featureModel.getLayout().showHiddenFeatures()){
 			return false;
@@ -283,6 +301,8 @@ public class FeatureFigure extends Figure implements GUIDefaults {
 	public void setName(String newName) {
 		label.setText(newName);
 		Dimension labelSize = label.getPreferredSize();
+		//manual patching zoom issue see:https://github.com/tthuem/FeatureIDE/issues/138
+		this.minSize = labelSize;
 		
 		if (labelSize.equals(label.getSize()))
 			return;
