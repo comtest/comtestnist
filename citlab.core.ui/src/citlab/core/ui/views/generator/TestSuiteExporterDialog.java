@@ -190,7 +190,7 @@ public class TestSuiteExporterDialog extends Dialog {
 							//if the user has cancelled, fileName will be null, in which case skip
 							if (tmpFileName == null) {
 								aborted = true;
-								continue;
+								break;
 							}
 							//else set the fileName string to export
 							final String fileName = tmpFileName;

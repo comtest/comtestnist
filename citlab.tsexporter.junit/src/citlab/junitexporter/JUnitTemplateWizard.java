@@ -317,7 +317,7 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 		//then write out the export buffer append statements
 		sbParams.append(sbExport.toString()).append(";").append(newLine);
 		sbParams.append(indent).append(indent).append("//test your class here").append(newLine);
-		sbParams.append(indent).append(indent).append("assertTrue(true);").append(newLine);
+		sbParams.append(indent).append(indent).append("fail(\"Not yet implemented\");").append(newLine);
 		//then close the method declaration
 		sbParams.append(indent).append("}").append(newLine).append(newLine);
 		//and declare the private static buffer to hold the results
@@ -383,6 +383,7 @@ public class JUnitTemplateWizard extends NewTestCaseCreationWizard {
 	private void insertImportStatements(BufferedWriter out, String capturedLine)
 			throws IOException {
 		out.write("//Download and add JUnitParams-1.0.2.jar to your build path");
+		out.newLine();
 		out.write("//You can download it from: https://junitparams.googlecode.com/files/JUnitParams-1.0.2.jar");
 		out.newLine();
 		out.write("import junitparams.JUnitParamsRunner;");
