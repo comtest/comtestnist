@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/comtest.feature_1.0.0.qualifier.jar" id="comtest.feature" version="1.0.0.qualifier">
+      <category name="comtest"/>
+   </feature>
+   <category-def name="comtest" label="comtest">
+      <description>
+         Comtest Plugin to use combinatorial testing for your project
+      </description>
+   </category-def>
+</site>
