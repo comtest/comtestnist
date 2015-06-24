@@ -44,7 +44,10 @@ import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Font;
@@ -230,7 +233,11 @@ public class ConstraintDialog implements GUIDefaults {
 
 		FormLayout lastCompositeLayout = new FormLayout();
 		lastCompositeLayout.marginHeight = 5;
-		lastCompositeLayout.marginTop = 85;
+		
+		//Zach - Bring the buttons up a little bit.
+		//lastCompositeLayout.marginTop = 85;
+		lastCompositeLayout.marginTop = 35;
+		
 		lastCompositeLayout.marginWidth = 5;
 		lastComposite.setLayout(lastCompositeLayout);
 		ToolBar helpButtonBar = new ToolBar(lastComposite, SWT.FLAT);
@@ -497,9 +504,19 @@ public class ConstraintDialog implements GUIDefaults {
 
 		GridData gridData = new GridData(GridData.FILL_HORIZONTAL);
 		searchFeatureText.setLayoutData(gridData);
-
-
-		Composite tableComposite = new Composite(featureGroup, SWT.NONE);	
+		
+		/*
+		 * Zach
+		 *-Fixed issue where the scrollbars wouldn't show up in the composite.
+		 *-Fixed issue where user had to manually resize window to see buttons if there
+		 * was a large number of classification nodes.
+		 */
+		final ScrolledComposite sc = new ScrolledComposite(featureGroup, SWT.V_SCROLL | SWT.H_SCROLL);
+		final Composite tableComposite = new Composite(sc, SWT.NO_SCROLL);	
+		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+		gd.heightHint = 100;
+		sc.setLayoutData(gd);
+		
 		//Abhi
 		//tableComposite.setEnabled(false);
 		//gridData = new GridData(GridData.FILL_HORIZONTAL);
@@ -513,7 +530,8 @@ public class ConstraintDialog implements GUIDefaults {
 		//PatternFilter filter = new PatternFilter();
 		//featureTree = new FilteredTree(tableComposite, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL, filter,  true);
 
-		final TreeViewer featureTreeViewer = new TreeViewer(tableComposite, SWT.FILL_EVEN_ODD | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
+		final TreeViewer featureTreeViewer = new TreeViewer(tableComposite, SWT.FILL_EVEN_ODD | SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);	
+
 		featureTreeViewer.setContentProvider(new ViewContentProvider1()); //Need to change here
 		featureTreeViewer.setLabelProvider(new ViewLabelProvider1());
 
@@ -523,14 +541,32 @@ public class ConstraintDialog implements GUIDefaults {
 		//gridData.grabExcessVerticalSpace = true;
 
 		featureTree = featureTreeViewer.getTree();
+		
+		
 		featureTree.setLayoutData(new FillLayout());
 
 		TreeViewerColumn tvColumn = new TreeViewerColumn(featureTreeViewer, SWT.NONE);
+		
 		TreeColumnLayout tvLayout = new TreeColumnLayout();
 		tableComposite.setLayout(tvLayout);
 		tvColumn.setLabelProvider(new ViewLabelProvider1());
 		tvLayout.setColumnData(tvColumn.getColumn(), new ColumnWeightData(100, 500, true));
 		//Abhi
+		
+		
+		/*
+		 * Zach
+		 * Sets up the scroll bars in the tree viewer.
+		 */
+		sc.setContent(tableComposite);
+		sc.setExpandHorizontal(true);
+		sc.setExpandVertical(true);
+		
+		sc.addControlListener(new ControlAdapter(){
+			public void controlResized(ControlEvent e) {
+				Rectangle r = sc.getClientArea();
+				sc.setMinSize(featureGroup.computeSize(r.width, 500));}
+		});
 
 		searchFeatureText.addModifyListener(new ModifyListener() {
 
