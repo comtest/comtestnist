@@ -46,6 +46,16 @@ public class FeatureRenamingCommand extends Command {
 		super("Renaming feature " + oldName);
 		this.featureModel = featureModel;
 		this.oldName = oldName;
+		/*
+		 * Zach
+		 * Fixed the issue with allowing names that would cause errors in the Citlab Model.
+		 */
+		newName = newName.replaceAll("\\s", "");
+		while(newName.charAt(0) >= '0' && newName.charAt(0) <= '9'){
+			char c = newName.charAt(0);
+			newName += c;
+			newName = newName.substring(1);
+		}
 		this.newName = newName;
 	}
 	
