@@ -484,7 +484,16 @@ public class FeatureModel extends DeprecatedFeatureModel implements PropertyCons
 	}
 
 	public void removeConstraint(Constraint constraint) {
-		constraints.remove(constraint);
+		/*
+		 * Zach
+		 * Fixed the issue where the wrong constraint was sometimes deleted. 
+		 */
+		for(int i = 0; i < constraints.size(); i++){
+			if(constraint.getConstraintText() == constraints.get(i).getConstraintText()){
+				constraints.remove(i);
+				break;
+			}
+		}
 	}
 
 	public void removeConstraint(int index) {
