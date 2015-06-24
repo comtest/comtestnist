@@ -444,10 +444,26 @@ public class ConstraintDialog implements GUIDefaults {
 						StringBuilder tempforFrontEnd = new StringBuilder(constraintText.getText());
 
 						tempforFrontEnd.delete(x, y);
+						
+						/*
+						 * Zach
+						 * 
+						 * Try something out here...
+						 * 
+						 * This should fix the issue with always inserting the text at the end of the constraint.
+						 */
+						
+						int temp_index = constraintText.getSelection().x;
+						StringBuilder temp_substring = new StringBuilder(tempforFrontEnd.substring(0, temp_index));
+						StringBuilder temp_substring2 = new StringBuilder(tempforFrontEnd.substring(temp_index));
+						
+						temp_substring.append(" " + button.getText().toLowerCase(Locale.ENGLISH) + " " + temp_substring2 + " ");
+						tempforBackEnd = temp_substring;
+						tempforFrontEnd = temp_substring;
 
-						tempforBackEnd.append(button.getText().toLowerCase(Locale.ENGLISH) + " ");
-
-						tempforFrontEnd.append(button.getText().toLowerCase(Locale.ENGLISH) + " ");
+						//tempforBackEnd.append(button.getText().toLowerCase(Locale.ENGLISH) + " ");
+				
+						//tempforFrontEnd.append(button.getText().toLowerCase(Locale.ENGLISH) + " ");
 
 						//temp.insert(x > y ? y : x, /*
 						//							 * " " +
@@ -459,7 +475,10 @@ public class ConstraintDialog implements GUIDefaults {
 						constraintText.setText(tempforFrontEnd.toString()); //NodeReader.reduceWhiteSpaces(temp.toString()));
 
 						constraintText.setFocus();
-						constraintText.setSelection(constraintText.getCharCount());
+						
+						//Zach
+						//Make sure the selection cursor is where the user wants it. 
+						constraintText.setSelection(temp_index + button.getText().length() + 2);
 
 						//Abhi: Client decided to validate on CitLab Side
 						//validate();
@@ -474,6 +493,7 @@ public class ConstraintDialog implements GUIDefaults {
 		}
 
 	}
+
 
 	/**
 	 * initializes the group containing the searchText and featureTable
@@ -650,19 +670,42 @@ public class ConstraintDialog implements GUIDefaults {
 				Feature classFeature = (Feature) selectedTreeItem[0].getData();
 
 				String[] data = constraintText.getText().split(" ");
+				
+				//Zach
+				int selection = 0;
 
 				if(classFeature.kind == FeatureKind.Class || classFeature.kind == FeatureKind.RangeClass)
 				{
-					if((constraintTextforCitLab.getText().isEmpty() || Operator.isOperatorName(data[data.length - 1])))
-					{
+					//Zach
+					//Everything is validated on the Citlab side... no need for if statement.
+					
+					//if((constraintTextforCitLab.getText().isEmpty() || Operator.isOperatorName(data[data.length - 1])))
+					//{
+					
 
 						//Abhi- Trying something out
-						StringBuilder tempforBackEnd = new StringBuilder(constraintTextforCitLab.getText());
-						StringBuilder tempforFrontEnd = new StringBuilder(constraintText.getText());
+					
+						//StringBuilder tempforBackEnd = new StringBuilder(constraintTextforCitLab.getText());
+						//StringBuilder tempforFrontEnd = new StringBuilder(constraintText.getText());
+					
 
 						//StringBuilder temp = new StringBuilder(constraintText.getText());
 
-						tempforFrontEnd.delete(x, y);
+						//tempforFrontEnd.delete(x, y);
+						
+						/*
+						 * Zach
+						 * 
+						 * Trying it out...
+						 * 
+						 * Fixing the issue with always inserting at the end of the constraint.
+						 * 
+						 */
+						
+						int temp_index = constraintText.getSelection().x;
+						StringBuilder temp_substring = new StringBuilder(constraintText.getText().substring(0, temp_index));
+						StringBuilder temp_substring2 = new StringBuilder(constraintText.getText().substring(temp_index));
+						StringBuilder final_string = new StringBuilder("");
 
 						//Abhi
 						System.out.println(String.valueOf(x) + " " + String.valueOf(y));
@@ -670,28 +713,70 @@ public class ConstraintDialog implements GUIDefaults {
 						if (selectedTreeItem.length > 0) {
 							//temp.insert(x > y ? y : x, " " + (selectedTreeItem[0].getText().contains(" ") || Operator.isOperatorName(selectedTreeItem[0].getText()) ? "\"" + selectedTreeItem[0].getText() + "\"" : selectedTreeItem[0].getText())
 							//		+ " ");
-
-							tempforBackEnd.append(" " + classFeature.getName() + " ");
+							
+							//Zach
+							final_string.append(temp_substring + " " + classFeature.getName() + " " + temp_substring2 + " ");
+							//tempforBackEnd.append(" " + classFeature.getName() + " ");
 
 							//tempforFrontEnd.insert(x > y ? y : x, " " + (selectedTreeItem[0].getText().contains(" ") || Operator.isOperatorName(selectedTreeItem[0].getText()) ? "\"" + selectedTreeItem[0].getText() + "\"" : selectedTreeItem[0].getText())+ " ");
 						}
 
-						StringBuilder newConstraintText = new StringBuilder();
+						StringBuilder newConstraintText = new StringBuilder("");
 						
-						if( ((ClassificationFeature) classFeature.getParent()).getDataType().equalsIgnoreCase(FeatureConstants.TYPE_ENUM))
-							newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + classFeature.getParent().getName() + "." + selectedTreeItem[0].getText() + " ");
-						else 
-							newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + selectedTreeItem[0].getText() + " ");
+						if( ((ClassificationFeature) classFeature.getParent()).getDataType().equalsIgnoreCase(FeatureConstants.TYPE_ENUM)){
+							/*
+							 * Zach
+							 * 
+							 * This fixes the issue with the wrong class prefix being converted when several classification nodes
+							 * are branched off from parent classification and class nodes.
+							 * 
+							 * This also provides for a way to insert the constraint operators and tree items at the cursor position. 
+							 */
+							
+							//OLD CODE
+							//newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + classFeature.getParent().getName() + "." + selectedTreeItem[0].getText() + " ");
+							
+							/*
+							 * Zach
+							 * NEW CODE
+							 * Sets cursor position for inserting of operators and tree items.
+							 * Puts the correct class node prefix in the constraint. 
+							 * While loop checks for top classification node parent. (Gets rid of citlab converting error.)
+							 */
+							
+							if(classFeature.getParent().getParent() instanceof ClassFeature || classFeature.getParent().getParent() instanceof ClassificationFeature){
+								Feature chosen_class = classFeature.getParent().getParent();
+								while(chosen_class.getParent() instanceof ClassFeature || chosen_class.getParent() instanceof ClassificationFeature){
+									chosen_class = chosen_class.getParent();
+								}
+								newConstraintText.append(temp_substring + " " + chosen_class.getName() + " == " + chosen_class.getName() + "." + selectedTreeItem[0].getText() + " " + temp_substring2);
+								selection = (temp_index + ((" " + chosen_class.getName() + " == " + chosen_class.getName() + "." + selectedTreeItem[0].getText() + " ")).length());
+							}else{
+								newConstraintText.append(temp_substring + " " + classFeature.getParent().getName() + " == " + classFeature.getParent().getName() + "." + selectedTreeItem[0].getText() + " " + temp_substring2);
+								selection = (temp_index + ((" " + classFeature.getParent().getName() + " == " + classFeature.getParent().getName() + "." + selectedTreeItem[0].getText() + " ")).length());
+							}
+						}
+						
+						else {
+							/*
+							 * Zach
+							 * OLD CODE -> newConstraintText.append(tempforFrontEnd + classFeature.getParent().getName() + " == " + selectedTreeItem[0].getText() + " ");
+							 */
+							
+							//NEW CODE
+							newConstraintText.append(temp_substring + " " + classFeature.getParent().getName() + " == " + selectedTreeItem[0].getText() + " " + temp_substring2);
+
+							selection = temp_index + (" " + classFeature.getParent().getName() + " == " + selectedTreeItem[0].getText() + " ").length();
+						}
 							
 
 
-						constraintTextforCitLab.setText(tempforBackEnd.toString());
+						constraintTextforCitLab.setText(final_string.toString());
 						//Abhi - It is very important that this above line is above the line below. 
 						//The listener is on ConstraintText variable so we need to make sure this works.
 
 						constraintText.setText(newConstraintText.toString()); //NodeReader.reduceWhiteSpaces(temp.toString()));
-
-						constraintText.setSelection(constraintText.getCharCount());
+						constraintText.setSelection(selection);
 						searchFeatureText.setText(FILTERTEXT);
 						searchFeatureText.setForeground(shell.getDisplay()
 								.getSystemColor(SWT.COLOR_GRAY));
@@ -701,17 +786,18 @@ public class ConstraintDialog implements GUIDefaults {
 						//Abhi: Client decided to validate on CitLab Side
 						//validate();
 					}
+					/*
 					else
 					{
 						printHeaderWarning("Invalid Selection. Please select an OPERATOR first");
 					}
-				}
+					*/
+				//}
 			}
 		});
 
 
 	}
-
 	/**
 	 * returns true if constraint is satisfiable otherwise false
 	 * 
