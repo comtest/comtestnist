@@ -1030,7 +1030,9 @@ public class ConstraintDialog implements GUIDefaults {
 			int index = 0;
 			for (Constraint c : featureModel.getConstraints()) {
 				if (c.getConstraintText().equalsIgnoreCase(constraint.getConstraintText())) {
-					op = new ConstraintEditOperation(constraint.getConstraintText(), featureModel, index, propNode);
+					//Zachary Ratliff 
+					//op = new ConstraintEditOperation(constraint.getConstraintText(), featureModel, index, propNode);
+					op = new ConstraintEditOperation(input, featureModel, index, propNode);
 					break;
 				}
 				index++;
