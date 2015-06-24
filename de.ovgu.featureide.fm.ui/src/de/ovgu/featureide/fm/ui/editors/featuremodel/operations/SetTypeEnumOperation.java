@@ -72,6 +72,7 @@ public class SetTypeEnumOperation extends AbstractFeatureModelOperation {
 	@Override
 	protected void redo() {
 		((ClassificationFeature) this.feature).setDataType(FeatureConstants.TYPE_ENUM); //Abhi
+		featureModel.handleModelDataChanged();
 
 	}
 

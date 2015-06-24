@@ -70,6 +70,7 @@ public class SetTypeIntegerOperation extends AbstractFeatureModelOperation {
 	@Override
 	protected void redo() {
 		((ClassificationFeature) feature).setDataType(FeatureConstants.TYPE_INTEGER); //Abhi
+		featureModel.handleModelDataChanged();
 
 	}
 
